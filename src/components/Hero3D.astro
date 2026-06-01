@@ -1,0 +1,147 @@
+---
+---
+
+<div class="hero-3d-container" id="hero-3d">
+  <canvas id="hero-3d-canvas"></canvas>
+</div>
+
+<script>
+  import * as THREE from 'three';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const container = document.getElementById('hero-3d');
+  const canvas = document.getElementById('hero-3d-canvas') as HTMLCanvasElement;
+
+  if (container && canvas && !prefersReducedMotion) {
+    // Scene
+    const scene = new THREE.Scene();
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(0, 0, 5);
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.4);
+    rimLight.position.set(-3, 2, -5);
+    scene.add(rimLight);
+
+    // Cube with rounded edges (RoundedBoxGeometry approximation)
+    const geometry = new THREE.BoxGeometry(1.2, 1.2, 1.2, 4, 4, 4);
+
+    // Round the edges slightly
+    const posAttr = geometry.getAttribute('position');
+    const radius = 0.15;
+    const halfSize = 0.6;
+    for (let i = 0; i < posAttr.count; i++) {
+      const x = posAttr.getX(i);
+      const y = posAttr.getY(i);
+      const z = posAttr.getZ(i);
+
+      const nx = Math.max(Math.abs(x) - halfSize + radius, 0) * Math.sign(x);
+      const ny = Math.max(Math.abs(y) - halfSize + radius, 0) * Math.sign(y);
+      const nz = Math.max(Math.abs(z) - halfSize + radius, 0) * Math.sign(z);
+
+      const len = Math.sqrt(nx * nx + ny * ny + nz * nz);
+      if (len > 0) {
+        const scale = (len - radius) / len;
+        posAttr.setXYZ(i,
+          (halfSize - radius) * Math.sign(x) + nx * scale,
+          (halfSize - radius) * Math.sign(y) + ny * scale,
+          (halfSize - radius) * Math.sign(z) + nz * scale
+        );
+      }
+    }
+    geometry.computeVertexNormals();
+
+    const material = new THREE.MeshPhysicalMaterial({
+      color: 0xf0c040,
+      roughness: 0.15,
+      metalness: 0.1,
+      clearcoat: 0.8,
+      clearcoatRoughness: 0.1,
+    });
+
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // Mouse tracking
+    const mouse = { x: 0, y: 0 };
+    const targetRotation = { x: 0, y: 0 };
+
+    document.addEventListener('mousemove', (e) => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // Resize
+    function updateSize() {
+      const rect = container.getBoundingClientRect();
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(rect.width, rect.height);
+    }
+    updateSize();
+    window.addEventListener('resize', updateSize);
+
+    // Animation
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const elapsed = clock.getElapsedTime();
+
+      // Floating bob
+      cube.position.y = Math.sin(elapsed * 0.8) * 0.15;
+      cube.position.x = Math.sin(elapsed * 0.5) * 0.05;
+
+      // Mouse-reactive rotation
+      targetRotation.x = mouse.y * 0.4;
+      targetRotation.y = mouse.x * 0.4;
+
+      cube.rotation.x += (targetRotation.x - cube.rotation.x) * 0.05;
+      cube.rotation.y += (targetRotation.y - cube.rotation.y) * 0.05;
+
+      // Subtle idle rotation
+      cube.rotation.z = Math.sin(elapsed * 0.3) * 0.05;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  }
+</script>
+
+<style>
+  .hero-3d-container {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #hero-3d-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
