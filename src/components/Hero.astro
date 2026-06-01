@@ -19,14 +19,14 @@
 
         <div class="mb-2xl">
           <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance" id="hero-title">
-            <span class="hero-line block overflow-hidden"><span class="block">Álvaro Ares.</span></span>
-            <span class="hero-line block overflow-hidden"><span class="block">I make food look delicious</span></span>
-            <span class="hero-line block overflow-hidden"><span class="block">before it <em class="not-italic" style="color: var(--accent);">exists.</em></span></span>
+            <span class="hero-line block overflow-hidden"><span class="block">Álvaro Ares</span></span>
+            <span class="hero-line block overflow-hidden"><span class="block">Creative Director</span></span>
+            <span class="hero-line block overflow-hidden"><span class="block">& <em class="not-italic" style="color: var(--accent);">CGI artist.</em></span></span>
           </h1>
         </div>
 
         <p class="text-[17px] leading-[1.6] text-muted max-w-[460px] mb-2xl hero-reveal" style="transition-delay: 0.45s;">
-          <strong class="text-ink font-medium">Creative Director & CGI artist.</strong> 8 years of photoreal rendering, motion systems and brand identity. Based in Barcelona, working worldwide.
+          <strong class="text-ink font-medium">I make brands look expensive.</strong> 8 years of photoreal rendering, motion systems and brand identity. Based in Barcelona, working worldwide.
         </p>
 
         <div class="flex gap-md hero-reveal" style="transition-delay: 0.6s;">
@@ -60,13 +60,13 @@
 
   if (!prefersReducedMotion) {
     gsap.fromTo('.hero-line > span',
-      { y: '115%', opacity: 0 },
+      { y: '110%', opacity: 0 },
       {
         y: '0%',
         opacity: 1,
-        duration: 1.3,
-        ease: 'power4.out',
-        stagger: 0.12,
+        duration: 1.2,
+        ease: 'power3.out',
+        stagger: 0.1,
         delay: 0.1,
       }
     );
@@ -78,9 +78,9 @@
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
-          ease: 'power3.out',
-          delay: delay + 0.5,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: delay + 0.4,
         }
       );
     });

@@ -6,16 +6,16 @@ import WorkSection from '@components/WorkSection.astro';
 import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 ---
 
-<BaseLayout title="Álvaro Ares — Creative Director & Visual Artist">
+<BaseLayout title="Álvaro Ares — Creative Director & CGI Artist">
   <Navigation />
   <main style="padding-bottom: 50vh; position: relative; z-index: 1; background: var(--color-canvas);">
     <Hero />
     <WorkSection />
 
-    <!-- Mini About -->
+    <!-- About — gradient fill -->
     <section class="relative bg-canvas overflow-hidden" id="about-preview">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl items-start">
           <div class="lg:col-span-5 about-reveal">
             <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">About</span>
             <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
@@ -23,7 +23,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </h2>
           </div>
           <div class="lg:col-span-6 lg:col-start-7 about-reveal" style="transition-delay: 0.1s;">
-            <p class="about-fill-text text-[19px] leading-[1.65] mb-lg" style="color: #a0a0a0;">
+            <p class="about-fill-text text-[19px] leading-[1.65] mb-lg" id="about-fill-paragraph">
               <strong class="text-ink font-medium">8 years of visual craft.</strong> I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.
             </p>
             <div class="flex flex-wrap gap-xs mb-xl">
@@ -38,6 +38,20 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
               More about me
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Small contrast CTA -->
+    <section class="relative bg-warm overflow-hidden" id="mini-cta">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-3xl">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-lg border-t border-b border-border-light py-xl cta-reveal">
+          <p class="text-ink text-[18px] font-light tracking-[-0.02em]">
+            Got something in mind? <strong class="font-medium">Let's talk.</strong>
+          </p>
+          <a href="mailto:hey@alvaroar.es" class="magnetic inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
+            Get in touch
+          </a>
         </div>
       </div>
     </section>
@@ -128,31 +142,20 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       </div>
     </section>
 
-    <!-- Dark CTA section -->
-    <section class="relative bg-ink text-canvas overflow-hidden" id="cta-dark">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section text-center">
-        <h2 class="text-[clamp(28px,4vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-canvas mb-xl cta-reveal">
-          Got a project in mind?
-        </h2>
-        <p class="text-canvas/60 text-[17px] leading-[1.6] max-w-[420px] mx-auto mb-2xl cta-reveal" style="transition-delay: 0.1s;">
-          I'm available for full-time positions, freelance projects and creative collaborations.
-        </p>
-        <div class="flex justify-center gap-md cta-reveal" style="transition-delay: 0.2s;">
-          <a href="mailto:hey@alvaroar.es" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:bg-canvas/90 active:scale-[0.95]">
-            Get in touch
-          </a>
-          <a href="/about" class="magnetic inline-flex items-center justify-center px-6 py-3 border border-canvas/20 text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:border-canvas/40 active:scale-[0.95]">
-            Download CV
-          </a>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <!-- Footer — fixed underneath -->
   <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas overflow-hidden" id="footer" style="z-index: -1;">
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-xl">
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-3xl">
+      <!-- Email -->
+      <div class="mb-3xl">
+        <a href="mailto:hey@alvaroar.es" class="block group" id="footer-email-link">
+          <div class="footer-email text-[clamp(28px,4.5vw,56px)] font-light leading-[1.1] tracking-[-0.03em] text-canvas overflow-hidden" id="footer-email">
+            hey@alvaroar.es
+          </div>
+        </a>
+      </div>
+      <!-- Grid -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-xl mb-xl">
         <div>
           <span class="text-canvas/30 text-[10px] font-medium tracking-[0.14px] uppercase block mb-xs">Email</span>
@@ -246,53 +249,90 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     // About reveal
     document.querySelectorAll('.about-reveal').forEach((el) => {
       gsap.fromTo(el,
-        { opacity: 0, y: 25 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: 'power4.out',
+          duration: 0.8,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 90%',
+            start: 'top 92%',
             toggleActions: 'play none none none',
           },
         }
       );
     });
 
-    // About text fill effect
-    document.querySelectorAll('.about-fill-text').forEach((el) => {
-      gsap.fromTo(el,
-        { color: '#a0a0a0' },
-        {
+    // About text — per-word gradient fill
+    const fillParagraph = document.getElementById('about-fill-paragraph');
+    if (fillParagraph) {
+      // Save the strong element, replace text with word spans
+      const strongEl = fillParagraph.querySelector('strong');
+      const strongText = strongEl ? strongEl.textContent : '';
+      const fullText = fillParagraph.textContent || '';
+
+      // Get the text after the strong element
+      const afterStrong = fullText.replace(strongText, '').trim();
+
+      // Rebuild: strong + word spans
+      fillParagraph.innerHTML = '';
+      if (strongEl) fillParagraph.appendChild(strongEl);
+
+      afterStrong.split(/\s+/).forEach((word) => {
+        const span = document.createElement('span');
+        span.textContent = word + ' ';
+        span.style.color = '#a0a0a0';
+        span.style.display = 'inline';
+        span.style.transition = 'color 0.3s ease';
+        fillParagraph.appendChild(span);
+      });
+
+      const wordSpans = fillParagraph.querySelectorAll('span:not(strong)');
+
+      // GSAP scrub — each word turns black as you scroll
+      const totalWords = wordSpans.length;
+      wordSpans.forEach((wordEl, i) => {
+        const start = i / totalWords;
+        const end = (i + 1) / totalWords;
+
+        gsap.to(wordEl, {
           color: '#1a1a1a',
-          duration: 1,
           ease: 'none',
           scrollTrigger: {
-            trigger: el,
-            start: 'top 80%',
-            end: 'top 30%',
+            trigger: fillParagraph,
+            start: 'top 75%',
+            end: 'top 20%',
             scrub: 1,
-          },
-        }
-      );
-    });
+            onUpdate: (self) => {
+              const progress = self.progress;
+              if (progress >= start && progress <= end) {
+                const localProgress = (progress - start) / (end - start);
+                const r = Math.round(160 + (26 - 160) * localProgress);
+                const g = Math.round(160 + (26 - 160) * localProgress);
+                const b = Math.round(160 + (26 - 160) * localProgress);
+                (wordEl as HTMLElement).style.color = `rgb(${r},${g},${b})`;
+              } else if (progress > end) {
+                (wordEl as HTMLElement).style.color = '#1a1a1a';
+              }
+            }
+          }
+        });
+      });
+    }
 
-    // CTA dark section reveal
+    // CTA reveal
     document.querySelectorAll('.cta-reveal').forEach((el) => {
-      const delay = parseFloat((el as HTMLElement).style.transitionDelay || '0');
       gsap.fromTo(el,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: 'power4.out',
-          delay,
+          duration: 0.8,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 85%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -329,7 +369,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             opacity: 1,
             y: 0,
             duration: 0.6,
-            ease: 'power3.out',
+            ease: 'power2.out',
             stagger: 0.04,
           });
         },
@@ -342,7 +382,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             y: -6,
             color: 'var(--accent)',
             duration: 0.35,
-            ease: 'power3.out',
+            ease: 'power2.out',
             stagger: 0.02,
           });
         });
@@ -352,7 +392,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             y: 0,
             color: 'var(--color-canvas)',
             duration: 0.5,
-            ease: 'power3.out',
+            ease: 'power2.out',
             stagger: 0.02,
             onComplete: () => {
               chars.forEach((c) => {

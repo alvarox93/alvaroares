@@ -121,12 +121,12 @@
     // Section header
     document.querySelectorAll('#work .work-reveal').forEach((el) => {
       gsap.fromTo(el,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: 'power4.out',
+          duration: 0.9,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: el,
             start: 'top 92%',
@@ -143,13 +143,13 @@
       // Image reveal
       if (imageWrap) {
         gsap.fromTo(imageWrap,
-          { scale: 0.9, opacity: 0, y: 80 },
+          { scale: 0.92, opacity: 0, y: 60 },
           {
             scale: 1,
             opacity: 1,
             y: 0,
-            duration: 1.4,
-            ease: 'power4.out',
+            duration: 1.2,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: project,
               start: 'top 88%',
@@ -158,31 +158,31 @@
           }
         );
 
-        // Parallax — more movement
+        // Parallax
         gsap.to(imageWrap, {
-          y: -60,
+          y: -50,
           ease: 'none',
           scrollTrigger: {
             trigger: project,
             start: 'top bottom',
             end: 'bottom top',
-            scrub: 2,
+            scrub: 2.5,
           },
         });
       }
 
       // Text staggered reveal
       gsap.fromTo(textEls,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: 'power4.out',
-          stagger: 0.1,
+          duration: 0.9,
+          ease: 'power2.out',
+          stagger: 0.08,
           scrollTrigger: {
             trigger: project,
-            start: 'top 78%',
+            start: 'top 80%',
             toggleActions: 'play none none none',
           },
         }
