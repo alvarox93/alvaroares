@@ -8,7 +8,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
 <BaseLayout title="Álvaro Ares — Creative Director & CGI Artist">
   <Navigation />
-  <main style="padding-bottom: 50vh;">
+  <main style="padding-bottom: 100vh;">
     <Hero />
     <WorkSection />
 
@@ -23,8 +23,8 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </h2>
           </div>
           <div class="lg:col-span-6 lg:col-start-7 about-reveal" style="transition-delay: 0.1s;">
-            <p class="about-fill-text text-[19px] leading-[1.65] mb-lg" id="about-fill-paragraph">
-              <strong class="text-ink font-medium">8 years of visual craft.</strong> I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.
+            <p class="text-[19px] leading-[1.65] mb-lg" id="about-fill-paragraph">
+              <strong class="text-ink font-medium">8 years of visual craft.</strong> <span class="about-word" style="color: #a0a0a0;">I</span> <span class="about-word" style="color: #a0a0a0;">ran</span> <span class="about-word" style="color: #a0a0a0;">a</span> <span class="about-word" style="color: #a0a0a0;">studio</span> <span class="about-word" style="color: #a0a0a0;">in</span> <span class="about-word" style="color: #a0a0a0;">Bilbao,</span> <span class="about-word" style="color: #a0a0a0;">led</span> <span class="about-word" style="color: #a0a0a0;">a</span> <span class="about-word" style="color: #a0a0a0;">team</span> <span class="about-word" style="color: #a0a0a0;">of</span> <span class="about-word" style="color: #a0a0a0;">8,</span> <span class="about-word" style="color: #a0a0a0;">shipped</span> <span class="about-word" style="color: #a0a0a0;">campaigns</span> <span class="about-word" style="color: #a0a0a0;">across</span> <span class="about-word" style="color: #a0a0a0;">12</span> <span class="about-word" style="color: #a0a0a0;">countries.</span> <span class="about-word" style="color: #a0a0a0;">Now</span> <span class="about-word" style="color: #a0a0a0;">based</span> <span class="about-word" style="color: #a0a0a0;">in</span> <span class="about-word" style="color: #a0a0a0;">Barcelona,</span> <span class="about-word" style="color: #a0a0a0;">I</span> <span class="about-word" style="color: #a0a0a0;">work</span> <span class="about-word" style="color: #a0a0a0;">with</span> <span class="about-word" style="color: #a0a0a0;">CGI,</span> <span class="about-word" style="color: #a0a0a0;">motion</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">brand</span> <span class="about-word" style="color: #a0a0a0;">systems</span> <span class="about-word" style="color: #a0a0a0;">—</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">explore</span> <span class="about-word" style="color: #a0a0a0;">AI</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">code</span> <span class="about-word" style="color: #a0a0a0;">to</span> <span class="about-word" style="color: #a0a0a0;">push</span> <span class="about-word" style="color: #a0a0a0;">the</span> <span class="about-word" style="color: #a0a0a0;">work</span> <span class="about-word" style="color: #a0a0a0;">further.</span>
             </p>
             <div class="flex flex-wrap gap-xs mb-xl">
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">Maya</span>
@@ -59,7 +59,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     <!-- Posts — horizontal scroll -->
     <section class="relative bg-warm overflow-hidden pb-3xl" id="posts">
       <div class="posts-pin-wrapper" id="posts-pin">
-        <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-xl pb-lg text-left">
+        <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-xl pb-lg" style="text-align: left;">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Thinking</span>
           <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
             Posts & concepts.
@@ -71,7 +71,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           <a href="#" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Motion</div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
                 <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   Why motion design systems matter more than animated logos
@@ -87,7 +86,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           <a href="#" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">CGI</div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
                 <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   The case for CGI product rendering over traditional photography
@@ -103,7 +101,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           <a href="#" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">AI</div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
                 <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   AI-native production: how I automated 60% of my visual pipeline
@@ -119,7 +116,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           <a href="#" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Code</div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
                 <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   Designing interfaces that think in code (and why it matters)
@@ -135,7 +131,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           <a href="#" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Brand</div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
                 <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   Building a brand from zero: what I learned running Lapatzak
@@ -159,7 +154,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         <!-- Email -->
         <div class="mb-xl">
           <a href="mailto:hey@alvaroar.es" class="block group" id="footer-email-link">
-            <div class="footer-email text-[clamp(28px,4.5vw,56px)] font-light leading-[1.1] tracking-[-0.03em] text-canvas overflow-hidden" id="footer-email">
+            <div class="footer-email text-[clamp(28px,4.5vw,56px)] font-medium leading-[1.1] tracking-[-0.03em] text-canvas overflow-hidden" id="footer-email">
               hey@alvaroar.es
             </div>
           </a>
@@ -167,9 +162,15 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
         <!-- Info line -->
         <div class="flex flex-wrap items-center gap-x-lg gap-y-sm mb-xl">
-          <a href="tel:+34649635382" class="text-canvas/50 text-[13px] hover:text-accent transition-colors duration-300">+34 649 635 382</a>
+          <a href="tel:+34649635382" class="inline-flex items-center gap-xs text-canvas/50 text-[13px] hover:text-canvas transition-colors duration-300">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +34 649 635 382
+          </a>
           <span class="text-canvas/20 text-[13px]">/</span>
-          <span class="text-canvas/50 text-[13px]">Barcelona, Spain</span>
+          <span class="inline-flex items-center gap-xs text-canvas/50 text-[13px]">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Barcelona, Spain
+          </span>
           <span class="text-canvas/20 text-[13px]">/</span>
           <span class="text-canvas/50 text-[13px]">Working worldwide</span>
         </div>
@@ -267,26 +268,9 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       );
     });
 
-    // About text — per-word gradient fill
-    const fillParagraph = document.getElementById('about-fill-paragraph');
-    if (fillParagraph) {
-      const strongEl = fillParagraph.querySelector('strong');
-      const strongText = strongEl ? strongEl.textContent : '';
-      const fullText = fillParagraph.textContent || '';
-      const afterStrong = fullText.replace(strongText, '').trim();
-
-      fillParagraph.innerHTML = '';
-      if (strongEl) fillParagraph.appendChild(strongEl);
-
-      afterStrong.split(/\s+/).forEach((word) => {
-        const span = document.createElement('span');
-        span.textContent = word + ' ';
-        span.style.color = '#a0a0a0';
-        span.style.display = 'inline';
-        fillParagraph.appendChild(span);
-      });
-
-      const wordSpans = fillParagraph.querySelectorAll('span:not(strong)');
+    // About text — per-word gradient fill (pre-rendered spans)
+    const wordSpans = document.querySelectorAll('.about-word');
+    if (wordSpans.length > 0) {
       const totalWords = wordSpans.length;
 
       wordSpans.forEach((wordEl, i) => {
@@ -297,7 +281,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           color: '#1a1a1a',
           ease: 'none',
           scrollTrigger: {
-            trigger: fillParagraph,
+            trigger: wordEl.closest('p'),
             start: 'top 75%',
             end: 'top 20%',
             scrub: 1,
@@ -305,10 +289,8 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
               const progress = self.progress;
               if (progress >= start && progress <= end) {
                 const localProgress = (progress - start) / (end - start);
-                const r = Math.round(160 + (26 - 160) * localProgress);
-                const g = Math.round(160 + (26 - 160) * localProgress);
-                const b = Math.round(160 + (26 - 160) * localProgress);
-                (wordEl as HTMLElement).style.color = `rgb(${r},${g},${b})`;
+                const v = Math.round(160 + (26 - 160) * localProgress);
+                (wordEl as HTMLElement).style.color = `rgb(${v},${v},${v})`;
               } else if (progress > end) {
                 (wordEl as HTMLElement).style.color = '#1a1a1a';
               }
@@ -336,7 +318,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       );
     });
 
-    // Footer email — scroll reveal + hover
+    // Footer email — scroll reveal + hover (only y, no color change)
     const emailEl = document.getElementById('footer-email');
     const emailLink = document.getElementById('footer-email-link');
 
@@ -377,7 +359,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         emailLink.addEventListener('mouseenter', () => {
           gsap.to(chars, {
             y: -6,
-            color: 'var(--accent)',
             duration: 0.35,
             ease: 'power2.out',
             stagger: 0.02,
@@ -387,21 +368,37 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         emailLink.addEventListener('mouseleave', () => {
           gsap.to(chars, {
             y: 0,
-            color: 'var(--color-canvas)',
             duration: 0.5,
             ease: 'power2.out',
             stagger: 0.02,
-            onComplete: () => {
-              chars.forEach((c) => {
-                if (c.textContent === '@' || c.textContent === '.') {
-                  (c as HTMLElement).style.color = 'var(--accent)';
-                }
-              });
-            }
           });
         });
       }
     }
+
+    // Magnetic effect on CTA buttons
+    document.querySelectorAll('.magnetic').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+        gsap.to(el, {
+          x: x * 0.15,
+          y: y * 0.15,
+          duration: 0.3,
+          ease: 'power2.out',
+        });
+      });
+
+      el.addEventListener('mouseleave', () => {
+        gsap.to(el, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.5)',
+        });
+      });
+    });
   }
 </script>
 
