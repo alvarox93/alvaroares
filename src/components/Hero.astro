@@ -41,8 +41,10 @@ import Hero3D from '@components/Hero3D.astro';
 
       </div>
 
-      <div class="hidden lg:flex lg:col-span-5 lg:col-start-8 items-center justify-center">
-        <Hero3D />
+      <div class="hidden lg:block lg:col-span-5 lg:col-start-8 relative" style="min-height: 400px;">
+        <div class="absolute inset-0">
+          <Hero3D />
+        </div>
       </div>
     </div>
   </div>
