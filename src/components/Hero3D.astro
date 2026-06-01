@@ -17,7 +17,8 @@
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-    camera.position.set(0, 0.5, 5);
+    camera.position.set(0, 2.5, 5);
+    camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -110,7 +111,28 @@
     });
 
     const keycap = new THREE.Mesh(geometry, material);
+    // Initial rotation to show top face
+    keycap.rotation.x = -0.4;
     scene.add(keycap);
+
+    // Click interaction — press down and spring back
+    let isPressed = false;
+    let pressTime = 0;
+    const pressDuration = 0.4;
+    const pressDepth = -0.2;
+
+    container.addEventListener('mousedown', () => {
+      isPressed = true;
+      pressTime = 0;
+    });
+
+    container.addEventListener('mouseup', () => {
+      isPressed = false;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      isPressed = false;
+    });
 
     // Mouse tracking
     const mouse = { x: 0, y: 0 };
@@ -133,18 +155,34 @@
 
     // Animation
     const clock = new THREE.Clock();
+    let baseY = 0;
 
     function animate() {
       requestAnimationFrame(animate);
 
       const elapsed = clock.getElapsedTime();
+      const delta = clock.getDelta();
 
       // Float
-      keycap.position.y = Math.sin(elapsed * 0.7) * 0.12;
+      const floatY = Math.sin(elapsed * 0.7) * 0.12;
       keycap.position.x = Math.sin(elapsed * 0.4) * 0.04;
 
+      // Click press animation
+      if (isPressed) {
+        pressTime += delta;
+        const t = Math.min(pressTime / pressDuration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - t, 3);
+        baseY = pressDepth * eased;
+      } else {
+        // Spring back
+        baseY += (0 - baseY) * 0.08;
+      }
+
+      keycap.position.y = floatY + baseY;
+
       // Mouse-reactive rotation
-      targetRotation.x = mouse.y * 0.3;
+      targetRotation.x = mouse.y * 0.3 + (-0.4);
       targetRotation.y = mouse.x * 0.3;
 
       keycap.rotation.x += (targetRotation.x - keycap.rotation.x) * 0.04;
