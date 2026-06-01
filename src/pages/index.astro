@@ -44,8 +44,8 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
     <!-- Posts — horizontal scroll -->
     <section class="relative bg-warm overflow-hidden" id="posts">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-xl">
-        <div class="flex items-end justify-between mb-xl posts-header">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-xl posts-header">
+        <div class="flex items-end justify-between mb-xl">
           <div>
             <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Thinking</span>
             <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
@@ -55,8 +55,8 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         </div>
       </div>
 
-      <div class="posts-scroll-container" id="posts-scroll">
-        <div class="posts-track flex gap-xl px-xl lg:px-3xl pb-section" id="posts-track">
+      <div class="posts-pin-wrapper" id="posts-pin">
+        <div class="posts-track flex gap-xl px-xl lg:px-3xl items-center" id="posts-track">
 
           <a href="#" class="post-card group shrink-0" style="width: 320px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
@@ -117,8 +117,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
     <footer class="relative bg-ink text-canvas overflow-hidden" id="footer">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-xl">
 
@@ -210,17 +208,17 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
     // Horizontal scroll for posts
     const postsTrack = document.getElementById('posts-track');
-    const postsSection = document.getElementById('posts');
+    const postsPin = document.getElementById('posts-pin');
 
-    if (postsTrack && postsSection) {
+    if (postsTrack && postsPin) {
       const totalWidth = postsTrack.scrollWidth - window.innerWidth + 100;
 
       gsap.to(postsTrack, {
         x: -totalWidth,
         ease: 'none',
         scrollTrigger: {
-          trigger: postsSection,
-          start: 'top+=300 top',
+          trigger: postsPin,
+          start: 'top center',
           end: `+=${totalWidth}`,
           pin: true,
           scrub: 2,
