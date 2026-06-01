@@ -8,7 +8,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
 <BaseLayout title="Álvaro Ares — Creative Director & Visual Artist">
   <Navigation />
-  <main style="padding-bottom: 60vh; position: relative; z-index: 1; background: var(--color-canvas);">
+  <main style="padding-bottom: 50vh; position: relative; z-index: 1; background: var(--color-canvas);">
     <Hero />
     <WorkSection />
 
@@ -23,7 +23,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </h2>
           </div>
           <div class="lg:col-span-6 lg:col-start-7 about-reveal" style="transition-delay: 0.1s;">
-            <p class="about-fill-text text-[19px] leading-[1.65] text-muted mb-lg" style="color: #a0a0a0;">
+            <p class="about-fill-text text-[19px] leading-[1.65] mb-lg" style="color: #a0a0a0;">
               <strong class="text-ink font-medium">8 years of visual craft.</strong> I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.
             </p>
             <div class="flex flex-wrap gap-xs mb-xl">
@@ -45,59 +45,59 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     <!-- Posts — horizontal scroll -->
     <section class="relative bg-warm overflow-hidden pb-3xl" id="posts">
       <div class="posts-pin-wrapper" id="posts-pin">
-        <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-xl pb-xl">
+        <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-xl pb-lg">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Thinking</span>
           <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
             Posts & concepts.
           </h2>
         </div>
 
-        <div class="posts-track flex gap-xl px-xl lg:px-3xl" id="posts-track">
+        <div class="posts-track flex gap-lg px-xl lg:px-3xl" id="posts-track">
 
-          <a href="#" class="post-card group shrink-0" style="width: 320px;">
-            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-md">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Motion</div>
               <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
             </div>
             <div class="flex items-start justify-between mb-xs">
-              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">Motion · Systems</span>
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">Motion</span>
               <span class="text-ghost text-[11px] tracking-[0.14px]">5 min</span>
             </div>
-            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+            <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
               Why motion design systems matter more than animated logos
             </h3>
           </a>
 
-          <a href="#" class="post-card group shrink-0" style="width: 320px;">
-            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-md">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">CGI</div>
               <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
             </div>
             <div class="flex items-start justify-between mb-xs">
-              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">CGI · Product</span>
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">CGI</span>
               <span class="text-ghost text-[11px] tracking-[0.14px]">4 min</span>
             </div>
-            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+            <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
               The case for CGI product rendering over traditional photography
             </h3>
           </a>
 
-          <a href="#" class="post-card group shrink-0" style="width: 320px;">
-            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-md">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">AI</div>
               <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
             </div>
             <div class="flex items-start justify-between mb-xs">
-              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">AI · Workflow</span>
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">AI</span>
               <span class="text-ghost text-[11px] tracking-[0.14px]">6 min</span>
             </div>
-            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+            <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
               AI-native production: how I automated 60% of my visual pipeline
             </h3>
           </a>
 
-          <a href="#" class="post-card group shrink-0" style="width: 320px;">
-            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-md">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Code</div>
               <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
             </div>
@@ -105,65 +105,85 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
               <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">Design · Code</span>
               <span class="text-ghost text-[11px] tracking-[0.14px]">3 min</span>
             </div>
-            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+            <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
               Designing interfaces that think in code (and why it matters)
+            </h3>
+          </a>
+
+          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-md">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Brand</div>
+              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+            </div>
+            <div class="flex items-start justify-between mb-xs">
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">Brand</span>
+              <span class="text-ghost text-[11px] tracking-[0.14px]">4 min</span>
+            </div>
+            <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+              Building a brand from zero: what I learned running Lapatzak
             </h3>
           </a>
 
         </div>
       </div>
     </section>
-    <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas overflow-hidden" id="footer" style="z-index: -1;">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-xl">
 
-        <!-- Email -->
-        <div class="mb-3xl">
-          <a href="mailto:hey@alvaroar.es" class="block group" id="footer-email-link">
-            <div class="footer-email text-[clamp(28px,4.5vw,56px)] font-light leading-[1.1] tracking-[-0.03em] text-canvas overflow-hidden" id="footer-email">
-              hey@alvaroar.es
-            </div>
+    <!-- Dark CTA section -->
+    <section class="relative bg-ink text-canvas overflow-hidden" id="cta-dark">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section text-center">
+        <h2 class="text-[clamp(28px,4vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-canvas mb-xl cta-reveal">
+          Got a project in mind?
+        </h2>
+        <p class="text-canvas/60 text-[17px] leading-[1.6] max-w-[420px] mx-auto mb-2xl cta-reveal" style="transition-delay: 0.1s;">
+          I'm available for full-time positions, freelance projects and creative collaborations.
+        </p>
+        <div class="flex justify-center gap-md cta-reveal" style="transition-delay: 0.2s;">
+          <a href="mailto:hey@alvaroar.es" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:bg-canvas/90 active:scale-[0.95]">
+            Get in touch
+          </a>
+          <a href="/about" class="magnetic inline-flex items-center justify-center px-6 py-3 border border-canvas/20 text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:border-canvas/40 active:scale-[0.95]">
+            Download CV
           </a>
         </div>
+      </div>
+    </section>
 
-        <!-- Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-xl mb-3xl">
-          <div>
-            <span class="text-canvas/30 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Location</span>
-            <p class="text-canvas/70 text-[14px] leading-[1.5]">Barcelona, Spain</p>
-            <p class="text-canvas/70 text-[14px] leading-[1.5]">Working worldwide</p>
-          </div>
-          <div>
-            <span class="text-canvas/30 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Contact</span>
-            <a href="mailto:hey@alvaroar.es" class="block text-canvas/70 text-[14px] leading-[1.5] hover:text-accent transition-colors duration-300">hey@alvaroar.es</a>
-            <a href="tel:+34649635382" class="block text-canvas/70 text-[14px] leading-[1.5] hover:text-accent transition-colors duration-300">+34 649 635 382</a>
-          </div>
-          <div>
-            <span class="text-canvas/30 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Social</span>
-            <div class="flex items-center gap-lg">
-              <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-canvas/40 hover:text-accent transition-colors duration-300" aria-label="LinkedIn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener" class="text-canvas/40 hover:text-accent transition-colors duration-300" aria-label="Instagram">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              </a>
-            </div>
-          </div>
-          <div>
-            <span class="text-canvas/30 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Status</span>
-            <div class="flex items-center gap-2">
-              <span class="accent-dot"></span>
-              <span class="text-canvas/70 text-[14px]">Available for hiring</span>
-            </div>
-          </div>
+  </main>
+
+  <!-- Footer — fixed underneath -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas overflow-hidden" id="footer" style="z-index: -1;">
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-xl">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-xl mb-xl">
+        <div>
+          <span class="text-canvas/30 text-[10px] font-medium tracking-[0.14px] uppercase block mb-xs">Email</span>
+          <a href="mailto:hey@alvaroar.es" class="text-canvas/70 text-[13px] hover:text-accent transition-colors duration-300">hey@alvaroar.es</a>
         </div>
-
-        <!-- Bottom -->
-        <div class="border-t border-canvas/10 pt-xl flex justify-center">
-          <span class="text-canvas/25 text-[12px] tracking-[0.14px]">Designed & built by Álvaro Ares &middot; 2026</span>
+        <div>
+          <span class="text-canvas/30 text-[10px] font-medium tracking-[0.14px] uppercase block mb-xs">Phone</span>
+          <a href="tel:+34649635382" class="text-canvas/70 text-[13px] hover:text-accent transition-colors duration-300">+34 649 635 382</a>
+        </div>
+        <div>
+          <span class="text-canvas/30 text-[10px] font-medium tracking-[0.14px] uppercase block mb-xs">Location</span>
+          <span class="text-canvas/70 text-[13px]">Barcelona, Spain</span>
+        </div>
+        <div>
+          <span class="text-canvas/30 text-[10px] font-medium tracking-[0.14px] uppercase block mb-xs">Social</span>
+          <div class="flex items-center gap-md">
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-canvas/40 hover:text-accent transition-colors duration-300" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="text-canvas/40 hover:text-accent transition-colors duration-300" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
-    </footer>
-  </main>
+      <div class="border-t border-canvas/10 pt-md flex justify-center">
+        <span class="text-canvas/25 text-[11px] tracking-[0.14px]">Designed & built by Álvaro Ares &middot; 2026</span>
+      </div>
+    </div>
+  </footer>
+
   <ThemeSwitcher />
   <div class="noise-overlay"></div>
 </BaseLayout>
@@ -230,8 +250,8 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 1,
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: el,
             start: 'top 90%',
@@ -241,7 +261,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       );
     });
 
-    // About text fill effect — gray to black on scroll
+    // About text fill effect
     document.querySelectorAll('.about-fill-text').forEach((el) => {
       gsap.fromTo(el,
         { color: '#a0a0a0' },
@@ -259,7 +279,27 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       );
     });
 
-    // Footer email — scroll reveal + hover loop
+    // CTA dark section reveal
+    document.querySelectorAll('.cta-reveal').forEach((el) => {
+      const delay = parseFloat((el as HTMLElement).style.transitionDelay || '0');
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power4.out',
+          delay,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+
+    // Footer email — scroll reveal + hover
     const emailEl = document.getElementById('footer-email');
     const emailLink = document.getElementById('footer-email-link');
 
@@ -281,7 +321,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
       const chars = emailEl.querySelectorAll('span');
 
-      // Scroll reveal
       ScrollTrigger.create({
         trigger: emailEl,
         start: 'top 85%',
@@ -297,7 +336,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         once: true,
       });
 
-      // Hover — all chars highlight together, stay highlighted
       if (emailLink) {
         emailLink.addEventListener('mouseenter', () => {
           gsap.to(chars, {
@@ -317,7 +355,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             ease: 'power3.out',
             stagger: 0.02,
             onComplete: () => {
-              // Restore accent on @ and .
               chars.forEach((c) => {
                 if (c.textContent === '@' || c.textContent === '.') {
                   (c as HTMLElement).style.color = 'var(--accent)';
@@ -347,7 +384,9 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     box-shadow: 0 20px 60px rgba(0,0,0,0.06);
   }
 
-  #posts-track {
+  .posts-pin-wrapper .posts-track {
+    flex: 1;
+    display: flex;
     align-items: center;
   }
 
@@ -355,12 +394,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-  }
-
-  .posts-pin-wrapper .posts-track {
-    flex: 1;
-    display: flex;
-    align-items: center;
   }
 
   #footer-email-link {

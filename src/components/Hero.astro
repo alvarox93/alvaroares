@@ -1,14 +1,13 @@
 ---
 ---
 
-<section class="relative bg-canvas overflow-hidden" id="hero" style="padding-top: 120px;">
+<section class="relative min-h-screen flex flex-col justify-center bg-canvas overflow-hidden" id="hero">
   <div class="absolute inset-0 pointer-events-none hero-grid" id="hero-grid" style="background-image: linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px); background-size: 60px 60px;"></div>
 
   <div class="hero-blob" id="hero-blob" style="left: 50%; top: 40%; transform: translate(-50%, -50%);"></div>
 
-  <div class="relative z-10 max-w-[1200px] mx-auto px-xl lg:px-3xl pb-3xl">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
-      <!-- Left: text -->
+  <div class="relative z-10 max-w-[1200px] mx-auto px-xl lg:px-3xl py-3xl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
       <div class="lg:col-span-7">
 
         <div class="mb-xl hero-reveal">
@@ -20,14 +19,14 @@
 
         <div class="mb-2xl">
           <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance" id="hero-title">
-            <span class="hero-line block overflow-hidden"><span class="block">Álvaro Ares</span></span>
-            <span class="hero-line block overflow-hidden"><span class="block">I make things look</span></span>
-            <span class="hero-line block overflow-hidden"><span class="block"><em class="not-italic" style="color: var(--accent);">expensive.</em></span></span>
+            <span class="hero-line block overflow-hidden"><span class="block">Álvaro Ares.</span></span>
+            <span class="hero-line block overflow-hidden"><span class="block">I make food look delicious</span></span>
+            <span class="hero-line block overflow-hidden"><span class="block">before it <em class="not-italic" style="color: var(--accent);">exists.</em></span></span>
           </h1>
         </div>
 
-        <p class="text-[19px] leading-[1.6] text-muted max-w-[460px] mb-2xl hero-reveal" style="transition-delay: 0.45s;">
-          <strong class="text-ink font-medium">CGI. Motion. Brand.</strong> 8 years of visual craft. Based in Barcelona, working worldwide.
+        <p class="text-[17px] leading-[1.6] text-muted max-w-[460px] mb-2xl hero-reveal" style="transition-delay: 0.45s;">
+          <strong class="text-ink font-medium">Creative Director & CGI artist.</strong> 8 years of photoreal rendering, motion systems and brand identity. Based in Barcelona, working worldwide.
         </p>
 
         <div class="flex gap-md hero-reveal" style="transition-delay: 0.6s;">
@@ -41,7 +40,6 @@
 
       </div>
 
-      <!-- Right: reserved for interaction -->
       <div class="hidden lg:flex lg:col-span-5 items-center justify-center">
         <!-- Space reserved for future interactive element -->
       </div>
