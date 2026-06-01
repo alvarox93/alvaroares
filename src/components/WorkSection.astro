@@ -118,17 +118,18 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!prefersReducedMotion) {
+    // Section header
     document.querySelectorAll('#work .work-reveal').forEach((el) => {
       gsap.fromTo(el,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 1,
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 90%',
+            start: 'top 92%',
             toggleActions: 'play none none none',
           },
         }
@@ -139,46 +140,49 @@
       const imageWrap = project.querySelector('.project-image-wrap');
       const textEls = project.querySelectorAll('span, h3, p');
 
+      // Image reveal
       if (imageWrap) {
         gsap.fromTo(imageWrap,
-          { scale: 0.92, opacity: 0, y: 60 },
+          { scale: 0.9, opacity: 0, y: 80 },
           {
             scale: 1,
             opacity: 1,
             y: 0,
-            duration: 1.1,
-            ease: 'power3.out',
+            duration: 1.4,
+            ease: 'power4.out',
             scrollTrigger: {
               trigger: project,
-              start: 'top 85%',
+              start: 'top 88%',
               toggleActions: 'play none none none',
             },
           }
         );
 
+        // Parallax — more movement
         gsap.to(imageWrap, {
-          y: -30,
+          y: -60,
           ease: 'none',
           scrollTrigger: {
             trigger: project,
             start: 'top bottom',
             end: 'bottom top',
-            scrub: 1.5,
+            scrub: 2,
           },
         });
       }
 
+      // Text staggered reveal
       gsap.fromTo(textEls,
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          stagger: 0.08,
+          duration: 1,
+          ease: 'power4.out',
+          stagger: 0.1,
           scrollTrigger: {
             trigger: project,
-            start: 'top 75%',
+            start: 'top 78%',
             toggleActions: 'play none none none',
           },
         }
