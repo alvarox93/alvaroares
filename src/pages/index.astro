@@ -8,16 +8,16 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
 <BaseLayout title="Álvaro Ares — Creative Director & CGI Artist">
   <Navigation />
-  <main>
+  <main style="padding-bottom: 50vh;">
     <Hero />
     <WorkSection />
 
     <!-- About — gradient fill -->
     <section class="relative bg-canvas overflow-hidden" id="about-preview">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xl block about-reveal">About</span>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl items-start">
-          <div class="lg:col-span-5 about-reveal">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">About</span>
+          <div class="lg:col-span-5 about-reveal" style="transition-delay: 0.05s;">
             <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
               The person behind<br />the work.
             </h2>
@@ -153,7 +153,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     </section>
 
     <!-- Footer -->
-    <footer class="bg-ink text-canvas overflow-hidden" id="footer">
+    <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas overflow-hidden" id="footer" style="z-index: -1;">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-3xl">
 
         <!-- Email -->
