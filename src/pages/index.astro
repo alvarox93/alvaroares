@@ -148,7 +148,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     </section>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas" id="footer">
+    <footer class="bg-ink text-canvas" id="footer">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-xl">
 
         <!-- Email -->
@@ -247,20 +247,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           scrub: 2,
           anticipatePin: 1,
         },
-      });
-    }
-
-    // Pin main content so it stops at the footer
-    const mainEl = document.querySelector('main');
-    const footerEl = document.getElementById('footer');
-    if (mainEl && footerEl) {
-      const footerHeight = footerEl.offsetHeight;
-      ScrollTrigger.create({
-        trigger: mainEl,
-        start: 'bottom bottom',
-        end: `+=${footerHeight}`,
-        pin: true,
-        pinSpacing: false,
       });
     }
 
