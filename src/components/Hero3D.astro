@@ -29,10 +29,10 @@
     renderer.setClearColor(0x000000, 0);
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
     directionalLight.position.set(4, 6, 4);
     scene.add(directionalLight);
 
@@ -40,97 +40,71 @@
     fillLight.position.set(-3, 2, -3);
     scene.add(fillLight);
 
-    // Keycap shape — wider than tall, top face slightly smaller
+    // Keycap shape
     const baseW = 1.4;
     const baseD = 1.2;
     const baseH = 0.5;
     const topW = 1.2;
     const topD = 1.0;
     const topH = 0.08;
-    const topY = baseH;
 
-    // Build custom geometry
-    const geometry = new THREE.BufferGeometry();
-
-    // Vertices: bottom face (4) + top base (4) + top surface (4) = 12 vertices
     const hw = baseW / 2;
     const hd = baseD / 2;
     const thw = topW / 2;
     const thd = topD / 2;
 
     const vertices = new Float32Array([
-      // Bottom face (y=0)
-      -hw, 0, -hd,
-       hw, 0, -hd,
-       hw, 0,  hd,
-      -hw, 0,  hd,
-
-      // Top base edge (y=baseH)
-      -hw, baseH, -hd,
-       hw, baseH, -hd,
-       hw, baseH,  hd,
-      -hw, baseH,  hd,
-
-      // Top surface (y=baseH+topH, slightly inset)
-      -thw, topY + topH, -thd,
-       thw, topY + topH, -thd,
-       thw, topY + topH,  thd,
-      -thw, topY + topH,  thd,
+      -hw, 0, -hd,   hw, 0, -hd,   hw, 0,  hd,  -hw, 0,  hd,
+      -hw, baseH, -hd,  hw, baseH, -hd,  hw, baseH,  hd, -hw, baseH,  hd,
+      -thw, baseH + topH, -thd,  thw, baseH + topH, -thd,
+       thw, baseH + topH,  thd, -thw, baseH + topH,  thd,
     ]);
 
     const indices = [
-      // Bottom
       0, 2, 1,  0, 3, 2,
-      // Front
       0, 1, 5,  0, 5, 4,
-      // Back
       3, 6, 2,  3, 7, 6,
-      // Left
       0, 4, 7,  0, 7, 3,
-      // Right
       1, 2, 6,  1, 6, 5,
-      // Top base (connecting base to top surface)
       4, 5, 9,   4, 9, 8,
       5, 6, 10,  5, 10, 9,
       6, 7, 11,  6, 11, 10,
       7, 4, 8,   7, 8, 11,
-      // Top surface
       8, 9, 10,  8, 10, 11,
     ];
 
+    const geometry = new THREE.BufferGeometry();
     geometry.setIndex(indices);
     geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
     geometry.computeVertexNormals();
 
-    const material = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff,
-      roughness: 0.25,
+    // Clay material — matte white
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xf5f2ee,
+      roughness: 0.85,
       metalness: 0,
-      clearcoat: 0.3,
-      clearcoatRoughness: 0.4,
     });
 
     const keycap = new THREE.Mesh(geometry, material);
-    // Initial rotation to show top face
     keycap.rotation.x = -0.4;
     scene.add(keycap);
 
-    // Click interaction — press down and spring back
+    // Click — listen on canvas directly
     let isPressed = false;
     let pressTime = 0;
-    const pressDuration = 0.4;
-    const pressDepth = -0.2;
+    const pressDuration = 0.35;
+    const pressDepth = -0.18;
 
-    container.addEventListener('mousedown', () => {
+    canvas.addEventListener('mousedown', () => {
       isPressed = true;
       pressTime = 0;
     });
 
-    container.addEventListener('mouseup', () => {
+    canvas.addEventListener('mouseup', () => {
       isPressed = false;
     });
 
-    container.addEventListener('mouseleave', () => {
+    canvas.addEventListener('mouseleave', () => {
       isPressed = false;
     });
 
@@ -167,15 +141,13 @@
       const floatY = Math.sin(elapsed * 0.7) * 0.12;
       keycap.position.x = Math.sin(elapsed * 0.4) * 0.04;
 
-      // Click press animation
+      // Click press
       if (isPressed) {
         pressTime += delta;
         const t = Math.min(pressTime / pressDuration, 1);
-        // Ease out cubic
         const eased = 1 - Math.pow(1 - t, 3);
         baseY = pressDepth * eased;
       } else {
-        // Spring back
         baseY += (0 - baseY) * 0.08;
       }
 
@@ -204,6 +176,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 
   #hero-3d-canvas {
