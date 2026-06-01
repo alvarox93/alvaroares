@@ -1,19 +1,19 @@
-<nav class="fixed top-0 left-0 right-0 z-50" id="main-nav" style="background-color: transparent;">
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-nav">
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl flex items-center justify-between h-16">
-    <a href="/" class="nav-logo text-ink text-[15px] font-medium tracking-[-0.3px] relative group">
+    <a href="/" class="text-ink text-[15px] font-medium tracking-[-0.3px] relative group">
       <span>Álvaro Ares</span>
-      <span class="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+      <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
     </a>
-    <div class="flex items-center gap-xl">
-      <a href="/#work" class="nav-link text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
+    <div class="flex items-center gap-lg">
+      <a href="/#work" class="text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
         <span>Work</span>
-        <span class="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+        <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
       </a>
-      <a href="/about" class="nav-link text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
+      <a href="/about" class="text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
         <span>About</span>
-        <span class="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+        <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
       </a>
-      <a href="mailto:hey@alvaroar.es" class="nav-link magnetic inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:bg-ink/85">
+      <a href="mailto:hey@alvaroar.es" class="magnetic inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
         Contact
       </a>
     </div>
@@ -21,33 +21,37 @@
 </nav>
 
 <script>
-  import { gsap } from 'gsap';
-
   const nav = document.getElementById('main-nav');
   let lastScroll = 0;
+  let ticking = false;
 
   if (nav) {
     window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScroll = window.scrollY;
 
-      if (currentScroll > 50) {
-        nav.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
-        nav.style.backdropFilter = 'blur(20px)';
-        nav.style.borderBottom = '1px solid #f0f0f0';
-      } else {
-        nav.style.backgroundColor = 'transparent';
-        nav.style.backdropFilter = 'none';
-        nav.style.borderBottom = 'none';
+          if (currentScroll > 50) {
+            nav.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+            nav.style.backdropFilter = 'blur(20px)';
+            nav.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
+          } else {
+            nav.style.backgroundColor = 'transparent';
+            nav.style.backdropFilter = 'none';
+            nav.style.borderBottom = '1px solid transparent';
+          }
+
+          if (currentScroll > lastScroll && currentScroll > 300) {
+            nav.style.transform = 'translateY(-100%)';
+          } else {
+            nav.style.transform = 'translateY(0)';
+          }
+
+          lastScroll = currentScroll;
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      // Hide/show on scroll direction
-      if (currentScroll > lastScroll && currentScroll > 200) {
-        gsap.to(nav, { y: -64, duration: 0.3, ease: 'power2.in' });
-      } else {
-        gsap.to(nav, { y: 0, duration: 0.3, ease: 'power2.out' });
-      }
-
-      lastScroll = currentScroll;
     }, { passive: true });
   }
 </script>
