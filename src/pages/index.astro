@@ -23,7 +23,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </h2>
           </div>
           <div class="lg:col-span-6 lg:col-start-7 about-reveal" style="transition-delay: 0.1s;">
-            <p class="text-[18px] leading-[1.65] text-muted mb-lg">
+            <p class="about-fill-text text-[19px] leading-[1.65] text-muted mb-lg" style="color: #a0a0a0;">
               <strong class="text-ink font-medium">8 years of visual craft.</strong> I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.
             </p>
             <div class="flex flex-wrap gap-xs mb-xl">
@@ -43,7 +43,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     </section>
 
     <!-- Posts — horizontal scroll -->
-    <section class="relative bg-warm overflow-hidden" id="posts">
+    <section class="relative bg-warm overflow-hidden pb-3xl" id="posts">
       <div class="posts-pin-wrapper" id="posts-pin">
         <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-xl pb-xl">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Thinking</span>
@@ -52,7 +52,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           </h2>
         </div>
 
-        <div class="posts-track flex gap-xl px-xl lg:px-3xl items-center" id="posts-track">
+        <div class="posts-track flex gap-xl px-xl lg:px-3xl" id="posts-track">
 
           <a href="#" class="post-card group shrink-0" style="width: 320px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
@@ -113,7 +113,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         </div>
       </div>
     </section>
-    <footer class="relative bg-ink text-canvas overflow-hidden" id="footer">
+    <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas overflow-hidden" id="footer" style="z-index: -1;">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-xl">
 
         <!-- Email -->
@@ -241,6 +241,24 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       );
     });
 
+    // About text fill effect — gray to black on scroll
+    document.querySelectorAll('.about-fill-text').forEach((el) => {
+      gsap.fromTo(el,
+        { color: '#a0a0a0' },
+        {
+          color: '#1a1a1a',
+          duration: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 80%',
+            end: 'top 30%',
+            scrub: 1,
+          },
+        }
+      );
+    });
+
     // Footer email — scroll reveal + hover loop
     const emailEl = document.getElementById('footer-email');
     const emailLink = document.getElementById('footer-email-link');
@@ -334,10 +352,15 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
   }
 
   .posts-pin-wrapper {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
+  }
+
+  .posts-pin-wrapper .posts-track {
+    flex: 1;
+    display: flex;
+    align-items: center;
   }
 
   #footer-email-link {
