@@ -1,0 +1,271 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Navigation from '@components/Navigation.astro';
+import Hero from '@components/Hero.astro';
+import WorkSection from '@components/WorkSection.astro';
+import ThemeSwitcher from '@components/ThemeSwitcher.astro';
+---
+
+<BaseLayout title="Álvaro Ares — Creative Director & Motion Strategist">
+  <Navigation />
+  <main>
+    <Hero />
+    <WorkSection />
+
+    <!-- Posts — horizontal scroll -->
+    <section class="relative bg-warm overflow-hidden" id="posts">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-xl">
+        <div class="flex items-end justify-between mb-xl posts-header">
+          <div>
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Thinking</span>
+            <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
+              Posts & concepts.
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="posts-scroll-container" id="posts-scroll">
+        <div class="posts-track flex gap-xl px-xl lg:px-3xl pb-section" id="posts-track">
+
+          <a href="#" class="post-card group shrink-0" style="width: 320px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Motion</div>
+              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+            </div>
+            <div class="flex items-start justify-between mb-xs">
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">Motion · Systems</span>
+              <span class="text-ghost text-[11px] tracking-[0.14px]">5 min</span>
+            </div>
+            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+              Why motion design systems matter more than animated logos
+            </h3>
+          </a>
+
+          <a href="#" class="post-card group shrink-0" style="width: 320px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">CGI</div>
+              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+            </div>
+            <div class="flex items-start justify-between mb-xs">
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">CGI · Product</span>
+              <span class="text-ghost text-[11px] tracking-[0.14px]">4 min</span>
+            </div>
+            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+              The case for CGI product rendering over traditional photography
+            </h3>
+          </a>
+
+          <a href="#" class="post-card group shrink-0" style="width: 320px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">AI</div>
+              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+            </div>
+            <div class="flex items-start justify-between mb-xs">
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">AI · Workflow</span>
+              <span class="text-ghost text-[11px] tracking-[0.14px]">6 min</span>
+            </div>
+            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+              AI-native production: how I automated 60% of my visual pipeline
+            </h3>
+          </a>
+
+          <a href="#" class="post-card group shrink-0" style="width: 320px;">
+            <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden mb-lg">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Code</div>
+              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+            </div>
+            <div class="flex items-start justify-between mb-xs">
+              <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">Design · Code</span>
+              <span class="text-ghost text-[11px] tracking-[0.14px]">3 min</span>
+            </div>
+            <h3 class="text-[16px] font-medium leading-[1.3] tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-300">
+              Designing interfaces that think in code (and why it matters)
+            </h3>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-ink text-canvas overflow-hidden" id="footer">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-xl">
+
+        <!-- Email — per character animation -->
+        <div class="mb-section">
+          <a href="mailto:hey@alvaroar.es" class="block" id="footer-email-link">
+            <div class="footer-email text-[clamp(32px,5vw,64px)] font-light leading-[1.1] tracking-[-0.03em] text-canvas overflow-hidden" id="footer-email">
+              hey@alvaroar.es
+            </div>
+          </a>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl border-t border-canvas/10 pt-xl">
+          <div class="lg:col-span-4">
+            <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Location</span>
+            <p class="text-canvas/80 text-[15px] leading-[1.5]">Barcelona, Spain</p>
+            <p class="text-canvas/80 text-[15px] leading-[1.5]">Working worldwide</p>
+          </div>
+          <div class="lg:col-span-4">
+            <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Connect</span>
+            <div class="space-y-xs">
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="block text-canvas/80 text-[15px] leading-[1.5] hover:text-accent transition-colors duration-200">LinkedIn</a>
+              <a href="https://vimeo.com" target="_blank" rel="noopener" class="block text-canvas/80 text-[15px] leading-[1.5] hover:text-accent transition-colors duration-200">Vimeo</a>
+              <a href="https://instagram.com" target="_blank" rel="noopener" class="block text-canvas/80 text-[15px] leading-[1.5] hover:text-accent transition-colors duration-200">Instagram</a>
+            </div>
+          </div>
+          <div class="lg:col-span-4">
+            <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Status</span>
+            <div class="flex items-center gap-2">
+              <span class="accent-dot"></span>
+              <span class="text-canvas/80 text-[15px]">Available for hiring</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="border-t border-canvas/10 mt-xl pt-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-sm">
+          <span class="text-canvas/30 text-[12px] tracking-[0.14px]">&copy; 2024 Álvaro Ares. All rights reserved.</span>
+          <span class="text-canvas/30 text-[12px] tracking-[0.14px]">Designed & built with intention.</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <ThemeSwitcher />
+  <div class="noise-overlay"></div>
+</BaseLayout>
+
+<script>
+  import Lenis from 'lenis';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      touchMultiplier: 2,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (href) {
+          e.preventDefault();
+          lenis.scrollTo(href);
+        }
+      });
+    });
+
+    // Horizontal scroll for posts
+    const postsTrack = document.getElementById('posts-track');
+    const postsSection = document.getElementById('posts');
+
+    if (postsTrack && postsSection) {
+      const totalWidth = postsTrack.scrollWidth - window.innerWidth + 100;
+
+      gsap.to(postsTrack, {
+        x: -totalWidth,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: postsSection,
+          start: 'top+=200 top',
+          end: `+=${totalWidth}`,
+          pin: true,
+          scrub: 1.5,
+          anticipatePin: 1,
+        },
+      });
+    }
+
+    // Footer email per-character animation
+    const emailEl = document.getElementById('footer-email');
+    if (emailEl) {
+      const text = emailEl.textContent || '';
+      emailEl.innerHTML = '';
+
+      text.split('').forEach((char) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.display = 'inline-block';
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(40px)';
+        if (char === '@' || char === '.') {
+          span.style.color = 'var(--accent)';
+        }
+        emailEl.appendChild(span);
+      });
+
+      const chars = emailEl.querySelectorAll('span');
+
+      ScrollTrigger.create({
+        trigger: emailEl,
+        start: 'top 85%',
+        onEnter: () => {
+          gsap.to(chars, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.04,
+          });
+        },
+        once: true,
+      });
+    }
+
+    // Posts header reveal
+    document.querySelectorAll('.posts-header').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  }
+</script>
+
+<style>
+  .post-card {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-card .aspect-\[3\/4\] {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .post-card:hover .aspect-\[3\/4\] {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+  }
+
+  #footer-email a {
+    text-decoration: none;
+    color: inherit;
+  }
+</style>

@@ -1,0 +1,108 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Navigation from '@components/Navigation.astro';
+import ThemeSwitcher from '@components/ThemeSwitcher.astro';
+---
+
+<BaseLayout title="Lapatzak — Álvaro Ares">
+  <Navigation />
+
+  <main class="bg-canvas min-h-screen">
+    <div class="sticky top-16 z-20 bg-canvas/85 backdrop-blur-lg py-4 px-xl lg:px-3xl border-b border-border-light">
+      <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+        <span class="inline-flex items-center gap-sm text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">
+          <span class="accent-dot"></span>
+          Lapatzak · Brand & Product
+        </span>
+        <a href="/" class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200">&larr; Back</a>
+      </div>
+    </div>
+
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
+
+      <div class="mb-3xl lpk-reveal">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Own Brand · End to End · 2020—Present</span>
+        <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-xl">
+          From brand<br />to market.
+        </h1>
+        <p class="text-[17px] leading-[1.65] text-muted max-w-[560px]">
+          <strong class="text-ink font-medium">Not a side project. A full product lab.</strong> Designing, prototyping and shipping a niche brand from zero — identity, packaging, digital presence and commerce.
+        </p>
+      </div>
+
+      <!-- 3 Pillars -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-3xl">
+        <div class="bg-warm rounded-xl p-xl lpk-reveal" style="transition-delay: 0.05s;">
+          <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
+            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Branding]</div>
+          </div>
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">Branding & Identity</span>
+          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Visual Ecosystem</h3>
+          <p class="text-muted text-[13px] leading-[1.5]">
+            <strong class="text-ink font-medium">Naming. Identity. Guidelines.</strong> A brand is a system that breathes at every touchpoint.
+          </p>
+        </div>
+
+        <div class="bg-warm rounded-xl p-xl lpk-reveal" style="transition-delay: 0.1s;">
+          <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
+            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Packaging]</div>
+          </div>
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">Multimedia & Packaging</span>
+          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Applied Art Direction</h3>
+          <p class="text-muted text-[13px] leading-[1.5]">
+            <strong class="text-ink font-medium">Physical packaging. Digital content.</strong> Art direction that connects product to person.
+          </p>
+        </div>
+
+        <div class="bg-warm rounded-xl p-xl lpk-reveal" style="transition-delay: 0.15s;">
+          <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
+            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[E-commerce]</div>
+          </div>
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">E-commerce</span>
+          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Interfaces That Convert</h3>
+          <p class="text-muted text-[13px] leading-[1.5]">
+            <strong class="text-ink font-medium">Store design focused on conversion.</strong> Clear UX, purchase flow that doesn't make you think.
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="border-t border-border-light pt-xl text-center lpk-reveal">
+        <a href="/#contact" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:bg-ink/85">
+          Want to talk brand strategy?
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <ThemeSwitcher />
+  <div class="noise-overlay"></div>
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.lpk-reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  }
+</script>

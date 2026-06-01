@@ -1,0 +1,91 @@
+<section class="relative bg-warm overflow-hidden" id="lab">
+  <div class="sticky top-0 z-20 bg-warm/85 backdrop-blur-lg py-4 px-xl lg:px-3xl border-b border-border-light">
+    <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+      <span class="inline-flex items-center gap-sm text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">
+        <span class="accent-dot"></span>
+        Lab · Interactive
+      </span>
+      <a href="#work" class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200">Back</a>
+    </div>
+  </div>
+
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-3xl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl">
+      <div class="lg:col-span-6 lab-reveal">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Experimental · Technical</span>
+        <h2 class="text-[clamp(40px,5.5vw,64px)] font-light leading-[1.04] tracking-[-0.045em] text-ink text-balance">
+          Design that<br />thinks in code.
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex flex-col justify-end lab-reveal" style="transition-delay: 0.1s;">
+        <p class="text-[16px] leading-[1.65] text-muted">
+          <strong class="text-ink font-medium">Where design meets engineering.</strong> AI-native pipelines, interactive interfaces, frontend logic. Not demos — real innovation with intent.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pb-section">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl">
+      <a href="#" class="project-card group block lab-reveal" style="transition-delay: 0.05s;">
+        <div class="relative aspect-[16/10] overflow-hidden rounded-t-xl">
+          <div class="card-image absolute inset-0 bg-surface flex items-center justify-center">
+            <span class="text-ghost text-[13px]">AI Pipeline</span>
+          </div>
+          <div class="card-overlay absolute inset-0 bg-ink/5"></div>
+        </div>
+        <div class="p-xl">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">AI-Native</span>
+          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm group-hover:text-accent transition-colors duration-300">Automated Visual Production</h3>
+          <p class="text-muted text-[13px] leading-[1.5]">
+            <strong class="text-ink font-medium">Pipeline powered by AI.</strong> Asset generation, procedural animation, variation rendering. AI amplifies direction — never replaces it.
+          </p>
+        </div>
+      </a>
+
+      <a href="#" class="project-card group block lab-reveal" style="transition-delay: 0.1s;">
+        <div class="relative aspect-[16/10] overflow-hidden rounded-t-xl">
+          <div class="card-image absolute inset-0 bg-surface flex items-center justify-center">
+            <span class="text-ghost text-[13px]">Interactive</span>
+          </div>
+          <div class="card-overlay absolute inset-0 bg-ink/5"></div>
+        </div>
+        <div class="p-xl">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">Interactive Systems</span>
+          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm group-hover:text-accent transition-colors duration-300">Interfaces Built for Code</h3>
+          <p class="text-muted text-[13px] leading-[1.5]">
+            <strong class="text-ink font-medium">Frontend logic first.</strong> Layouts as components, animations that respect the render loop. Design systems that translate to code.
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('#lab .lab-reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  }
+</script>

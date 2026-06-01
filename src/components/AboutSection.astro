@@ -1,0 +1,52 @@
+<section class="py-section px-xl lg:px-3xl bg-canvas" id="about">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl items-start">
+      <div class="lg:col-span-5 about-reveal">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">About</span>
+        <h2 class="text-[clamp(32px,4vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
+          I help brands<br />breathe.
+        </h2>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 about-reveal" style="transition-delay: 0.1s;">
+        <p class="text-[16px] leading-[1.65] text-muted mb-xl">
+          After eight years founding and leading Koora.studio in Bilbao, I learned that the best creative work happens at the intersection of discipline and freedom. I bring that philosophy to every project — whether it's building a motion system from scratch, leading a team of designers, or crafting a brand narrative that actually moves people.
+        </p>
+        <p class="text-[16px] leading-[1.65] text-muted mb-xl">
+          Building from Barcelona taught me that geography doesn't matter for creative work anymore. What matters is taste, intention, and the willingness to build something that lasts. Lately I've been deep into AI workflows and frontend code — because the best designers are the ones who understand the medium they design for.
+        </p>
+        <a href="/about" class="group inline-flex items-center gap-sm text-ink text-[13px] font-medium tracking-[-0.2px] transition-all duration-300 hover:text-accent">
+          <span class="w-[40px] h-[1px] bg-ink transition-all duration-300 group-hover:w-[60px] group-hover:bg-accent"></span>
+          More about me
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('#about .about-reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  }
+</script>

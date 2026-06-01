@@ -1,0 +1,95 @@
+<section class="relative bg-canvas overflow-hidden" id="lapatzak">
+  <div class="sticky top-0 z-20 bg-canvas/85 backdrop-blur-lg py-4 px-xl lg:px-3xl border-b border-border-light">
+    <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+      <span class="inline-flex items-center gap-sm text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">
+        <span class="accent-dot"></span>
+        Lapatzak · Brand & Product
+      </span>
+      <a href="#work" class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200">Back</a>
+    </div>
+  </div>
+
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-3xl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl">
+      <div class="lg:col-span-6 lpk-reveal">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Own Brand · End to End</span>
+        <h2 class="text-[clamp(40px,5.5vw,64px)] font-light leading-[1.04] tracking-[-0.045em] text-ink text-balance">
+          From brand<br />to market.
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex flex-col justify-end lpk-reveal" style="transition-delay: 0.1s;">
+        <p class="text-[16px] leading-[1.65] text-muted">
+          <strong class="text-ink font-medium">Not a side project. A full product lab.</strong> Designing, prototyping and shipping a niche brand from zero. Every decision tested in the real market.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pb-section">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+      <div class="lpk-reveal" style="transition-delay: 0.05s;">
+        <div class="relative aspect-[4/3] bg-surface rounded-xl overflow-hidden mb-lg group">
+          <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Branding]</div>
+          <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
+        </div>
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">Branding & Identity</span>
+        <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Visual Ecosystem</h3>
+        <p class="text-muted text-[13px] leading-[1.5]">
+          <strong class="text-ink font-medium">Naming. Identity. Guidelines.</strong> A brand is a system that breathes at every touchpoint. Built for real life.
+        </p>
+      </div>
+
+      <div class="lpk-reveal" style="transition-delay: 0.1s;">
+        <div class="relative aspect-[4/3] bg-surface rounded-xl overflow-hidden mb-lg group">
+          <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Packaging]</div>
+          <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
+        </div>
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">Multimedia & Packaging</span>
+        <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Applied Art Direction</h3>
+        <p class="text-muted text-[13px] leading-[1.5]">
+          <strong class="text-ink font-medium">Physical packaging. Digital content.</strong> Art direction that connects product to person. Sell, seduce, remember.
+        </p>
+      </div>
+
+      <div class="lpk-reveal" style="transition-delay: 0.15s;">
+        <div class="relative aspect-[4/3] bg-surface rounded-xl overflow-hidden mb-lg group">
+          <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[E-commerce]</div>
+          <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
+        </div>
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">E-commerce</span>
+        <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Interfaces That Convert</h3>
+        <p class="text-muted text-[13px] leading-[1.5]">
+          <strong class="text-ink font-medium">Store design focused on conversion.</strong> Clear UX, purchase flow that doesn't make you think. Best design is invisible.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('#lapatzak .lpk-reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  }
+</script>

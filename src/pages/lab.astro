@@ -1,0 +1,100 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Navigation from '@components/Navigation.astro';
+import ThemeSwitcher from '@components/ThemeSwitcher.astro';
+---
+
+<BaseLayout title="Lab — Álvaro Ares">
+  <Navigation />
+
+  <main class="bg-warm min-h-screen">
+    <div class="sticky top-16 z-20 bg-warm/85 backdrop-blur-lg py-4 px-xl lg:px-3xl border-b border-border-light">
+      <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+        <span class="inline-flex items-center gap-sm text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">
+          <span class="accent-dot"></span>
+          Lab · Interactive
+        </span>
+        <a href="/" class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200">&larr; Back</a>
+      </div>
+    </div>
+
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
+
+      <div class="mb-3xl lab-reveal">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">UI · AI · New Tech · 2023—Present</span>
+        <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-xl">
+          The tech bridge.
+        </h1>
+        <p class="text-[17px] leading-[1.65] text-muted max-w-[560px]">
+          <strong class="text-ink font-medium">Where design meets engineering.</strong> AI-native workflows, interactive interfaces, frontend logic. This is where creative direction and technical execution converge — and where the most interesting work is happening.
+        </p>
+      </div>
+
+      <!-- 2 Projects -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl mb-3xl">
+        <div class="bg-canvas rounded-xl border border-border-light overflow-hidden lab-reveal" style="transition-delay: 0.05s;">
+          <div class="relative aspect-[16/10] bg-surface">
+            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[AI Pipeline]</div>
+          </div>
+          <div class="p-xl">
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">AI-Native</span>
+            <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Automated Visual Production</h3>
+            <p class="text-muted text-[13px] leading-[1.5]">
+              <strong class="text-ink font-medium">Pipeline powered by AI.</strong> Asset generation, procedural animation, variation rendering. AI amplifies direction — never replaces it.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-canvas rounded-xl border border-border-light overflow-hidden lab-reveal" style="transition-delay: 0.1s;">
+          <div class="relative aspect-[16/10] bg-surface">
+            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Interactive Systems]</div>
+          </div>
+          <div class="p-xl">
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">Interactive Systems</span>
+            <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Interfaces Built for Code</h3>
+            <p class="text-muted text-[13px] leading-[1.5]">
+              <strong class="text-ink font-medium">Frontend logic first.</strong> Layouts as components, animations that respect the render loop. Design systems that translate to code.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-border-light pt-xl text-center lab-reveal">
+        <a href="/#contact" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:bg-ink/85">
+          Interested in AI-native workflows?
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <ThemeSwitcher />
+  <div class="noise-overlay"></div>
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.lab-reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  }
+</script>

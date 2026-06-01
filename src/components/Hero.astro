@@ -1,0 +1,129 @@
+---
+---
+
+<section class="relative min-h-screen flex flex-col justify-center bg-canvas overflow-hidden" id="hero">
+  <div class="absolute inset-0 pointer-events-none hero-grid" id="hero-grid" style="background-image: linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <div class="hero-blob" id="hero-blob" style="left: 50%; top: 40%; transform: translate(-50%, -50%);"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-xl lg:px-3xl py-3xl">
+
+    <div class="mb-2xl hero-reveal">
+      <span class="inline-flex items-center gap-2.5 px-4 py-2 border border-border rounded-full">
+        <span class="accent-dot"></span>
+        <span class="text-ink text-[11px] font-medium tracking-[0.12px] uppercase">Available for hiring</span>
+      </span>
+    </div>
+
+    <div class="mb-3xl">
+      <h1 class="text-[clamp(48px,8vw,96px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance" id="hero-title">
+        <span class="hero-line block overflow-hidden"><span class="block">Álvaro Ares.</span></span>
+        <span class="hero-line block overflow-hidden"><span class="block">Creative Director who</span></span>
+        <span class="hero-line block overflow-hidden"><span class="block">also opens <em class="not-italic" style="color: var(--accent);">the terminal.</em></span></span>
+      </h1>
+    </div>
+
+    <p class="text-[17px] leading-[1.65] text-muted max-w-[520px] mb-2xl hero-reveal" style="transition-delay: 0.45s;">
+      <strong class="text-ink font-medium">8 years of CGI, motion and brand systems.</strong> I ran a studio, led teams, shipped campaigns across 12 countries. Now I also build with code and AI — because understanding the medium makes the work better.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-md hero-reveal" style="transition-delay: 0.6s;">
+      <a href="#work" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:bg-ink/85">
+        See my work
+      </a>
+      <a href="/about" class="magnetic inline-flex items-center justify-center px-6 py-3 border border-border text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:border-ink/30">
+        About me
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 z-10 px-xl lg:px-3xl py-5">
+    <div class="max-w-[1200px] mx-auto hero-reveal" style="transition-delay: 0.75s;">
+      <span class="text-ghost text-[11px] tracking-[0.14px]">Born in Bilbao · Based in Barcelona · Working worldwide</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    gsap.fromTo('.hero-line > span',
+      { y: '115%', opacity: 0 },
+      {
+        y: '0%',
+        opacity: 1,
+        duration: 1.3,
+        ease: 'power4.out',
+        stagger: 0.12,
+        delay: 0.1,
+      }
+    );
+
+    document.querySelectorAll('.hero-reveal').forEach((el) => {
+      const delay = parseFloat((el as HTMLElement).style.transitionDelay || '0');
+      gsap.fromTo(el,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          delay: delay + 0.5,
+        }
+      );
+    });
+
+    const blob = document.getElementById('hero-blob');
+    const hero = document.getElementById('hero');
+    const grid = document.getElementById('hero-grid');
+
+    if (blob && hero) {
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        gsap.to(blob, {
+          left: x,
+          top: y,
+          duration: 1.4,
+          ease: 'power2.out',
+        });
+
+        if (grid) {
+          const xPercent = (x / rect.width) * 100;
+          const yPercent = (y / rect.height) * 100;
+          grid.style.background = `
+            radial-gradient(circle 300px at ${xPercent}% ${yPercent}%, rgba(var(--accent-rgb), 0.06), transparent),
+            linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
+          `;
+          grid.style.backgroundSize = `100% 100%, 60px 60px, 60px 60px`;
+        }
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        gsap.to(blob, { opacity: 0.04, duration: 0.6 });
+        if (grid) {
+          grid.style.background = `
+            linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
+          `;
+          grid.style.backgroundSize = `60px 60px, 60px 60px`;
+        }
+      });
+
+      hero.addEventListener('mouseenter', () => {
+        gsap.to(blob, { opacity: 0.1, duration: 0.6 });
+      });
+    }
+  } else {
+    document.querySelectorAll('.hero-line > span, .hero-reveal').forEach((el) => {
+      (el as HTMLElement).style.opacity = '1';
+      (el as HTMLElement).style.transform = 'none';
+    });
+  }
+</script>

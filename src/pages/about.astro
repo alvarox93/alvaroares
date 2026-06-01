@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Navigation from '@components/Navigation.astro';
+import ThemeSwitcher from '@components/ThemeSwitcher.astro';
+---
+
+<BaseLayout title="About — Álvaro Ares">
+  <Navigation />
+
+  <main class="bg-canvas min-h-screen">
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-32 pb-section">
+
+      <!-- Header -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section about-reveal">
+        <div class="lg:col-span-5">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">About</span>
+          <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance">
+            The guy behind<br />the pixels.
+          </h1>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-end">
+          <p class="text-[17px] leading-[1.65] text-muted mb-xl">
+            I'm Álvaro. I've spent 8 years making brands look expensive — through CGI, motion design, and creative direction. I ran a studio in Bilbao, shipped campaigns worldwide, and built a team from scratch.
+          </p>
+          <p class="text-[17px] leading-[1.65] text-muted">
+            Now based in Barcelona, I'm deep into AI workflows and frontend code. I run my own brand (Lapatzak), render food that makes people hungry, and explore the intersection of design and engineering.
+          </p>
+        </div>
+      </div>
+
+      <!-- Photo + bio -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section about-reveal" style="transition-delay: 0.1s;">
+        <div class="lg:col-span-5">
+          <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Photo]</div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-center">
+          <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.1] tracking-[-0.04em] text-ink mb-xl">
+            Discipline meets freedom.
+          </h2>
+          <div class="space-y-lg">
+            <p class="text-[16px] leading-[1.65] text-muted">
+              <strong class="text-ink">CGI & Motion.</strong> 8 years of Maya + V-Ray. Photoreal product rendering, food CGI, motion systems for brands across 12 countries. I know my way around a render farm.
+            </p>
+            <p class="text-[16px] leading-[1.65] text-muted">
+              <strong class="text-ink">AI & Code.</strong> I build AI-native production pipelines, write frontend code, and automate visual workflows. Not because it's trendy — because it makes me 10x faster.
+            </p>
+            <p class="text-[16px] leading-[1.65] text-muted">
+              <strong class="text-ink">Brand & Product.</strong> I run my own brand (Lapatzak) end-to-end. Identity, packaging, e-commerce. Every decision tested in the real market, not just on Dribbble.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl about-reveal" style="transition-delay: 0.15s;">
+        <a href="/#contact" class="group block bg-ink text-canvas rounded-xl p-xl transition-all duration-300 hover:bg-ink/90">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block text-canvas/50">Let's connect</span>
+          <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] mb-sm">Start a conversation</h3>
+          <p class="text-canvas/60 text-[14px] leading-[1.55]">
+            Available for full-time positions, freelance projects, and creative collaborations.
+          </p>
+        </a>
+
+        <a href="/cv-alvaro-ares.pdf" download class="group block bg-warm rounded-xl border border-border-light p-xl transition-all duration-300 hover:border-accent">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Download</span>
+          <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Get my CV</h3>
+          <p class="text-muted text-[14px] leading-[1.55]">
+            Full career history, skills, and references. PDF format, always up to date.
+          </p>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <ThemeSwitcher />
+  <div class="noise-overlay"></div>
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.about-reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  }
+</script>
