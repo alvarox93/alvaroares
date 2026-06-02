@@ -11,13 +11,13 @@
 
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-3xl">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl">
-      <div class="lg:col-span-6 lpk-reveal">
+      <div class="lg:col-span-6">
         <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Own Brand · End to End</span>
         <h2 class="text-[clamp(40px,5.5vw,64px)] font-light leading-[1.04] tracking-[-0.045em] text-ink text-balance">
           From brand<br />to market.
         </h2>
       </div>
-      <div class="lg:col-span-5 lg:col-start-8 flex flex-col justify-end lpk-reveal" style="transition-delay: 0.1s;">
+      <div class="lg:col-span-5 lg:col-start-8 flex flex-col justify-end">
         <p class="text-[16px] leading-[1.65] text-muted">
           <strong class="text-ink font-medium">Not a side project. A full product lab.</strong> Designing, prototyping and shipping a niche brand from zero. Every decision tested in the real market.
         </p>
@@ -27,7 +27,7 @@
 
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pb-section">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
-      <div class="lpk-reveal" style="transition-delay: 0.05s;">
+      <div>
         <div class="relative aspect-[4/3] bg-surface rounded-xl overflow-hidden mb-lg group">
           <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Branding]</div>
           <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
@@ -39,7 +39,7 @@
         </p>
       </div>
 
-      <div class="lpk-reveal" style="transition-delay: 0.1s;">
+      <div>
         <div class="relative aspect-[4/3] bg-surface rounded-xl overflow-hidden mb-lg group">
           <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Packaging]</div>
           <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
@@ -51,7 +51,7 @@
         </p>
       </div>
 
-      <div class="lpk-reveal" style="transition-delay: 0.15s;">
+      <div>
         <div class="relative aspect-[4/3] bg-surface rounded-xl overflow-hidden mb-lg group">
           <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[E-commerce]</div>
           <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
@@ -65,31 +65,3 @@
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReducedMotion) {
-    document.querySelectorAll('#lapatzak .lpk-reveal').forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-  }
-</script>

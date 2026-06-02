@@ -11,7 +11,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-32 pb-section">
 
       <!-- Header -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section about-reveal">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section">
         <div class="lg:col-span-5">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">About</span>
           <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance">
@@ -29,7 +29,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       </div>
 
       <!-- Photo + bio -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section about-reveal" style="transition-delay: 0.1s;">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section">
         <div class="lg:col-span-5">
           <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
             <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Photo]</div>
@@ -54,7 +54,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       </div>
 
       <!-- CTAs -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl about-reveal" style="transition-delay: 0.15s;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl">
         <a href="/#contact" class="group block bg-ink text-canvas rounded-xl p-xl transition-all duration-300 hover:bg-ink/90">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block text-canvas/50">Let's connect</span>
           <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] mb-sm">Start a conversation</h3>
@@ -77,31 +77,3 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
   <ThemeSwitcher />
   <div class="noise-overlay"></div>
 </BaseLayout>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReducedMotion) {
-    document.querySelectorAll('.about-reveal').forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-  }
-</script>

@@ -15,14 +15,14 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     <!-- About — gradient fill -->
     <section class="relative bg-canvas overflow-hidden" id="about-preview">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xl block about-reveal">About</span>
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xl block">About</span>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl items-start">
-          <div class="lg:col-span-5 about-reveal" style="transition-delay: 0.05s;">
+          <div class="lg:col-span-5">
             <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
               The person behind<br />the work.
             </h2>
           </div>
-          <div class="lg:col-span-6 lg:col-start-7 about-reveal" style="transition-delay: 0.1s;">
+          <div class="lg:col-span-6 lg:col-start-7">
             <p class="text-[19px] leading-[1.65] mb-lg" id="about-fill-paragraph">
               <strong class="text-ink font-medium">8 years of visual craft.</strong> <span class="about-word" style="color: #a0a0a0;">I</span> <span class="about-word" style="color: #a0a0a0;">ran</span> <span class="about-word" style="color: #a0a0a0;">a</span> <span class="about-word" style="color: #a0a0a0;">studio</span> <span class="about-word" style="color: #a0a0a0;">in</span> <span class="about-word" style="color: #a0a0a0;">Bilbao,</span> <span class="about-word" style="color: #a0a0a0;">led</span> <span class="about-word" style="color: #a0a0a0;">a</span> <span class="about-word" style="color: #a0a0a0;">team</span> <span class="about-word" style="color: #a0a0a0;">of</span> <span class="about-word" style="color: #a0a0a0;">8,</span> <span class="about-word" style="color: #a0a0a0;">shipped</span> <span class="about-word" style="color: #a0a0a0;">campaigns</span> <span class="about-word" style="color: #a0a0a0;">across</span> <span class="about-word" style="color: #a0a0a0;">12</span> <span class="about-word" style="color: #a0a0a0;">countries.</span> <span class="about-word" style="color: #a0a0a0;">Now</span> <span class="about-word" style="color: #a0a0a0;">based</span> <span class="about-word" style="color: #a0a0a0;">in</span> <span class="about-word" style="color: #a0a0a0;">Barcelona,</span> <span class="about-word" style="color: #a0a0a0;">I</span> <span class="about-word" style="color: #a0a0a0;">work</span> <span class="about-word" style="color: #a0a0a0;">with</span> <span class="about-word" style="color: #a0a0a0;">CGI,</span> <span class="about-word" style="color: #a0a0a0;">motion</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">brand</span> <span class="about-word" style="color: #a0a0a0;">systems</span> <span class="about-word" style="color: #a0a0a0;">—</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">explore</span> <span class="about-word" style="color: #a0a0a0;">AI</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">code</span> <span class="about-word" style="color: #a0a0a0;">to</span> <span class="about-word" style="color: #a0a0a0;">push</span> <span class="about-word" style="color: #a0a0a0;">the</span> <span class="about-word" style="color: #a0a0a0;">work</span> <span class="about-word" style="color: #a0a0a0;">further.</span>
             </p>
@@ -34,24 +34,10 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">HTML/CSS</span>
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">AI Workflows</span>
             </div>
-            <a href="/about" class="magnetic inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
+            <a href="/about" class="magnetic inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
               More about me
             </a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Mini CTA -->
-    <section class="relative bg-warm overflow-hidden" id="mini-cta">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-3xl">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-lg border-t border-b border-border-light py-xl cta-reveal">
-          <p class="text-ink text-[18px] font-light tracking-[-0.02em]">
-            Got something in mind? <strong class="font-medium">Let's talk.</strong>
-          </p>
-          <a href="mailto:hey@alvaroar.es" class="magnetic inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
-            Get in touch
-          </a>
         </div>
       </div>
     </section>
@@ -154,7 +140,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         <!-- Email -->
         <div class="mb-lg">
           <a href="mailto:hey@alvaroar.es" class="block group" id="footer-email-link">
-            <div class="footer-email text-[clamp(28px,4.5vw,56px)] font-medium leading-[1.1] tracking-[-0.03em] text-canvas overflow-hidden" id="footer-email">
+            <div class="text-[clamp(28px,4.5vw,56px)] font-medium leading-[1.1] tracking-[-0.03em] text-canvas">
               hey@alvaroar.es
             </div>
           </a>
@@ -250,25 +236,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       });
     }
 
-    // About reveal
-    document.querySelectorAll('.about-reveal').forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 92%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-
-    // About text — per-word gradient fill (pre-rendered spans)
+    // About text — per-word gradient fill
     const wordSpans = document.querySelectorAll('.about-word');
     if (wordSpans.length > 0) {
       const totalWords = wordSpans.length;
@@ -298,82 +266,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           }
         });
       });
-    }
-
-    // CTA reveal
-    document.querySelectorAll('.cta-reveal').forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-
-    // Footer email — scroll reveal + hover (only y, no color change)
-    const emailEl = document.getElementById('footer-email');
-    const emailLink = document.getElementById('footer-email-link');
-
-    if (emailEl) {
-      const text = emailEl.textContent || '';
-      emailEl.innerHTML = '';
-
-      text.split('').forEach((char) => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        span.style.display = 'inline-block';
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(40px)';
-        if (char === '@' || char === '.') {
-          span.style.color = 'var(--accent)';
-        }
-        emailEl.appendChild(span);
-      });
-
-      const chars = emailEl.querySelectorAll('span');
-
-      ScrollTrigger.create({
-        trigger: emailEl,
-        start: 'top 90%',
-        onEnter: () => {
-          gsap.to(chars, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: 'power2.out',
-            stagger: 0.04,
-          });
-        },
-        once: true,
-      });
-
-      if (emailLink) {
-        emailLink.addEventListener('mouseenter', () => {
-          gsap.to(chars, {
-            y: -6,
-            duration: 0.35,
-            ease: 'power2.out',
-            stagger: 0.02,
-          });
-        });
-
-        emailLink.addEventListener('mouseleave', () => {
-          gsap.to(chars, {
-            y: 0,
-            duration: 0.5,
-            ease: 'power2.out',
-            stagger: 0.02,
-          });
-        });
-      }
     }
 
     // Magnetic effect on CTA buttons
@@ -409,13 +301,11 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
   }
 
   .post-card .aspect-\[3\/4\] {
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .post-card:hover .aspect-\[3\/4\] {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.06);
   }
 
   .posts-pin-wrapper .posts-track {

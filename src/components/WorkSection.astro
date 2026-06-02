@@ -1,7 +1,7 @@
 <section class="relative bg-canvas overflow-hidden" id="work">
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
 
-    <div class="flex items-end justify-between mb-3xl work-reveal">
+    <div class="flex items-end justify-between mb-3xl">
       <div>
         <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Selected Work</span>
         <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
@@ -11,7 +11,7 @@
     </div>
 
     <!-- Project 1 — Koora (Left) -->
-    <a href="/koora" class="project-showcase group block mb-3xl work-reveal-project">
+    <a href="/koora" class="project-showcase group block mb-3xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
         <div class="lg:col-span-7">
           <div class="relative aspect-[16/10] bg-surface rounded-xl overflow-hidden project-image-wrap">
@@ -27,7 +27,7 @@
           <p class="text-muted text-[15px] leading-[1.55] mb-lg">
             <strong class="text-ink font-medium">8 years. 150+ projects. 12 countries.</strong> CGI, motion systems, creative direction. This is where I learned that geography doesn't limit ambition — it proves it.
           </p>
-          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
+          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
             View case study
           </span>
         </div>
@@ -35,7 +35,7 @@
     </a>
 
     <!-- Project 2 — Renders (Right) -->
-    <a href="/renders" class="project-showcase group block mb-3xl work-reveal-project">
+    <a href="/renders" class="project-showcase group block mb-3xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
         <div class="lg:col-span-4 lg:order-1">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Food · Product · CGI</span>
@@ -43,7 +43,7 @@
           <p class="text-muted text-[15px] leading-[1.55] mb-lg">
             <strong class="text-ink font-medium">Photoreal CGI that sells before the product exists.</strong> Food styling, packaging hero shots, 3D assets — Maya + V-Ray, every texture hand-crafted.
           </p>
-          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
+          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
             View case study
           </span>
         </div>
@@ -59,7 +59,7 @@
     </a>
 
     <!-- Project 3 — Lapatzak (Left) -->
-    <a href="/lapatzak" class="project-showcase group block mb-3xl work-reveal-project">
+    <a href="/lapatzak" class="project-showcase group block mb-3xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
         <div class="lg:col-span-7">
           <div class="relative aspect-[16/10] bg-surface rounded-xl overflow-hidden project-image-wrap">
@@ -75,7 +75,7 @@
           <p class="text-muted text-[15px] leading-[1.55] mb-lg">
             <strong class="text-ink font-medium">My own brand. Built from zero.</strong> Identity, packaging, e-commerce — every decision tested in the real market. Not a portfolio piece. A business.
           </p>
-          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
+          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
             View case study
           </span>
         </div>
@@ -83,7 +83,7 @@
     </a>
 
     <!-- Project 4 — Lab (Right) -->
-    <a href="/lab" class="project-showcase group block work-reveal-project">
+    <a href="/lab" class="project-showcase group block">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
         <div class="lg:col-span-4 lg:order-1">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">UI · AI · New Tech</span>
@@ -91,7 +91,7 @@
           <p class="text-muted text-[15px] leading-[1.55] mb-lg">
             <strong class="text-ink font-medium">Where design meets engineering.</strong> AI-native workflows, interactive interfaces, frontend logic. I don't just design screens — I understand how they're built.
           </p>
-          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
+          <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
             View case study
           </span>
         </div>
@@ -109,88 +109,6 @@
   </div>
 </section>
 
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReducedMotion) {
-    // Section header
-    document.querySelectorAll('#work .work-reveal').forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 92%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-
-    document.querySelectorAll('.project-showcase').forEach((project) => {
-      const imageWrap = project.querySelector('.project-image-wrap');
-      const textEls = project.querySelectorAll('span, h3, p');
-
-      // Image reveal
-      if (imageWrap) {
-        gsap.fromTo(imageWrap,
-          { scale: 0.92, opacity: 0, y: 60 },
-          {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: project,
-              start: 'top 88%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-
-        // Parallax
-        gsap.to(imageWrap, {
-          y: -50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: project,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 2.5,
-          },
-        });
-      }
-
-      // Text staggered reveal
-      gsap.fromTo(textEls,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power2.out',
-          stagger: 0.08,
-          scrollTrigger: {
-            trigger: project,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-  }
-</script>
-
 <style>
   .project-showcase {
     display: block;
@@ -199,10 +117,10 @@
   }
 
   .project-showcase .project-image-wrap {
-    transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .project-showcase:hover .project-image-wrap {
-    box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.06);
   }
 </style>

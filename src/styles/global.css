@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@media (prefers-reduced-motion: reduce) {
+  .accent-dot {
+    animation: none !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
 @theme {
   --color-accent: var(--accent, #e8a838);
   --color-accent-light: var(--accent-light, #fdf6e8);
@@ -127,26 +136,24 @@
     overflow: hidden;
     border-radius: var(--radius-xl);
     background: var(--color-surface);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .project-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.06);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.06);
   }
 
   .project-card .card-image {
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .project-card:hover .card-image {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 
   .project-card .card-overlay {
     opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .project-card:hover .card-overlay {

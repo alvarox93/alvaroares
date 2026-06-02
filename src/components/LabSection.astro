@@ -11,13 +11,13 @@
 
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-3xl">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl">
-      <div class="lg:col-span-6 lab-reveal">
+      <div class="lg:col-span-6">
         <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Experimental · Technical</span>
         <h2 class="text-[clamp(40px,5.5vw,64px)] font-light leading-[1.04] tracking-[-0.045em] text-ink text-balance">
           Design that<br />thinks in code.
         </h2>
       </div>
-      <div class="lg:col-span-5 lg:col-start-8 flex flex-col justify-end lab-reveal" style="transition-delay: 0.1s;">
+      <div class="lg:col-span-5 lg:col-start-8 flex flex-col justify-end">
         <p class="text-[16px] leading-[1.65] text-muted">
           <strong class="text-ink font-medium">Where design meets engineering.</strong> AI-native pipelines, interactive interfaces, frontend logic. Not demos — real innovation with intent.
         </p>
@@ -27,7 +27,7 @@
 
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pb-section">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl">
-      <a href="#" class="project-card group block lab-reveal" style="transition-delay: 0.05s;">
+      <a href="#" class="project-card group block">
         <div class="relative aspect-[16/10] overflow-hidden rounded-t-xl">
           <div class="card-image absolute inset-0 bg-surface flex items-center justify-center">
             <span class="text-ghost text-[13px]">AI Pipeline</span>
@@ -43,7 +43,7 @@
         </div>
       </a>
 
-      <a href="#" class="project-card group block lab-reveal" style="transition-delay: 0.1s;">
+      <a href="#" class="project-card group block">
         <div class="relative aspect-[16/10] overflow-hidden rounded-t-xl">
           <div class="card-image absolute inset-0 bg-surface flex items-center justify-center">
             <span class="text-ghost text-[13px]">Interactive</span>
@@ -61,31 +61,3 @@
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReducedMotion) {
-    document.querySelectorAll('#lab .lab-reveal').forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-  }
-</script>

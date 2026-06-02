@@ -20,7 +20,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
     <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
 
-      <div class="mb-3xl lpk-reveal">
+      <div class="mb-3xl">
         <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Own Brand · End to End · 2020—Present</span>
         <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-xl">
           From brand<br />to market.
@@ -32,7 +32,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
       <!-- 3 Pillars -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-3xl">
-        <div class="bg-warm rounded-xl p-xl lpk-reveal" style="transition-delay: 0.05s;">
+        <div class="bg-warm rounded-xl p-xl">
           <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
             <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Branding]</div>
           </div>
@@ -43,7 +43,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           </p>
         </div>
 
-        <div class="bg-warm rounded-xl p-xl lpk-reveal" style="transition-delay: 0.1s;">
+        <div class="bg-warm rounded-xl p-xl">
           <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
             <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Packaging]</div>
           </div>
@@ -54,7 +54,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
           </p>
         </div>
 
-        <div class="bg-warm rounded-xl p-xl lpk-reveal" style="transition-delay: 0.15s;">
+        <div class="bg-warm rounded-xl p-xl">
           <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
             <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[E-commerce]</div>
           </div>
@@ -67,8 +67,8 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
       </div>
 
       <!-- CTA -->
-      <div class="border-t border-border-light pt-xl text-center lpk-reveal">
-        <a href="/#contact" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-300 hover:bg-ink/85">
+      <div class="border-t border-border-light pt-xl text-center">
+        <a href="/#contact" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
           Want to talk brand strategy?
         </a>
       </div>
@@ -78,31 +78,3 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
   <ThemeSwitcher />
   <div class="noise-overlay"></div>
 </BaseLayout>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReducedMotion) {
-    document.querySelectorAll('.lpk-reveal').forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-  }
-</script>

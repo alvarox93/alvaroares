@@ -1,7 +1,3 @@
----
-import Hero3D from '@components/Hero3D.astro';
----
-
 <section class="relative min-h-screen flex flex-col justify-center bg-canvas overflow-hidden" id="hero">
   <div class="absolute inset-0 pointer-events-none hero-grid" id="hero-grid" style="background-image: linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px); background-size: 60px 60px;"></div>
 
@@ -11,7 +7,7 @@ import Hero3D from '@components/Hero3D.astro';
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center">
       <div class="lg:col-span-6">
 
-        <div class="mb-xl hero-reveal">
+        <div class="mb-xl">
           <span class="inline-flex items-center gap-2.5 px-4 py-2 border border-border rounded-full">
             <span class="accent-dot"></span>
             <span class="text-ink text-[11px] font-medium tracking-[0.12px] uppercase">Available for hiring</span>
@@ -19,22 +15,22 @@ import Hero3D from '@components/Hero3D.astro';
         </div>
 
         <div class="mb-2xl">
-          <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance" id="hero-title">
-            <span class="hero-line block overflow-hidden"><span class="block">Álvaro Ares</span></span>
-            <span class="hero-line block overflow-hidden"><span class="block">Creative Director</span></span>
-            <span class="hero-line block overflow-hidden"><span class="block">& <em class="not-italic" style="color: var(--accent);">CGI artist.</em></span></span>
+          <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
+            <span class="block">Álvaro Ares</span>
+            <span class="block">Creative Director</span>
+            <span class="block">& <em class="not-italic" style="color: var(--accent);">CGI artist.</em></span>
           </h1>
         </div>
 
-        <p class="text-[17px] leading-[1.6] text-muted max-w-[460px] mb-2xl hero-reveal" style="transition-delay: 0.45s;">
+        <p class="text-[17px] leading-[1.6] text-muted max-w-[460px] mb-2xl">
           <strong class="text-ink font-medium">I make brands look expensive.</strong> 8 years of photoreal rendering, motion systems and brand identity. Based in Barcelona, working worldwide.
         </p>
 
-        <div class="flex gap-md hero-reveal" style="transition-delay: 0.6s;">
-          <a href="#work" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-all duration-200 hover:scale-[0.97] hover:bg-ink/90 active:scale-[0.95]">
+        <div class="flex gap-md">
+          <a href="#work" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
             See my work
           </a>
-          <a href="/about" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-all duration-200 hover:scale-[0.97] hover:border-ink/20 active:scale-[0.95]">
+          <a href="/about" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
             About me
           </a>
         </div>
@@ -49,14 +45,14 @@ import Hero3D from '@components/Hero3D.astro';
           muted
           playsinline
           class="absolute inset-0 w-full h-full object-contain"
-          style="scale: 1.5;"
+          style="scale: 1.3;"
         ></video>
       </div>
     </div>
   </div>
 
   <div class="absolute bottom-0 left-0 right-0 z-10 px-xl lg:px-3xl py-5">
-    <div class="max-w-[1200px] mx-auto flex justify-center hero-reveal" style="transition-delay: 0.75s;">
+    <div class="max-w-[1200px] mx-auto flex justify-center">
       <span class="inline-flex items-center gap-md text-ghost text-[11px] tracking-[0.14px]">
         <span class="inline-flex items-center gap-xs">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -74,83 +70,48 @@ import Hero3D from '@components/Hero3D.astro';
 <script>
   import { gsap } from 'gsap';
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const blob = document.getElementById('hero-blob');
+  const hero = document.getElementById('hero');
+  const grid = document.getElementById('hero-grid');
 
-  if (!prefersReducedMotion) {
-    gsap.fromTo('.hero-line > span',
-      { y: '110%', opacity: 0 },
-      {
-        y: '0%',
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power3.out',
-        stagger: 0.1,
-        delay: 0.1,
+  if (blob && hero) {
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      gsap.to(blob, {
+        left: x,
+        top: y,
+        duration: 1.4,
+        ease: 'power2.out',
+      });
+
+      if (grid) {
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+        grid.style.background = `
+          radial-gradient(circle 300px at ${xPercent}% ${yPercent}%, rgba(var(--accent-rgb), 0.06), transparent),
+          linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
+        `;
+        grid.style.backgroundSize = `100% 100%, 60px 60px, 60px 60px`;
       }
-    );
-
-    document.querySelectorAll('.hero-reveal').forEach((el) => {
-      const delay = parseFloat((el as HTMLElement).style.transitionDelay || '0');
-      gsap.fromTo(el,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          delay: delay + 0.4,
-        }
-      );
     });
 
-    const blob = document.getElementById('hero-blob');
-    const hero = document.getElementById('hero');
-    const grid = document.getElementById('hero-grid');
+    hero.addEventListener('mouseleave', () => {
+      gsap.to(blob, { opacity: 0.04, duration: 0.6 });
+      if (grid) {
+        grid.style.background = `
+          linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
+        `;
+        grid.style.backgroundSize = `60px 60px, 60px 60px`;
+      }
+    });
 
-    if (blob && hero) {
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        gsap.to(blob, {
-          left: x,
-          top: y,
-          duration: 1.4,
-          ease: 'power2.out',
-        });
-
-        if (grid) {
-          const xPercent = (x / rect.width) * 100;
-          const yPercent = (y / rect.height) * 100;
-          grid.style.background = `
-            radial-gradient(circle 300px at ${xPercent}% ${yPercent}%, rgba(var(--accent-rgb), 0.06), transparent),
-            linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `;
-          grid.style.backgroundSize = `100% 100%, 60px 60px, 60px 60px`;
-        }
-      });
-
-      hero.addEventListener('mouseleave', () => {
-        gsap.to(blob, { opacity: 0.04, duration: 0.6 });
-        if (grid) {
-          grid.style.background = `
-            linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `;
-          grid.style.backgroundSize = `60px 60px, 60px 60px`;
-        }
-      });
-
-      hero.addEventListener('mouseenter', () => {
-        gsap.to(blob, { opacity: 0.1, duration: 0.6 });
-      });
-    }
-  } else {
-    document.querySelectorAll('.hero-line > span, .hero-reveal').forEach((el) => {
-      (el as HTMLElement).style.opacity = '1';
-      (el as HTMLElement).style.transform = 'none';
+    hero.addEventListener('mouseenter', () => {
+      gsap.to(blob, { opacity: 0.1, duration: 0.6 });
     });
   }
 </script>
