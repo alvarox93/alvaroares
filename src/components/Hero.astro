@@ -81,12 +81,14 @@ import Hero3D from '@components/Hero3D.astro';
               const g = data[i + 1];
               const b = data[i + 2];
 
-              // If pixel is light gray-ish (high R, G, B values, low saturation)
+              // If pixel is very light (background only)
               const avg = (r + g + b) / 3;
-              const maxDiff = Math.max(Math.abs(r - avg), Math.abs(g - avg), Math.abs(b - avg));
+              const maxDiff = Math.max(Math.abs(r - g), Math.abs(g - b), Math.abs(r - b));
 
-              if (avg > 180 && maxDiff < 30) {
-                data[i + 3] = 0; // Make transparent
+              if (avg > 210 && maxDiff < 20) {
+                data[i + 3] = 0;
+              } else if (avg > 195 && maxDiff < 15) {
+                data[i + 3] = Math.round(((avg - 195) / 15) * 255);
               }
             }
 
