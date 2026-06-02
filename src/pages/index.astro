@@ -318,7 +318,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         const progress = self.progress;
         words.forEach((word, i) => {
           const wordProgress = i / totalWords;
-          const opacity = Math.min(1, Math.max(0.12, (progress - wordProgress) * totalWords * 0.5 + 0.12));
+          const opacity = Math.min(1, Math.max(0.12, (progress - wordProgress) * totalWords * 1.2 + 0.12));
           (word as HTMLElement).style.opacity = String(opacity);
         });
       },
