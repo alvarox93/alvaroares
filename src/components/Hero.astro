@@ -9,7 +9,7 @@ import Hero3D from '@components/Hero3D.astro';
 
   <div class="relative z-10 max-w-[1200px] mx-auto px-xl lg:px-2xl py-3xl">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center">
-      <div class="lg:col-span-7">
+      <div class="lg:col-span-6">
 
         <div class="mb-xl hero-reveal">
           <span class="inline-flex items-center gap-2.5 px-4 py-2 border border-border rounded-full">
@@ -41,7 +41,7 @@ import Hero3D from '@components/Hero3D.astro';
 
       </div>
 
-      <div class="hidden lg:block lg:col-span-5 lg:col-start-8 relative" style="min-height: 400px;">
+      <div class="hidden lg:block lg:col-span-6 lg:col-start-7 relative" style="min-height: 500px;">
         <video
           src="/keyCupAnimation.webm"
           autoplay
@@ -49,6 +49,7 @@ import Hero3D from '@components/Hero3D.astro';
           muted
           playsinline
           class="absolute inset-0 w-full h-full object-contain"
+          style="mix-blend-mode: multiply; scale: 1.3;"
         ></video>
       </div>
     </div>
