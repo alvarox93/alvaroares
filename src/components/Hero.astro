@@ -43,64 +43,15 @@ import Hero3D from '@components/Hero3D.astro';
 
       <div class="hidden lg:block lg:col-span-6 lg:col-start-7 relative" style="min-height: 500px;">
         <video
-          id="hero-video"
           src="/keyCupAnimation.webm"
           autoplay
           loop
           muted
           playsinline
-          class="hidden"
+          class="absolute inset-0 w-full h-full object-contain"
+          style="scale: 1.5;"
         ></video>
-        <canvas id="hero-video-canvas" class="absolute inset-0 w-full h-full object-contain" style="scale: 1.3;"></canvas>
       </div>
-
-      <script>
-        const video = document.getElementById('hero-video') as HTMLVideoElement;
-        const vCanvas = document.getElementById('hero-video-canvas') as HTMLCanvasElement;
-
-        if (video && vCanvas) {
-          const ctx = vCanvas.getContext('2d', { willReadFrequently: true });
-
-          function processFrame() {
-            if (!ctx || !video.videoWidth) {
-              requestAnimationFrame(processFrame);
-              return;
-            }
-
-            vCanvas.width = video.videoWidth;
-            vCanvas.height = video.videoHeight;
-
-            ctx.drawImage(video, 0, 0);
-
-            const imageData = ctx.getImageData(0, 0, vCanvas.width, vCanvas.height);
-            const data = imageData.data;
-
-            // Chroma key: remove light gray background
-            for (let i = 0; i < data.length; i += 4) {
-              const r = data[i];
-              const g = data[i + 1];
-              const b = data[i + 2];
-
-              // If pixel is very light (background only)
-              const avg = (r + g + b) / 3;
-              const maxDiff = Math.max(Math.abs(r - g), Math.abs(g - b), Math.abs(r - b));
-
-              if (avg > 210 && maxDiff < 20) {
-                data[i + 3] = 0;
-              } else if (avg > 195 && maxDiff < 15) {
-                data[i + 3] = Math.round(((avg - 195) / 15) * 255);
-              }
-            }
-
-            ctx.putImageData(imageData, 0, 0);
-            requestAnimationFrame(processFrame);
-          }
-
-          video.addEventListener('play', () => {
-            requestAnimationFrame(processFrame);
-          });
-        }
-      </script>
     </div>
   </div>
 
