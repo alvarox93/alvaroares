@@ -42,9 +42,14 @@ import Hero3D from '@components/Hero3D.astro';
       </div>
 
       <div class="hidden lg:block lg:col-span-5 lg:col-start-8 relative" style="min-height: 400px;">
-        <div class="absolute inset-0">
-          <Hero3D />
-        </div>
+        <video
+          src="/keyCupAnimation.webm"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="absolute inset-0 w-full h-full object-contain"
+        ></video>
       </div>
     </div>
   </div>
