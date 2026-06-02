@@ -1,0 +1,35 @@
+---
+import PostLayout from '@layouts/PostLayout.astro';
+---
+
+<PostLayout
+  title="Designing interfaces that think in code (and why it matters)"
+  category="Design"
+  readTime="3 min"
+  description="The best interfaces I've designed came from thinking in constraints — spacing systems, type scales, component logic — not from pushing pixels."
+>
+  <p>
+    I spent years designing in Figma first and handing off to developers. The result was always a negotiation. "This spacing doesn't match the system." "This interaction isn't feasible." "This layout breaks on mobile."
+  </p>
+
+  <h2>Designing in constraints</h2>
+  <p>
+    The shift happened when I started thinking in code while designing. Not coding the final product — but thinking in terms of grids, tokens, and component states. Instead of drawing a button at 847px wide with 13px font, I think: this is a full-width button in a 12-column grid, using the body font scale.
+  </p>
+  <p>
+    It's less creative freedom, technically. But the output is better because it's consistent, responsive, and buildable.
+  </p>
+
+  <h2>Why this matters for the final product</h2>
+  <p>
+    When a designer understands that spacing comes in 8px increments, they stop inventing 23px margins. When they understand component props, they design states that actually get built — hover, focus, disabled, loading, empty. Not just the happy-path screenshot.
+  </p>
+  <p>
+    The interfaces that feel the most polished aren't the ones with the most visual flair. They're the ones where every detail is systematic. Consistent spacing. Predictable interactions. A type scale that holds from mobile to desktop. That's what "thinking in code" produces.
+  </p>
+
+  <h2>The bridge role</h2>
+  <p>
+    This is why I code. Not to replace developers, but to speak their language. When I hand off a design, I can flag the tricky parts. When a developer pushes back, I understand why. The gap between design and implementation shrinks — and the product gets better.
+  </p>
+</PostLayout>

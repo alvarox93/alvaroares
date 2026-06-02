@@ -23,8 +23,10 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </h2>
           </div>
           <div class="lg:col-span-6 lg:col-start-7">
-            <p class="text-[19px] leading-[1.65] mb-lg" id="about-fill-paragraph">
-              <strong class="text-ink font-medium">8 years of visual craft.</strong> <span class="about-word" style="color: #a0a0a0;">I</span> <span class="about-word" style="color: #a0a0a0;">ran</span> <span class="about-word" style="color: #a0a0a0;">a</span> <span class="about-word" style="color: #a0a0a0;">studio</span> <span class="about-word" style="color: #a0a0a0;">in</span> <span class="about-word" style="color: #a0a0a0;">Bilbao,</span> <span class="about-word" style="color: #a0a0a0;">led</span> <span class="about-word" style="color: #a0a0a0;">a</span> <span class="about-word" style="color: #a0a0a0;">team</span> <span class="about-word" style="color: #a0a0a0;">of</span> <span class="about-word" style="color: #a0a0a0;">8,</span> <span class="about-word" style="color: #a0a0a0;">shipped</span> <span class="about-word" style="color: #a0a0a0;">campaigns</span> <span class="about-word" style="color: #a0a0a0;">across</span> <span class="about-word" style="color: #a0a0a0;">12</span> <span class="about-word" style="color: #a0a0a0;">countries.</span> <span class="about-word" style="color: #a0a0a0;">Now</span> <span class="about-word" style="color: #a0a0a0;">based</span> <span class="about-word" style="color: #a0a0a0;">in</span> <span class="about-word" style="color: #a0a0a0;">Barcelona,</span> <span class="about-word" style="color: #a0a0a0;">I</span> <span class="about-word" style="color: #a0a0a0;">work</span> <span class="about-word" style="color: #a0a0a0;">with</span> <span class="about-word" style="color: #a0a0a0;">CGI,</span> <span class="about-word" style="color: #a0a0a0;">motion</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">brand</span> <span class="about-word" style="color: #a0a0a0;">systems</span> <span class="about-word" style="color: #a0a0a0;">—</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">explore</span> <span class="about-word" style="color: #a0a0a0;">AI</span> <span class="about-word" style="color: #a0a0a0;">and</span> <span class="about-word" style="color: #a0a0a0;">code</span> <span class="about-word" style="color: #a0a0a0;">to</span> <span class="about-word" style="color: #a0a0a0;">push</span> <span class="about-word" style="color: #a0a0a0;">the</span> <span class="about-word" style="color: #a0a0a0;">work</span> <span class="about-word" style="color: #a0a0a0;">further.</span>
+            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.7] mb-lg" id="about-fill-paragraph">
+              {"8 years of visual craft. I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.".split(' ').map(word => (
+                <span class="about-word">{word}{'\u00A0'}</span>
+              ))}
             </p>
             <div class="flex flex-wrap gap-xs mb-xl">
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">Maya</span>
@@ -44,21 +46,21 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
     <!-- Posts — horizontal scroll -->
     <section class="relative bg-warm overflow-hidden pb-3xl" id="posts">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-lg">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Thinking</span>
+        <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
+          Posts & concepts.
+        </h2>
+      </div>
+
       <div class="posts-pin-wrapper" id="posts-pin">
-        <div class="px-xl lg:px-3xl pt-xl pb-lg" style="text-align: left;">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">Thinking</span>
-          <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
-            Posts & concepts.
-          </h2>
-        </div>
+        <div class="posts-track flex gap-lg" id="posts-track">
 
-        <div class="posts-track flex gap-lg px-xl lg:px-3xl" id="posts-track">
-
-          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+          <a href="/posts/motion-design-systems" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Motion</div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
-                <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
+                <h3 class="text-[18px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   Why motion design systems matter more than animated logos
                 </h3>
               </div>
@@ -69,11 +71,11 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </div>
           </a>
 
-          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+          <a href="/posts/cgi-vs-photography" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">CGI</div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
-                <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
+                <h3 class="text-[18px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   The case for CGI product rendering over traditional photography
                 </h3>
               </div>
@@ -84,11 +86,11 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </div>
           </a>
 
-          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+          <a href="/posts/ai-pipeline" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">AI</div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
-                <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
+                <h3 class="text-[18px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   AI-native production: how I automated 60% of my visual pipeline
                 </h3>
               </div>
@@ -99,11 +101,11 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </div>
           </a>
 
-          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+          <a href="/posts/designing-in-code" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Code</div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
-                <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
+                <h3 class="text-[18px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   Designing interfaces that think in code (and why it matters)
                 </h3>
               </div>
@@ -114,11 +116,11 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </div>
           </a>
 
-          <a href="#" class="post-card group shrink-0" style="width: 280px;">
+          <a href="/posts/building-lapatzak" class="post-card group shrink-0" style="width: 280px;">
             <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">Brand</div>
               <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent">
-                <h3 class="text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
+                <h3 class="text-[18px] font-medium leading-[1.3] tracking-[-0.01em] text-canvas">
                   Building a brand from zero: what I learned running Lapatzak
                 </h3>
               </div>
@@ -140,8 +142,10 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
         <!-- Email -->
         <div class="mb-lg">
           <a href="mailto:hey@alvaroar.es" class="block group" id="footer-email-link">
-            <div class="text-[clamp(28px,4.5vw,56px)] font-medium leading-[1.1] tracking-[-0.03em] text-canvas">
-              hey@alvaroar.es
+            <div class="text-[clamp(28px,4.5vw,56px)] font-medium leading-[1.1] tracking-[-0.03em]" id="footer-email">
+              {"hey@alvaroar.es".split('').map(char => (
+                <span class="footer-char">{char === ' ' ? '\u00A0' : char}</span>
+              ))}
             </div>
           </a>
         </div>
@@ -168,7 +172,7 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-canvas/30 hover:text-accent transition-colors duration-300" aria-label="LinkedIn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener" class="text-canvas/30 hover:text-accent transition-colors duration-300" aria-label="Instagram">
+            <a href="https://instagram.com/alvaroar.es" target="_blank" rel="noopener" class="text-canvas/30 hover:text-accent transition-colors duration-300" aria-label="Instagram">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
           </div>
@@ -188,113 +192,203 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    touchMultiplier: 2,
+  });
 
-  if (!prefersReducedMotion) {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
+  lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+
+  gsap.ticker.lagSmoothing(0);
+
+  // Smooth scroll for hash links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (href) {
+        e.preventDefault();
+        lenis.scrollTo(href);
+      }
     });
+  });
 
-    lenis.on('scroll', ScrollTrigger.update);
+  // Nav hide/show with GSAP
+  const nav = document.getElementById('main-nav');
+  let lastNavScroll = 0;
+  let navHidden = false;
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
+  if (nav) {
+    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
+      // Background
+      if (scroll > 50) {
+        nav.classList.add('nav-scrolled');
+      } else {
+        nav.classList.remove('nav-scrolled');
+      }
+
+      // Hide/show
+      if (scroll > lastNavScroll && scroll > 200 && !navHidden) {
+        gsap.to(nav, { y: -80, duration: 0.4, ease: 'power3.in' });
+        navHidden = true;
+      } else if (scroll < lastNavScroll && navHidden) {
+        gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out' });
+        navHidden = false;
+      }
+
+      lastNavScroll = scroll;
     });
+  }
 
-    gsap.ticker.lagSmoothing(0);
+  // Horizontal scroll for posts
+  const postsTrack = document.getElementById('posts-track');
+  const postsPin = document.getElementById('posts-pin');
 
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
-        const href = anchor.getAttribute('href');
-        if (href) {
-          e.preventDefault();
-          lenis.scrollTo(href);
-        }
-      });
+  if (postsTrack && postsPin) {
+    const totalWidth = postsTrack.scrollWidth - window.innerWidth + 100;
+
+    gsap.to(postsTrack, {
+      x: -totalWidth,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: postsPin,
+        start: 'top top',
+        end: `+=${totalWidth}`,
+        pin: true,
+        scrub: 2,
+        anticipatePin: 1,
+      },
     });
+  }
 
-    // Horizontal scroll for posts
-    const postsTrack = document.getElementById('posts-track');
-    const postsPin = document.getElementById('posts-pin');
+  // Project parallax — text floats down as you scroll
+  document.querySelectorAll('.project-showcase').forEach((card) => {
+    const img = card.querySelector('.project-image-wrap');
+    const text = card.querySelector('.project-text-wrap');
 
-    if (postsTrack && postsPin) {
-      const totalWidth = postsTrack.scrollWidth - window.innerWidth + 100;
-
-      gsap.to(postsTrack, {
-        x: -totalWidth,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: postsPin,
-          start: 'top top',
-          end: `+=${totalWidth}`,
-          pin: true,
-          scrub: 2,
-          anticipatePin: 1,
-        },
-      });
-    }
-
-    // About text — per-word gradient fill
-    const wordSpans = document.querySelectorAll('.about-word');
-    if (wordSpans.length > 0) {
-      const totalWords = wordSpans.length;
-
-      wordSpans.forEach((wordEl, i) => {
-        const start = i / totalWords;
-        const end = (i + 1) / totalWords;
-
-        gsap.to(wordEl, {
-          color: '#1a1a1a',
+    if (img) {
+      gsap.fromTo(img,
+        { yPercent: 8 },
+        {
+          yPercent: -8,
           ease: 'none',
           scrollTrigger: {
-            trigger: wordEl.closest('p'),
-            start: 'top 75%',
-            end: 'top 20%',
-            scrub: 1,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              if (progress >= start && progress <= end) {
-                const localProgress = (progress - start) / (end - start);
-                const v = Math.round(160 + (26 - 160) * localProgress);
-                (wordEl as HTMLElement).style.color = `rgb(${v},${v},${v})`;
-              } else if (progress > end) {
-                (wordEl as HTMLElement).style.color = '#1a1a1a';
-              }
-            }
-          }
-        });
-      });
+            trigger: card,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
     }
 
-    // Magnetic effect on CTA buttons
-    document.querySelectorAll('.magnetic').forEach((el) => {
-      el.addEventListener('mousemove', (e) => {
-        const rect = (el as HTMLElement).getBoundingClientRect();
-        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
-        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
-        gsap.to(el, {
-          x: x * 0.15,
-          y: y * 0.15,
-          duration: 0.3,
-          ease: 'power2.out',
-        });
-      });
+    if (text) {
+      gsap.fromTo(text,
+        { y: -30 },
+        {
+          y: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    }
+  });
 
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, {
-          x: 0,
-          y: 0,
-          duration: 0.5,
-          ease: 'elastic.out(1, 0.5)',
+  // About text — per-word gradient sweep
+  const aboutParagraph = document.getElementById('about-fill-paragraph');
+  if (aboutParagraph) {
+    const words = aboutParagraph.querySelectorAll('.about-word');
+    const totalWords = words.length;
+
+    ScrollTrigger.create({
+      trigger: aboutParagraph,
+      start: 'top 80%',
+      end: 'top 20%',
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        words.forEach((word, i) => {
+          const wordProgress = i / totalWords;
+          const opacity = Math.min(1, Math.max(0.12, (progress - wordProgress) * totalWords * 0.5 + 0.12));
+          (word as HTMLElement).style.opacity = String(opacity);
         });
+      },
+    });
+  }
+
+  // Footer email — per-character staggered hover
+  const emailLink = document.getElementById('footer-email-link');
+  if (emailLink) {
+    const chars = emailLink.querySelectorAll('.footer-char');
+
+    emailLink.addEventListener('mouseenter', () => {
+      gsap.killTweensOf(chars);
+      gsap.to(chars, {
+        color: '#e8a838',
+        y: -4,
+        duration: 0.3,
+        ease: 'power2.out',
+        stagger: 0.04,
+      });
+    });
+
+    emailLink.addEventListener('mouseleave', () => {
+      gsap.killTweensOf(chars);
+      gsap.to(chars, {
+        color: '#ffffff',
+        y: 0,
+        duration: 0.25,
+        ease: 'power2.out',
+        stagger: 0.03,
       });
     });
   }
+
+  // Magnetic effect on CTA buttons
+  document.querySelectorAll('.magnetic').forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = (el as HTMLElement).getBoundingClientRect();
+      const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+      const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+      gsap.to(el, {
+        x: x * 0.15,
+        y: y * 0.15,
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+    });
+
+    el.addEventListener('mouseleave', () => {
+      gsap.to(el, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: 'elastic.out(1, 0.5)',
+      });
+    });
+  });
 </script>
 
 <style>
+  .post-card:first-child {
+    margin-left: max(var(--spacing-xl), calc((100vw - 1200px) / 2 + var(--spacing-xl)));
+  }
+
+  @media (min-width: 1024px) {
+    .post-card:first-child {
+      margin-left: max(var(--spacing-3xl), calc((100vw - 1200px) / 2 + var(--spacing-3xl)));
+    }
+  }
+
   .post-card {
     text-decoration: none;
     color: inherit;
@@ -323,5 +417,14 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
   #footer-email-link {
     text-decoration: none;
     color: inherit;
+  }
+
+  #footer-email {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .footer-char-wrap {
+    display: inline-block;
   }
 </style>

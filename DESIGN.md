@@ -1,5 +1,5 @@
 ---
-version: 1.0
+version: 2.0
 name: alvaroar.es-design-system
 author: Álvaro Ares
 ---
@@ -14,84 +14,91 @@ Apple's DNA (typography discipline, single accent, generous whitespace) meets ed
 
 ## Colors
 
-### Primary
-- **Action Blue** `#0066cc` — interactive elements, links, CTAs
-- **Focus Blue** `#0071e3` — focus states
-- **Sky Blue** `#2997ff` — links on dark surfaces
+### Accent System
+The site uses a switchable accent color with 5 themes. Default is gold.
+
+| Theme | Hex | RGB | Light Surface |
+|-------|-----|-----|---------------|
+| Gold (default) | `#e8a838` | 232, 168, 56 | `#fdf6e8` |
+| Coral | `#e87461` | 232, 116, 97 | `#fdf0ed` |
+| Turquoise | `#4abfb0` | 74, 191, 176 | `#edf9f7` |
+| Rose | `#d4697a` | 212, 105, 122 | `#fdf0f2` |
+| Violet | `#9b87d4` | 155, 135, 212 | `#f4f1fb` |
+
+Applied via CSS custom properties (`--accent`, `--accent-light`, `--accent-rgb`) toggled by `data-theme` on `<html>`.
 
 ### Surfaces
 - **Canvas** `#ffffff` — primary background
-- **Parchment** `#f5f5f7` — secondary light surface
-- **Pearl** `#fafafc` — ghost buttons
-- **Ink** `#1d1d1f` — primary text
-- **Void** `#000000` — true black, hero moments
-- **Tile 1** `#272729` — dark section base
-- **Tile 2** `#2a2a2c` — dark section variation
-- **Tile 3** `#252527` — dark section accent
+- **Warm** `#faf9f7` — secondary warm surface (posts section)
+- **Surface** `#f5f4f2` — cards, elevated elements
 
 ### Text
-- **Ink** `#1d1d1f` — all text on light
-- **Muted** `#666666` — secondary text on light
-- **Ghost** `#999999` — tertiary, captions
-- **On Dark** `#ffffff` — all text on dark
-- **On Dark Muted** `#cccccc` — secondary on dark
+- **Ink** `#1a1a1a` — primary text
+- **Muted** `#6b6b6b` — secondary text
+- **Ghost** `#a0a0a0` — tertiary, captions, labels
+
+### Borders
+- **Border** `#e8e8e8` — standard borders
+- **Border Light** `#f0f0f0` — subtle dividers
 
 ### Noise & Texture
-- **Grain opacity** 2-4% on dark tiles
-- **Grain color** white on dark, black on light
-- Applied via CSS noise texture, not images
+- **Grain opacity** 2% on fixed overlay
+- Applied via SVG noise texture in CSS, not images
 
 ## Typography
 
 ### Font Stack
-- **Primary:** SF Pro Display / system-ui — headlines, UI
+- **Display:** SF Pro Display / system-ui — headlines, headings
 - **Body:** SF Pro Text / system-ui — paragraphs, labels
-- **Accent:** Space Grotesk (Google Fonts) — used sparingly for hero numbers, section labels, or moments that need to feel "designed" rather than "system"
-- **Mono:** SF Mono — code snippets, metadata
+- **Accent:** Space Grotesk (self-hosted woff2) — hero badge, section labels, accent moments
 
 ### Scale
 
 | Token | Size | Weight | Line Height | Tracking | Usage |
 |---|---|---|---|---|---|
-| Display XL | clamp(48px, 8vw, 96px) | 600 | 1.05 | -0.03em | Hero headline |
-| Display L | 56px | 600 | 1.07 | -0.28px | Section headline |
-| Display M | 40px | 600 | 1.10 | 0 | Tile headline |
-| Lead | 28px | 400 | 1.14 | 0.196px | Subcopy |
-| Body | 17px | 400 | 1.47 | -0.374px | Paragraphs |
-| Label | 12px | 500 | 1.0 | 0.12px | Tags, uppercase labels |
-| Accent XL | clamp(48px, 8vw, 96px) | 700 | 1.0 | -0.04em | Hero numbers, Space Grotesk |
-| Accent L | 56px | 700 | 1.0 | -0.02em | Section numbers, Space Grotesk |
+| Hero | clamp(32px, 5vw, 56px) | 300 | 1.08 | -0.04em | Hero headline |
+| Section | clamp(28px, 3.5vw, 40px) | 300 | 1.08 | -0.04em | Section headline |
+| Body | 17px | 400 | 1.5 | -0.374px | Paragraphs |
+| Label | 11px | 500 | 1.0 | 0.14px | Uppercase section labels |
+| Tag | 10px | 400 | 1.0 | 0.08px | Category tags |
+| Button | 12-13px | 500 | 1.0 | -0.2px | CTAs |
 
-**Rule:** Use SF Pro for 90% of text. Space Grotesk appears only for numbers, labels, or single words that need to feel like "graphic design" rather than "UI text". Never mix both in the same sentence.
+**Rule:** Use SF Pro for 90% of text. Space Grotesk appears only for the accent dot badge and section labels. Never mix both in the same sentence.
 
 ## Spacing
 
 - Base unit: 8px
-- Section padding: 120px vertical (desktop), 80px (mobile)
+- Section padding: 120px vertical (desktop), 72px (mobile)
 - Content max-width: 1200px
-- Hero content: 980px
-- Grid gap: 24px
-- Tile internal padding: 80px
+- Grid gap: 24px (default), 64px (3xl), 48px (2xl)
+
+### Tokens
+`xs` 8px / `sm` 12px / `md` 17px / `lg` 24px / `xl` 32px / `2xl` 48px / `3xl` 64px / `section` 120px
 
 ## Shapes
 
-- **Tile radius:** 0 (edge-to-edge)
-- **Card radius:** 18px
-- **Pill radius:** 9999px (CTAs only)
-- **Button radius:** 8px (utility buttons)
+- **Card radius:** 18px (`radius-xl`)
+- **Button radius:** 8px (`radius-md`) — utility buttons
+- **Tag radius:** 4px (`radius-sm`)
+- **Pill radius:** 9999px (availability badge only)
 
 ## Elevation & Depth
 
 - **No shadows on UI chrome.** Never.
-- **Single shadow allowed:** `0 20px 60px rgba(0,0,0,0.15)` — for project images only
+- **Single shadow allowed:** `0 16px 40px rgba(0,0,0,0.06)` — for project cards on hover
 - **Depth comes from:** surface color change, not shadow
-- **Texture:** 2-4% grain overlay on dark tiles
-- **Cursor:** Default. No custom cursor (distracts from content).
+- **Texture:** 2% grain overlay (fixed, full-screen)
+- **Cursor:** Default. No custom cursor.
 
 ## Animation
 
 ### Philosophy
 Motion is punctuation, not decoration. Use it where it helps the user understand hierarchy, not where it entertains.
+
+### Libraries
+- **GSAP 3.13** — scroll animations, magnetic effects, mouse tracking
+- **Lenis 1.3** — smooth scroll (disabled when `prefers-reduced-motion`)
+- **ScrollTrigger** — scroll-driven animations
 
 ### Page Load
 - Fade in from opacity 0, translateY(20px) → opacity 1, translateY(0)
@@ -102,52 +109,62 @@ Motion is punctuation, not decoration. Use it where it helps the user understand
 ### Scroll Reveals
 - GSAP ScrollTrigger with `start: "top 85%"`
 - `fromTo()` with explicit start/end states (no from-only)
-- Respect `prefers-reduced-motion`
+- Respect `prefers-reduced-motion` — all GSAP animations wrapped in motion check
 - Duration: 0.6s
 - Ease: `power3.out`
 
 ### Microinteractions
-- Hover links: opacity 0.6, transition 0.2s
-- Active buttons: `transform: scale(0.97)`, transition 0.1s
-- Focus: 2px solid Focus Blue outline
+- **Magnetic buttons** — CTA buttons follow cursor with elastic snap-back
+- **Magnetic swatches** — theme color picker with scale on hover
+- **Hero blob** — accent-colored blur follows mouse position
+- **About word-fill** — per-word color transition from ghost to ink on scroll
+- **Nav hide/show** — hides on scroll down, shows on scroll up (after 300px)
+
+### Reduced Motion
+All GSAP animations are wrapped in `prefers-reduced-motion` check. CSS animations (accent-dot pulse, marquee) are disabled via media query. Lenis smooth scroll is not initialized.
 
 ## Components
 
 ### Navigation
-- Fixed, full-width
-- Background: transparent → `rgba(255,255,255,0.8)` with `backdrop-filter: blur(20px)` on scroll
+- Fixed, full-width, z-50
+- Background: transparent → `color-mix(in srgb, var(--color-canvas) 85%, transparent)` with `backdrop-filter: blur(20px)` on scroll
 - Height: 64px
-- Links: Body size, weight 400, tracking -0.374px
-- No logo icon. Name is the brand.
+- Hides on scroll down (after 300px), shows on scroll up
+- Name + Work/About/Contact links
+- Contact button: ink background, canvas text
 
 ### Hero
-- Full viewport height (100vh)
-- Centered content, max-width 980px
-- Optional: single asymmetric element (a number, a label, a line) offset from center by 10-15%
-- No background image. Color is the background.
+- Full viewport height (min-h-screen)
+- Left: availability badge (accent dot + "Available for hiring"), headline, subtitle, 2 CTAs
+- Right: looping video (webm)
+- Background: interactive grid with accent blob following mouse
+- Bottom: location bar (Born in Bilbao / Based in Barcelona / Working worldwide)
 
-### Section Tiles
-- Full-width, edge-to-edge
-- Alternate: Canvas → Tile 1 → Parchment → Tile 2
-- Each tile is a self-contained world
-- Padding: 120px vertical
+### Work Section
+- 4 project showcases with alternating left/right layout
+- Each: project card (16:9 image placeholder) + title + description + tags + CTA
+- Projects: Koora, Renders, Lapatzak, Lab
 
-### Project Card
-- Aspect ratio: 16:9 or 1:1
-- Radius: 18px
-- Image with `overflow: hidden`, scale 1.02 on hover
-- Title below image, no card background
-- No shadow by default; shadow appears on hover
+### Posts Section
+- Horizontal scroll with GSAP ScrollTrigger pinning
+- 5 post cards (280px wide, 3:4 aspect)
+- Each card links to full post page
 
-### CTA Button
-- Primary: Action Blue background, white text, pill radius
-- Secondary: transparent, Action Blue text, 1px Action Blue border, pill radius
-- Tertiary: Ink background, white text, 8px radius (utility)
+### About Section
+- Section label + headline + about text with word-fill animation
+- Skill tags (Maya, V-Ray, After Effects, Figma, HTML/CSS, AI Workflows)
+- "More about me" CTA
 
-### Label / Tag
-- Uppercase, 12px, weight 500, tracking 0.12px
-- Color: Muted or Ghost
-- No background, no border. Just text.
+### Footer
+- Fixed at bottom, z-index: -1 (revealed by scrolling past content)
+- Email (large), phone, location, social links
+- Dark background (ink), light text
+
+### Theme Switcher
+- Fixed bottom-right, z-10000
+- Toggle button with accent dot
+- Panel with 5 color swatches
+- Magnetic hover effects on button and swatches
 
 ## Layout Principles
 
@@ -166,28 +183,38 @@ Whitespace is not empty. It is the voice of the designer saying "this matters en
 - No two headlines without at least 24px of air
 
 ### Responsive
-- Desktop: full layout
-- Tablet (<1024px): 2-column grids collapse to 1, padding reduces to 80px
-- Mobile (<768px): single column, padding 48px, hero text scales via clamp()
+- Desktop: full layout (12-column grid)
+- Tablet (<1024px): 2-column grids collapse to 1, padding reduces
+- Mobile (<768px): single column, hero text scales via clamp()
+
+## Tech Stack
+
+- **Framework:** Astro 5.7 (static/SSG)
+- **Styling:** Tailwind CSS v4 via `@tailwindcss/vite` plugin
+- **Animation:** GSAP 3.13 + Lenis 1.3 + ScrollTrigger
+- **Font:** Space Grotesk self-hosted (woff2, 40KB)
+- **Design tokens:** Tailwind v4 `@theme` block in global.css
+- **Theme switching:** CSS custom properties + `data-theme` attribute
 
 ## Do's and Don'ts
 
 **Do:**
 - Use negative letter-spacing on headlines
 - Run body copy at 17px
-- Alternate tile surfaces for rhythm
-- Use Space Grotesk for single impactful words or numbers
-- Add grain texture to dark tiles
+- Alternate surface colors for rhythm (canvas → warm → surface)
+- Use the accent color sparingly — dots, selections, hover states
+- Add grain texture via the noise overlay
 - Break the grid once per section maximum
+- Respect `prefers-reduced-motion`
 
 **Don't:**
 - Use gradients as backgrounds
-- Add shadows to cards or buttons
-- Use more than one accent color
+- Add shadows to cards or buttons (except hover)
+- Use more than one accent color at a time
 - Mix SF Pro and Space Grotesk in the same sentence
 - Use parallax (distracts from content)
 - Add decorative shapes that don't serve a purpose
-- Use weight 500 (the ladder is 300/400/600/700)
+- Hardcode colors — use CSS custom properties
 
 ## Notes
 

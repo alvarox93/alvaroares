@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
-@media (prefers-reduced-motion: reduce) {
-  .accent-dot {
-    animation: none !important;
-  }
-  .marquee-track {
-    animation: none !important;
-  }
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/space-grotesk.woff2') format('woff2');
 }
 
 @theme {
@@ -117,6 +116,10 @@
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
+
+  .about-word {
+    opacity: 0.12;
+  }
 
   .accent-dot {
     width: 8px;

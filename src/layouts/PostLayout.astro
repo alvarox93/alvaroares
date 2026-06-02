@@ -1,0 +1,119 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Navigation from '@components/Navigation.astro';
+
+interface Props {
+  title: string;
+  category: string;
+  readTime: string;
+  description?: string;
+}
+
+const { title, category, readTime, description } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Álvaro Ares`} description={description}>
+  <Navigation />
+  <main class="relative z-[1] bg-canvas">
+    <article class="max-w-[720px] mx-auto px-xl lg:px-3xl pt-[140px] pb-section">
+      <header class="mb-3xl">
+        <div class="flex items-center gap-sm mb-lg">
+          <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-2 py-1 border border-border rounded-sm">{category}</span>
+          <span class="text-ghost text-[10px] tracking-[0.08px]">{readTime}</span>
+        </div>
+        <h1 class="text-[clamp(28px,4.5vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
+          {title}
+        </h1>
+      </header>
+
+      <div class="mb-3xl">
+        <div class="aspect-[16/9] bg-surface rounded-xl overflow-hidden flex items-center justify-center">
+          <span class="text-ghost text-[13px]">Featured image</span>
+        </div>
+      </div>
+
+      <div class="prose">
+        <slot />
+      </div>
+
+      <footer class="mt-4xl pt-xl border-t border-border-light">
+        <a href="/#posts" class="text-muted text-[13px] hover:text-ink transition-colors duration-200">
+          &larr; Back to all posts
+        </a>
+      </footer>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose :global(p) {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-muted);
+    margin-bottom: 1.5em;
+  }
+
+  .prose :global(h2) {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+  }
+
+  .prose :global(h3) {
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--color-ink);
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+
+  .prose :global(strong) {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .prose :global(a) {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-border);
+    transition: text-decoration-color 0.2s;
+  }
+
+  .prose :global(a:hover) {
+    text-decoration-color: var(--color-ink);
+  }
+
+  .prose :global(blockquote) {
+    border-left: 2px solid var(--accent);
+    padding-left: var(--spacing-lg);
+    margin: 2em 0;
+    font-style: italic;
+    color: var(--color-ink);
+  }
+
+  .prose :global(code) {
+    font-family: "SF Mono", monospace;
+    font-size: 0.9em;
+    background: var(--color-surface);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+  }
+
+  .prose :global(ul), .prose :global(ol) {
+    padding-left: 1.5em;
+    margin-bottom: 1.5em;
+  }
+
+  .prose :global(li) {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-muted);
+    margin-bottom: 0.5em;
+  }
+</style>

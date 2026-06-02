@@ -1,0 +1,40 @@
+---
+import PostLayout from '@layouts/PostLayout.astro';
+---
+
+<PostLayout
+  title="Why motion design systems matter more than animated logos"
+  category="Motion"
+  readTime="5 min"
+  description="Most brands treat motion as decoration. A motion design system is infrastructure — it makes every interaction consistent, faster to produce, and actually useful."
+>
+  <p>
+    Most brands ask for "something animated" when what they need is a system. An animated logo on the homepage is a one-off. A motion design system is infrastructure that pays for itself across every touchpoint.
+  </p>
+
+  <h2>The problem with one-off animations</h2>
+  <p>
+    I've seen it dozens of times. A brand spends weeks perfecting a logo reveal. It looks great in the case study. Then the team needs to animate a button, a page transition, a loading state — and they have nothing to work with. Every animator does their own thing. The result feels disjointed.
+  </p>
+
+  <h2>What a motion system actually is</h2>
+  <p>
+    It's a set of rules. Easing curves, durations, triggers, and behaviors defined once and applied everywhere. Think of it like a type scale but for movement. When a card enters the viewport, you already know how fast it moves, what easing it uses, and how it staggers relative to its neighbors.
+  </p>
+  <p>
+    In practice, I define three layers:
+  </p>
+  <ul>
+    <li><strong>Micro-interactions</strong> — button hovers, toggle switches, focus rings. 100-200ms, ease-out.</li>
+    <li><strong>Transitions</strong> — page loads, section reveals, modal opens. 300-500ms, custom cubic-bezier.</li>
+    <li><strong>Sequences</strong> — onboarding flows, multi-step reveals, scroll-driven narratives. Timelines with stagger.</li>
+  </ul>
+
+  <h2>The payoff</h2>
+  <p>
+    Once the system exists, production speed doubles. Designers stop debating easing curves. Developers stop hardcoding values. And the brand feels cohesive across web, app, and social — not because someone matched the style, but because the rules are the rules.
+  </p>
+  <p>
+    Motion is punctuation, not decoration. Build the grammar first. The sentences write themselves.
+  </p>
+</PostLayout>

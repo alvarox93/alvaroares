@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-nav">
+<nav class="fixed top-0 left-0 right-0 z-50" id="main-nav">
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl flex items-center justify-between h-16">
     <a href="/" class="text-ink text-[15px] font-medium tracking-[-0.3px] relative group">
       <span>Álvaro Ares</span>
@@ -20,38 +20,15 @@
   </div>
 </nav>
 
-<script>
-  const nav = document.getElementById('main-nav');
-  let lastScroll = 0;
-  let ticking = false;
-
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScroll = window.scrollY;
-
-          if (currentScroll > 50) {
-            nav.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
-            nav.style.backdropFilter = 'blur(20px)';
-            nav.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
-          } else {
-            nav.style.backgroundColor = 'transparent';
-            nav.style.backdropFilter = 'none';
-            nav.style.borderBottom = '1px solid transparent';
-          }
-
-          if (currentScroll > lastScroll && currentScroll > 300) {
-            nav.style.transform = 'translateY(-100%)';
-          } else {
-            nav.style.transform = 'translateY(0)';
-          }
-
-          lastScroll = currentScroll;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
+<style>
+  #main-nav {
+    background-color: transparent;
+    transition: background-color 0.4s ease;
   }
-</script>
+
+  #main-nav.nav-scrolled {
+    background-color: color-mix(in srgb, var(--color-canvas) 90%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+</style>
