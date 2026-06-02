@@ -23,11 +23,11 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
             </h2>
           </div>
           <div class="lg:col-span-6 lg:col-start-7">
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.7] mb-lg" id="about-fill-paragraph">
-              {"8 years of visual craft. I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.".split(' ').map(word => (
-                <span class="about-word">{word}{'\u00A0'}</span>
-              ))}
-            </p>
+            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.7] mb-lg" id="about-fill-paragraph" set:html={
+              "8 years of visual craft. I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.".split(' ').map(word =>
+                `<span class="about-word">${word}</span>`
+              ).join(' ')
+            } />
             <div class="flex flex-wrap gap-xs mb-xl">
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">Maya</span>
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">V-Ray</span>
