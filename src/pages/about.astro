@@ -1,79 +1,751 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
-import ThemeSwitcher from '@components/ThemeSwitcher.astro';
+
+const timeline = [
+  {
+    year: '2026',
+    period: 'Now',
+    role: 'Available for hire',
+    company: 'Looking for the next chapter',
+    location: 'Barcelona',
+    description: 'Senior creative + tech roles. Studios like Codeway, product teams like BCome. Anything that blends visual craft with code and AI.',
+    tags: ['Open to relocate', 'Remote ok'],
+    accent: true,
+  },
+  {
+    year: '2024',
+    period: '2024 — Present',
+    role: 'Founder & Creative Director',
+    company: 'Lapatzak',
+    location: 'Barcelona',
+    description: 'Built my own brand end-to-end. Identity, packaging, supply chain, e-commerce. Selling real product to real people — not Dribbble likes.',
+    tags: ['Brand', 'E-commerce', 'Product'],
+  },
+  {
+    year: '2023',
+    period: '2023 — Present',
+    role: 'Independent CGI & Code',
+    company: 'Renders + Lab',
+    location: 'Barcelona',
+    description: 'Food and product 3D rendering for clients in 4 countries. On the side: AI workflows, frontend prototypes, interactive systems. The tech bridge got serious.',
+    tags: ['Maya', 'V-Ray', 'Astro', 'AI'],
+  },
+  {
+    year: '2022',
+    period: 'Move',
+    role: 'Bilbao → Barcelona',
+    company: 'New city, new bets',
+    location: 'Barcelona',
+    description: 'Closed the studio chapter. Went deep into AI workflows and frontend code. Started writing real production CSS — turns out designers can ship.',
+    tags: ['Reboot'],
+  },
+  {
+    year: '2018',
+    period: '2018 — 2022',
+    role: 'Founder & Creative Director',
+    company: 'Koora.studio',
+    location: 'Bilbao',
+    description: '4 years running a CGI and motion studio. Team of 8. Campaigns across 12 countries — Spain, France, Germany, Mexico, US. Learned how to sell expensive work without selling out.',
+    tags: ['CGI', 'Motion', 'Direction', 'Team lead'],
+  },
+  {
+    year: '2016',
+    period: '2016 — 2018',
+    role: 'Lead Motion Designer',
+    company: 'Freelance — international',
+    location: 'Bilbao',
+    description: 'First international clients. Long nights, fast learning. Built the network and the reel that launched the studio.',
+    tags: ['Motion', 'After Effects', 'Cinema 4D'],
+  },
+  {
+    year: '2014',
+    period: '2014 — 2016',
+    role: 'Junior 3D Artist',
+    company: 'Agency studio work',
+    location: 'Bilbao',
+    description: 'Started with Maya. Stayed for V-Ray. Learned the boring parts of CGI that nobody on YouTube tells you about — render farms, hand-offs, deadlines.',
+    tags: ['Maya', 'V-Ray', 'Junior'],
+  },
+  {
+    year: '2012',
+    period: 'Origin',
+    role: 'First Cinema 4D project',
+    company: 'Self-taught',
+    location: 'Bilbao',
+    description: 'Opened Cinema 4D for the first time. Made something ugly. Made it again. Never stopped.',
+    tags: ['The beginning'],
+  },
+];
 ---
 
 <BaseLayout title="About — Álvaro Ares">
   <Navigation />
 
-  <main class="bg-canvas min-h-screen">
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-32 pb-section">
+  <main class="bg-canvas">
 
-      <!-- Header -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section">
-        <div class="lg:col-span-5">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">About</span>
-          <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance">
-            The guy behind<br />the pixels.
-          </h1>
-        </div>
-        <div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-end">
-          <p class="text-[17px] leading-[1.65] text-muted mb-xl">
-            I'm Álvaro. I've spent 8 years making brands look expensive — through CGI, motion design, and creative direction. I ran a studio in Bilbao, shipped campaigns worldwide, and built a team from scratch.
-          </p>
-          <p class="text-[17px] leading-[1.65] text-muted">
-            Now based in Barcelona, I'm deep into AI workflows and frontend code. I run my own brand (Lapatzak), render food that makes people hungry, and explore the intersection of design and engineering.
-          </p>
-        </div>
-      </div>
+    <!-- INTRO -->
+    <section class="relative overflow-hidden bg-canvas">
+      <div class="hero-blob" id="about-blob" style="left: 70%; top: 30%; transform: translate(-50%, -50%);"></div>
 
-      <!-- Photo + bio -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl mb-section">
-        <div class="lg:col-span-5">
-          <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Photo]</div>
+      <div class="relative max-w-[1200px] mx-auto px-xl lg:px-3xl pt-32 pb-section">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl items-end">
+
+          <!-- Small photo + meta -->
+          <div class="lg:col-span-3 order-2 lg:order-1">
+            <div class="relative w-[180px] lg:w-[200px] aspect-[4/5] bg-surface rounded-xl overflow-hidden mb-md">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px] tracking-wide uppercase">[Photo]</div>
+              <div class="absolute inset-0 ring-1 ring-inset ring-border rounded-xl pointer-events-none"></div>
+            </div>
+            <div class="space-y-1.5 max-w-[200px]">
+              <div class="flex items-center gap-xs">
+                <span class="accent-dot" style="width:6px;height:6px;"></span>
+                <span class="text-ink text-[11px] font-medium tracking-[0.12px] uppercase">Available</span>
+              </div>
+              <p class="text-muted text-[12px] leading-[1.55]">
+                Barcelona, Spain<br />
+                Born in Bilbao, 1991<br />
+                Working worldwide
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-center">
-          <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.1] tracking-[-0.04em] text-ink mb-xl">
-            Discipline meets freedom.
-          </h2>
-          <div class="space-y-lg">
-            <p class="text-[16px] leading-[1.65] text-muted">
-              <strong class="text-ink">CGI & Motion.</strong> 8 years of Maya + V-Ray. Photoreal product rendering, food CGI, motion systems for brands across 12 countries. I know my way around a render farm.
-            </p>
-            <p class="text-[16px] leading-[1.65] text-muted">
-              <strong class="text-ink">AI & Code.</strong> I build AI-native production pipelines, write frontend code, and automate visual workflows. Not because it's trendy — because it makes me 10x faster.
-            </p>
-            <p class="text-[16px] leading-[1.65] text-muted">
-              <strong class="text-ink">Brand & Product.</strong> I run my own brand (Lapatzak) end-to-end. Identity, packaging, e-commerce. Every decision tested in the real market, not just on Dribbble.
+
+          <!-- Intro text -->
+          <div class="lg:col-span-9 lg:col-start-4 order-1 lg:order-2">
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">About me</span>
+            <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance mb-xl">
+              The guy behind the pixels.
+            </h1>
+            <p class="text-[17px] leading-[1.6] text-muted max-w-[560px]">
+              <strong class="text-ink font-medium">I'm Álvaro. Eight years making brands look expensive — through CGI, motion and creative direction.</strong> I've built teams, shipped campaigns worldwide, and defined visual languages from scratch. Now deep into AI workflows, frontend code and digital product. I render food that makes people hungry, lead projects that go further than anyone expected, and stay curious about where design and engineering meet.
             </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- CTAs -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl">
-        <a href="/#contact" class="group block bg-ink text-canvas rounded-xl p-xl transition-all duration-300 hover:bg-ink/90">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block text-canvas/50">Let's connect</span>
-          <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] mb-sm">Start a conversation</h3>
-          <p class="text-canvas/60 text-[14px] leading-[1.55]">
-            Available for full-time positions, freelance projects, and creative collaborations.
-          </p>
-        </a>
+    <!-- BIG STORY -->
+    <section class="bg-warm border-y border-border-light">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl">
+          <div class="lg:col-span-3">
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-md block">The story</span>
+            <p class="text-muted text-[13px] leading-[1.6] max-w-[200px]">
+              The short version, for people who hate scrolling.
+            </p>
+          </div>
 
-        <a href="/cv-alvaro-ares.pdf" download class="group block bg-warm rounded-xl border border-border-light p-xl transition-all duration-300 hover:border-accent">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Download</span>
-          <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Get my CV</h3>
-          <p class="text-muted text-[14px] leading-[1.55]">
-            Full career history, skills, and references. PDF format, always up to date.
-          </p>
-        </a>
+          <div class="lg:col-span-9 lg:col-start-4 space-y-lg">
+            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance">
+              I started in <strong class="font-medium">Cinema 4D</strong> at 21, building ugly objects in my bedroom in Bilbao. Ten years later I was directing campaigns for brands in <strong class="font-medium">Mexico City and Berlin</strong>, with a real team and a real studio.
+            </p>
+
+            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance">
+              Then I moved to Barcelona, closed the studio, and got obsessed with <em class="not-italic" style="color: var(--accent);">AI workflows and frontend code</em>. Now I build brands end-to-end — visuals, code, product, the whole thing.
+            </p>
+
+            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance">
+              I'm equally happy in <strong class="font-medium">Maya</strong>, <strong class="font-medium">Figma</strong>, or <strong class="font-medium">VS&nbsp;Code</strong>. That's rare. It's also the whole point.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="relative bg-canvas overflow-hidden" id="timeline-section">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl items-end mb-3xl">
+          <div class="lg:col-span-7">
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">Timeline</span>
+            <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
+              14 years of making things.
+            </h2>
+          </div>
+          <div class="lg:col-span-4 lg:col-start-9">
+            <p class="text-muted text-[15px] leading-[1.6]">
+              From a teenager opening Cinema 4D for the first time to running a studio and writing production code. No shortcuts.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline rail -->
+      <div class="relative max-w-[1200px] mx-auto px-xl lg:px-3xl pb-section">
+        <div class="timeline-rail relative">
+
+          <!-- Central line -->
+          <div class="timeline-line" aria-hidden="true">
+            <div class="timeline-line-fill" id="timeline-fill"></div>
+          </div>
+
+          <!-- Top cap -->
+          <div class="timeline-cap timeline-cap-top" aria-hidden="true">
+            <span class="cap-dot"></span>
+            <span class="cap-label">Now</span>
+          </div>
+
+          <!-- Items -->
+          <ol class="relative space-y-2xl pt-2xl pb-2xl list-none">
+            {timeline.map((item, i) => (
+              <li class={`timeline-item ${item.accent ? 'is-accent' : ''} ${i % 2 === 0 ? 'is-left' : 'is-right'}`}>
+                <div class="timeline-node" aria-hidden="true">
+                  <span class="node-ring"></span>
+                  <span class="node-dot"></span>
+                </div>
+
+                <div class="timeline-year">
+                  <span class="year-text">{item.year}</span>
+                </div>
+
+                <article class="timeline-card group">
+                  <div class="card-inner">
+                    <div class="flex items-center gap-xs mb-sm flex-wrap">
+                      <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase">{item.period}</span>
+                      <span class="w-[3px] h-[3px] rounded-full bg-ghost/40"></span>
+                      <span class="inline-flex items-center gap-1 text-ghost text-[10px] tracking-[0.06px]">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        {item.location}
+                      </span>
+                    </div>
+
+                    <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-xs">
+                      {item.role}
+                    </h3>
+                    <p class="text-muted text-[13px] tracking-[-0.1px] mb-md font-medium">
+                      {item.company}
+                    </p>
+
+                    <p class="text-muted text-[15px] leading-[1.6] mb-md">
+                      {item.description}
+                    </p>
+
+                    {item.tags && item.tags.length > 0 && (
+                      <div class="card-tags flex flex-wrap gap-xs">
+                        {item.tags.map((tag) => (
+                          <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ol>
+
+          <!-- Bottom cap -->
+          <div class="timeline-cap timeline-cap-bottom" aria-hidden="true">
+            <span class="cap-dot"></span>
+            <span class="cap-label">Start</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT I DO NOW -->
+    <section class="bg-warm border-y border-border-light">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl mb-3xl">
+          <div class="lg:col-span-7">
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">What I do now</span>
+            <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
+              Discipline meets freedom.
+            </h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+          <div class="bg-canvas rounded-xl p-xl border border-border-light">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">01 — Visual</span>
+            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-sm">CGI & Motion.</h3>
+            <p class="text-muted text-[14px] leading-[1.6] mb-md">
+              Eight years of Maya and V-Ray. Product rendering, food CGI, motion systems for brand campaigns. I build visual pipelines and keep quality standards high across distributed teams. I know my way around a render farm.
+            </p>
+          </div>
+
+          <div class="bg-canvas rounded-xl p-xl border border-border-light">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">02 — Tech</span>
+            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-sm">AI & Code.</h3>
+            <p class="text-muted text-[14px] leading-[1.6] mb-md">
+              I build AI-native production workflows using ComfyUI, LLMs and custom tooling. I write frontend code and automate visual processes — not because it's trendy, but because it makes the work better and the timelines tighter.
+            </p>
+          </div>
+
+          <div class="bg-canvas rounded-xl p-xl border border-border-light">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">03 — Product</span>
+            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Brand & Product.</h3>
+            <p class="text-muted text-[14px] leading-[1.6] mb-md">
+              Identity, packaging, product strategy, e-commerce — built end to end for real markets, not just portfolios. Every decision tested where it counts. That's the difference between making things look good and understanding what they're supposed to do.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTAs -->
+    <section class="bg-canvas">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+
+          <a href="mailto:hey@alvaroar.es" class="group block bg-ink text-canvas rounded-xl p-xl transition-all duration-300 hover:bg-ink/90 relative overflow-hidden">
+            <span class="text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Let's connect</span>
+            <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] mb-sm">Let's make something worth looking at.</h3>
+            <p class="text-canvas/60 text-[14px] leading-[1.55] mb-lg">
+              I work with studios, agencies and brands that take visual quality seriously. Remote-first, worldwide.
+            </p>
+            <span class="inline-flex items-center gap-xs text-accent text-[13px] font-medium tracking-[-0.1px]">
+              Start a conversation
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+
+          <a href="/alvaroAres_CV_2026.pdf" download class="group block bg-warm rounded-xl border border-border-light p-xl transition-all duration-300 hover:border-accent relative overflow-hidden">
+            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Download</span>
+            <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">Download my CV</h3>
+            <p class="text-muted text-[14px] leading-[1.55] mb-lg">
+              Career history, skills, references, real numbers. PDF, always up to date.
+            </p>
+            <span class="inline-flex items-center gap-xs text-ink text-[13px] font-medium tracking-[-0.1px]">
+              alvaroAres_CV_2026.pdf
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-y-0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <ThemeSwitcher />
   <div class="noise-overlay"></div>
 </BaseLayout>
+
+<style>
+  /* ============ TIMELINE ============ */
+
+  .timeline-rail {
+    padding-block: 24px;
+  }
+
+  /* Central line — DESKTOP */
+  .timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--color-border) 6%,
+      var(--color-border) 94%,
+      transparent 100%
+    );
+    z-index: 0;
+  }
+
+  .timeline-line-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0%;
+    background: linear-gradient(
+      to bottom,
+      var(--accent) 0%,
+      color-mix(in srgb, var(--accent) 30%, transparent) 100%
+    );
+    transition: height 0.1s linear;
+  }
+
+  /* Caps */
+  .timeline-cap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .timeline-cap-top { top: 0; }
+  .timeline-cap-bottom { bottom: 0; }
+
+  .cap-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-canvas);
+    border: 1.5px solid var(--color-ink);
+  }
+
+  .timeline-cap-top .cap-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+
+  .cap-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14px;
+    text-transform: uppercase;
+    color: var(--color-ghost);
+    background: var(--color-canvas);
+    padding: 2px 8px;
+  }
+
+  /* ITEM — desktop alternating */
+  .timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    align-items: center;
+    gap: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timeline-item.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* NODE — circle on the central line */
+  .timeline-node {
+    grid-column: 2;
+    justify-self: center;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    z-index: 2;
+  }
+
+  .node-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--color-canvas);
+    border: 1.5px solid var(--color-border);
+    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .node-dot {
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.3s ease;
+  }
+
+  .timeline-item.is-revealed .node-dot { transform: scale(1); }
+
+  .timeline-item.is-accent .node-ring {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+
+  .timeline-item.is-accent .node-dot { background: var(--accent); }
+
+  /* YEAR — display number on opposite side */
+  .timeline-year {
+    display: flex;
+    align-items: center;
+  }
+
+  .year-text {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--color-ink);
+    opacity: 0.75;
+  }
+
+  .timeline-item.is-accent .year-text {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  /* CARD */
+  .timeline-card { position: relative; }
+
+  .card-inner {
+    background: var(--color-canvas);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    transition: border-color 0.3s ease,
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timeline-item:hover .card-inner {
+    border-color: var(--color-border);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .timeline-item:hover .node-ring {
+    border-color: var(--accent);
+    transform: scale(1.15);
+  }
+
+  .timeline-item.is-accent .card-inner {
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--color-border-light));
+    background: linear-gradient(
+      135deg,
+      var(--color-canvas) 0%,
+      color-mix(in srgb, var(--accent) 4%, var(--color-canvas)) 100%
+    );
+  }
+
+  /* Alternating sides — desktop */
+  .timeline-item.is-left .timeline-card {
+    grid-column: 1;
+    padding-right: 32px;
+  }
+
+  .timeline-item.is-left .timeline-year {
+    grid-column: 3;
+    padding-left: 32px;
+    justify-content: flex-start;
+  }
+
+  .timeline-item.is-right .timeline-year {
+    grid-column: 1;
+    padding-right: 32px;
+    justify-content: flex-end;
+  }
+
+  .timeline-item.is-right .timeline-card {
+    grid-column: 3;
+    padding-left: 32px;
+  }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 18px;
+      transform: none;
+    }
+
+    .timeline-cap {
+      left: 18px;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: block;
+      position: relative;
+      padding-left: 48px;
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: 10px;
+      top: 14px;
+      grid-column: auto !important;
+    }
+
+    .timeline-year,
+    .timeline-card {
+      grid-column: auto !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      justify-content: flex-start !important;
+    }
+
+    .timeline-year { margin-bottom: 8px; }
+
+    .year-text { font-size: 28px; }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .node-dot { transform: scale(1); }
+    .timeline-line-fill { transition: none; }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    touchMultiplier: 2,
+  });
+
+  lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
+
+  // Nav hide/show
+  const nav = document.getElementById('main-nav');
+  let lastNavScroll = 0;
+  let navHidden = false;
+
+  if (nav) {
+    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
+      if (scroll > 50) {
+        nav.classList.add('nav-scrolled');
+      } else {
+        nav.classList.remove('nav-scrolled');
+      }
+
+      if (scroll > lastNavScroll && scroll > 200 && !navHidden) {
+        gsap.to(nav, { y: -80, duration: 0.4, ease: 'power3.in' });
+        navHidden = true;
+      } else if (scroll < lastNavScroll && navHidden) {
+        gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out' });
+        navHidden = false;
+      }
+
+      lastNavScroll = scroll;
+    });
+  }
+
+  // Blob drift on intro
+  if (!prefersReducedMotion) {
+    const blob = document.getElementById('about-blob');
+    if (blob) {
+      gsap.to(blob, {
+        x: '+=80',
+        y: '+=40',
+        duration: 6,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+    }
+  }
+
+  // Timeline reveal
+  const timelineItems = document.querySelectorAll<HTMLElement>('.timeline-item');
+
+  if (!prefersReducedMotion) {
+    timelineItems.forEach((item) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => item.classList.add('is-revealed'),
+      });
+    });
+  } else {
+    timelineItems.forEach((item) => item.classList.add('is-revealed'));
+  }
+
+  // Central line fill on scroll
+  const timelineFill = document.getElementById('timeline-fill');
+  const rail = document.querySelector('.timeline-rail');
+
+  if (timelineFill && rail && !prefersReducedMotion) {
+    ScrollTrigger.create({
+      trigger: rail,
+      start: 'top 70%',
+      end: 'bottom 60%',
+      scrub: 0.6,
+      onUpdate: (self) => {
+        timelineFill.style.height = `${self.progress * 100}%`;
+      },
+    });
+  } else if (timelineFill) {
+    timelineFill.style.height = '100%';
+  }
+
+  // Magnetic CTAs
+  document.querySelectorAll('.magnetic').forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = (el as HTMLElement).getBoundingClientRect();
+      const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+      const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+      gsap.to(el, {
+        x: x * 0.15,
+        y: y * 0.15,
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+    });
+
+    el.addEventListener('mouseleave', () => {
+      gsap.to(el, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: 'elastic.out(1, 0.5)',
+      });
+    });
+  });
+</script>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    const sections = document.querySelectorAll('main > section');
+
+    if (sections[3]) {
+      const cards = sections[3].querySelectorAll('.grid > div');
+      if (cards.length) {
+        gsap.from(cards, {
+          y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+          scrollTrigger: { trigger: sections[3], start: 'top 80%', once: true },
+        });
+      }
+    }
+
+    if (sections[4]) {
+      const ctaCards = sections[4].querySelectorAll('a.group');
+      if (ctaCards.length) {
+        gsap.from(ctaCards, {
+          y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12,
+          scrollTrigger: { trigger: sections[4], start: 'top 82%', once: true },
+        });
+      }
+    }
+
+    const storySection = sections[1];
+    if (storySection) {
+      const paragraphs = storySection.querySelectorAll('.space-y-lg > p, .lg\\:col-span-9 p');
+      paragraphs.forEach((p) => {
+        gsap.from(p, {
+          y: 12, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: p, start: 'top 88%', once: true },
+        });
+      });
+    }
+  }
+</script>

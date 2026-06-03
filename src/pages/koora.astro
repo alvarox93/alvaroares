@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
-import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 ---
 
 <BaseLayout title="Koora.studio — Álvaro Ares">
@@ -220,6 +219,113 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     </div>
   </main>
 
-  <ThemeSwitcher />
   <div class="noise-overlay"></div>
 </BaseLayout>
+
+<script>
+  import Lenis from 'lenis';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    touchMultiplier: 2,
+  });
+
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  const nav = document.getElementById('main-nav');
+  let lastNavScroll = 0;
+  let navHidden = false;
+
+  if (nav) {
+    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
+      if (scroll > 50) nav.classList.add('nav-scrolled');
+      else nav.classList.remove('nav-scrolled');
+
+      if (scroll > lastNavScroll && scroll > 200 && !navHidden) {
+        gsap.to(nav, { y: -80, duration: 0.4, ease: 'power3.in' });
+        navHidden = true;
+      } else if (scroll < lastNavScroll && navHidden) {
+        gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out' });
+        navHidden = false;
+      }
+      lastNavScroll = scroll;
+    });
+  }
+
+  if (!prefersReducedMotion) {
+    const heroTitle = document.querySelector('main h1');
+    if (heroTitle) {
+      gsap.from(heroTitle, { y: 20, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.15 });
+    }
+
+    document.querySelectorAll('main .grid').forEach((grid) => {
+      const isShowcase = grid.classList.contains('items-center') && grid.querySelector('h3');
+
+      if (isShowcase) {
+        const imageWrap = grid.querySelector('.aspect-\\[16\\/10\\]');
+        const textCol = grid.querySelector('h3')?.closest('div');
+
+        if (imageWrap) {
+          gsap.from(imageWrap, {
+            scale: 0.96, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+            scrollTrigger: { trigger: grid, start: 'top 80%', once: true },
+          });
+          gsap.fromTo(imageWrap, { yPercent: 5 }, {
+            yPercent: -5, ease: 'none',
+            scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true },
+          });
+        }
+
+        if (textCol) {
+          const textEls = textCol.querySelectorAll(':scope > span, :scope > h3, :scope > p');
+          if (textEls.length) {
+            gsap.from(textEls, {
+              y: 18, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
+              scrollTrigger: { trigger: grid, start: 'top 78%', once: true },
+            });
+          }
+          gsap.fromTo(textCol, { y: 20 }, {
+            y: -20, ease: 'none',
+            scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true },
+          });
+        }
+      } else {
+        const children = grid.querySelectorAll(':scope > div');
+        if (children.length > 1) {
+          gsap.from(children, {
+            y: 16, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08,
+            scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
+          });
+        }
+      }
+    });
+
+    document.querySelectorAll('main .border-t').forEach((el) => {
+      gsap.from(el, {
+        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      });
+    });
+
+    document.querySelectorAll('.magnetic').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+        gsap.to(el, { x: x * 0.15, y: y * 0.15, duration: 0.3, ease: 'power2.out' });
+      });
+      el.addEventListener('mouseleave', () => {
+        gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+      });
+    });
+  }
+</script>

@@ -49,36 +49,6 @@
   --accent-rgb: 232, 168, 56;
 }
 
-[data-theme="gold"] {
-  --accent: #e8a838;
-  --accent-light: #fdf6e8;
-  --accent-rgb: 232, 168, 56;
-}
-
-[data-theme="coral"] {
-  --accent: #e87461;
-  --accent-light: #fdf0ed;
-  --accent-rgb: 232, 116, 97;
-}
-
-[data-theme="turquoise"] {
-  --accent: #4abfb0;
-  --accent-light: #edf9f7;
-  --accent-rgb: 74, 191, 176;
-}
-
-[data-theme="rose"] {
-  --accent: #d4697a;
-  --accent-light: #fdf0f2;
-  --accent-rgb: 212, 105, 122;
-}
-
-[data-theme="violet"] {
-  --accent: #9b87d4;
-  --accent-light: #f4f1fb;
-  --accent-rgb: 155, 135, 212;
-}
-
 @layer base {
   html {
     scroll-behavior: auto;
@@ -211,5 +181,20 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 256px;
+  }
+}
+
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body {
+  animation: page-enter 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
   }
 }

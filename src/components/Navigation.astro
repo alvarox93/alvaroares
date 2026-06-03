@@ -16,9 +16,42 @@
       <a href="mailto:hey@alvaroar.es" class="magnetic inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
         Contact
       </a>
+      <div class="theme-toggle" role="group" aria-label="Theme">
+        <button class="theme-opt is-active" data-theme="warm" aria-label="Warm theme" aria-pressed="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+        <button class="theme-opt" data-theme="cold" aria-label="Cold theme" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <line x1="12" y1="2" x2="12" y2="22"/>
+            <path d="m20 16-4-4 4-4"/>
+            <path d="m4 8 4 4-4 4"/>
+            <path d="m16 4-4 4-4-4"/>
+            <path d="m8 20 4-4 4 4"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
+
+<style is:global>
+  :root,
+  [data-theme="warm"] {
+    --accent: #e8a838;
+    --accent-light: #fdf6e8;
+    --accent-rgb: 232, 168, 56;
+  }
+
+  [data-theme="cold"] {
+    --accent: #2596a8;
+    --accent-light: #eaf4f6;
+    --accent-rgb: 37, 150, 168;
+  }
+</style>
 
 <style>
   #main-nav {
@@ -31,4 +64,68 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+  }
+
+  .theme-opt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    color: var(--color-muted);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  .theme-opt:hover {
+    color: var(--color-ink);
+  }
+
+  .theme-opt.is-active {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+  }
+
+  .theme-opt.is-active:hover {
+    color: var(--color-canvas);
+  }
 </style>
+
+<script>
+  const STORAGE_KEY = 'aa-theme';
+  const root = document.documentElement;
+  const stored = localStorage.getItem(STORAGE_KEY);
+  const initial = stored === 'cold' || stored === 'warm' ? stored : 'warm';
+  root.setAttribute('data-theme', initial);
+
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-opt');
+
+  const sync = (theme: string) => {
+    buttons.forEach((btn) => {
+      const isActive = btn.dataset.theme === theme;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+  };
+
+  sync(initial);
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      if (!theme) return;
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem(STORAGE_KEY, theme);
+      sync(theme);
+    });
+  });
+</script>

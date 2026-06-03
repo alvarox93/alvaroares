@@ -3,7 +3,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import Hero from '@components/Hero.astro';
 import WorkSection from '@components/WorkSection.astro';
-import ThemeSwitcher from '@components/ThemeSwitcher.astro';
 ---
 
 <BaseLayout title="Álvaro Ares — Creative Director & CGI Artist">
@@ -181,7 +180,6 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     </footer>
   </main>
 
-  <ThemeSwitcher />
   <div class="noise-overlay"></div>
 </BaseLayout>
 
@@ -428,3 +426,46 @@ import ThemeSwitcher from '@components/ThemeSwitcher.astro';
     display: inline-block;
   }
 </style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    const aboutHeading = document.querySelector('#about-preview h2');
+    if (aboutHeading) {
+      gsap.from(aboutHeading, {
+        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: aboutHeading, start: 'top 85%', once: true },
+      });
+    }
+
+    const skillTags = document.querySelectorAll('#about-preview .flex.flex-wrap > span');
+    if (skillTags.length) {
+      gsap.from(skillTags, {
+        y: 8, autoAlpha: 0, duration: 0.4, ease: 'power2.out', stagger: 0.05,
+        scrollTrigger: { trigger: skillTags[0], start: 'top 88%', once: true },
+      });
+    }
+
+    const postsHeading = document.querySelector('#posts h2');
+    if (postsHeading) {
+      gsap.from(postsHeading, {
+        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: postsHeading, start: 'top 85%', once: true },
+      });
+    }
+
+    const workHeading = document.querySelector('#work h2');
+    if (workHeading) {
+      gsap.from(workHeading, {
+        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: workHeading, start: 'top 85%', once: true },
+      });
+    }
+  }
+</script>
