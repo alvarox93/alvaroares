@@ -1,20 +1,29 @@
+---
+import LanguageSwitcher from '@components/LanguageSwitcher.astro';
+import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+const homeHref = lang === defaultLang ? '/' : `/${lang}`;
+---
+
 <nav class="fixed top-0 left-0 right-0 z-50" id="main-nav">
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl flex items-center justify-between h-16">
-    <a href="/" class="text-ink text-[15px] font-medium tracking-[-0.3px] relative group">
+    <a href={homeHref} class="text-ink text-[15px] font-medium tracking-[-0.3px] relative group">
       <span>Álvaro Ares</span>
       <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
     </a>
     <div class="flex items-center gap-lg">
-      <a href="/#work" class="text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
-        <span>Work</span>
+      <a href={`${homeHref}#work`} class="text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
+        <span>{t('nav.work')}</span>
         <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
       </a>
-      <a href="/about" class="text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
-        <span>About</span>
+      <a href={lang === defaultLang ? '/about' : '/es/about'} class="text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group">
+        <span>{t('nav.about')}</span>
         <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
       </a>
       <a href="mailto:hey@alvaroar.es" class="magnetic inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-        Contact
+        {t('nav.contact')}
       </a>
       <div class="theme-toggle" role="group" aria-label="Theme">
         <button class="theme-opt is-active" data-theme="warm" aria-label="Warm theme" aria-pressed="true">
@@ -34,6 +43,7 @@
           </svg>
         </button>
       </div>
+      <LanguageSwitcher />
     </div>
   </div>
 </nav>

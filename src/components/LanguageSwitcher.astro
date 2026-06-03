@@ -1,0 +1,80 @@
+---
+import { languages, defaultLang, type Language } from '@i18n/ui';
+import { localizePath, stripLocaleFromPath } from '@utils/i18n';
+
+const currentLang = (Astro.currentLocale ?? defaultLang) as Language;
+const rawPath = Astro.url.pathname;
+const cleanPath = stripLocaleFromPath(rawPath);
+const basePath = cleanPath === '/' ? '/' : cleanPath;
+---
+
+<div class="lang-toggle" role="group" aria-label={languages[currentLang]}>
+  {Object.entries(languages).map(([code, label]) => {
+    const isActive = code === currentLang;
+    const href = code === defaultLang ? basePath : localizePath(basePath, code as Language);
+    return (
+      <a
+        href={href}
+        class:list={['lang-opt', { 'is-active': isActive }]}
+        aria-current={isActive ? 'true' : undefined}
+        aria-label={String(label)}
+      >{code.toUpperCase()}</a>
+    );
+  })}
+</div>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+  }
+
+  .lang-opt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 26px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--color-muted);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  .lang-opt:hover {
+    color: var(--color-ink);
+  }
+
+  .lang-opt.is-active {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+  }
+
+  .lang-opt.is-active:hover {
+    color: var(--color-canvas);
+  }
+</style>
+
+<script is:inline define:vars={{ defaultLang, COOKIE_KEY: 'aa-lang' }}>
+  // Persist language preference on click
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!(target instanceof HTMLElement)) return;
+    const opt = target.closest('.lang-opt');
+    if (!opt || !(opt instanceof HTMLAnchorElement)) return;
+    const href = opt.getAttribute('href') ?? '';
+    // Determine chosen lang from href
+    const m = href.match(/^\/(en|es)(?:\/|$)/);
+    const chosen = m ? m[1] : defaultLang;
+    document.cookie = `${COOKIE_KEY}=${chosen}; max-age=${60 * 60 * 24 * 365}; path=/; SameSite=Lax`;
+  });
+</script>

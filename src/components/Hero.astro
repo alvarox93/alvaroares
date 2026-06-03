@@ -1,3 +1,10 @@
+---
+import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+---
+
 <section class="relative min-h-screen flex flex-col justify-center bg-canvas overflow-hidden" id="hero">
   <div class="absolute inset-0 pointer-events-none hero-grid" id="hero-grid" style="background-image: linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px); background-size: 60px 60px;"></div>
 
@@ -10,27 +17,27 @@
         <div class="mb-xl">
           <span class="inline-flex items-center gap-2.5 px-4 py-2 border border-border rounded-full">
             <span class="accent-dot"></span>
-            <span class="text-ink text-[11px] font-medium tracking-[0.12px] uppercase">Available for hiring</span>
+            <span class="text-ink text-[11px] font-medium tracking-[0.12px] uppercase">{t('home.hero.available')}</span>
           </span>
         </div>
 
         <div class="mb-2xl">
           <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
-            <span class="block">Álvaro Ares</span>
-            <span class="block">Creative Director & CGI Artist</span>
+            <span class="block">{t('home.hero.title.line1')}</span>
+            <span class="block">{t('home.hero.title.line2')}</span>
           </h1>
         </div>
 
         <p class="text-[17px] leading-[1.6] text-muted max-w-[460px] mb-2xl">
-          <strong class="text-ink font-medium">I build visual systems that give brands identity, weight and direction.</strong> CGI, motion, brand, interactive — led end to end.
+          <strong class="text-ink font-medium">{t('home.hero.lede')}</strong> {t('home.hero.ledeBold')}
         </p>
 
         <div class="flex gap-md">
           <a href="#work" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-            See my work
+            {t('home.hero.cta.work')}
           </a>
-          <a href="/about" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
-            About me
+          <a href={lang === defaultLang ? '/about' : '/es/about'} class="magnetic inline-flex items-center justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
+            {t('home.hero.cta.about')}
           </a>
         </div>
 
@@ -55,12 +62,12 @@
       <span class="inline-flex items-center gap-md text-ghost text-[11px] tracking-[0.14px]">
         <span class="inline-flex items-center gap-xs">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Born in Bilbao
+          {t('home.hero.bornIn')}
         </span>
         <span class="w-[3px] h-[3px] rounded-full bg-ghost/40"></span>
-        <span>Based in Barcelona</span>
+        <span>{t('home.hero.basedIn')}</span>
         <span class="w-[3px] h-[3px] rounded-full bg-ghost/40"></span>
-        <span>Working worldwide</span>
+        <span>{t('home.hero.working')}</span>
       </span>
     </div>
   </div>

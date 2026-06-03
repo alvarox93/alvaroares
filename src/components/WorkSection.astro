@@ -1,3 +1,57 @@
+---
+import { useTranslations, defaultLang, type Language, type UIKey } from '@i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+
+const projects: Array<{
+  href: string;
+  tagKey: UIKey;
+  titleKey: UIKey;
+  bodyKey: UIKey;
+  boldKey: UIKey;
+  num: string;
+  side: 'left' | 'right';
+}> = [
+  {
+    href: lang === defaultLang ? '/koora' : '/es/koora',
+    tagKey: 'work.koora.tag',
+    titleKey: 'work.koora.title',
+    bodyKey: 'work.koora.body',
+    boldKey: 'work.koora.bodyBold',
+    num: '01',
+    side: 'left',
+  },
+  {
+    href: lang === defaultLang ? '/renders' : '/es/renders',
+    tagKey: 'work.renders.tag',
+    titleKey: 'work.renders.title',
+    bodyKey: 'work.renders.body',
+    boldKey: 'work.renders.bodyBold',
+    num: '02',
+    side: 'right',
+  },
+  {
+    href: lang === defaultLang ? '/lapatzak' : '/es/lapatzak',
+    tagKey: 'work.lapatzak.tag',
+    titleKey: 'work.lapatzak.title',
+    bodyKey: 'work.lapatzak.body',
+    boldKey: 'work.lapatzak.bodyBold',
+    num: '03',
+    side: 'left',
+  },
+  {
+    href: lang === defaultLang ? '/lab' : '/es/lab',
+    tagKey: 'work.lab.tag',
+    titleKey: 'work.lab.title',
+    bodyKey: 'work.lab.body',
+    boldKey: 'work.lab.bodyBold',
+    num: '04',
+    side: 'right',
+  },
+];
+---
+
 <section class="relative bg-canvas" id="work">
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
 
@@ -5,122 +59,56 @@
       <div>
         <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm"></span>
         <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
-          The work. Built to lead, not just to deliver.
+          {t('work.heading')}
         </h2>
       </div>
     </div>
 
-    <!-- Project 1 — Koora (Left) -->
-    <a href="/koora" class="project-showcase group block mb-4xl">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
-        <div class="lg:col-span-7 overflow-hidden rounded-xl">
-          <div class="relative" style="padding-bottom: 58%;">
-            <div class="absolute -top-[15%] left-0 w-full h-[130%] bg-surface project-image-wrap">
-              <div class="absolute inset-0 flex items-center justify-center" style="top:15%;height:60%;">
-                <span class="font-accent text-[clamp(64px,8vw,100px)] font-bold tracking-[-0.04em] text-ink/[0.04]">01</span>
+    {projects.map((p) => {
+      const isLeft = p.side === 'left';
+      return (
+        <a href={p.href} class="project-showcase group block mb-4xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
+            {isLeft && (
+              <div class="lg:col-span-7 overflow-hidden rounded-xl">
+                <div class="relative" style="padding-bottom: 58%;">
+                  <div class="absolute -top-[15%] left-0 w-full h-[130%] bg-surface project-image-wrap">
+                    <div class="absolute inset-0 flex items-center justify-center" style="top:15%;height:60%;">
+                      <span class="font-accent text-[clamp(64px,8vw,100px)] font-bold tracking-[-0.04em] text-ink/[0.04]">{p.num}</span>
+                    </div>
+                    <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+                  </div>
+                </div>
               </div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
-            </div>
-          </div>
-        </div>
-        <div class="lg:col-span-4 lg:col-start-9">
-          <div class="project-text-wrap">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">CGI · Motion · Direction</span>
-            <h3 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.08] tracking-[-0.035em] text-ink mb-md group-hover:text-accent transition-colors duration-300">Where the bar is set.</h3>
-            <p class="text-muted text-[16px] leading-[1.6] mb-lg">
-              <strong class="text-ink font-medium">High-end CGI and motion production for international brands.</strong> Visual systems, brand campaigns, rendering — led from concept to final frame.
-            </p>
-            <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-              View case study
-            </span>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Project 2 — Renders (Right) -->
-    <a href="/renders" class="project-showcase group block mb-4xl">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
-        <div class="lg:col-span-4 lg:order-1 lg:text-right">
-          <div class="project-text-wrap">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Food · Product · CGI</span>
-            <h3 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.08] tracking-[-0.035em] text-ink mb-md group-hover:text-accent transition-colors duration-300">Eyes eat first.</h3>
-            <p class="text-muted text-[16px] leading-[1.6] mb-lg">
-              <strong class="text-ink font-medium">Food and product CGI crafted to trigger desire before a single bite.</strong> Light, texture, materiality — every detail in service of appetite. Maya + V-Ray, nothing left to chance.
-            </p>
-            <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-              View case study
-            </span>
-          </div>
-        </div>
-        <div class="lg:col-span-7 lg:col-start-6 lg:order-2 overflow-hidden rounded-xl">
-          <div class="relative" style="padding-bottom: 58%;">
-            <div class="absolute -top-[15%] left-0 w-full h-[130%] bg-surface project-image-wrap">
-              <div class="absolute inset-0 flex items-center justify-center" style="top:15%;height:60%;">
-                <span class="font-accent text-[clamp(64px,8vw,100px)] font-bold tracking-[-0.04em] text-ink/[0.04]">02</span>
+            )}
+            <div class={isLeft ? "lg:col-span-4 lg:col-start-9" : "lg:col-span-4 lg:order-1 lg:text-right"}>
+              <div class="project-text-wrap">
+                <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t(p.tagKey)}</span>
+                <h3 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.08] tracking-[-0.035em] text-ink mb-md group-hover:text-accent transition-colors duration-300">{t(p.titleKey)}</h3>
+                <p class="text-muted text-[16px] leading-[1.6] mb-lg">
+                  <strong class="text-ink font-medium">{t(p.bodyKey)}</strong> {t(p.boldKey)}
+                </p>
+                <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+                  {t('work.cta')}
+                </span>
               </div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
             </div>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Project 3 — Lapatzak (Left) -->
-    <a href="/lapatzak" class="project-showcase group block mb-4xl">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
-        <div class="lg:col-span-7 overflow-hidden rounded-xl">
-          <div class="relative" style="padding-bottom: 58%;">
-            <div class="absolute -top-[15%] left-0 w-full h-[130%] bg-surface project-image-wrap">
-              <div class="absolute inset-0 flex items-center justify-center" style="top:15%;height:60%;">
-                <span class="font-accent text-[clamp(64px,8vw,100px)] font-bold tracking-[-0.04em] text-ink/[0.04]">03</span>
+            {!isLeft && (
+              <div class="lg:col-span-7 lg:col-start-6 lg:order-2 overflow-hidden rounded-xl">
+                <div class="relative" style="padding-bottom: 58%;">
+                  <div class="absolute -top-[15%] left-0 w-full h-[130%] bg-surface project-image-wrap">
+                    <div class="absolute inset-0 flex items-center justify-center" style="top:15%;height:60%;">
+                      <span class="font-accent text-[clamp(64px,8vw,100px)] font-bold tracking-[-0.04em] text-ink/[0.04]">{p.num}</span>
+                    </div>
+                    <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+                  </div>
+                </div>
               </div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
-            </div>
+            )}
           </div>
-        </div>
-        <div class="lg:col-span-4 lg:col-start-9">
-          <div class="project-text-wrap">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Brand · Leadership · Direction</span>
-            <h3 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.08] tracking-[-0.035em] text-ink mb-md group-hover:text-accent transition-colors duration-300">A brand isn't a logo. It's a decision system.</h3>
-            <p class="text-muted text-[16px] leading-[1.6] mb-lg">
-              <strong class="text-ink font-medium">From visual identity to strategic positioning, I build brands that hold together under pressure</strong> — across formats, markets and time. I lead the thinking, not just the aesthetics.
-            </p>
-            <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-              View case study
-            </span>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Project 4 — Lab (Right) -->
-    <a href="/lab" class="project-showcase group block">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
-        <div class="lg:col-span-4 lg:order-1 lg:text-right">
-          <div class="project-text-wrap">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">UI · AI · Interactive</span>
-            <h3 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.08] tracking-[-0.035em] text-ink mb-md group-hover:text-accent transition-colors duration-300">I don't just design screens. I lead what happens on them.</h3>
-            <p class="text-muted text-[16px] leading-[1.6] mb-lg">
-              <strong class="text-ink font-medium">From VR environments and educational apps to AI-native interfaces</strong> — I direct digital products end to end. Design, interaction logic, and the technical fluency to bridge both.
-            </p>
-            <span class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-              View case study
-            </span>
-          </div>
-        </div>
-        <div class="lg:col-span-7 lg:col-start-6 lg:order-2 overflow-hidden rounded-xl">
-          <div class="relative" style="padding-bottom: 58%;">
-            <div class="absolute -top-[15%] left-0 w-full h-[130%] bg-surface project-image-wrap">
-              <div class="absolute inset-0 flex items-center justify-center" style="top:15%;height:60%;">
-                <span class="font-accent text-[clamp(64px,8vw,100px)] font-bold tracking-[-0.04em] text-ink/[0.04]">04</span>
-              </div>
-              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </a>
+        </a>
+      );
+    })}
 
   </div>
 </section>

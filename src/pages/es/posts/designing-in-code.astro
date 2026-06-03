@@ -1,0 +1,36 @@
+---
+import PostLayout from '@layouts/PostLayout.astro';
+---
+
+<PostLayout
+  title="Diseñar interfaces que piensan en código (y por qué importa)"
+  category="Diseño"
+  readTime="3 min"
+  description="Las mejores interfaces que he diseñado vinieron de pensar en constraints — sistemas de espaciado, escalas tipográficas, lógica de componentes — no de mover píxeles."
+  lang="es"
+>
+  <p>
+    Pasé años diseñando primero en Figma y entregando a developers. El resultado era siempre una negociación. "Este espaciado no encaja con el sistema." "Esta interacción no es factible." "Este layout se rompe en mobile."
+  </p>
+
+  <h2>Diseñar en constraints</h2>
+  <p>
+    El cambio llegó cuando empecé a pensar en código mientras diseñaba. No codear el producto final — sino pensar en términos de grids, tokens y estados de componentes. En vez de dibujar un botón a 847px de ancho con fuente 13px, pienso: esto es un botón full-width en un grid de 12 columnas, usando la escala de fuente del body.
+  </p>
+  <p>
+    Técnicamente, es menos libertad creativa. Pero el output es mejor porque es consistente, responsive y construible.
+  </p>
+
+  <h2>Por qué esto importa para el producto final</h2>
+  <p>
+    Cuando un diseñador entiende que el espaciado va en incrementos de 8px, deja de inventar márgenes de 23px. Cuando entiende los props de los componentes, diseña estados que realmente se construyen — hover, focus, disabled, loading, empty. No solo el screenshot del happy path.
+  </p>
+  <p>
+    Las interfaces que se sienten más pulidas no son las que tienen más floritura visual. Son las que cada detalle es sistemático. Espaciado consistente. Interacciones predecibles. Una escala tipográfica que aguanta de mobile a desktop. Eso es lo que produce "pensar en código".
+  </p>
+
+  <h2>El rol puente</h2>
+  <p>
+    Por eso codeo. No para reemplazar developers, sino para hablar su idioma. Cuando entrego un diseño, puedo señalar las partes complicadas. Cuando un developer empuja hacia atrás, entiendo por qué. La brecha entre diseño e implementación se encoge — y el producto mejora.
+  </p>
+</PostLayout>

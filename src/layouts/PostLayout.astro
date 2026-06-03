@@ -1,15 +1,20 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
+import { defaultLang, type Language } from '@i18n/ui';
 
 interface Props {
   title: string;
   category: string;
   readTime: string;
   description?: string;
+  lang?: Language;
 }
 
-const { title, category, readTime, description } = Astro.props;
+const { title, category, readTime, description, lang: langProp } = Astro.props;
+const lang: Language = langProp ?? ((Astro.currentLocale ?? defaultLang) as Language);
+const backHref = lang === defaultLang ? '/#posts' : '/es/#posts';
+const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts';
 ---
 
 <BaseLayout title={`${title} — Álvaro Ares`} description={description}>
@@ -28,7 +33,7 @@ const { title, category, readTime, description } = Astro.props;
 
       <div class="mb-3xl">
         <div class="aspect-[16/9] bg-surface rounded-xl overflow-hidden flex items-center justify-center">
-          <span class="text-ghost text-[13px]">Featured image</span>
+          <span class="text-ghost text-[13px]">{lang === 'es' ? 'Imagen destacada' : 'Featured image'}</span>
         </div>
       </div>
 
@@ -37,8 +42,8 @@ const { title, category, readTime, description } = Astro.props;
       </div>
 
       <footer class="mt-4xl pt-xl border-t border-border-light">
-        <a href="/#posts" class="text-muted text-[13px] hover:text-ink transition-colors duration-200">
-          &larr; Back to all posts
+        <a href={backHref} class="text-muted text-[13px] hover:text-ink transition-colors duration-200">
+          &larr; {backText}
         </a>
       </footer>
     </article>

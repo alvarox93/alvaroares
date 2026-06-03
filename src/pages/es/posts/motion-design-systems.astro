@@ -1,0 +1,43 @@
+---
+import PostLayout from '@layouts/PostLayout.astro';
+---
+
+<PostLayout
+  title="Por qué los sistemas de motion design importan más que los logos animados"
+  category="Motion"
+  readTime="5 min"
+  description="La mayoría de marcas tratan el motion como decoración. Un sistema de motion design es infraestructura — hace cada interacción consistente, rápida de producir y realmente útil."
+  lang="es"
+>
+  <p>
+    La mayoría de las marcas piden "algo animado" cuando lo que necesitan es un sistema. Un logo animado en la home es un one-off. Un sistema de motion design es infraestructura que se amortiza en cada punto de contacto.
+  </p>
+
+  <h2>El problema de las animaciones puntuales</h2>
+  <p>
+    Lo he visto decenas de veces. Una marca invierte semanas en perfeccionar un reveal de logo. Queda genial en el caso de estudio. Luego el equipo necesita animar un botón, una transición de página, un estado de carga — y no tienen nada con lo que trabajar. Cada animador hace lo suyo. El resultado se siente disperso.
+  </p>
+
+  <h2>Qué es realmente un sistema de motion</h2>
+  <p>
+    Es un conjunto de reglas. Curvas de easing, duraciones, triggers y comportamientos definidos una vez y aplicados en todas partes. Piensa en ello como una escala tipográfica pero para el movimiento. Cuando una card entra en el viewport, ya sabes a qué velocidad se mueve, qué easing usa, y cómo se escalona respecto a sus vecinos.
+  </p>
+  <p>
+    En la práctica, defino tres capas:
+  </p>
+  <ul>
+    <li><strong>Micro-interacciones</strong> — hover en botones, toggles, focus rings. 100-200ms, ease-out.</li>
+    <li><strong>Transiciones</strong> — cargas de página, reveals de sección, apertura de modales. 300-500ms, cubic-bezier personalizado.</li>
+    <li><strong>Secuencias</strong> — flujos de onboarding, reveals multi-paso, narrativas scroll-driven. Timelines con stagger.</li>
+  </ul>
+
+  <h2>Por qué los equipos lo agradecen</h2>
+  <p>
+    Un sistema de motion reduce las preguntas de diseño. "¿Cuánto dura esto?" — está en la escala. "¿Con qué easing?" — está en las reglas. El equipo de desarrollo deja de inventar cada animación y empieza a ejecutar un sistema. El resultado es coherente sin que nadie tenga que revisarlo micro-gestión.
+  </p>
+
+  <h2>El ROI real</h2>
+  <p>
+    Los sistemas de motion se amortizan rápido. En lugar de decidir cada animación (y renegociarla con cada stakeholder), el equipo consulta el sistema y aplica. Es lo mismo que pasó con las design systems visuales, pero aplicado al tiempo y al espacio. El motion deja de ser un lujo de creative director y se convierte en infraestructura.
+  </p>
+</PostLayout>
