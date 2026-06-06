@@ -172,6 +172,20 @@
     pointer-events: none;
   }
 
+  .hero-video {
+    transition: opacity 0.4s ease;
+  }
+
+  .hero-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 20%;
+    background: linear-gradient(to bottom, transparent 0%, var(--color-canvas) 100%);
+    z-index: 1;
+  }
+
   .noise-overlay {
     position: fixed;
     inset: 0;

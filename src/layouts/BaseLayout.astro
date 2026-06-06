@@ -30,6 +30,35 @@ const { title, description = lang === 'es'
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="x-default" href={enHref} />
     <title>{title}</title>
+    <script is:inline>
+      (function() {
+        var path = window.location.pathname;
+        if (/^\/(en|es)(\/|$)/.test(path)) return;
+        if (path.startsWith('/_') || path.startsWith('/api/') || path.startsWith('/@') || path.startsWith('/__')) return;
+
+        function getCookie(name) {
+          var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+          return match ? match[2] : null;
+        }
+        function setCookie(name, value, days) {
+          var expires = new Date(Date.now() + days * 864e5).toUTCString();
+          document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+        }
+
+        var cookie = getCookie('aa-lang');
+        if (cookie === 'es') {
+          window.location.href = '/es' + (path === '/' ? '' : path);
+        } else if (!cookie) {
+          var preferred = (navigator.language || '').slice(0, 2).toLowerCase();
+          if (preferred === 'es') {
+            setCookie('aa-lang', 'es', 365);
+            window.location.href = '/es' + (path === '/' ? '' : path);
+          } else {
+            setCookie('aa-lang', 'en', 365);
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <slot />

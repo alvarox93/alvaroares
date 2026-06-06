@@ -4,7 +4,7 @@ import Navigation from '@components/Navigation.astro';
 import Hero from '@components/Hero.astro';
 import WorkSection from '@components/WorkSection.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
-import { homePosts } from '@content/pages/home';
+import { homePosts } from '@data/home';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -275,9 +275,10 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     const chars = emailLink.querySelectorAll('.footer-char');
 
     emailLink.addEventListener('mouseenter', () => {
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
       gsap.killTweensOf(chars);
       gsap.to(chars, {
-        color: '#e8a838',
+        color: accent,
         y: -4,
         duration: 0.3,
         ease: 'power2.out',
