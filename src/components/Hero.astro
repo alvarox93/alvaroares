@@ -34,10 +34,10 @@ const t = useTranslations(lang);
         </p>
 
         <div class="flex gap-md">
-          <a href="#work" class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+          <a href="#work" class="inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
             {t('home.hero.cta.work')}
           </a>
-          <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="magnetic inline-flex items-center justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
+          <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
             {t('home.hero.cta.about')}
           </a>
         </div>
