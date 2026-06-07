@@ -89,35 +89,18 @@ const { title, description = lang === 'es'
 
     link.addEventListener('click', (e) => {
       if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      if (!link.dataset.transitionLine1) return;
 
-      const pt = (window as any).__pageTransition;
-      const line1 = link.dataset.transitionLine1 || '';
-      const line2 = link.dataset.transitionLine2 || '';
-
-      if (line1 && pt && pt.storeLines) {
+      // Fade overlay a blanco rápido, luego navega
+      const overlay = document.getElementById('page-transition');
+      if (overlay) {
         e.preventDefault();
-        pt.storeLines(line1, line2);
-
-        // Cambiar las palabras del overlay al texto del DESTINO antes de animar la salida
-        if (pt.setWords) {
-          pt.setWords(line1);
-        }
-
-        if (pt.playExit) {
-          pt.playExit(() => {
-            window.location.href = href;
-          });
-        } else {
-          // Fallback si GSAP no está listo: mostrar overlay y navegar
-          const overlay = document.getElementById('page-transition');
-          if (overlay) {
-            overlay.style.opacity = '1';
-            overlay.style.pointerEvents = 'all';
-          }
-          setTimeout(() => {
-            window.location.href = href;
-          }, 150);
-        }
+        overlay.style.transition = 'opacity 0.2s ease';
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'all';
+        setTimeout(() => {
+          window.location.href = href;
+        }, 180);
       }
     });
   });
