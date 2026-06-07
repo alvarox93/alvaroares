@@ -8,7 +8,11 @@ const t = useTranslations(lang);
 const backHref = lang === defaultLang ? '/' : '/es';
 ---
 
-<BaseLayout title={lang === 'es' ? 'Lapatzak — Álvaro Ares' : 'Lapatzak — Álvaro Ares'}>
+<BaseLayout
+  title={lang === 'es' ? 'Lapatzak — Álvaro Ares' : 'Lapatzak — Álvaro Ares'}
+  transitionLine1={t('transition.lapatzak.line1')}
+  transitionLine2={t('transition.lapatzak.line2')}
+>
   <Navigation />
 
   <main class="bg-canvas min-h-screen">

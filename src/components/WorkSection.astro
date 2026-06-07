@@ -10,6 +10,7 @@ const projects: Array<{
   titleKey: UIKey;
   bodyKey: UIKey;
   boldKey: UIKey;
+  transitionKey: UIKey;
   num: string;
   side: 'left' | 'right';
 }> = [
@@ -19,6 +20,7 @@ const projects: Array<{
     titleKey: 'work.koora.title',
     bodyKey: 'work.koora.body',
     boldKey: 'work.koora.bodyBold',
+    transitionKey: 'transition.koora.line1',
     num: '01',
     side: 'left',
   },
@@ -28,6 +30,7 @@ const projects: Array<{
     titleKey: 'work.renders.title',
     bodyKey: 'work.renders.body',
     boldKey: 'work.renders.bodyBold',
+    transitionKey: 'transition.renders.line1',
     num: '02',
     side: 'right',
   },
@@ -37,6 +40,7 @@ const projects: Array<{
     titleKey: 'work.lapatzak.title',
     bodyKey: 'work.lapatzak.body',
     boldKey: 'work.lapatzak.bodyBold',
+    transitionKey: 'transition.lapatzak.line1',
     num: '03',
     side: 'left',
   },
@@ -46,6 +50,7 @@ const projects: Array<{
     titleKey: 'work.lab.title',
     bodyKey: 'work.lab.body',
     boldKey: 'work.lab.bodyBold',
+    transitionKey: 'transition.lab.line1',
     num: '04',
     side: 'right',
   },
@@ -67,7 +72,7 @@ const projects: Array<{
     {projects.map((p) => {
       const isLeft = p.side === 'left';
       return (
-        <a href={p.href} class="project-showcase group block mb-4xl">
+        <a href={p.href} data-transition-line1={t(p.transitionKey)} data-transition-line2="" class="project-showcase group block mb-4xl">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
             {isLeft && (
               <div class="lg:col-span-7 overflow-hidden rounded-xl">
