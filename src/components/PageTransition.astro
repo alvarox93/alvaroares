@@ -1,0 +1,179 @@
+---
+interface Props {
+  line1?: string;
+  line2?: string;
+}
+
+const { line1 = '', line2 = '' } = Astro.props;
+const words = line1.trim().split(/\s+/).filter(Boolean);
+---
+
+<div id="page-transition" class="page-transition" aria-hidden="true" data-line1={line1} data-line2={line2}>
+  <div class="transition-bg"></div>
+  <div class="transition-content" id="trans-content">
+    {words.map((w) => (
+      <span class="word">{w}</span>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    var key = 'aa-page-transition';
+    var overlay = document.getElementById('page-transition');
+    if (!overlay) return;
+    var stored = sessionStorage.getItem(key);
+    if (!stored) {
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+    }
+  })();
+</script>
+
+<style>
+  .page-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+  }
+
+  .transition-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--color-canvas, #ffffff);
+  }
+
+  .transition-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35em;
+    text-align: center;
+    padding: 0 32px;
+    max-width: 90vw;
+  }
+
+  .word {
+    display: inline-block;
+    font-family: 'Bricolage Grotesque', var(--font-display, system-ui, -apple-system, sans-serif);
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--color-ink, #1a1a1a);
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-transition {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  (function() {
+    const transition = document.getElementById('page-transition');
+    const content = document.getElementById('trans-content') as HTMLElement | null;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !transition || !content) {
+      if (transition) {
+        transition.style.opacity = '0';
+        transition.style.pointerEvents = 'none';
+      }
+      return;
+    }
+
+    const STORAGE_KEY = 'aa-page-transition';
+
+    function getWordEls(): HTMLElement[] {
+      return Array.from(content.querySelectorAll('.word'));
+    }
+
+    function cleanup() {
+      transition.style.pointerEvents = 'none';
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+
+    function playEnter() {
+      const stored = sessionStorage.getItem(STORAGE_KEY);
+      if (!stored) {
+        cleanup();
+        return;
+      }
+
+      const words = getWordEls();
+      if (!words.length) {
+        gsap.set(transition, { opacity: 0 });
+        cleanup();
+        return;
+      }
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          gsap.set(transition, { opacity: 0 });
+          cleanup();
+        }
+      });
+
+      // Palabras empiezan arriba y ocultas
+      tl.set(words, { y: -40, opacity: 0 });
+
+      // Caen de arriba abajo con stagger
+      tl.to(words, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power3.out',
+      });
+
+      // Flash read
+      tl.to({}, { duration: 0.55 });
+
+      // Se desvanecen hacia abajo
+      tl.to(words, {
+        y: 20,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.05,
+        ease: 'power2.in',
+      });
+
+      // Overlay blanco se desvanece revelando la página
+      tl.to(transition, {
+        opacity: 0,
+        duration: 0.65,
+        ease: 'power2.inOut',
+      });
+    }
+
+    (window as any).__pageTransition = {
+      playEnter,
+      storeLines: (l1: string, l2: string) => {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ line1: l1, line2: l2 }));
+      },
+    };
+
+    // Si venimos de transición interna, reproducir entrada
+    const stored = sessionStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          playEnter();
+        });
+      });
+    }
+  })();
+</script>

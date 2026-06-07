@@ -9,14 +9,18 @@ const cleanPath = path.replace(/^\/(en|es)/, '') || '/';
 const enHref = cleanPath === '/' ? 'https://alvaroar.es/' : `https://alvaroar.es${cleanPath}`;
 const esHref = cleanPath === '/' ? 'https://alvaroar.es/es/' : `https://alvaroar.es/es${cleanPath}`;
 
+import PageTransition from '@components/PageTransition.astro';
+
 interface Props {
   title: string;
   description?: string;
+  transitionLine1?: string;
+  transitionLine2?: string;
 }
 
 const { title, description = lang === 'es'
   ? 'Álvaro Ares — Director Creativo & Motion Strategist en Bilbao.'
-  : 'Álvaro Ares — Creative Director & Motion Strategist based in Bilbao.' } = Astro.props;
+  : 'Álvaro Ares — Creative Director & Motion Strategist based in Bilbao.', transitionLine1, transitionLine2 } = Astro.props;
 ---
 
 <!doctype html>
@@ -30,6 +34,7 @@ const { title, description = lang === 'es'
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="x-default" href={enHref} />
     <title>{title}</title>
+
     <script is:inline>
       (function() {
         var path = window.location.pathname;
@@ -61,6 +66,7 @@ const { title, description = lang === 'es'
     </script>
   </head>
   <body>
+    <PageTransition line1={transitionLine1} line2={transitionLine2} />
     <slot />
   </body>
 </html>
@@ -70,21 +76,40 @@ const { title, description = lang === 'es'
 </style>
 
 <script>
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('a').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('/') || href.includes('#') || link.hasAttribute('download') || link.getAttribute('target') === '_blank') return;
 
-  if (!prefersReducedMotion) {
-    document.querySelectorAll('a').forEach((link) => {
-      const href = link.getAttribute('href');
-      if (!href || !href.startsWith('/') || href.includes('#') || link.hasAttribute('download') || link.getAttribute('target') === '_blank') return;
-      if (href === window.location.pathname) return;
-
+    if (href === window.location.pathname) {
       link.addEventListener('click', (e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
         e.preventDefault();
-        document.body.style.transition = 'opacity 0.25s ease-in';
-        document.body.style.opacity = '0';
-        setTimeout(() => { window.location.href = href; }, 280);
       });
+      return;
+    }
+
+    link.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+
+      const pt = (window as any).__pageTransition;
+      const line1 = link.dataset.transitionLine1 || '';
+      const line2 = link.dataset.transitionLine2 || '';
+
+      if (line1 && pt && pt.storeLines) {
+        e.preventDefault();
+        pt.storeLines(line1, line2);
+
+        // Forzar overlay blanco visible en la página actual para evitar flash
+        const overlay = document.getElementById('page-transition');
+        if (overlay) {
+          overlay.style.opacity = '1';
+          overlay.style.pointerEvents = 'all';
+        }
+
+        // Pequeña pausa para que el browser pinte el overlay antes de navegar
+        setTimeout(() => {
+          window.location.href = href;
+        }, 60);
+      }
     });
-  }
+  });
 </script>

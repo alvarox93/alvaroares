@@ -12,9 +12,13 @@ const posts = homePosts[lang];
 const aboutHref = lang === defaultLang ? '/about' : '/es/about';
 ---
 
-<BaseLayout title={lang === 'es'
-  ? 'Álvaro Ares — Director Creativo & Artista CGI'
-  : 'Álvaro Ares — Creative Director & CGI Artist'}>
+<BaseLayout
+  title={lang === 'es'
+    ? 'Álvaro Ares — Director Creativo & Artista CGI'
+    : 'Álvaro Ares — Creative Director & CGI Artist'}
+  transitionLine1={t('transition.home.line1')}
+  transitionLine2={t('transition.home.line2')}
+>
   <Navigation />
   <main style="position: relative; z-index: 1; background: var(--color-canvas); padding-bottom: 50vh;">
     <Hero />

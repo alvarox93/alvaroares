@@ -11,9 +11,9 @@ const t = useTranslations(lang);
   <div class="hero-blob" id="hero-blob" style="left: 50%; top: 40%; transform: translate(-50%, -50%);"></div>
   <div class="hero-fade pointer-events-none" aria-hidden="true"></div>
 
-  <div class="relative z-10 max-w-[1200px] mx-auto px-xl lg:px-2xl py-3xl">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center">
-      <div class="lg:col-span-6">
+  <div class="relative z-10 max-w-[1200px] mx-auto pl-2xl pr-xl lg:pl-4xl lg:pr-2xl py-3xl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
+      <div class="lg:col-span-5">
 
         <div class="mb-xl">
           <span class="inline-flex items-center gap-2.5 px-4 py-2 border border-border rounded-full">
@@ -47,25 +47,21 @@ const t = useTranslations(lang);
       <div class="hidden lg:block lg:col-span-6 lg:col-start-7 relative hero-video-wrap" style="min-height: 500px;" data-theme-video>
         <video
           src="/keyCupAnimation.webm"
-          autoplay
           loop
           muted
           playsinline
           preload="auto"
           class="hero-video absolute inset-0 w-full h-full object-contain"
           data-video="warm"
-          style="scale: 1;"
         ></video>
         <video
           src="/keyCupAnimation_cold.webm"
-          autoplay
           loop
           muted
           playsinline
           preload="auto"
           class="hero-video absolute inset-0 w-full h-full object-contain"
           data-video="cold"
-          style="scale: 1;"
         ></video>
       </div>
     </div>
@@ -92,17 +88,29 @@ const t = useTranslations(lang);
 
   const wrap = document.querySelector<HTMLElement>('[data-theme-video]');
   if (wrap) {
-    const videos = Array.from(wrap.querySelectorAll<HTMLVideoElement>('video.hero-video'));
-    const master = videos.find((v) => v.dataset.video === 'warm') ?? videos[0];
-    const others = videos.filter((v) => v !== master);
+    const videos = Array.from(wrap.querySelectorAll<HTMLVideoElement>('video'));
+    let position = 0;
 
     const applyTheme = () => {
       const theme = document.documentElement.getAttribute('data-theme') || 'warm';
+
       videos.forEach((v) => {
-        const active = v.dataset.video === theme;
-        v.style.opacity = active ? '1' : '0';
-        v.style.zIndex = active ? '2' : '1';
+        if (v.style.opacity === '1') position = v.currentTime;
+        v.pause();
       });
+
+      const incoming = videos.find((v) => v.dataset.video === theme) ?? videos[0];
+      const outgoing = videos.find((v) => v.dataset.video !== theme);
+
+      incoming.currentTime = position;
+
+      const onSeeked = () => {
+        incoming.removeEventListener('seeked', onSeeked);
+        incoming.play().catch(() => {});
+        if (outgoing) outgoing.style.opacity = '0';
+        incoming.style.opacity = '1';
+      };
+      incoming.addEventListener('seeked', onSeeked);
     };
     applyTheme();
 
@@ -110,16 +118,6 @@ const t = useTranslations(lang);
       attributes: true,
       attributeFilter: ['data-theme'],
     });
-
-    const sync = () => {
-      for (const v of others) {
-        if (Math.abs(v.currentTime - master.currentTime) > 0.06) {
-          v.currentTime = master.currentTime;
-        }
-      }
-      requestAnimationFrame(sync);
-    };
-    requestAnimationFrame(sync);
   }
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

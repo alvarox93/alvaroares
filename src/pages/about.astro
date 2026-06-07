@@ -83,7 +83,11 @@ const timeline = [
 ];
 ---
 
-<BaseLayout title={lang === 'es' ? 'Sobre mí — Álvaro Ares' : 'About — Álvaro Ares'}>
+<BaseLayout
+  title={lang === 'es' ? 'Sobre mí — Álvaro Ares' : 'About — Álvaro Ares'}
+  transitionLine1={t('transition.about.line1')}
+  transitionLine2={t('transition.about.line2')}
+>
   <Navigation />
 
   <main class="bg-canvas">

@@ -227,6 +227,11 @@ export const ui = {
     'footer.email': 'hey@alvaroar.es',
     'footer.phone': '+34 649 635 382',
 
+    'transition.home.line1': 'alvaro ares',
+    'transition.home.line2': '',
+    'transition.about.line1': 'who i am',
+    'transition.about.line2': '',
+
     'lang.switcher.label': 'Language',
     'lang.en': 'EN',
     'lang.es': 'ES',
@@ -450,6 +455,11 @@ export const ui = {
     'footer.copyright': 'Diseñado & desarrollado por Álvaro Ares · 2026',
     'footer.email': 'hey@alvaroar.es',
     'footer.phone': '+34 649 635 382',
+
+    'transition.home.line1': 'alvaro ares',
+    'transition.home.line2': '',
+    'transition.about.line1': 'quién soy yo',
+    'transition.about.line2': '',
 
     'lang.switcher.label': 'Idioma',
     'lang.en': 'EN',
