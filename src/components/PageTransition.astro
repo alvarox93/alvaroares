@@ -17,19 +17,6 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
   </div>
 </div>
 
-<script is:inline>
-  (function() {
-    var key = 'aa-page-transition';
-    var overlay = document.getElementById('page-transition');
-    if (!overlay) return;
-    var stored = sessionStorage.getItem(key);
-    if (!stored) {
-      overlay.style.opacity = '0';
-      overlay.style.pointerEvents = 'none';
-    }
-  })();
-</script>
-
 <style>
   .page-transition {
     position: fixed;
@@ -39,6 +26,11 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     align-items: center;
     justify-content: center;
     opacity: 1;
+    pointer-events: all;
+  }
+
+  .page-transition.is-done {
+    pointer-events: none;
   }
 
   .transition-bg {
@@ -69,11 +61,25 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     letter-spacing: -0.01em;
     color: var(--color-ink, #1a1a1a);
     opacity: 0;
+    transform: translateY(-40px);
     will-change: transform, opacity;
+  }
+
+  /* Fallback: si JS nunca carga o falla, el overlay se oculta solo después de 3s */
+  @media (prefers-reduced-motion: no-preference) {
+    .page-transition {
+      animation: pt-safety-fade 0.5s ease-out 3s forwards;
+    }
+  }
+
+  @keyframes pt-safety-fade {
+    from { opacity: 1; pointer-events: all; }
+    to   { opacity: 0; pointer-events: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .page-transition {
+      animation: none !important;
       display: none !important;
     }
   }
@@ -95,36 +101,56 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       return;
     }
 
+    // Cancelar la animación CSS de fallback para que no interfiera
+    transition.style.animation = 'none';
+
     const STORAGE_KEY = 'aa-page-transition';
+    let safetyTimer: ReturnType<typeof setTimeout> | null = null;
 
     function getWordEls(): HTMLElement[] {
       return Array.from(content.querySelectorAll('.word'));
     }
 
-    function cleanup() {
-      transition.style.pointerEvents = 'none';
-      sessionStorage.removeItem(STORAGE_KEY);
+    function forceVisible() {
+      transition.classList.remove('is-done');
+      gsap.set(transition, { opacity: 1, pointerEvents: 'all' });
     }
 
-    function playEnter() {
-      const stored = sessionStorage.getItem(STORAGE_KEY);
-      if (!stored) {
-        cleanup();
-        return;
+    function forceHidden() {
+      transition.classList.add('is-done');
+      gsap.set(transition, { opacity: 0, pointerEvents: 'none' });
+    }
+
+    function safetyHide() {
+      if (safetyTimer) clearTimeout(safetyTimer);
+      safetyTimer = setTimeout(() => {
+        forceHidden();
+      }, 3500);
+    }
+
+    function clearSafety() {
+      if (safetyTimer) {
+        clearTimeout(safetyTimer);
+        safetyTimer = null;
       }
+    }
+
+    // --- ENTRADA: ejecutada SIEMPRE en cada carga / restauración ---
+    function playEnter() {
+      clearSafety();
+      forceVisible();
 
       const words = getWordEls();
       if (!words.length) {
-        gsap.set(transition, { opacity: 0 });
-        cleanup();
+        gsap.to(transition, { opacity: 0, duration: 0.4, ease: 'power2.inOut', onComplete: forceHidden });
         return;
       }
 
       const tl = gsap.timeline({
         onComplete: () => {
-          gsap.set(transition, { opacity: 0 });
-          cleanup();
-        }
+          clearSafety();
+          forceHidden();
+        },
       });
 
       // Palabras empiezan arriba y ocultas
@@ -157,23 +183,66 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
         duration: 0.65,
         ease: 'power2.inOut',
       });
+
+      safetyHide();
+    }
+
+    // --- SALIDA ---
+    function playExit(onComplete: () => void) {
+      clearSafety();
+      forceVisible();
+
+      const words = getWordEls();
+      if (!words.length) {
+        onComplete();
+        return;
+      }
+
+      const tl = gsap.timeline({ onComplete });
+
+      tl.set(words, { y: -40, opacity: 0 });
+
+      tl.to(words, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power3.out',
+      });
+
+      tl.to({}, { duration: 0.55 });
+
+      safetyHide();
     }
 
     (window as any).__pageTransition = {
       playEnter,
+      playExit,
       storeLines: (l1: string, l2: string) => {
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ line1: l1, line2: l2 }));
       },
     };
 
-    // Si venimos de transición interna, reproducir entrada
-    const stored = sessionStorage.getItem(STORAGE_KEY);
-    if (stored) {
+    // --- SIEMPRE ejecutar entrada ---
+    // "pageshow" se dispara en carga normal Y en restauración desde bfcache (botón atrás)
+    const runEnter = () => {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           playEnter();
         });
       });
+    };
+
+    // Intentar ejecutar ahora si el DOM ya está listo
+    if (document.readyState !== 'loading') {
+      runEnter();
+    } else {
+      document.addEventListener('DOMContentLoaded', runEnter);
     }
+
+    // También en pageshow (captura bfcache del navegador)
+    window.addEventListener('pageshow', () => {
+      runEnter();
+    });
   })();
 </script>

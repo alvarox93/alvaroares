@@ -98,17 +98,21 @@ const { title, description = lang === 'es'
         e.preventDefault();
         pt.storeLines(line1, line2);
 
-        // Forzar overlay blanco visible en la página actual para evitar flash
-        const overlay = document.getElementById('page-transition');
-        if (overlay) {
-          overlay.style.opacity = '1';
-          overlay.style.pointerEvents = 'all';
+        if (pt.playExit) {
+          pt.playExit(() => {
+            window.location.href = href;
+          });
+        } else {
+          // Fallback si GSAP no está listo: mostrar overlay y navegar
+          const overlay = document.getElementById('page-transition');
+          if (overlay) {
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'all';
+          }
+          setTimeout(() => {
+            window.location.href = href;
+          }, 150);
         }
-
-        // Pequeña pausa para que el browser pinte el overlay antes de navegar
-        setTimeout(() => {
-          window.location.href = href;
-        }, 60);
       }
     });
   });
