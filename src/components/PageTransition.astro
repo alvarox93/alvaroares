@@ -150,7 +150,8 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
         words[i].style.animation = '';
       }
 
-      // Reiniciar: quitar clase, forzar reflow, volver a añadir
+      // Reiniciar: limpiar clases de salida/entrada anteriores, forzar reflow, activar
+      overlay.classList.remove('is-exiting');
       overlay.classList.remove('is-animating');
       void overlay.offsetHeight;
       overlay.classList.add('is-animating');
