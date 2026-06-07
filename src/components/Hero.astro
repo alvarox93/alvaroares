@@ -50,18 +50,22 @@ const t = useTranslations(lang);
           loop
           muted
           playsinline
+          autoplay
           preload="auto"
           class="hero-video absolute inset-0 w-full h-full object-contain"
           data-video="warm"
+          style="opacity: 1"
         ></video>
         <video
           src="/keyCupAnimation_cold.webm"
           loop
           muted
           playsinline
+          autoplay
           preload="auto"
           class="hero-video absolute inset-0 w-full h-full object-contain"
           data-video="cold"
+          style="opacity: 0"
         ></video>
       </div>
     </div>
@@ -94,6 +98,7 @@ const t = useTranslations(lang);
     const applyTheme = () => {
       const theme = document.documentElement.getAttribute('data-theme') || 'warm';
 
+      // Guardar posición del video visible actualmente
       videos.forEach((v) => {
         if (v.style.opacity === '1') position = v.currentTime;
         v.pause();
@@ -102,21 +107,36 @@ const t = useTranslations(lang);
       const incoming = videos.find((v) => v.dataset.video === theme) ?? videos[0];
       const outgoing = videos.find((v) => v.dataset.video !== theme);
 
-      incoming.currentTime = position;
-
-      const onSeeked = () => {
-        incoming.removeEventListener('seeked', onSeeked);
+      const activate = () => {
         incoming.play().catch(() => {});
         if (outgoing) outgoing.style.opacity = '0';
         incoming.style.opacity = '1';
       };
-      incoming.addEventListener('seeked', onSeeked);
+
+      // Si ya está en el tiempo correcto (o muy cerca), activar inmediatamente
+      // para evitar que el evento seeked no dispare por race condition
+      if (Math.abs(incoming.currentTime - position) < 0.05) {
+        activate();
+      } else {
+        incoming.currentTime = position;
+        const onSeeked = () => {
+          incoming.removeEventListener('seeked', onSeeked);
+          activate();
+        };
+        incoming.addEventListener('seeked', onSeeked);
+      }
     };
+
     applyTheme();
 
     new MutationObserver(applyTheme).observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['data-theme'],
+    });
+
+    // Re-activar videos al volver con back/forward (bfcache)
+    window.addEventListener('pageshow', () => {
+      applyTheme();
     });
   }
 
