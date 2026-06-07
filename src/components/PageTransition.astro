@@ -107,6 +107,11 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     const STORAGE_KEY = 'aa-page-transition';
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
 
+    function setWords(text: string) {
+      const words = text.trim().split(/\s+/).filter(Boolean);
+      content.innerHTML = words.map((w) => `<span class="word">${w}</span>`).join('');
+    }
+
     function getWordEls(): HTMLElement[] {
       return Array.from(content.querySelectorAll('.word'));
     }
@@ -218,6 +223,7 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     (window as any).__pageTransition = {
       playEnter,
       playExit,
+      setWords,
       storeLines: (l1: string, l2: string) => {
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ line1: l1, line2: l2 }));
       },

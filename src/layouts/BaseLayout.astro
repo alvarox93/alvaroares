@@ -98,6 +98,11 @@ const { title, description = lang === 'es'
         e.preventDefault();
         pt.storeLines(line1, line2);
 
+        // Cambiar las palabras del overlay al texto del DESTINO antes de animar la salida
+        if (pt.setWords) {
+          pt.setWords(line1);
+        }
+
         if (pt.playExit) {
           pt.playExit(() => {
             window.location.href = href;
