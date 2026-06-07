@@ -101,6 +101,20 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     to   { opacity: 0; pointer-events: none; }
   }
 
+  /* --- Estado de salida: visible inmediatamente, sin animación --- */
+  .page-transition.is-exiting {
+    opacity: 1 !important;
+    pointer-events: all !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .page-transition.is-exiting .word {
+    opacity: 0 !important;
+    transform: translateY(-30px) !important;
+    animation: none !important;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .page-transition,
     .page-transition.is-animating,

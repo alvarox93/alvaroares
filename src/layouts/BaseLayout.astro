@@ -91,16 +91,16 @@ const { title, description = lang === 'es'
       if (e.metaKey || e.ctrlKey || e.shiftKey) return;
       if (!link.dataset.transitionLine1) return;
 
-      // Fade overlay a blanco rápido, luego navega
       const overlay = document.getElementById('page-transition');
       if (overlay) {
         e.preventDefault();
-        overlay.style.transition = 'opacity 0.2s ease';
-        overlay.style.opacity = '1';
-        overlay.style.pointerEvents = 'all';
+        // Cancelar animación de entrada, forzar reflow, mostrar overlay limpio
+        overlay.classList.remove('is-animating');
+        void overlay.offsetHeight;
+        overlay.classList.add('is-exiting');
         setTimeout(() => {
           window.location.href = href;
-        }, 180);
+        }, 200);
       }
     });
   });
