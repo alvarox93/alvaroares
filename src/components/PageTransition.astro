@@ -65,10 +65,10 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     will-change: transform, opacity;
   }
 
-  /* Fallback: si JS nunca carga, ocultar a los 4s */
+  /* Fallback: si JS nunca carga, ocultar a los 5s */
   @media (prefers-reduced-motion: no-preference) {
     .page-transition {
-      animation: pt-safety 0.5s ease-out 4s forwards;
+      animation: pt-safety 0.6s ease-out 5s forwards;
     }
   }
 
@@ -111,46 +111,64 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       gsap.set(overlay, { opacity: 0, pointerEvents: 'none' });
     }
 
-    const words = overlay.querySelectorAll<HTMLElement>('.word');
+    function runEntrance() {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          forceVisible();
 
-    if (!words.length) {
-      forceHidden();
-      return;
+          const words = overlay.querySelectorAll<HTMLElement>('.word');
+          if (!words.length) {
+            gsap.to(overlay, { opacity: 0, duration: 0.5, ease: 'power2.inOut', onComplete: forceHidden });
+            return;
+          }
+
+          const tl = gsap.timeline({ onComplete: forceHidden });
+
+          // Estado inicial: arriba y ocultas
+          tl.set(words, { y: -30, opacity: 0 });
+
+          // Delay para que el overlay sea visible antes de animar
+          tl.to({}, { duration: 0.15 });
+
+          // Caen
+          tl.to(words, {
+            y: 0,
+            opacity: 1,
+            duration: 0.55,
+            stagger: 0.08,
+            ease: 'power3.out',
+          });
+
+          // Flash read
+          tl.to({}, { duration: 0.45 });
+
+          // Se desvanecen hacia abajo
+          tl.to(words, {
+            y: 15,
+            opacity: 0,
+            duration: 0.35,
+            stagger: 0.04,
+            ease: 'power2.in',
+          });
+
+          // Overlay fade out
+          tl.to(overlay, {
+            opacity: 0,
+            duration: 0.55,
+            ease: 'power2.inOut',
+          });
+        });
+      });
     }
 
-    const tl = gsap.timeline({
-      onComplete: forceHidden,
-    });
+    // Ejecutar en carga inicial
+    if (document.readyState !== 'loading') {
+      runEntrance();
+    } else {
+      document.addEventListener('DOMContentLoaded', runEntrance);
+    }
 
-    // Empiezan arriba y ocultas
-    tl.set(words, { y: -30, opacity: 0 });
-
-    // Caen
-    tl.to(words, {
-      y: 0,
-      opacity: 1,
-      duration: 0.5,
-      stagger: 0.08,
-      ease: 'power3.out',
-    });
-
-    // Flash read
-    tl.to({}, { duration: 0.4 });
-
-    // Se desvanecen hacia abajo
-    tl.to(words, {
-      y: 15,
-      opacity: 0,
-      duration: 0.3,
-      stagger: 0.04,
-      ease: 'power2.in',
-    });
-
-    // Overlay fade out
-    tl.to(overlay, {
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.inOut',
-    });
+    // Ejecutar también en pageshow (captura bfcache / back button / forward)
+    window.addEventListener('pageshow', runEntrance);
   })();
 </script>
