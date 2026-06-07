@@ -17,7 +17,7 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
   </div>
 </div>
 
-<style>
+<style is:global>
   .page-transition {
     position: fixed;
     inset: 0;
@@ -52,7 +52,7 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     max-width: 90vw;
   }
 
-  .word {
+  .page-transition .word {
     display: inline-block;
     font-family: 'Bricolage Grotesque', var(--font-display, system-ui, -apple-system, sans-serif);
     font-size: clamp(18px, 3vw, 32px);
