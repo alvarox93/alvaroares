@@ -10,6 +10,7 @@ const enHref = cleanPath === '/' ? 'https://alvaroar.es/' : `https://alvaroar.es
 const esHref = cleanPath === '/' ? 'https://alvaroar.es/es/' : `https://alvaroar.es/es${cleanPath}`;
 
 import PageTransition from '@components/PageTransition.astro';
+import ThemeToggle from '@components/ThemeToggle.astro';
 
 interface Props {
   title: string;
@@ -68,6 +69,7 @@ const { title, description = lang === 'es'
   <body>
     <PageTransition line1={transitionLine1} line2={transitionLine2} />
     <slot />
+    <ThemeToggle />
   </body>
 </html>
 

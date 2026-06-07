@@ -12,6 +12,7 @@ export const ui = {
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.back': 'Back',
+    'theme.tooltip': 'I adapt to you',
 
     'home.hero.available': 'Available for hiring',
     'home.hero.title.line1': 'Álvaro Ares',
@@ -249,6 +250,7 @@ export const ui = {
     'nav.about': 'Sobre mí',
     'nav.contact': 'Contacto',
     'nav.back': 'Volver',
+    'theme.tooltip': 'Me adapto a ti',
 
     'home.hero.available': 'Disponible para contratar',
     'home.hero.title.line1': 'Álvaro Ares',

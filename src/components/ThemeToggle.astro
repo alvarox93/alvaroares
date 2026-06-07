@@ -1,0 +1,116 @@
+---
+import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+---
+
+<div class="theme-widget" aria-label="Theme toggle">
+  <div class="theme-bubble">
+    <span class="theme-bubble-text">{t('theme.tooltip')}</span>
+  </div>
+  <button class="theme-knob" aria-label="Toggle color theme" data-theme-knob></button>
+</div>
+
+<style>
+  .theme-widget {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9990;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .theme-knob {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border-light);
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    background: var(--accent);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  .theme-knob:hover {
+    transform: scale(1.15);
+  }
+
+  .theme-knob:active {
+    transform: scale(0.92);
+  }
+
+  .theme-bubble {
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    padding: 6px 14px;
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+
+  .theme-widget:hover .theme-bubble,
+  .theme-widget:focus-within .theme-bubble {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Small arrow pointing down */
+  .theme-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid var(--color-ink);
+  }
+
+  .theme-bubble-text {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    var STORAGE_KEY = 'aa-theme';
+    var root = document.documentElement;
+    var stored = localStorage.getItem(STORAGE_KEY);
+    var initial = stored === 'cold' || stored === 'warm' ? stored : 'warm';
+    root.setAttribute('data-theme', initial);
+
+    var knob = document.querySelector('[data-theme-knob]');
+    function syncKnob(theme) {
+      if (!knob) return;
+      knob.style.background = theme === 'warm' ? '#e8a838' : '#2596a8';
+      knob.setAttribute('aria-pressed', String(theme === 'warm'));
+    }
+    syncKnob(initial);
+
+    if (knob) {
+      knob.addEventListener('click', function() {
+        var current = root.getAttribute('data-theme') || 'warm';
+        var next = current === 'warm' ? 'cold' : 'warm';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem(STORAGE_KEY, next);
+        syncKnob(next);
+      });
+    }
+  })();
+</script>
