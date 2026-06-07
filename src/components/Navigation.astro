@@ -6,6 +6,9 @@ const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 const homeHref = lang === defaultLang ? '/' : `/${lang}`;
 const aboutHref = lang === defaultLang ? '/about' : '/es/about';
+
+const nameChars = 'Álvaro Ares'.split('');
+const aboutChars = t('nav.about').split('');
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50" id="main-nav">
@@ -14,41 +17,33 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
       href={homeHref}
       data-transition-line1={t('transition.home.line1')}
       data-transition-line2={t('transition.home.line2')}
-      class="text-ink text-[15px] font-medium tracking-[-0.3px] relative group"
+      class="nav-char-link text-ink text-[15px] font-medium tracking-[-0.3px]"
     >
-      <span>Álvaro Ares</span>
-      <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
+      <span class="nav-text">
+        {nameChars.map((char) => (
+          <span class="nav-char">{char === ' ' ? '\u00A0' : char}</span>
+        ))}
+      </span>
     </a>
     <div class="flex items-center gap-lg">
       <a
         href={aboutHref}
         data-transition-line1={t('transition.about.line1')}
         data-transition-line2={t('transition.about.line2')}
-        class="text-muted text-[13px] font-normal tracking-[-0.2px] hover:text-ink transition-colors duration-200 relative group"
+        class="nav-char-link text-muted text-[13px] font-normal tracking-[-0.2px]"
       >
-        <span>{t('nav.about')}</span>
-        <span class="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-accent transition-all duration-300 ease-out group-hover:w-full"></span>
+        <span class="nav-text">
+          {aboutChars.map((char) => (
+            <span class="nav-char">{char === ' ' ? '\u00A0' : char}</span>
+          ))}
+        </span>
       </a>
       <a href="mailto:hey@alvaroar.es" class="inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
         {t('nav.contact')}
       </a>
       <div class="theme-toggle" role="group" aria-label="Theme">
-        <button class="theme-opt is-active" data-theme="warm" aria-label="Warm theme" aria-pressed="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-          </svg>
-        </button>
-        <button class="theme-opt" data-theme="cold" aria-label="Cold theme" aria-pressed="false">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <line x1="12" y1="2" x2="12" y2="22"/>
-            <path d="m20 16-4-4 4-4"/>
-            <path d="m4 8 4 4-4 4"/>
-            <path d="m16 4-4 4-4-4"/>
-            <path d="m8 20 4-4 4 4"/>
-          </svg>
-        </button>
+        <button class="theme-dot is-active" data-theme="warm" aria-label="Warm theme" aria-pressed="true"></button>
+        <button class="theme-dot" data-theme="cold" aria-label="Cold theme" aria-pressed="false"></button>
       </div>
       <LanguageSwitcher />
     </div>
@@ -82,67 +77,126 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     -webkit-backdrop-filter: blur(16px);
   }
 
+  /* Nav char links */
+  .nav-char-link {
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .nav-text {
+    display: inline-block;
+  }
+
+  .nav-char {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  /* Theme dots */
   .theme-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 2px;
-    padding: 3px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--color-ink) 6%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    gap: 8px;
   }
 
-  .theme-opt {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 999px;
-    color: var(--color-muted);
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  .theme-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+    background: transparent;
   }
 
-  .theme-opt:hover {
-    color: var(--color-ink);
+  .theme-dot:hover {
+    transform: scale(1.2);
   }
 
-  .theme-opt.is-active {
-    background: var(--color-ink);
-    color: var(--color-canvas);
+  .theme-dot.is-active {
+    border-color: var(--color-ink);
+    transform: scale(1.1);
   }
 
-  .theme-opt.is-active:hover {
-    color: var(--color-canvas);
+  .theme-dot[data-theme="warm"] {
+    background: #e8a838;
+  }
+
+  .theme-dot[data-theme="cold"] {
+    background: #2596a8;
+  }
+
+  .theme-dot:not(.is-active) {
+    opacity: 0.4;
+  }
+
+  .theme-dot:not(.is-active):hover {
+    opacity: 0.85;
   }
 </style>
 
 <script>
+  import { gsap } from 'gsap';
+
+  /* ── Theme Toggle ── */
   const STORAGE_KEY = 'aa-theme';
   const root = document.documentElement;
   const stored = localStorage.getItem(STORAGE_KEY);
   const initial = stored === 'cold' || stored === 'warm' ? stored : 'warm';
   root.setAttribute('data-theme', initial);
 
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-opt');
-
-  const sync = (theme: string) => {
-    buttons.forEach((btn) => {
-      const isActive = btn.dataset.theme === theme;
-      btn.classList.toggle('is-active', isActive);
-      btn.setAttribute('aria-pressed', String(isActive));
+  const dots = document.querySelectorAll<HTMLButtonElement>('.theme-dot');
+  const syncTheme = (theme: string) => {
+    dots.forEach((dot) => {
+      const isActive = dot.dataset.theme === theme;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-pressed', String(isActive));
     });
   };
+  syncTheme(initial);
 
-  sync(initial);
-
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.theme;
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const theme = dot.dataset.theme;
       if (!theme) return;
       root.setAttribute('data-theme', theme);
       localStorage.setItem(STORAGE_KEY, theme);
-      sync(theme);
+      syncTheme(theme);
+    });
+  });
+
+  /* ── Per-character hover ── */
+  document.querySelectorAll<HTMLElement>('.nav-char-link').forEach((link) => {
+    const chars = link.querySelectorAll<HTMLElement>('.nav-char');
+    if (!chars.length) return;
+
+    // Initial dim state
+    gsap.set(chars, { opacity: 0.55, y: 0 });
+
+    let hoverTween: gsap.core.Tween | null = null;
+
+    link.addEventListener('mouseenter', () => {
+      if (hoverTween) hoverTween.kill();
+      hoverTween = gsap.to(chars, {
+        opacity: 1,
+        y: -2,
+        duration: 0.25,
+        stagger: 0.025,
+        ease: 'power2.out',
+      });
+    });
+
+    link.addEventListener('mouseleave', () => {
+      if (hoverTween) hoverTween.kill();
+      hoverTween = gsap.to(chars, {
+        opacity: 0.55,
+        y: 0,
+        duration: 0.25,
+        stagger: 0.025,
+        ease: 'power2.in',
+      });
     });
   });
 </script>
