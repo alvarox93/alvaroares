@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://alvaroar.es',
+  prefetch: true,
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'en',

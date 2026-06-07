@@ -107,6 +107,16 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     const STORAGE_KEY = 'aa-page-transition';
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
 
+    function removeAntiFlash() {
+      var el = document.getElementById('aa-anti-flash');
+      if (el) el.remove();
+    }
+
+    function revealBody() {
+      var st = document.getElementById('aa-body-hide');
+      if (st) st.remove();
+    }
+
     function setWords(text: string) {
       const words = text.trim().split(/\s+/).filter(Boolean);
       content.innerHTML = words.map((w) => `<span class="word">${w}</span>`).join('');
@@ -130,6 +140,7 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       if (safetyTimer) clearTimeout(safetyTimer);
       safetyTimer = setTimeout(() => {
         forceHidden();
+        revealBody();
       }, 3500);
     }
 
@@ -142,12 +153,13 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
 
     // --- ENTRADA: ejecutada SIEMPRE en cada carga / restauración ---
     function playEnter() {
+      removeAntiFlash();
       clearSafety();
       forceVisible();
 
       const words = getWordEls();
       if (!words.length) {
-        gsap.to(transition, { opacity: 0, duration: 0.4, ease: 'power2.inOut', onComplete: forceHidden });
+        gsap.to(transition, { opacity: 0, duration: 0.4, ease: 'power2.inOut', onComplete: () => { forceHidden(); revealBody(); } });
         return;
       }
 
@@ -155,37 +167,38 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
         onComplete: () => {
           clearSafety();
           forceHidden();
+          revealBody();
         },
       });
 
       // Palabras empiezan arriba y ocultas
-      tl.set(words, { y: -40, opacity: 0 });
+      tl.set(words, { y: -30, opacity: 0 });
 
-      // Caen de arriba abajo con stagger
+      // Caen de arriba abajo con stagger (más rápido para online)
       tl.to(words, {
         y: 0,
         opacity: 1,
-        duration: 0.7,
-        stagger: 0.1,
+        duration: 0.5,
+        stagger: 0.08,
         ease: 'power3.out',
       });
 
       // Flash read
-      tl.to({}, { duration: 0.55 });
+      tl.to({}, { duration: 0.4 });
 
       // Se desvanecen hacia abajo
       tl.to(words, {
-        y: 20,
+        y: 15,
         opacity: 0,
-        duration: 0.4,
-        stagger: 0.05,
+        duration: 0.3,
+        stagger: 0.04,
         ease: 'power2.in',
       });
 
       // Overlay blanco se desvanece revelando la página
       tl.to(transition, {
         opacity: 0,
-        duration: 0.65,
+        duration: 0.5,
         ease: 'power2.inOut',
       });
 
@@ -205,17 +218,17 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
 
       const tl = gsap.timeline({ onComplete });
 
-      tl.set(words, { y: -40, opacity: 0 });
+      tl.set(words, { y: -30, opacity: 0 });
 
       tl.to(words, {
         y: 0,
         opacity: 1,
-        duration: 0.7,
-        stagger: 0.1,
+        duration: 0.5,
+        stagger: 0.08,
         ease: 'power3.out',
       });
 
-      tl.to({}, { duration: 0.55 });
+      tl.to({}, { duration: 0.4 });
 
       safetyHide();
     }
@@ -230,7 +243,6 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     };
 
     // --- SIEMPRE ejecutar entrada ---
-    // "pageshow" se dispara en carga normal Y en restauración desde bfcache (botón atrás)
     const runEnter = () => {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -239,14 +251,12 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       });
     };
 
-    // Intentar ejecutar ahora si el DOM ya está listo
     if (document.readyState !== 'loading') {
       runEnter();
     } else {
       document.addEventListener('DOMContentLoaded', runEnter);
     }
 
-    // También en pageshow (captura bfcache del navegador)
     window.addEventListener('pageshow', () => {
       runEnter();
     });
