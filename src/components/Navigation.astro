@@ -17,7 +17,7 @@ const aboutChars = t('nav.about').split('');
       href={homeHref}
       data-transition-line1={t('transition.home.line1')}
       data-transition-line2={t('transition.home.line2')}
-      class="nav-char-link text-ink text-[15px] font-medium tracking-[-0.3px]"
+      class="nav-char-link nav-name text-ink text-[15px] font-medium tracking-[-0.3px]"
     >
       <span class="nav-text">
         {nameChars.map((char) => (
@@ -30,7 +30,7 @@ const aboutChars = t('nav.about').split('');
         href={aboutHref}
         data-transition-line1={t('transition.about.line1')}
         data-transition-line2={t('transition.about.line2')}
-        class="nav-char-link text-muted text-[13px] font-normal tracking-[-0.2px]"
+        class="nav-char-link nav-about text-[13px] font-normal tracking-[-0.2px]"
       >
         <span class="nav-text">
           {aboutChars.map((char) => (
@@ -38,14 +38,14 @@ const aboutChars = t('nav.about').split('');
           ))}
         </span>
       </a>
-      <a href="mailto:hey@alvaroar.es" class="inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-        {t('nav.contact')}
-      </a>
       <div class="theme-toggle" role="group" aria-label="Theme">
         <button class="theme-dot is-active" data-theme="warm" aria-label="Warm theme" aria-pressed="true"></button>
         <button class="theme-dot" data-theme="cold" aria-label="Cold theme" aria-pressed="false"></button>
       </div>
       <LanguageSwitcher />
+      <a href="mailto:hey@alvaroar.es" class="inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+        {t('nav.contact')}
+      </a>
     </div>
   </div>
 </nav>
@@ -90,7 +90,16 @@ const aboutChars = t('nav.about').split('');
 
   .nav-char {
     display: inline-block;
-    will-change: transform, opacity;
+    will-change: transform;
+  }
+
+  .nav-about {
+    color: var(--color-muted);
+    transition: color 0.25s ease;
+  }
+
+  .nav-about:hover {
+    color: var(--color-ink);
   }
 
   /* Theme dots */
@@ -172,18 +181,14 @@ const aboutChars = t('nav.about').split('');
     const chars = link.querySelectorAll<HTMLElement>('.nav-char');
     if (!chars.length) return;
 
-    // Initial dim state
-    gsap.set(chars, { opacity: 0.55, y: 0 });
-
     let hoverTween: gsap.core.Tween | null = null;
 
     link.addEventListener('mouseenter', () => {
       if (hoverTween) hoverTween.kill();
       hoverTween = gsap.to(chars, {
-        opacity: 1,
         y: -2,
-        duration: 0.25,
-        stagger: 0.025,
+        duration: 0.2,
+        stagger: 0.02,
         ease: 'power2.out',
       });
     });
@@ -191,10 +196,9 @@ const aboutChars = t('nav.about').split('');
     link.addEventListener('mouseleave', () => {
       if (hoverTween) hoverTween.kill();
       hoverTween = gsap.to(chars, {
-        opacity: 0.55,
         y: 0,
-        duration: 0.25,
-        stagger: 0.025,
+        duration: 0.2,
+        stagger: 0.02,
         ease: 'power2.in',
       });
     });
