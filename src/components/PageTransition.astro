@@ -30,6 +30,7 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
   }
 
   .page-transition.is-done {
+    opacity: 0;
     pointer-events: none;
   }
 
@@ -61,14 +62,13 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     letter-spacing: -0.01em;
     color: var(--color-ink, #1a1a1a);
     opacity: 0;
-    transform: translateY(-40px);
     will-change: transform, opacity;
   }
 
-  /* Fallback: si JS nunca carga o falla, el overlay se oculta solo después de 3s */
+  /* Fallback: si JS nunca carga, el overlay se oculta solo después de 4s */
   @media (prefers-reduced-motion: no-preference) {
     .page-transition {
-      animation: pt-safety-fade 0.5s ease-out 3s forwards;
+      animation: pt-safety-fade 0.6s ease-out 4s forwards;
     }
   }
 
@@ -94,28 +94,14 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion || !transition || !content) {
-      if (transition) {
-        transition.style.opacity = '0';
-        transition.style.pointerEvents = 'none';
-      }
+      if (transition) transition.classList.add('is-done');
       return;
     }
 
-    // Cancelar la animación CSS de fallback para que no interfiera
+    // Cancelar CSS fallback para que GSAP lo controle
     transition.style.animation = 'none';
 
     const STORAGE_KEY = 'aa-page-transition';
-    let safetyTimer: ReturnType<typeof setTimeout> | null = null;
-
-    function removeAntiFlash() {
-      var el = document.getElementById('aa-anti-flash');
-      if (el) el.remove();
-    }
-
-    function revealBody() {
-      var st = document.getElementById('aa-body-hide');
-      if (st) st.remove();
-    }
 
     function setWords(text: string) {
       const words = text.trim().split(/\s+/).filter(Boolean);
@@ -136,45 +122,24 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       gsap.set(transition, { opacity: 0, pointerEvents: 'none' });
     }
 
-    function safetyHide() {
-      if (safetyTimer) clearTimeout(safetyTimer);
-      safetyTimer = setTimeout(() => {
-        forceHidden();
-        revealBody();
-      }, 3500);
-    }
-
-    function clearSafety() {
-      if (safetyTimer) {
-        clearTimeout(safetyTimer);
-        safetyTimer = null;
-      }
-    }
-
-    // --- ENTRADA: ejecutada SIEMPRE en cada carga / restauración ---
+    // --- ENTRADA: siempre al cargar / restaurar ---
     function playEnter() {
-      removeAntiFlash();
-      clearSafety();
       forceVisible();
 
       const words = getWordEls();
       if (!words.length) {
-        gsap.to(transition, { opacity: 0, duration: 0.4, ease: 'power2.inOut', onComplete: () => { forceHidden(); revealBody(); } });
+        gsap.to(transition, { opacity: 0, duration: 0.5, ease: 'power2.inOut', onComplete: forceHidden });
         return;
       }
 
       const tl = gsap.timeline({
-        onComplete: () => {
-          clearSafety();
-          forceHidden();
-          revealBody();
-        },
+        onComplete: forceHidden,
       });
 
-      // Palabras empiezan arriba y ocultas
+      // Empiezan arriba, ocultas
       tl.set(words, { y: -30, opacity: 0 });
 
-      // Caen de arriba abajo con stagger (más rápido para online)
+      // Caen
       tl.to(words, {
         y: 0,
         opacity: 1,
@@ -195,19 +160,16 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
         ease: 'power2.in',
       });
 
-      // Overlay blanco se desvanece revelando la página
+      // Overlay fade out
       tl.to(transition, {
         opacity: 0,
         duration: 0.5,
         ease: 'power2.inOut',
       });
-
-      safetyHide();
     }
 
     // --- SALIDA ---
     function playExit(onComplete: () => void) {
-      clearSafety();
       forceVisible();
 
       const words = getWordEls();
@@ -229,8 +191,6 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       });
 
       tl.to({}, { duration: 0.4 });
-
-      safetyHide();
     }
 
     (window as any).__pageTransition = {
@@ -242,7 +202,6 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       },
     };
 
-    // --- SIEMPRE ejecutar entrada ---
     const runEnter = () => {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -257,8 +216,6 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
       document.addEventListener('DOMContentLoaded', runEnter);
     }
 
-    window.addEventListener('pageshow', () => {
-      runEnter();
-    });
+    window.addEventListener('pageshow', runEnter);
   })();
 </script>

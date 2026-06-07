@@ -37,26 +37,6 @@ const { title, description = lang === 'es'
 
     <script is:inline>
       (function() {
-        // Anti-flash: overlay blanco inmediato + body oculto
-        var d = document.createElement('div');
-        d.id = 'aa-anti-flash';
-        d.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#ffffff;';
-        document.documentElement.appendChild(d);
-        var s = document.createElement('style');
-        s.id = 'aa-body-hide';
-        s.textContent = 'body { visibility: hidden !important; }';
-        document.head.appendChild(s);
-        // Fallback de seguridad: si JS nunca carga, revelar a los 3s
-        setTimeout(function() {
-          var el = document.getElementById('aa-anti-flash');
-          if (el) el.remove();
-          var st = document.getElementById('aa-body-hide');
-          if (st) st.remove();
-        }, 3000);
-      })();
-    </script>
-    <script is:inline>
-      (function() {
         var path = window.location.pathname;
         if (/^\/(en|es)(\/|$)/.test(path)) return;
         if (path.startsWith('/_') || path.startsWith('/api/') || path.startsWith('/@') || path.startsWith('/__')) return;
