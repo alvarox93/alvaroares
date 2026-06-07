@@ -10,7 +10,7 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
 
 <div id="page-transition" class="page-transition" aria-hidden="true">
   <div class="transition-bg"></div>
-  <div class="transition-content" id="trans-content">
+  <div class="transition-content">
     {words.map((w) => (
       <span class="word">{w}</span>
     ))}
@@ -27,11 +27,6 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     justify-content: center;
     opacity: 1;
     pointer-events: all;
-  }
-
-  .page-transition.is-done {
-    opacity: 0;
-    pointer-events: none;
   }
 
   .transition-bg {
@@ -62,14 +57,43 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
     letter-spacing: -0.01em;
     color: var(--color-ink, #1a1a1a);
     opacity: 0;
+    transform: translateY(-30px);
     will-change: transform, opacity;
   }
 
-  /* Fallback: si JS nunca carga, ocultar a los 5s */
-  @media (prefers-reduced-motion: no-preference) {
-    .page-transition {
-      animation: pt-safety 0.6s ease-out 5s forwards;
-    }
+  /* --- Animación activa cuando .is-animating está presente --- */
+
+  .page-transition.is-animating .word {
+    animation: word-cycle 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .page-transition.is-animating .word:nth-child(1) { animation-delay: 0s; }
+  .page-transition.is-animating .word:nth-child(2) { animation-delay: 0.08s; }
+  .page-transition.is-animating .word:nth-child(3) { animation-delay: 0.16s; }
+  .page-transition.is-animating .word:nth-child(4) { animation-delay: 0.24s; }
+  .page-transition.is-animating .word:nth-child(5) { animation-delay: 0.32s; }
+  .page-transition.is-animating .word:nth-child(6) { animation-delay: 0.40s; }
+
+  @keyframes word-cycle {
+    0%   { transform: translateY(-30px); opacity: 0; }
+    36.7%{ transform: translateY(0);     opacity: 1; }
+    66.7%{ transform: translateY(0);     opacity: 1; }
+    90%  { transform: translateY(15px);  opacity: 0; }
+    100% { transform: translateY(15px);  opacity: 0; }
+  }
+
+  .page-transition.is-animating {
+    animation: overlay-fade 0.55s ease-in-out 1.9s forwards;
+  }
+
+  @keyframes overlay-fade {
+    from { opacity: 1; pointer-events: all; }
+    to   { opacity: 0; pointer-events: none; }
+  }
+
+  /* Fallback si el script nunca corre: ocultar a los 5s */
+  .page-transition:not(.is-animating) {
+    animation: pt-safety 0.6s ease-out 5s forwards;
   }
 
   @keyframes pt-safety {
@@ -78,88 +102,53 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .page-transition {
+    .page-transition,
+    .page-transition.is-animating,
+    .page-transition:not(.is-animating) {
       animation: none !important;
       display: none !important;
     }
   }
 </style>
 
-<script>
-  import { gsap } from 'gsap';
-
+<script is:inline>
   (function() {
-    const overlay = document.getElementById('page-transition');
-    if (!overlay) return;
+    function run() {
+      var overlay = document.getElementById('page-transition');
+      if (!overlay) return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      overlay.classList.add('is-done');
-      return;
+      // Respectar prefers-reduced-motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        overlay.style.display = 'none';
+        return;
+      }
+
+      // Limpiar estilos inline de animaciones anteriores o bfcache
+      overlay.style.opacity = '';
+      overlay.style.pointerEvents = '';
+      overlay.style.transition = '';
+      overlay.style.animation = '';
+
+      var words = overlay.querySelectorAll('.word');
+      for (var i = 0; i < words.length; i++) {
+        words[i].style.transform = '';
+        words[i].style.opacity = '';
+        words[i].style.animation = '';
+      }
+
+      // Reiniciar: quitar clase, forzar reflow, volver a añadir
+      overlay.classList.remove('is-animating');
+      void overlay.offsetHeight;
+      overlay.classList.add('is-animating');
     }
 
-    // Cancelar CSS fallback
-    overlay.style.animation = 'none';
-
-    function forceVisible() {
-      overlay.classList.remove('is-done');
-      gsap.set(overlay, { opacity: 1, pointerEvents: 'all' });
-    }
-
-    function forceHidden() {
-      overlay.classList.add('is-done');
-      gsap.set(overlay, { opacity: 0, pointerEvents: 'none' });
-    }
-
-    function runEntrance() {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          forceVisible();
-
-          const words = overlay.querySelectorAll<HTMLElement>('.word');
-          if (!words.length) {
-            gsap.to(overlay, { opacity: 0, duration: 0.5, ease: 'power2.inOut', onComplete: forceHidden });
-            return;
-          }
-
-          const tl = gsap.timeline({ onComplete: forceHidden });
-
-          // Caen desde arriba (fromTo fuerza el estado inicial real)
-          tl.fromTo(words,
-            { y: -30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.55, stagger: 0.08, ease: 'power3.out' }
-          );
-
-          // Flash read
-          tl.to({}, { duration: 0.45 });
-
-          // Se desvanecen hacia abajo
-          tl.to(words, {
-            y: 15,
-            opacity: 0,
-            duration: 0.35,
-            stagger: 0.04,
-            ease: 'power2.in',
-          });
-
-          // Overlay fade out
-          tl.to(overlay, {
-            opacity: 0,
-            duration: 0.55,
-            ease: 'power2.inOut',
-          });
-        });
-      });
-    }
-
-    // Ejecutar en carga inicial
     if (document.readyState !== 'loading') {
-      runEntrance();
+      run();
     } else {
-      document.addEventListener('DOMContentLoaded', runEntrance);
+      document.addEventListener('DOMContentLoaded', run);
     }
 
-    // Ejecutar también en pageshow (captura bfcache / back button / forward)
-    window.addEventListener('pageshow', runEntrance);
+    // back/forward/bfcache
+    window.addEventListener('pageshow', run);
   })();
 </script>
