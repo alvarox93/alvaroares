@@ -124,20 +124,11 @@ const words = line1.trim().split(/\s+/).filter(Boolean);
 
           const tl = gsap.timeline({ onComplete: forceHidden });
 
-          // Estado inicial: arriba y ocultas
-          tl.set(words, { y: -30, opacity: 0 });
-
-          // Delay para que el overlay sea visible antes de animar
-          tl.to({}, { duration: 0.15 });
-
-          // Caen
-          tl.to(words, {
-            y: 0,
-            opacity: 1,
-            duration: 0.55,
-            stagger: 0.08,
-            ease: 'power3.out',
-          });
+          // Caen desde arriba (fromTo fuerza el estado inicial real)
+          tl.fromTo(words,
+            { y: -30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.55, stagger: 0.08, ease: 'power3.out' }
+          );
 
           // Flash read
           tl.to({}, { duration: 0.45 });
