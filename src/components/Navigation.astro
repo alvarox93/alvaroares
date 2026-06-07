@@ -38,10 +38,30 @@ const aboutChars = t('nav.about').split('');
           ))}
         </span>
       </a>
-      <LanguageSwitcher />
       <a href="mailto:hey@alvaroar.es" class="inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
         {t('nav.contact')}
       </a>
+      <button class="theme-knob" aria-label="Toggle color theme" data-theme-knob>
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <svg class="theme-icon-snow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="2" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+          <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+          <line x1="12" y1="2" x2="10" y2="6"/>
+          <line x1="12" y1="2" x2="14" y2="6"/>
+          <line x1="12" y1="22" x2="10" y2="18"/>
+          <line x1="12" y1="22" x2="14" y2="18"/>
+          <line x1="2" y1="12" x2="6" y2="10"/>
+          <line x1="2" y1="12" x2="6" y2="14"/>
+          <line x1="22" y1="12" x2="18" y2="10"/>
+          <line x1="22" y1="12" x2="18" y2="14"/>
+        </svg>
+      </button>
+      <LanguageSwitcher />
     </div>
   </div>
 </nav>
@@ -97,10 +117,87 @@ const aboutChars = t('nav.about').split('');
   .nav-about:hover {
     color: var(--color-ink);
   }
+
+  /* Theme knob in nav */
+  .theme-knob {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-border);
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--color-muted);
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .theme-knob:hover {
+    transform: scale(1.1);
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+
+  .theme-knob:active {
+    transform: scale(0.92);
+  }
+
+  .theme-icon-sun,
+  .theme-icon-snow {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .theme-icon-sun {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .theme-icon-snow {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  .theme-knob.is-cold .theme-icon-sun {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  .theme-knob.is-cold .theme-icon-snow {
+    opacity: 1;
+    transform: scale(1);
+  }
 </style>
 
 <script>
   import { gsap } from 'gsap';
+
+  /* ── Theme Toggle ── */
+  const STORAGE_KEY = 'aa-theme';
+  const root = document.documentElement;
+  const stored = localStorage.getItem(STORAGE_KEY);
+  const initial = stored === 'cold' || stored === 'warm' ? stored : 'warm';
+  root.setAttribute('data-theme', initial);
+
+  const knob = document.querySelector<HTMLButtonElement>('[data-theme-knob]');
+  function syncKnob(theme: string) {
+    if (!knob) return;
+    knob.classList.toggle('is-cold', theme === 'cold');
+    knob.setAttribute('aria-pressed', String(theme === 'warm'));
+  }
+  syncKnob(initial);
+
+  knob?.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') || 'warm';
+    const next = current === 'warm' ? 'cold' : 'warm';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
+    syncKnob(next);
+  });
 
   /* ── Per-character hover ── */
   document.querySelectorAll<HTMLElement>('.nav-char-link').forEach((link) => {
