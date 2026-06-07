@@ -6,10 +6,15 @@ const t = useTranslations(lang);
 ---
 
 <div class="theme-widget" aria-label="Theme toggle">
-  <div class="theme-bubble">
-    <span class="theme-bubble-text">{t('theme.tooltip')}</span>
-  </div>
-  <button class="theme-knob" aria-label="Toggle color theme" data-theme-knob></button>
+  <button class="theme-knob" aria-label="Toggle color theme" data-theme-knob>
+    <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+    </svg>
+    <svg class="theme-icon-cold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M6.34 17.66l2.83-2.83M14.83 9.17l2.83-2.83"/>
+    </svg>
+  </button>
 </div>
 
 <style>
@@ -18,72 +23,67 @@ const t = useTranslations(lang);
     bottom: 28px;
     right: 28px;
     z-index: 9990;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
   }
 
   .theme-knob {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 2px solid var(--color-border-light);
+    border: 1.5px solid var(--color-border);
     padding: 0;
     cursor: pointer;
-    flex-shrink: 0;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
-    background: var(--accent);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-canvas);
+    color: var(--color-muted);
+    transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
   }
 
   .theme-knob:hover {
-    transform: scale(1.15);
+    transform: scale(1.1);
+    border-color: var(--color-ink);
+    color: var(--color-ink);
   }
 
   .theme-knob:active {
     transform: scale(0.92);
   }
 
-  .theme-bubble {
-    opacity: 0;
-    transform: translateY(6px);
-    pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    padding: 6px 14px;
-    background: var(--color-ink);
-    color: var(--color-canvas);
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  }
-
-  .theme-widget:hover .theme-bubble,
-  .theme-widget:focus-within .theme-bubble {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Small arrow pointing down */
-  .theme-bubble::after {
-    content: '';
+  .theme-icon-sun,
+  .theme-icon-cold {
+    width: 16px;
+    height: 16px;
     position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid var(--color-ink);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
-  .theme-bubble-text {
-    position: relative;
-    z-index: 1;
+  .theme-icon-sun {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .theme-icon-cold {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  .theme-knob.is-cold .theme-icon-sun {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  .theme-knob.is-cold .theme-icon-cold {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-icon-sun,
+    .theme-icon-cold {
+      transition: none;
+    }
   }
 </style>
 
@@ -98,7 +98,7 @@ const t = useTranslations(lang);
     var knob = document.querySelector('[data-theme-knob]');
     function syncKnob(theme) {
       if (!knob) return;
-      knob.style.background = theme === 'warm' ? '#e8a838' : '#2596a8';
+      knob.classList.toggle('is-cold', theme === 'cold');
       knob.setAttribute('aria-pressed', String(theme === 'warm'));
     }
     syncKnob(initial);
