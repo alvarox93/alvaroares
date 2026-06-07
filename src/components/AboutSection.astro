@@ -1,3 +1,10 @@
+---
+import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+---
+
 <section class="py-section px-xl lg:px-3xl bg-canvas" id="about">
   <div class="max-w-[1200px] mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl items-start">
@@ -11,7 +18,7 @@
         <p class="text-[16px] leading-[1.65] text-muted mb-xl">
           I've directed visual production across CGI, motion, brand and digital product. I lead teams, define creative systems, and bridge aesthetic craft with strategic thinking. Now exploring the frontier where design meets AI and engineering.
         </p>
-        <a href="/about" class="group inline-flex items-center gap-sm text-ink text-[13px] font-medium tracking-[-0.2px] transition-all duration-300 hover:text-accent">
+        <a href="/about" data-transition-line1={t('transition.about.line1')} class="group inline-flex items-center gap-sm text-ink text-[13px] font-medium tracking-[-0.2px] transition-all duration-300 hover:text-accent">
           <span class="w-[40px] h-[1px] bg-ink transition-all duration-300 group-hover:w-[60px] group-hover:bg-accent"></span>
           More about me
         </a>

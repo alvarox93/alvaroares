@@ -46,7 +46,7 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">HTML/CSS</span>
               <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">AI Workflows</span>
             </div>
-            <a href={aboutHref} class="magnetic inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+            <a href={aboutHref} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
               {t('home.about.cta')}
             </a>
           </div>
