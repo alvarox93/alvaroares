@@ -16,17 +16,11 @@ const backHref = lang === defaultLang ? '/' : '/es';
   <Navigation />
 
   <main class="bg-canvas min-h-screen">
-    <div class="sticky top-16 z-20 bg-canvas/85 backdrop-blur-lg py-4 px-xl lg:px-3xl border-b border-border-light">
-      <div class="max-w-[1200px] mx-auto flex justify-between items-center">
-        <span class="inline-flex items-center gap-sm text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">
-          <span class="accent-dot"></span>
-          {t('lapatzak.title')}
-        </span>
-        <a href={backHref} class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200">&larr; {t('nav.back')}</a>
-      </div>
-    </div>
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-2xl lg:pt-3xl pb-section">
 
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
+      <a href={backHref} class="inline-block text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200 mb-2xl">
+        {t('nav.backToHome')}
+      </a>
 
       <div class="mb-3xl">
         <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('lapatzak.meta')}</span>

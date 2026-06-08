@@ -16,208 +16,230 @@ const backHref = lang === defaultLang ? '/' : '/es';
   <Navigation />
 
   <main class="bg-warm min-h-screen">
-    <div class="sticky top-16 z-20 bg-warm/85 backdrop-blur-lg py-4 px-xl lg:px-3xl border-b border-border-light">
-      <div class="max-w-[1200px] mx-auto flex justify-between items-center">
-        <span class="inline-flex items-center gap-sm text-ghost text-[11px] font-medium tracking-[0.14px] uppercase">
-          <span class="accent-dot"></span>
-          {t('koora.title')}
-        </span>
-        <a href={backHref} class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200">&larr; {t('nav.back')}</a>
-      </div>
-    </div>
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
 
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
+      <!-- Back -->
+      <a href={backHref} class="inline-block text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200 pt-2xl lg:pt-3xl mb-2xl">
+        {t('nav.backToHome')}
+      </a>
 
-      <div class="mb-3xl">
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('koora.meta')}</span>
-        <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-xl">
+      <!-- Hero -->
+      <section class="relative pb-2xl">
+        <div class="hero-blob" style="top: -60px; right: -80px;"></div>
+
+        <span class="relative text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('koora.meta')}</span>
+        <h1 class="relative text-[clamp(42px,6vw,76px)] font-light leading-[0.98] tracking-[-0.05em] text-ink text-balance mb-lg max-w-[800px]">
           {t('koora.heading')}
         </h1>
-        <p class="text-[17px] leading-[1.65] text-muted max-w-[560px]">
-          <strong class="text-ink font-medium">{t('koora.lede')}</strong> {t('koora.ledeBold')}
+        <p class="relative text-[clamp(17px,2vw,22px)] leading-[1.65] text-muted max-w-[640px] mb-3xl">
+          <strong class="text-ink font-medium">{t('koora.lede')}</strong>{t('koora.ledeBold')}
         </p>
-      </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl mb-3xl">
-        <div class="lg:col-span-3">
-          <div class="bg-canvas rounded-xl border border-border-light p-xl">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">{t('koora.stats.years')}</span>
-            <span class="font-accent text-[clamp(36px,4vw,56px)] font-bold leading-none tracking-[-0.04em] text-ink">8+</span>
+        <!-- Showreel -->
+        <div class="relative aspect-[16/9] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm">
+          <video
+            class="absolute inset-0 w-full h-full object-cover"
+            controls
+            playsinline
+            poster="[POSTER_URL]"
+          >
+            <source src="[VIDEO_URL]" type="video/mp4" />
+          </video>
+          <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/80 to-transparent">
+            <span class="text-canvas/80 text-[13px] font-medium">
+              {t('koora.video.caption.showreel')}
+            </span>
           </div>
         </div>
-        <div class="lg:col-span-3">
-          <div class="bg-canvas rounded-xl border border-border-light p-xl">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">{t('koora.stats.projects')}</span>
-            <span class="font-accent text-[clamp(36px,4vw,56px)] font-bold leading-none tracking-[-0.04em] text-ink">150+</span>
-          </div>
-        </div>
-        <div class="lg:col-span-3">
-          <div class="bg-canvas rounded-xl border border-border-light p-xl">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">{t('koora.stats.team')}</span>
-            <span class="font-accent text-[clamp(36px,4vw,56px)] font-bold leading-none tracking-[-0.04em] text-ink">8</span>
-          </div>
-        </div>
-        <div class="lg:col-span-3">
-          <div class="bg-canvas rounded-xl border border-border-light p-xl">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">{t('koora.stats.countries')}</span>
-            <span class="font-accent text-[clamp(36px,4vw,56px)] font-bold leading-none tracking-[-0.04em] text-ink">12+</span>
-          </div>
-        </div>
-      </div>
+      </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl mb-3xl">
-        <div class="lg:col-span-4">
-          <div class="bg-canvas rounded-xl border border-border-light p-xl h-full">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-lg">{t('koora.skills')}</span>
-            <div class="space-y-md">
-              <div class="flex items-center justify-between">
-                <span class="text-ink text-[14px] font-medium">{t('koora.skills.1')}</span>
-                <div class="w-24 h-1.5 bg-surface rounded-full overflow-hidden"><div class="w-full h-full bg-accent rounded-full"></div></div>
+      <!-- Metrics -->
+      <section class="mb-section-mobile lg:mb-section">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-sm lg:gap-lg">
+          <div class="bg-canvas rounded-xl border border-border-light p-lg lg:p-xl">
+            <span class="font-accent text-[clamp(36px,4.5vw,64px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('koora.stats.years.value')}</span>
+            <span class="text-ghost text-[12px] lg:text-[13px] font-medium leading-tight block">{t('koora.stats.years')}</span>
+          </div>
+          <div class="bg-canvas rounded-xl border border-border-light p-lg lg:p-xl">
+            <span class="font-accent text-[clamp(36px,4.5vw,64px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('koora.stats.projects.value')}</span>
+            <span class="text-ghost text-[12px] lg:text-[13px] font-medium leading-tight block">{t('koora.stats.projects')}</span>
+          </div>
+          <div class="bg-canvas rounded-xl border border-border-light p-lg lg:p-xl">
+            <span class="font-accent text-[clamp(36px,4.5vw,64px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('koora.stats.countries.value')}</span>
+            <span class="text-ghost text-[12px] lg:text-[13px] font-medium leading-tight block">{t('koora.stats.countries')}</span>
+          </div>
+          <div class="bg-canvas rounded-xl border border-border-light p-lg lg:p-xl">
+            <span class="font-accent text-[clamp(36px,4.5vw,64px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('koora.stats.languages.value')}</span>
+            <span class="text-ghost text-[12px] lg:text-[13px] font-medium leading-tight block">{t('koora.stats.languages')}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Narrative -->
+      <section class="mb-section-mobile lg:mb-section">
+        <div class="mb-3xl">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('koora.narrative.label')}</span>
+          <h2 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.06] tracking-[-0.04em] text-ink text-balance max-w-[600px]">
+            {t('koora.narrative.heading')}
+          </h2>
+        </div>
+
+        <!-- Block 01 — International reach -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-section relative">
+          <span class="hidden lg:block absolute -top-8 -left-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">01</span>
+          <div class="lg:col-span-7">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                controls
+                playsinline
+                poster="[POSTER_URL]"
+              >
+                <source src="[VIDEO_URL]" type="video/mp4" />
+              </video>
+              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
+                <span class="text-canvas/80 text-[12px] font-medium">
+                  {t('koora.video.caption.international')}
+                </span>
               </div>
-              <div class="flex items-center justify-between">
-                <span class="text-ink text-[14px] font-medium">{t('koora.skills.2')}</span>
-                <div class="w-24 h-1.5 bg-surface rounded-full overflow-hidden"><div class="w-[95%] h-full bg-accent rounded-full"></div></div>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-ink text-[14px] font-medium">{t('koora.skills.3')}</span>
-                <div class="w-24 h-1.5 bg-surface rounded-full overflow-hidden"><div class="w-[90%] h-full bg-accent rounded-full"></div></div>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-ink text-[14px] font-medium">{t('koora.skills.4')}</span>
-                <div class="w-24 h-1.5 bg-surface rounded-full overflow-hidden"><div class="w-[92%] h-full bg-accent rounded-full"></div></div>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-ink text-[14px] font-medium">{t('koora.skills.5')}</span>
-                <div class="w-24 h-1.5 bg-surface rounded-full overflow-hidden"><div class="w-[88%] h-full bg-accent rounded-full"></div></div>
+            </div>
+          </div>
+          <div class="lg:col-span-4 lg:col-start-9 lg:pt-3xl">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative1.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('koora.narrative1.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('koora.narrative1.body')}
+            </p>
+          </div>
+        </div>
+
+        <!-- Block 02 — Multilingual -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-section relative">
+          <span class="hidden lg:block absolute -top-8 -right-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">02</span>
+          <div class="lg:col-span-4 lg:order-1 lg:pt-3xl">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative2.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('koora.narrative2.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('koora.narrative2.body')}
+            </p>
+          </div>
+          <div class="lg:col-span-7 lg:col-start-6 lg:order-2">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                controls
+                playsinline
+                poster="[POSTER_URL]"
+              >
+                <source src="[VIDEO_URL]" type="video/mp4" />
+              </video>
+              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
+                <span class="text-canvas/80 text-[12px] font-medium">
+                  {t('koora.video.caption.multilingual')}
+                </span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="lg:col-span-4">
-          <div class="bg-canvas rounded-xl border border-border-light p-xl h-full">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-lg">{t('koora.tools')}</span>
-            <div class="flex flex-wrap gap-xs">
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">Maya</span>
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">V-Ray</span>
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">After Effects</span>
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">Cinema 4D</span>
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">Premiere Pro</span>
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">Photoshop</span>
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">Illustrator</span>
-              <span class="text-ink text-[12px] font-medium px-3 py-1.5 bg-surface rounded-lg">Figma</span>
-            </div>
-          </div>
+        <!-- Block 03 — Consistency — centered, editorial -->
+        <div class="max-w-[680px] mx-auto text-center py-section-mobile lg:py-section relative">
+          <span class="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 text-[140px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.025] select-none pointer-events-none">03</span>
+          <span class="relative text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-lg inline-block">{t('koora.narrative3.tag')}</span>
+          <h3 class="relative text-[clamp(24px,2.8vw,34px)] font-light leading-[1.15] tracking-[-0.03em] text-ink text-balance mb-md">
+            {t('koora.narrative3.title')}
+          </h3>
+          <p class="relative text-muted text-[16px] leading-[1.8]">
+            {t('koora.narrative3.body')}
+          </p>
         </div>
 
-        <div class="lg:col-span-4">
-          <div class="bg-canvas rounded-xl border border-border-light p-xl h-full">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-lg">{t('koora.services')}</span>
-            <div class="space-y-sm">
-              <div class="flex items-center gap-sm">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                <span class="text-ink text-[14px]">{t('koora.services.1')}</span>
-              </div>
-              <div class="flex items-center gap-sm">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                <span class="text-ink text-[14px]">{t('koora.services.2')}</span>
-              </div>
-              <div class="flex items-center gap-sm">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                <span class="text-ink text-[14px]">{t('koora.services.3')}</span>
-              </div>
-              <div class="flex items-center gap-sm">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                <span class="text-ink text-[14px]">{t('koora.services.4')}</span>
-              </div>
-              <div class="flex items-center gap-sm">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                <span class="text-ink text-[14px]">{t('koora.services.5')}</span>
+        <!-- Block 04 — Pipeline -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start relative">
+          <span class="hidden lg:block absolute -top-8 -left-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">04</span>
+          <div class="lg:col-span-7">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                controls
+                playsinline
+                poster="[POSTER_URL]"
+              >
+                <source src="[VIDEO_URL]" type="video/mp4" />
+              </video>
+              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
+                <span class="text-canvas/80 text-[12px] font-medium">
+                  {t('koora.video.caption.pipeline')}
+                </span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="mb-3xl">
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-lg">{t('koora.projects')}</span>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center mb-3xl">
-        <div class="lg:col-span-7">
-          <div class="relative aspect-[16/10] bg-canvas rounded-xl border border-border-light overflow-hidden group">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[CGI Product Rendering]</div>
-            <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
+          <div class="lg:col-span-4 lg:col-start-9 lg:pt-3xl">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative4.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('koora.narrative4.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('koora.narrative4.body')}
+            </p>
           </div>
         </div>
-        <div class="lg:col-span-4 lg:col-start-9">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('koora.project1.tag')}</span>
-          <h3 class="text-[20px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('koora.project1.title')}</h3>
-          <p class="text-muted text-[14px] leading-[1.55]">
-            <strong class="text-ink font-medium">{t('koora.project1.body')}</strong> {t('koora.project1.bodyBold')}
-          </p>
-        </div>
-      </div>
+      </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center mb-3xl">
-        <div class="lg:col-span-4 lg:order-1">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('koora.project2.tag')}</span>
-          <h3 class="text-[20px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('koora.project2.title')}</h3>
-          <p class="text-muted text-[14px] leading-[1.55]">
-            <strong class="text-ink font-medium">{t('koora.project2.body')}</strong> {t('koora.project2.bodyBold')}
-          </p>
-        </div>
-        <div class="lg:col-span-7 lg:col-start-6 lg:order-2">
-          <div class="relative aspect-[16/10] bg-canvas rounded-xl border border-border-light overflow-hidden group">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Motion Systems]</div>
-            <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
-        <div class="lg:col-span-7">
-          <div class="relative aspect-[16/10] bg-canvas rounded-xl border border-border-light overflow-hidden group">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Campaign Direction]</div>
-            <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/5 transition-colors duration-500"></div>
-          </div>
-        </div>
-        <div class="lg:col-span-4 lg:col-start-9">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('koora.project3.tag')}</span>
-          <h3 class="text-[20px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('koora.project3.title')}</h3>
-          <p class="text-muted text-[14px] leading-[1.55]">
-            <strong class="text-ink font-medium">{t('koora.project3.body')}</strong> {t('koora.project3.bodyBold')}
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-section">
-        <div class="border-t border-border-light pt-xl">
+      <!-- Industries -->
+      <section class="mb-section-mobile lg:mb-section">
+        <div class="border-t border-border-light pt-2xl">
           <p class="text-center text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xl">
-            {t('koora.clients')}
+            {t('koora.clients.label')}
           </p>
           <div class="overflow-hidden">
             <div class="marquee-track">
               <div class="flex items-center gap-4xl shrink-0 px-2xl">
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 01</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 02</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 03</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 04</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 05</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 06</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line1')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line2')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line3')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line4')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line5')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line6')}</span>
               </div>
               <div class="flex items-center gap-4xl shrink-0 px-2xl">
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 01</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 02</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 03</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 04</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 05</span>
-                <span class="text-[14px] font-medium tracking-[0.02px] text-muted/30 whitespace-nowrap">Client 06</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line1')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line2')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line3')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line4')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line5')}</span>
+                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line6')}</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="border-t border-border-light pt-2xl pb-section-mobile lg:pb-section text-center">
+        <h2 class="text-[clamp(24px,3vw,36px)] font-light leading-[1.15] tracking-[-0.03em] text-ink text-balance mb-sm">
+          {t('koora.portfolio.heading')}
+        </h2>
+        <p class="text-muted text-[16px] leading-[1.6] mb-xl max-w-[480px] mx-auto">
+          {t('koora.portfolio.subheading')}
+        </p>
+        <a
+          href="https://koora.studio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85"
+        >
+          {t('koora.portfolio.button')}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-sm"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+        <p class="text-ghost text-[12px] mt-md">
+          {t('koora.portfolio.cta')}
+        </p>
+      </section>
 
     </div>
   </main>
@@ -265,59 +287,123 @@ const backHref = lang === defaultLang ? '/' : '/es';
   }
 
   if (!prefersReducedMotion) {
-    const heroTitle = document.querySelector('main h1');
-    if (heroTitle) {
-      gsap.from(heroTitle, { y: 20, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.15 });
+    const heroHeading = document.querySelector('main h1');
+    if (heroHeading) {
+      gsap.from(heroHeading, { y: 24, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.1 });
     }
 
-    document.querySelectorAll('main .grid').forEach((grid) => {
-      const isShowcase = grid.classList.contains('items-center') && grid.querySelector('h3');
+    const heroLede = heroHeading?.closest('section')?.querySelector('p');
+    if (heroLede && heroHeading) {
+      gsap.from(heroLede, { y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out', delay: 0.25 });
+    }
 
-      if (isShowcase) {
-        const imageWrap = grid.querySelector('.aspect-\\[16\\/10\\]');
-        const textCol = grid.querySelector('h3')?.closest('div');
+    const heroVideo = document.querySelector('section:first-of-type .aspect-\\[16\\/9\\]');
+    if (heroVideo) {
+      gsap.from(heroVideo, {
+        scale: 0.96,
+        autoAlpha: 0,
+        duration: 0.95,
+        ease: 'power3.out',
+        delay: 0.2,
+      });
+    }
 
-        if (imageWrap) {
-          gsap.from(imageWrap, {
-            scale: 0.96, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
-            scrollTrigger: { trigger: grid, start: 'top 80%', once: true },
-          });
-          gsap.fromTo(imageWrap, { yPercent: 5 }, {
-            yPercent: -5, ease: 'none',
-            scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true },
-          });
-        }
+    const statsSection = document.querySelector('section:nth-of-type(2)');
+    if (statsSection) {
+      const statsCards = statsSection.querySelectorAll(':scope .grid > div');
+      gsap.from(statsCards, {
+        y: 24,
+        autoAlpha: 0,
+        duration: 0.55,
+        ease: 'power2.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: statsSection, start: 'top 80%', once: true },
+      });
+    }
 
-        if (textCol) {
-          const textEls = textCol.querySelectorAll(':scope > span, :scope > h3, :scope > p');
-          if (textEls.length) {
-            gsap.from(textEls, {
-              y: 18, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
-              scrollTrigger: { trigger: grid, start: 'top 78%', once: true },
-            });
-          }
-          gsap.fromTo(textCol, { y: 20 }, {
-            y: -20, ease: 'none',
-            scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true },
-          });
-        }
-      } else {
-        const children = grid.querySelectorAll(':scope > div');
-        if (children.length > 1) {
-          gsap.from(children, {
-            y: 16, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08,
-            scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
+    const narrativeSection = document.querySelector('section:nth-of-type(3)');
+    if (narrativeSection) {
+      const narrativeLabel = narrativeSection.querySelector(':scope > div:first-child span');
+      const narrativeHeading = narrativeSection.querySelector(':scope > div:first-child h2');
+      if (narrativeLabel) {
+        gsap.from(narrativeLabel, {
+          y: 12, autoAlpha: 0, duration: 0.5, ease: 'power2.out',
+          scrollTrigger: { trigger: narrativeLabel, start: 'top 88%', once: true },
+        });
+      }
+      if (narrativeHeading) {
+        gsap.from(narrativeHeading, {
+          y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: narrativeHeading, start: 'top 85%', once: true },
+        });
+      }
+    }
+
+    document.querySelectorAll('section:nth-of-type(3) .grid').forEach((grid) => {
+      const video = grid.querySelector('.aspect-\\[16\\/9\\]');
+      const textCol = grid.querySelector('h3')?.closest('div');
+      const bigNum = grid.querySelector('span[class*="120px"]');
+
+      if (bigNum) {
+        gsap.from(bigNum, {
+          autoAlpha: 0, duration: 1.2, ease: 'power3.out',
+          scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
+        });
+      }
+
+      if (video) {
+        gsap.from(video, {
+          scale: 0.95, autoAlpha: 0, duration: 0.75, ease: 'power2.out',
+          scrollTrigger: { trigger: grid, start: 'top 78%', once: true },
+        });
+        gsap.fromTo(video, { yPercent: 6 }, {
+          yPercent: -6, ease: 'none',
+          scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true },
+        });
+      }
+
+      if (textCol) {
+        const textEls = textCol.querySelectorAll(':scope > span, :scope > h3, :scope > p');
+        if (textEls.length) {
+          gsap.from(textEls, {
+            y: 18, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
+            scrollTrigger: { trigger: grid, start: 'top 76%', once: true },
           });
         }
       }
     });
 
-    document.querySelectorAll('main .border-t').forEach((el) => {
-      gsap.from(el, {
-        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    const centeredBlock = narrativeSection?.querySelector('.max-w-\\[680px\\]');
+    if (centeredBlock) {
+      const bigNum = centeredBlock.querySelector('span[class*="140px"]');
+      if (bigNum) {
+        gsap.from(bigNum, {
+          autoAlpha: 0, duration: 1.2, ease: 'power3.out',
+          scrollTrigger: { trigger: centeredBlock, start: 'top 85%', once: true },
+        });
+      }
+      const innerEls = centeredBlock.querySelectorAll(':scope > span:not([class*="140px"]), :scope > h3, :scope > p');
+      gsap.from(innerEls, {
+        y: 24, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12,
+        scrollTrigger: { trigger: centeredBlock, start: 'top 80%', once: true },
       });
-    });
+    }
+
+    const marqueeSection = document.querySelector('section:nth-of-type(4)');
+    if (marqueeSection) {
+      gsap.from(marqueeSection.querySelectorAll(':scope > div > p, :scope > div > div'), {
+        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+        scrollTrigger: { trigger: marqueeSection, start: 'top 88%', once: true },
+      });
+    }
+
+    const ctaSection = document.querySelector('section.border-t:last-of-type');
+    if (ctaSection) {
+      gsap.from(ctaSection.querySelectorAll(':scope > *'), {
+        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+        scrollTrigger: { trigger: ctaSection, start: 'top 88%', once: true },
+      });
+    }
 
     document.querySelectorAll('.magnetic').forEach((el) => {
       el.addEventListener('mousemove', (e) => {
