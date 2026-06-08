@@ -6,198 +6,674 @@ import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 const backHref = lang === defaultLang ? '/' : '/es';
+
+const renders = [
+  'cafe', 'bar', 'bonbon', 'bravas-1', 'bravas-2', 'chocolate-bar',
+  'churro', 'churros', 'coulant', 'gyoza', 'honey-cake', 'chocolate-hover',
+  'huesito', 'kortxo', 'macaron', 'matcha-cookies', 'panellet-1', 'panellet-2',
+  'panellet-3', 'pansuflado', 'pasta', 'pineapple', 'pringle', 'snack',
+  'spoonful', 'tea-matcha', 'topoki', 'waffle-honey'
+];
 ---
 
 <BaseLayout
-  title={lang === 'es' ? 'Renders — Álvaro Ares' : 'Renders — Álvaro Ares'}
+  title={lang === 'es' ? 'Eyes Eat First — Álvaro Ares' : 'Eyes Eat First — Álvaro Ares'}
   transitionLine1={t('transition.renders.line1')}
   transitionLine2={t('transition.renders.line2')}
 >
   <Navigation />
 
-  <main class="bg-warm min-h-screen">
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-2xl lg:pt-3xl pb-section">
+  <main class="immersive-canvas" id="immersive-canvas">
+    <a href={backHref} class="back-link">
+      {t('nav.backToHome')}
+    </a>
 
-      <a href={backHref} class="inline-block text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200 mb-2xl">
-        {t('nav.backToHome')}
+    <div class="infinite-grid" id="infinite-grid">
+      {Array.from({ length: 9 }, (_, tileIdx) => (
+        <div class="grid-tile" data-tile={tileIdx}>
+          {renders.map((file) => (
+            <div class="render-card">
+              <img
+                src={`/food-renders/${file}.webp`}
+                alt={`${file} — 3D food render`}
+                loading={tileIdx === 4 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <div class="hero-text" id="hero-text">
+      <h1>EYES<br />EATS<br />FIRST</h1>
+    </div>
+
+    <div class="cursor-ring" id="cursor-ring">
+      <span>View</span>
+    </div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <div class="stats-bar">
+      <div class="stats-bar__inner">
+        <div>
+          <span class="stats-bar__value">{t('renders.stats.1.value')}</span>
+          <span class="stats-bar__label">{t('renders.stats.1.label')}</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div>
+          <span class="stats-bar__value">{t('renders.stats.2.value')}</span>
+          <span class="stats-bar__label">{t('renders.stats.2.label')}</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div>
+          <span class="stats-bar__value">{t('renders.stats.3.value')}</span>
+          <span class="stats-bar__label">{t('renders.stats.3.label')}</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div>
+          <span class="stats-bar__value">{t('renders.stats.4.value')}</span>
+          <span class="stats-bar__label">{t('renders.stats.4.label')}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-cta">
+      <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="cta-button">
+        {t('renders.cta')}
       </a>
+    </div>
 
-      <div class="mb-3xl">
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('renders.meta')}</span>
-        <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-xl">
-          {t('renders.heading.line1')}<br />{t('renders.heading.line2')}
-        </h1>
-        <p class="text-[17px] leading-[1.65] text-muted max-w-[560px]">
-          <strong class="text-ink">{t('renders.lede')}</strong> {t('renders.ledeBold')}
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-xl border-t border-border-light pt-xl mb-3xl">
-        <div>
-          <span class="font-accent text-[clamp(28px,3.5vw,42px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('renders.stats.1.value')}</span>
-          <span class="text-ghost text-[11px] tracking-[0.14px] uppercase">{t('renders.stats.1.label')}</span>
-        </div>
-        <div>
-          <span class="font-accent text-[clamp(28px,3.5vw,42px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('renders.stats.2.value')}</span>
-          <span class="text-ghost text-[11px] tracking-[0.14px] uppercase">{t('renders.stats.2.label')}</span>
-        </div>
-        <div>
-          <span class="font-accent text-[clamp(28px,3.5vw,42px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('renders.stats.3.value')}</span>
-          <span class="text-ghost text-[11px] tracking-[0.14px] uppercase">{t('renders.stats.3.label')}</span>
-        </div>
-        <div>
-          <span class="font-accent text-[clamp(28px,3.5vw,42px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-xs">{t('renders.stats.4.value')}</span>
-          <span class="text-ghost text-[11px] tracking-[0.14px] uppercase">{t('renders.stats.4.label')}</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center mb-3xl">
-        <div class="lg:col-span-7">
-          <div class="relative aspect-[16/10] bg-canvas rounded-xl border border-border-light overflow-hidden group">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Food CGI]</div>
-            <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
-          </div>
-        </div>
-        <div class="lg:col-span-4 lg:col-start-9">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('renders.project1.tag')}</span>
-          <h3 class="text-[20px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('renders.project1.title')}</h3>
-          <p class="text-muted text-[14px] leading-[1.55]">
-            <strong class="text-ink">{t('renders.project1.body')}</strong> {t('renders.project1.bodyBold')}
-          </p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center mb-3xl">
-        <div class="lg:col-span-4 lg:order-1">
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('renders.project2.tag')}</span>
-          <h3 class="text-[20px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('renders.project2.title')}</h3>
-          <p class="text-muted text-[14px] leading-[1.55]">
-            <strong class="text-ink">{t('renders.project2.body')}</strong> {t('renders.project2.bodyBold')}
-          </p>
-        </div>
-        <div class="lg:col-span-7 lg:col-start-6 lg:order-2">
-          <div class="relative aspect-[16/10] bg-canvas rounded-xl border border-border-light overflow-hidden group">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Product CGI]</div>
-            <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-t border-border-light pt-xl text-center">
-        <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-          {t('renders.cta')}
-        </a>
-      </div>
+    <div class="scroll-hint" id="scroll-hint">
+      <span>Scroll to explore</span>
     </div>
   </main>
 
   <div class="noise-overlay"></div>
 </BaseLayout>
 
-<script>
-  import Lenis from 'lenis';
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    touchMultiplier: 2,
-  });
-
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-  gsap.ticker.lagSmoothing(0);
-
-  const nav = document.getElementById('main-nav');
-  let lastNavScroll = 0;
-  let navHidden = false;
-
-  if (nav) {
-    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
-      if (scroll > 50) nav.classList.add('nav-scrolled');
-      else nav.classList.remove('nav-scrolled');
-
-      if (scroll > lastNavScroll && scroll > 200 && !navHidden) {
-        gsap.to(nav, { y: -80, duration: 0.4, ease: 'power3.in' });
-        navHidden = true;
-      } else if (scroll < lastNavScroll && navHidden) {
-        gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out' });
-        navHidden = false;
-      }
-      lastNavScroll = scroll;
-    });
+<style>
+  :root {
+    --card-w: 180px;
+    --gap: 16px;
   }
 
-  if (!prefersReducedMotion) {
-    const heroTitle = document.querySelector('main h1');
-    if (heroTitle) {
-      gsap.from(heroTitle, { y: 20, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.15 });
+  @media (max-width: 768px) {
+    :root {
+      --card-w: 110px;
+      --gap: 10px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    :root {
+      --card-w: 140px;
+      --gap: 12px;
+    }
+  }
+
+  .immersive-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--color-warm);
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 28px;
+    left: 32px;
+    z-index: 100;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    text-decoration: none;
+    mix-blend-mode: difference;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .back-link:hover {
+    color: #fff;
+  }
+
+  .infinite-grid {
+    position: absolute;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  .grid-tile {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(7, var(--card-w));
+    gap: var(--gap);
+    pointer-events: none;
+  }
+
+  .render-card {
+    aspect-ratio: 3 / 4;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.06),
+      0 12px 40px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto;
+    background: var(--color-surface);
+  }
+
+  .render-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9);
+    transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .render-card:hover {
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.08),
+      0 24px 60px rgba(0, 0, 0, 0.18);
+    z-index: 50;
+  }
+
+  .render-card:hover img {
+    filter: saturate(1.15);
+    transform: scale(1.06);
+  }
+
+  .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    pointer-events: none;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 10vw, 140px);
+    font-weight: 200;
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    mix-blend-mode: difference;
+    user-select: none;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    transition: opacity 0.3s ease, width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+    mix-blend-mode: difference;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cursor-ring span {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .cursor-ring.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .cursor-ring.is-hovering {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .cursor-ring.is-hovering span {
+    opacity: 1;
+  }
+
+  .cursor-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .immersive-canvas:hover .cursor-glow {
+    opacity: 1;
+  }
+
+  .stats-bar {
+    position: fixed;
+    bottom: 28px;
+    left: 32px;
+    z-index: 100;
+    mix-blend-mode: difference;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .stats-bar__inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .stats-bar__value {
+    font-family: var(--font-accent);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .stats-bar__label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .stats-bar__divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .bottom-cta {
+    position: fixed;
+    bottom: 28px;
+    right: 32px;
+    z-index: 100;
+    mix-blend-mode: difference;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .cta-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .scroll-hint {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    mix-blend-mode: difference;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    animation: pulse-hint 2s ease-in-out infinite;
+  }
+
+  .scroll-hint.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes pulse-hint {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+
+  @media (max-width: 768px) {
+    .back-link {
+      top: 20px;
+      left: 20px;
+      font-size: 10px;
     }
 
-    document.querySelectorAll('main .grid').forEach((grid) => {
-      const isShowcase = grid.classList.contains('items-center') && grid.querySelector('h3');
+    .cursor-ring,
+    .cursor-glow {
+      display: none !important;
+    }
 
-      if (isShowcase) {
-        const imageWrap = grid.querySelector('.aspect-\\[16\\/10\\]');
-        const textCol = grid.querySelector('h3')?.closest('div');
+    .stats-bar {
+      bottom: 20px;
+      left: 20px;
+    }
 
-        if (imageWrap) {
-          gsap.from(imageWrap, {
-            scale: 0.96, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
-            scrollTrigger: { trigger: grid, start: 'top 80%', once: true },
-          });
-          gsap.fromTo(imageWrap, { yPercent: 5 }, {
-            yPercent: -5, ease: 'none',
-            scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true },
-          });
+    .stats-bar__value {
+      font-size: 14px;
+    }
+
+    .stats-bar__label {
+      font-size: 8px;
+    }
+
+    .stats-bar__divider {
+      height: 22px;
+    }
+
+    .stats-bar__inner {
+      gap: 12px;
+    }
+
+    .bottom-cta {
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .cta-button {
+      padding: 8px 16px;
+      font-size: 11px;
+    }
+
+    .scroll-hint {
+      bottom: 60px;
+      font-size: 10px;
+    }
+
+    .render-card {
+      border-radius: 10px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .render-card {
+      transition: box-shadow 0.3s ease;
+    }
+
+    .render-card:hover img {
+      transform: none;
+    }
+
+    .scroll-hint {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  if (!prefersReducedMotion) {
+    const canvas = document.getElementById('immersive-canvas') as HTMLElement;
+    const grid = document.getElementById('infinite-grid') as HTMLElement;
+    const tiles = document.querySelectorAll<HTMLElement>('.grid-tile');
+    const cursorRing = document.getElementById('cursor-ring') as HTMLElement;
+    const cursorGlow = document.getElementById('cursor-glow') as HTMLElement;
+    const scrollHint = document.getElementById('scroll-hint') as HTMLElement;
+
+    const style = getComputedStyle(document.documentElement);
+    const cardW = parseFloat(style.getPropertyValue('--card-w'));
+    const gap = parseFloat(style.getPropertyValue('--gap'));
+    const cardH = cardW * 4 / 3;
+    const COLS = 7;
+    const ROWS = 4;
+    const gridW = COLS * cardW + (COLS - 1) * gap;
+    const gridH = ROWS * cardH + (ROWS - 1) * gap;
+
+    tiles.forEach((tile, i) => {
+      const col = i % 3;
+      const row = Math.floor(i / 3);
+      tile.style.left = `${col * gridW}px`;
+      tile.style.top = `${row * gridH}px`;
+      tile.style.width = `${gridW}px`;
+    });
+
+    grid.style.width = `${3 * gridW}px`;
+    grid.style.height = `${3 * gridH}px`;
+
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const baseX = (vw - gridW) / 2 - gridW;
+    const baseY = (vh - gridH) / 2 - gridH;
+
+    const state = { x: 0, y: 0, vx: 0, vy: 0 };
+    const FRICTION = 0.92;
+    const WHEEL_SENSITIVITY = 0.8;
+    const TOUCH_SENSITIVITY = 1;
+    const IDLE_TIMEOUT = 3000;
+
+    let lastInteraction = 0;
+    let isTouching = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let lastTouchX = 0;
+    let lastTouchY = 0;
+    let lastTouchTime = 0;
+    let touchVx = 0;
+    let touchVy = 0;
+    let hintHidden = false;
+
+    const hideHint = () => {
+      if (!hintHidden && scrollHint) {
+        scrollHint.classList.add('is-hidden');
+        hintHidden = true;
+      }
+    };
+
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      hideHint();
+      state.vx += e.deltaX * WHEEL_SENSITIVITY;
+      state.vy += e.deltaY * WHEEL_SENSITIVITY;
+      lastInteraction = performance.now();
+    }, { passive: false });
+
+    canvas.addEventListener('touchstart', (e) => {
+      hideHint();
+      isTouching = true;
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      lastTouchX = touch.clientX;
+      lastTouchY = touch.clientY;
+      lastTouchTime = performance.now();
+      state.vx = 0;
+      state.vy = 0;
+      touchVx = 0;
+      touchVy = 0;
+    }, { passive: true });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const dx = (touch.clientX - lastTouchX) * TOUCH_SENSITIVITY;
+      const dy = (touch.clientY - lastTouchY) * TOUCH_SENSITIVITY;
+      const now = performance.now();
+      const dt = Math.max(now - lastTouchTime, 1);
+
+      touchVx = (dx / dt) * 16;
+      touchVy = (dy / dt) * 16;
+
+      state.x += dx;
+      state.y += dy;
+
+      lastTouchX = touch.clientX;
+      lastTouchY = touch.clientY;
+      lastTouchTime = now;
+      lastInteraction = now;
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', () => {
+      isTouching = false;
+      state.vx = touchVx * 3;
+      state.vy = touchVy * 3;
+    });
+
+    let ringX = vw / 2;
+    let ringY = vh / 2;
+    let glowX = ringX;
+    let glowY = ringY;
+
+    if (!isMobile) {
+      document.addEventListener('mousemove', (e) => {
+        ringX = e.clientX;
+        ringY = e.clientY;
+        cursorRing?.classList.add('is-visible');
+      });
+
+      canvas.addEventListener('mouseleave', () => {
+        cursorRing?.classList.remove('is-visible');
+      });
+    }
+
+    const cards = document.querySelectorAll<HTMLElement>('.render-card');
+    cards.forEach((card) => {
+      card.addEventListener('mouseenter', () => {
+        cursorRing?.classList.add('is-hovering');
+        gsap.to(card, {
+          scale: 1.08,
+          duration: 0.5,
+          ease: 'power3.out',
+          overwrite: 'auto',
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        cursorRing?.classList.remove('is-hovering');
+        gsap.to(card, {
+          scale: 1,
+          duration: 0.5,
+          ease: 'power3.out',
+          overwrite: 'auto',
+        });
+      });
+    });
+
+    gsap.ticker.add(() => {
+      const now = performance.now();
+      const idle = now - lastInteraction > IDLE_TIMEOUT && !isTouching;
+
+      if (idle) {
+        const t = now * 0.0002;
+        const targetVx = Math.sin(t * 1.3) * 0.4 + 0.15;
+        const targetVy = Math.cos(t) * 0.25 + 0.1;
+        state.vx += (targetVx - state.vx) * 0.008;
+        state.vy += (targetVy - state.vy) * 0.008;
+      }
+
+      state.x += state.vx;
+      state.y += state.vy;
+
+      if (!isTouching && !idle) {
+        state.vx *= FRICTION;
+        state.vy *= FRICTION;
+      }
+
+      state.x = ((state.x % gridW) + gridW) % gridW;
+      state.y = ((state.y % gridH) + gridH) % gridH;
+
+      const x = baseX + state.x;
+      const y = baseY + state.y;
+      grid.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
+      if (!isMobile) {
+        if (cursorRing) {
+          cursorRing.style.left = `${ringX}px`;
+          cursorRing.style.top = `${ringY}px`;
         }
-
-        if (textCol) {
-          const textEls = textCol.querySelectorAll(':scope > span, :scope > h3, :scope > p');
-          if (textEls.length) {
-            gsap.from(textEls, {
-              y: 18, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
-              scrollTrigger: { trigger: grid, start: 'top 78%', once: true },
-            });
-          }
-          gsap.fromTo(textCol, { y: 20 }, {
-            y: -20, ease: 'none',
-            scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true },
-          });
-        }
-      } else {
-        const children = grid.querySelectorAll(':scope > div');
-        if (children.length > 1) {
-          gsap.from(children, {
-            y: 16, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08,
-            scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
-          });
+        if (cursorGlow) {
+          glowX += (ringX - glowX) * 0.06;
+          glowY += (ringY - glowY) * 0.06;
+          cursorGlow.style.left = `${glowX}px`;
+          cursorGlow.style.top = `${glowY}px`;
         }
       }
     });
 
-    document.querySelectorAll('main .border-t').forEach((el) => {
-      gsap.from(el, {
-        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-      });
+    const tl = gsap.timeline({ delay: 0.3 });
+
+    tl.from('.hero-text h1', {
+      scale: 0.85,
+      autoAlpha: 0,
+      duration: 1.4,
+      ease: 'power3.out',
     });
 
-    document.querySelectorAll('.magnetic').forEach((el) => {
-      el.addEventListener('mousemove', (e) => {
-        const rect = (el as HTMLElement).getBoundingClientRect();
-        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
-        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
-        gsap.to(el, { x: x * 0.15, y: y * 0.15, duration: 0.3, ease: 'power2.out' });
-      });
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
-      });
-    });
+    tl.from('[data-tile="4"] .render-card', {
+      scale: 0,
+      autoAlpha: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+      stagger: { amount: 0.8, from: 'center' },
+    }, '-=1.0');
+
+    tl.from('.stats-bar', {
+      y: 20,
+      autoAlpha: 0,
+      duration: 0.5,
+      ease: 'power2.out',
+    }, '-=0.3');
+
+    tl.from('.bottom-cta', {
+      y: 20,
+      autoAlpha: 0,
+      duration: 0.5,
+      ease: 'power2.out',
+    }, '-=0.4');
+
+    tl.from('.back-link', {
+      y: -10,
+      autoAlpha: 0,
+      duration: 0.4,
+      ease: 'power2.out',
+    }, '-=0.3');
+
+    tl.from('.scroll-hint', {
+      y: 10,
+      autoAlpha: 0,
+      duration: 0.4,
+      ease: 'power2.out',
+    }, '-=0.2');
   }
 </script>
