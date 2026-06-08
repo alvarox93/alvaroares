@@ -49,11 +49,6 @@ const renders = [
       <h1>EYES<br />EATS<br />FIRST</h1>
     </div>
 
-    <div class="cursor-ring" id="cursor-ring">
-      <span>View</span>
-    </div>
-    <div class="cursor-glow" id="cursor-glow"></div>
-
     <div class="stats-bar">
       <div class="stats-bar__inner">
         <div>
@@ -175,7 +170,6 @@ const renders = [
     object-fit: cover;
     display: block;
     filter: saturate(0.9);
-    transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .render-card:hover {
@@ -183,11 +177,6 @@ const renders = [
       0 4px 12px rgba(0, 0, 0, 0.08),
       0 24px 60px rgba(0, 0, 0, 0.18);
     z-index: 50;
-  }
-
-  .render-card:hover img {
-    filter: saturate(1.15);
-    transform: scale(1.06);
   }
 
   .hero-text {
@@ -211,66 +200,6 @@ const renders = [
     text-transform: uppercase;
     mix-blend-mode: difference;
     user-select: none;
-  }
-
-  .cursor-ring {
-    position: fixed;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.4);
-    transition: opacity 0.3s ease, width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
-    mix-blend-mode: difference;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cursor-ring span {
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: #fff;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-
-  .cursor-ring.is-visible {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  .cursor-ring.is-hovering {
-    width: 80px;
-    height: 80px;
-    background-color: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.8);
-  }
-
-  .cursor-ring.is-hovering span {
-    opacity: 1;
-  }
-
-  .cursor-glow {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-  .immersive-canvas:hover .cursor-glow {
-    opacity: 1;
   }
 
   .stats-bar {
@@ -376,11 +305,6 @@ const renders = [
       font-size: 10px;
     }
 
-    .cursor-ring,
-    .cursor-glow {
-      display: none !important;
-    }
-
     .stats-bar {
       bottom: 20px;
       left: 20px;
@@ -427,10 +351,6 @@ const renders = [
       transition: box-shadow 0.3s ease;
     }
 
-    .render-card:hover img {
-      transform: none;
-    }
-
     .scroll-hint {
       animation: none;
       opacity: 0.5;
@@ -448,8 +368,6 @@ const renders = [
     const canvas = document.getElementById('immersive-canvas') as HTMLElement;
     const grid = document.getElementById('infinite-grid') as HTMLElement;
     const tiles = document.querySelectorAll<HTMLElement>('.grid-tile');
-    const cursorRing = document.getElementById('cursor-ring') as HTMLElement;
-    const cursorGlow = document.getElementById('cursor-glow') as HTMLElement;
     const scrollHint = document.getElementById('scroll-hint') as HTMLElement;
 
     const style = getComputedStyle(document.documentElement);
@@ -550,46 +468,6 @@ const renders = [
       state.vy = touchVy * 3;
     });
 
-    let ringX = vw / 2;
-    let ringY = vh / 2;
-    let glowX = ringX;
-    let glowY = ringY;
-
-    if (!isMobile) {
-      document.addEventListener('mousemove', (e) => {
-        ringX = e.clientX;
-        ringY = e.clientY;
-        cursorRing?.classList.add('is-visible');
-      });
-
-      canvas.addEventListener('mouseleave', () => {
-        cursorRing?.classList.remove('is-visible');
-      });
-    }
-
-    const cards = document.querySelectorAll<HTMLElement>('.render-card');
-    cards.forEach((card) => {
-      card.addEventListener('mouseenter', () => {
-        cursorRing?.classList.add('is-hovering');
-        gsap.to(card, {
-          scale: 1.08,
-          duration: 0.5,
-          ease: 'power3.out',
-          overwrite: 'auto',
-        });
-      });
-
-      card.addEventListener('mouseleave', () => {
-        cursorRing?.classList.remove('is-hovering');
-        gsap.to(card, {
-          scale: 1,
-          duration: 0.5,
-          ease: 'power3.out',
-          overwrite: 'auto',
-        });
-      });
-    });
-
     gsap.ticker.add(() => {
       const now = performance.now();
       const idle = now - lastInteraction > IDLE_TIMEOUT && !isTouching;
@@ -616,19 +494,6 @@ const renders = [
       const x = baseX + state.x;
       const y = baseY + state.y;
       grid.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-
-      if (!isMobile) {
-        if (cursorRing) {
-          cursorRing.style.left = `${ringX}px`;
-          cursorRing.style.top = `${ringY}px`;
-        }
-        if (cursorGlow) {
-          glowX += (ringX - glowX) * 0.06;
-          glowY += (ringY - glowY) * 0.06;
-          cursorGlow.style.left = `${glowX}px`;
-          cursorGlow.style.top = `${glowY}px`;
-        }
-      }
     });
 
     const tl = gsap.timeline({ delay: 0.3 });
