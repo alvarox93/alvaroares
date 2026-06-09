@@ -102,20 +102,33 @@ const initialData = JSON.stringify(initial);
       const active = imgs.find((img) => img.dataset.active === 'true')!;
       const inactive = imgs.find((img) => img.dataset.active === 'false')!;
 
-      inactive.src = nextSrc;
+      let done = false;
+      const doSwap = () => {
+        if (done) return;
+        done = true;
 
-      const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
-      inactive.style.transition = `opacity ${FADE_DURATION}s ${ease}`;
-      active.style.transition = `opacity ${FADE_DURATION}s ${ease}`;
+        inactive.style.transition = 'none';
+        inactive.src = nextSrc;
+        inactive.offsetHeight;
 
-      inactive.style.opacity = '1';
-      active.style.opacity = '0';
+        const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
+        inactive.style.transition = `opacity ${FADE_DURATION}s ${ease}`;
+        active.style.transition = `opacity ${FADE_DURATION}s ${ease}`;
 
-      inactive.dataset.active = 'true';
-      active.dataset.active = 'false';
+        inactive.style.opacity = '1';
+        active.style.opacity = '0';
 
-      inactive.style.zIndex = '1';
-      active.style.zIndex = '0';
+        inactive.dataset.active = 'true';
+        active.dataset.active = 'false';
+
+        inactive.style.zIndex = '1';
+        active.style.zIndex = '0';
+      };
+
+      const preload = new Image();
+      preload.onload = doSwap;
+      preload.src = nextSrc;
+      if (preload.complete) doSwap();
     };
 
     let currentSlot = 0;
@@ -152,13 +165,12 @@ const initialData = JSON.stringify(initial);
 
 <style>
   .food-slide-img {
-    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity;
   }
 
   @media (prefers-reduced-motion: reduce) {
     .food-slide-img {
-      transition: none;
+      transition: none !important;
     }
   }
 </style>
