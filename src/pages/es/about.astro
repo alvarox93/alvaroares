@@ -702,16 +702,5 @@ const timeline = [
         });
       }
     }
-
-    const ctaSection = sections[1];
-    if (ctaSection) {
-      const ctaButtons = ctaSection.querySelectorAll('a.group');
-      if (ctaButtons.length) {
-        gsap.from(ctaButtons, {
-          y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
-          scrollTrigger: { trigger: ctaSection, start: 'top 82%', once: true },
-        });
-      }
-    }
   }
 </script>
