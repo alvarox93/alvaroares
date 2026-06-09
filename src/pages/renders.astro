@@ -5,14 +5,12 @@ import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
-const backHref = lang === defaultLang ? '/' : '/es';
 
-const renders = [
-  'cafe', 'bar', 'bonbon', 'bravas-1', 'bravas-2', 'chocolate-bar',
-  'churro', 'churros', 'coulant', 'gyoza', 'honey-cake', 'chocolate-hover',
-  'huesito', 'kortxo', 'macaron', 'matcha-cookies', 'panellet-1', 'panellet-2',
-  'panellet-3', 'pansuflado', 'pasta', 'pineapple', 'pringle', 'snack',
-  'spoonful', 'tea-matcha', 'topoki', 'waffle-honey'
+const rows = [
+  ['cafe', 'bar', 'bonbon', 'bravas-1', 'bravas-2', 'chocolate-bar', 'churro'],
+  ['churros', 'coulant', 'gyoza', 'honey-cake', 'chocolate-hover', 'huesito', 'kortxo'],
+  ['macaron', 'matcha-cookies', 'panellet-1', 'panellet-2', 'panellet-3', 'pansuflado', 'pasta'],
+  ['pineapple', 'pringle', 'snack', 'spoonful', 'tea-matcha', 'topoki', 'waffle-honey'],
 ];
 ---
 
@@ -24,63 +22,60 @@ const renders = [
   <Navigation />
 
   <main class="immersive-canvas" id="immersive-canvas">
-    <a href={backHref} class="back-link">
-      {t('nav.backToHome')}
-    </a>
-
-    <div class="infinite-grid" id="infinite-grid">
-      {Array.from({ length: 9 }, (_, tileIdx) => (
-        <div class="grid-tile" data-tile={tileIdx}>
-          {renders.map((file) => (
-            <div class="render-card">
-              <img
-                src={`/food-renders/${file}.webp`}
-                alt={`${file} — 3D food render`}
-                loading={tileIdx === 4 ? 'eager' : 'lazy'}
-                decoding="async"
-              />
-            </div>
-          ))}
+    <div class="grid-rows" id="grid-rows">
+      {rows.map((row, i) => (
+        <div class="grid-row" data-row={i}>
+          <div class="grid-row__track">
+            {[...row, ...row].map((file) => (
+              <div class="render-card">
+                <img
+                  src={`/food-renders/${file}.webp`}
+                  alt={`${file} — 3D food render`}
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
 
     <div class="hero-text" id="hero-text">
-      <h1>EYES<br />EATS<br />FIRST</h1>
-    </div>
-
-    <div class="stats-bar">
-      <div class="stats-bar__inner">
-        <div>
-          <span class="stats-bar__value">{t('renders.stats.1.value')}</span>
-          <span class="stats-bar__label">{t('renders.stats.1.label')}</span>
-        </div>
-        <div class="stats-bar__divider"></div>
-        <div>
-          <span class="stats-bar__value">{t('renders.stats.2.value')}</span>
-          <span class="stats-bar__label">{t('renders.stats.2.label')}</span>
-        </div>
-        <div class="stats-bar__divider"></div>
-        <div>
-          <span class="stats-bar__value">{t('renders.stats.3.value')}</span>
-          <span class="stats-bar__label">{t('renders.stats.3.label')}</span>
-        </div>
-        <div class="stats-bar__divider"></div>
-        <div>
-          <span class="stats-bar__value">{t('renders.stats.4.value')}</span>
-          <span class="stats-bar__label">{t('renders.stats.4.label')}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="bottom-cta">
-      <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="cta-button">
-        {t('renders.cta')}
-      </a>
+      <h1>eyes<br />eats<br />first</h1>
     </div>
 
     <div class="scroll-hint" id="scroll-hint">
       <span>Scroll to explore</span>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="bottom-bar__inner">
+        <div class="bottom-bar__stats">
+          <div>
+            <span class="bottom-bar__value">{t('renders.stats.1.value')}</span>
+            <span class="bottom-bar__label">{t('renders.stats.1.label')}</span>
+          </div>
+          <div class="bottom-bar__divider"></div>
+          <div>
+            <span class="bottom-bar__value">{t('renders.stats.2.value')}</span>
+            <span class="bottom-bar__label">{t('renders.stats.2.label')}</span>
+          </div>
+          <div class="bottom-bar__divider"></div>
+          <div>
+            <span class="bottom-bar__value">{t('renders.stats.3.value')}</span>
+            <span class="bottom-bar__label">{t('renders.stats.3.label')}</span>
+          </div>
+          <div class="bottom-bar__divider"></div>
+          <div>
+            <span class="bottom-bar__value">{t('renders.stats.4.value')}</span>
+            <span class="bottom-bar__label">{t('renders.stats.4.label')}</span>
+          </div>
+        </div>
+        <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="bottom-bar__cta">
+          {t('renders.cta')}
+        </a>
+      </div>
     </div>
   </main>
 
@@ -89,22 +84,29 @@ const renders = [
 
 <style>
   :root {
-    --card-w: 180px;
-    --gap: 16px;
+    --card-w: 160px;
+    --gap: 14px;
   }
 
   @media (max-width: 768px) {
     :root {
-      --card-w: 110px;
-      --gap: 10px;
+      --card-w: 100px;
+      --gap: 8px;
     }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
     :root {
-      --card-w: 140px;
-      --gap: 12px;
+      --card-w: 130px;
+      --gap: 10px;
     }
+  }
+
+  :global(#main-nav) {
+    background-color: color-mix(in srgb, var(--color-canvas) 82%, transparent) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid var(--color-border-light);
   }
 
   .immersive-canvas {
@@ -119,49 +121,40 @@ const renders = [
     user-select: none;
   }
 
-  .back-link {
-    position: fixed;
-    top: 28px;
-    left: 32px;
-    z-index: 100;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14px;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
-    text-decoration: none;
-    mix-blend-mode: difference;
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .back-link:hover {
-    color: #fff;
-  }
-
-  .infinite-grid {
+  .grid-rows {
     position: absolute;
-    will-change: transform;
-    pointer-events: none;
-  }
-
-  .grid-tile {
-    position: absolute;
-    display: grid;
-    grid-template-columns: repeat(7, var(--card-w));
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
     gap: var(--gap);
     pointer-events: none;
   }
 
+  .grid-row {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .grid-row__track {
+    display: flex;
+    gap: var(--gap);
+    width: max-content;
+    will-change: transform;
+  }
+
   .render-card {
+    width: var(--card-w);
     aspect-ratio: 3 / 4;
     border-radius: 14px;
     overflow: hidden;
+    flex-shrink: 0;
+    background: var(--color-surface);
     box-shadow:
       0 2px 8px rgba(0, 0, 0, 0.06),
       0 12px 40px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: auto;
-    background: var(--color-surface);
   }
 
   .render-card img {
@@ -170,13 +163,6 @@ const renders = [
     object-fit: cover;
     display: block;
     filter: saturate(0.9);
-  }
-
-  .render-card:hover {
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.08),
-      0 24px 60px rgba(0, 0, 0, 0.18);
-    z-index: 50;
   }
 
   .hero-text {
@@ -190,102 +176,102 @@ const renders = [
   }
 
   .hero-text h1 {
-    font-family: var(--font-display);
-    font-size: clamp(52px, 10vw, 140px);
-    font-weight: 200;
-    line-height: 0.88;
-    letter-spacing: -0.05em;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(48px, 9vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
     color: #fff;
     margin: 0;
-    text-transform: uppercase;
+    text-transform: lowercase;
     mix-blend-mode: difference;
     user-select: none;
   }
 
-  .stats-bar {
+  .bottom-bar {
     position: fixed;
-    bottom: 28px;
-    left: 32px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    mix-blend-mode: difference;
-    color: rgba(255, 255, 255, 0.5);
+    background: color-mix(in srgb, var(--color-canvas) 82%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--color-border-light);
+    padding: 14px 32px;
   }
 
-  .stats-bar__inner {
+  .bottom-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .bottom-bar__stats {
     display: flex;
     align-items: center;
     gap: 20px;
   }
 
-  .stats-bar__value {
+  .bottom-bar__value {
     font-family: var(--font-accent);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-ink);
     display: block;
     line-height: 1;
     margin-bottom: 2px;
   }
 
-  .stats-bar__label {
+  .bottom-bar__label {
     font-size: 9px;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: var(--color-ghost);
     display: block;
   }
 
-  .stats-bar__divider {
+  .bottom-bar__divider {
     width: 1px;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.15);
+    height: 24px;
+    background: var(--color-border-light);
   }
 
-  .bottom-cta {
-    position: fixed;
-    bottom: 28px;
-    right: 32px;
-    z-index: 100;
-    mix-blend-mode: difference;
-  }
-
-  .cta-button {
+  .bottom-bar__cta {
     display: inline-flex;
     align-items: center;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(12px);
-    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 18px;
+    background: var(--color-ink);
+    color: var(--color-canvas);
     font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.08px;
+    letter-spacing: 0.02px;
     border-radius: 100px;
     text-decoration: none;
-    transition: background 0.3s ease, color 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
   }
 
-  .cta-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+  .bottom-bar__cta:hover {
+    opacity: 0.85;
   }
 
   .scroll-hint {
     position: fixed;
-    bottom: 80px;
+    bottom: 72px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
-    mix-blend-mode: difference;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 11px;
+    color: var(--color-ghost);
+    font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     opacity: 1;
     transition: opacity 0.5s ease;
-    animation: pulse-hint 2s ease-in-out infinite;
+    animation: pulse-hint 2.5s ease-in-out infinite;
   }
 
   .scroll-hint.is-hidden {
@@ -294,51 +280,39 @@ const renders = [
   }
 
   @keyframes pulse-hint {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.7; }
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.6; }
   }
 
   @media (max-width: 768px) {
-    .back-link {
-      top: 20px;
-      left: 20px;
-      font-size: 10px;
+    .bottom-bar {
+      padding: 12px 20px;
     }
 
-    .stats-bar {
-      bottom: 20px;
-      left: 20px;
-    }
-
-    .stats-bar__value {
-      font-size: 14px;
-    }
-
-    .stats-bar__label {
-      font-size: 8px;
-    }
-
-    .stats-bar__divider {
-      height: 22px;
-    }
-
-    .stats-bar__inner {
+    .bottom-bar__stats {
       gap: 12px;
     }
 
-    .bottom-cta {
-      bottom: 20px;
-      right: 20px;
+    .bottom-bar__value {
+      font-size: 13px;
     }
 
-    .cta-button {
-      padding: 8px 16px;
+    .bottom-bar__label {
+      font-size: 8px;
+    }
+
+    .bottom-bar__divider {
+      height: 20px;
+    }
+
+    .bottom-bar__cta {
+      padding: 7px 14px;
       font-size: 11px;
     }
 
     .scroll-hint {
-      bottom: 60px;
-      font-size: 10px;
+      bottom: 58px;
+      font-size: 9px;
     }
 
     .render-card {
@@ -347,10 +321,6 @@ const renders = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .render-card {
-      transition: box-shadow 0.3s ease;
-    }
-
     .scroll-hint {
       animation: none;
       opacity: 0.5;
@@ -362,53 +332,31 @@ const renders = [
   import { gsap } from 'gsap';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   if (!prefersReducedMotion) {
     const canvas = document.getElementById('immersive-canvas') as HTMLElement;
-    const grid = document.getElementById('infinite-grid') as HTMLElement;
-    const tiles = document.querySelectorAll<HTMLElement>('.grid-tile');
     const scrollHint = document.getElementById('scroll-hint') as HTMLElement;
+    const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
 
     const style = getComputedStyle(document.documentElement);
     const cardW = parseFloat(style.getPropertyValue('--card-w'));
     const gap = parseFloat(style.getPropertyValue('--gap'));
-    const cardH = cardW * 4 / 3;
-    const COLS = 7;
-    const ROWS = 4;
-    const gridW = COLS * cardW + (COLS - 1) * gap;
-    const gridH = ROWS * cardH + (ROWS - 1) * gap;
+    const loopW = 7 * (cardW + gap);
 
-    tiles.forEach((tile, i) => {
-      const col = i % 3;
-      const row = Math.floor(i / 3);
-      tile.style.left = `${col * gridW}px`;
-      tile.style.top = `${row * gridH}px`;
-      tile.style.width = `${gridW}px`;
-    });
+    const rowConfigs = [
+      { direction: 1, speed: 0.45, offset: 0 },
+      { direction: -1, speed: 0.7, offset: 0.4 },
+      { direction: 1, speed: 0.55, offset: 0.15 },
+      { direction: -1, speed: 0.8, offset: 0.6 },
+    ];
 
-    grid.style.width = `${3 * gridW}px`;
-    grid.style.height = `${3 * gridH}px`;
+    const scroll = { y: 0, vy: 0 };
+    const FRICTION = 0.94;
+    const WHEEL_SENS = 0.6;
 
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    const baseX = (vw - gridW) / 2 - gridW;
-    const baseY = (vh - gridH) / 2 - gridH;
-
-    const state = { x: 0, y: 0, vx: 0, vy: 0 };
-    const FRICTION = 0.92;
-    const WHEEL_SENSITIVITY = 0.8;
-    const TOUCH_SENSITIVITY = 1;
-    const IDLE_TIMEOUT = 3000;
-
-    let lastInteraction = 0;
     let isTouching = false;
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let lastTouchX = 0;
     let lastTouchY = 0;
     let lastTouchTime = 0;
-    let touchVx = 0;
     let touchVy = 0;
     let hintHidden = false;
 
@@ -422,120 +370,77 @@ const renders = [
     canvas.addEventListener('wheel', (e) => {
       e.preventDefault();
       hideHint();
-      state.vx += e.deltaX * WHEEL_SENSITIVITY;
-      state.vy += e.deltaY * WHEEL_SENSITIVITY;
-      lastInteraction = performance.now();
+      scroll.vy += e.deltaY * WHEEL_SENS;
     }, { passive: false });
 
     canvas.addEventListener('touchstart', (e) => {
       hideHint();
       isTouching = true;
-      const touch = e.touches[0];
-      touchStartX = touch.clientX;
-      touchStartY = touch.clientY;
-      lastTouchX = touch.clientX;
-      lastTouchY = touch.clientY;
+      lastTouchY = e.touches[0].clientY;
       lastTouchTime = performance.now();
-      state.vx = 0;
-      state.vy = 0;
-      touchVx = 0;
+      scroll.vy = 0;
       touchVy = 0;
     }, { passive: true });
 
     canvas.addEventListener('touchmove', (e) => {
       e.preventDefault();
       const touch = e.touches[0];
-      const dx = (touch.clientX - lastTouchX) * TOUCH_SENSITIVITY;
-      const dy = (touch.clientY - lastTouchY) * TOUCH_SENSITIVITY;
+      const dy = touch.clientY - lastTouchY;
       const now = performance.now();
       const dt = Math.max(now - lastTouchTime, 1);
-
-      touchVx = (dx / dt) * 16;
       touchVy = (dy / dt) * 16;
-
-      state.x += dx;
-      state.y += dy;
-
-      lastTouchX = touch.clientX;
+      scroll.y += dy;
       lastTouchY = touch.clientY;
       lastTouchTime = now;
-      lastInteraction = now;
     }, { passive: false });
 
     canvas.addEventListener('touchend', () => {
       isTouching = false;
-      state.vx = touchVx * 3;
-      state.vy = touchVy * 3;
+      scroll.vy = touchVy * 2.5;
     });
 
     gsap.ticker.add(() => {
-      const now = performance.now();
-      const idle = now - lastInteraction > IDLE_TIMEOUT && !isTouching;
+      scroll.y += scroll.vy;
 
-      if (idle) {
-        const t = now * 0.0002;
-        const targetVx = Math.sin(t * 1.3) * 0.4 + 0.15;
-        const targetVy = Math.cos(t) * 0.25 + 0.1;
-        state.vx += (targetVx - state.vx) * 0.008;
-        state.vy += (targetVy - state.vy) * 0.008;
+      if (!isTouching) {
+        scroll.vy *= FRICTION;
+        if (Math.abs(scroll.vy) < 0.05) scroll.vy = 0;
       }
 
-      state.x += state.vx;
-      state.y += state.vy;
-
-      if (!isTouching && !idle) {
-        state.vx *= FRICTION;
-        state.vy *= FRICTION;
-      }
-
-      state.x = ((state.x % gridW) + gridW) % gridW;
-      state.y = ((state.y % gridH) + gridH) % gridH;
-
-      const x = baseX + state.x;
-      const y = baseY + state.y;
-      grid.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      tracks.forEach((track, i) => {
+        const cfg = rowConfigs[i];
+        const raw = cfg.offset * loopW + scroll.y * cfg.speed * cfg.direction;
+        const x = ((raw % loopW) + loopW) % loopW;
+        track.style.transform = `translate3d(${-x}px, 0, 0)`;
+      });
     });
 
-    const tl = gsap.timeline({ delay: 0.3 });
+    const tl = gsap.timeline({ delay: 0.2 });
 
     tl.from('.hero-text h1', {
-      scale: 0.85,
+      y: 40,
       autoAlpha: 0,
-      duration: 1.4,
+      duration: 1.2,
       ease: 'power3.out',
     });
 
-    tl.from('[data-tile="4"] .render-card', {
-      scale: 0,
+    tl.from('.grid-row__track', {
+      x: (i) => rowConfigs[i].direction > 0 ? -loopW * 0.15 : loopW * 0.15,
       autoAlpha: 0,
-      duration: 0.7,
+      duration: 0.9,
       ease: 'power3.out',
-      stagger: { amount: 0.8, from: 'center' },
-    }, '-=1.0');
+      stagger: 0.12,
+    }, '-=0.8');
 
-    tl.from('.stats-bar', {
-      y: 20,
+    tl.from('.bottom-bar', {
+      y: 30,
       autoAlpha: 0,
-      duration: 0.5,
-      ease: 'power2.out',
-    }, '-=0.3');
-
-    tl.from('.bottom-cta', {
-      y: 20,
-      autoAlpha: 0,
-      duration: 0.5,
+      duration: 0.6,
       ease: 'power2.out',
     }, '-=0.4');
 
-    tl.from('.back-link', {
-      y: -10,
-      autoAlpha: 0,
-      duration: 0.4,
-      ease: 'power2.out',
-    }, '-=0.3');
-
     tl.from('.scroll-hint', {
-      y: 10,
+      y: 8,
       autoAlpha: 0,
       duration: 0.4,
       ease: 'power2.out',
