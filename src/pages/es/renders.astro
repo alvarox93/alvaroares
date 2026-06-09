@@ -390,32 +390,42 @@ const rowLengths = rows.map(r => r.length);
 
       // Calculate loopW by finding the position of the first duplicated image
       // This is the most accurate way to get the exact loop point
-      const loopWidths = Array.from(tracks).map((track) => {
-        const cards = track.querySelectorAll('.render-card');
-        if (cards.length < 2) return 1000;
-        
-        // Find the first card that starts after the midpoint (first duplicate)
-        const trackWidth = track.scrollWidth;
-        const midpoint = trackWidth / 2;
-        
-        // The loop width is the position where the duplicate sequence starts
-        // We measure from the track's left edge to the first duplicate card
-        for (let j = 0; j < cards.length; j++) {
-          const cardLeft = cards[j].offsetLeft;
-          if (cardLeft >= midpoint - 1) {
-            return cardLeft;
+      const calculateLoopWidths = () => {
+        return Array.from(tracks).map((track) => {
+          const cards = track.querySelectorAll('.render-card');
+          if (cards.length < 2) return 1000;
+          
+          // Find the first card that starts after the midpoint (first duplicate)
+          const trackWidth = track.scrollWidth;
+          const midpoint = trackWidth / 2;
+          
+          // The loop width is the position where the duplicate sequence starts
+          // We measure from the track's left edge to the first duplicate card
+          for (let j = 0; j < cards.length; j++) {
+            const cardLeft = cards[j].offsetLeft;
+            if (cardLeft >= midpoint - 1) {
+              return cardLeft;
+            }
           }
-        }
-        
-        // Fallback: use half the track width
-        return midpoint;
-      });
+          
+          // Fallback: use half the track width
+          return midpoint;
+        });
+      };
+
+      // Initial calculation
+      let loopWidths = calculateLoopWidths();
+
+      // Recalculate after a delay to ensure all images are fully loaded
+      setTimeout(() => {
+        loopWidths = calculateLoopWidths();
+      }, 500);
 
       // Auto-scroll state
       const scroll = { y: 0, vy: 0 };
-      const BASE_SPEED = 0.12;
+      const BASE_SPEED = 0.3;
       const FRICTION = 0.94;
-      const WHEEL_SENS = 0.25;
+      const WHEEL_SENS = 0.15;
 
       let isTouching = false;
       let lastTouchY = 0;
