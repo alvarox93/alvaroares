@@ -12,6 +12,7 @@ const middleRow2 = ['cafe', 'churro', 'coulant', 'huesito', 'panellet-1', 'pinea
 const outerRow2 = ['coulant', 'snack', 'bar', 'pineapple', 'gyoza', 'churros', 'waffle-honey'];
 
 const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
+const rowLengths = rows.map(r => r.length);
 ---
 
 <BaseLayout
@@ -22,18 +23,18 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
   <Navigation />
 
   <main class="immersive-canvas" id="immersive-canvas">
-    <div class="grid-rows" id="grid-rows">
+    <div class="grid-rows" id="grid-rows" data-row-lengths={JSON.stringify(rowLengths)}>
       {rows.map((row, i) => (
         <div class="grid-row" data-row={i}>
           <div class="grid-row__track">
             {[...row, ...row].map((file) => (
               <div class="render-card">
-              <img
-                src={`/food-renders/${file}.webp`}
-                alt={`${file} — 3D food render`}
-                loading="eager"
-                decoding="async"
-              />
+                <img
+                  src={`/food-renders/${file}.webp`}
+                  alt={`${file} — 3D food render`}
+                  loading="eager"
+                  decoding="async"
+                />
               </div>
             ))}
           </div>
@@ -46,31 +47,40 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
     </div>
 
     <div class="bottom-bar">
-      <div class="bottom-bar__inner">
-        <div class="bottom-bar__stats">
-          <div>
-            <span class="bottom-bar__value">{t('renders.stats.1.value')}</span>
-            <span class="bottom-bar__label">{t('renders.stats.1.label')}</span>
+      <div class="bottom-bar__hero">
+        <div class="bottom-bar__content">
+          <div class="bottom-bar__stats">
+            <div class="bottom-bar__stat">
+              <span class="bottom-bar__value">{t('renders.stats.1.value')}</span>
+              <span class="bottom-bar__label">{t('renders.stats.1.label')}</span>
+            </div>
+            <div class="bottom-bar__divider"></div>
+            <div class="bottom-bar__stat">
+              <span class="bottom-bar__value">{t('renders.stats.2.value')}</span>
+              <span class="bottom-bar__label">{t('renders.stats.2.label')}</span>
+            </div>
+            <div class="bottom-bar__divider"></div>
+            <div class="bottom-bar__stat">
+              <span class="bottom-bar__value">{t('renders.stats.3.value')}</span>
+              <span class="bottom-bar__label">{t('renders.stats.3.label')}</span>
+            </div>
+            <div class="bottom-bar__divider"></div>
+            <div class="bottom-bar__stat">
+              <span class="bottom-bar__value">{t('renders.stats.4.value')}</span>
+              <span class="bottom-bar__label">{t('renders.stats.4.label')}</span>
+            </div>
           </div>
-          <div class="bottom-bar__divider"></div>
-          <div>
-            <span class="bottom-bar__value">{t('renders.stats.2.value')}</span>
-            <span class="bottom-bar__label">{t('renders.stats.2.label')}</span>
-          </div>
-          <div class="bottom-bar__divider"></div>
-          <div>
-            <span class="bottom-bar__value">{t('renders.stats.3.value')}</span>
-            <span class="bottom-bar__label">{t('renders.stats.3.label')}</span>
-          </div>
-          <div class="bottom-bar__divider"></div>
-          <div>
-            <span class="bottom-bar__value">{t('renders.stats.4.value')}</span>
-            <span class="bottom-bar__label">{t('renders.stats.4.label')}</span>
+          <div class="bottom-bar__text">
+            <p class="bottom-bar__copy">{t('renders.copy')}</p>
           </div>
         </div>
-        <div class="bottom-bar__right">
-          <span class="bottom-bar__copy">{t('renders.copy')}</span>
-        </div>
+        <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="bottom-bar__cta">
+          {t('renders.cta')}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
       </div>
     </div>
   </main>
@@ -201,117 +211,153 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
     left: 0;
     right: 0;
     z-index: 100;
-    background: color-mix(in srgb, var(--color-canvas) 82%, transparent);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: color-mix(in srgb, var(--color-canvas) 88%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border-top: 1px solid var(--color-border-light);
-    padding: 14px 32px;
+    padding: 20px 32px;
   }
 
-  .bottom-bar__inner {
+  .bottom-bar__hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 32px;
+  }
+
+  .bottom-bar__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
   }
 
   .bottom-bar__stats {
     display: flex;
     align-items: center;
-    gap: 20px;
-    flex-shrink: 0;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .bottom-bar__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .bottom-bar__value {
     font-family: var(--font-accent);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: var(--color-ink);
-    display: block;
     line-height: 1;
-    margin-bottom: 2px;
   }
 
   .bottom-bar__label {
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-ghost);
-    display: block;
   }
 
   .bottom-bar__divider {
     width: 1px;
-    height: 24px;
+    height: 28px;
     background: var(--color-border-light);
   }
 
+  .bottom-bar__text {
+    max-width: 600px;
+  }
+
   .bottom-bar__copy {
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
     color: var(--color-muted);
-    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .bottom-bar__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
     white-space: nowrap;
   }
 
-  .bottom-bar__right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-shrink: 0;
+  .bottom-bar__cta:hover {
+    background: var(--color-ink);
+    transform: translateX(2px);
+  }
+
+  .bottom-bar__cta svg {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bottom-bar__cta:hover svg {
+    transform: translateX(2px);
   }
 
   @media (max-width: 768px) {
     .bottom-bar {
-      padding: 10px 16px;
+      padding: 16px 20px;
     }
 
-    .bottom-bar__inner {
-      gap: 12px;
+    .bottom-bar__hero {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
     }
 
     .bottom-bar__stats {
-      gap: 10px;
+      gap: 16px;
+    }
+
+    .bottom-bar__stat {
+      min-width: 0;
     }
 
     .bottom-bar__value {
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .bottom-bar__label {
-      font-size: 7px;
-    }
-
-    .bottom-bar__divider {
-      height: 20px;
-    }
-
-    .bottom-bar__copy {
-      font-size: 10px;
-    }
-
-    .bottom-bar__scroll {
       font-size: 9px;
     }
 
-    .bottom-bar__right {
-      gap: 10px;
+    .bottom-bar__divider {
+      height: 24px;
+    }
+
+    .bottom-bar__text {
+      width: 100%;
+    }
+
+    .bottom-bar__copy {
+      font-size: 12px;
+    }
+
+    .bottom-bar__cta {
+      width: 100%;
+      justify-content: center;
+      padding: 11px 20px;
+      font-size: 12px;
     }
 
     .render-card {
       border-radius: 10px;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .bottom-bar__copy {
-      display: none;
-    }
-
-    .bottom-bar__right {
-      justify-content: flex-end;
     }
   }
 
@@ -360,18 +406,25 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
   const initAnimation = async () => {
     await waitForImages();
 
-    if (!prefersReducedMotion) {
-      const canvas = document.getElementById('immersive-canvas') as HTMLElement;
-      const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
+  if (!prefersReducedMotion) {
+    const canvas = document.getElementById('immersive-canvas') as HTMLElement;
+    const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
+    const gridRows = document.getElementById('grid-rows') as HTMLElement;
+    const rowLengths: number[] = JSON.parse(gridRows.dataset.rowLengths || '[]');
 
-      const rowConfigs = [
-        { direction: 1, speed: 0.45, offset: 0 },
-        { direction: -1, speed: 0.7, offset: 0.4 },
-        { direction: 1, speed: 0.55, offset: 0.15 },
-        { direction: -1, speed: 0.8, offset: 0.6 },
-      ];
+    const rowConfigs = [
+      { direction: 1, speed: 0.45, offset: 0 },
+      { direction: -1, speed: 0.7, offset: 0.4 },
+      { direction: 1, speed: 0.55, offset: 0.15 },
+      { direction: -1, speed: 0.8, offset: 0.6 },
+    ];
 
-      const loopWidths = Array.from(tracks).map(track => track.scrollWidth / 2);
+    // Calculate loopW manually: numImages * (cardWidth + gap)
+    // This ensures perfect loop without flash from trailing gap
+    const style = getComputedStyle(document.documentElement);
+    const cardW = parseFloat(style.getPropertyValue('--card-w'));
+    const gap = parseFloat(style.getPropertyValue('--gap'));
+    const loopWidths = rowLengths.map(len => len * (cardW + gap));
 
       // Auto-scroll state
       const scroll = { y: 0, vy: 0 };

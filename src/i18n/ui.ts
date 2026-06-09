@@ -119,7 +119,7 @@ export const ui = {
     'renders.project2.title': 'Better than the real thing.',
     'renders.project2.body': 'Packaging hero shots. Product visualization.',
     'renders.project2.bodyBold': 'Every angle, every material, every lighting setup — controlled and perfect. No reshoots needed.',
-    'renders.cta': 'Need product renders?',
+    'renders.cta': 'Let\'s talk renders',
 
     'lapatzak.title': 'Lapatzak · Brand & Product',
     'lapatzak.meta': 'Own Brand · End to End · 2020—Present',
@@ -386,7 +386,7 @@ export const ui = {
     'renders.project2.title': 'Mejor que en la realidad.',
     'renders.project2.body': 'Hero shots de packaging. Visualización de producto.',
     'renders.project2.bodyBold': 'Cada ángulo, cada material, cada setup de luz — controlado y perfecto. Sin repetir tomas.',
-    'renders.cta': '¿Necesitas renders de producto?',
+    'renders.cta': 'Hablemos de renders',
 
     'lapatzak.title': 'Lapatzak · Marca & Producto',
     'lapatzak.meta': 'Marca propia · End to end · 2020—Presente',
