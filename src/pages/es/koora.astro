@@ -131,17 +131,13 @@ const backHref = lang === defaultLang ? '/' : '/es';
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
-                controls
+                autoplay
+                loop
+                muted
                 playsinline
-                poster="[POSTER_URL]"
               >
-                <source src="[VIDEO_URL]" type="video/mp4" />
+                <source src="/kooraExtract_1.webm" type="video/webm" />
               </video>
-              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
-                <span class="text-canvas/80 text-[12px] font-medium">
-                  {t('koora.video.caption.multilingual')}
-                </span>
-              </div>
             </div>
           </div>
         </div>
