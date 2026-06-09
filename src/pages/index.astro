@@ -96,8 +96,9 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     </section>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas min-h-screen" id="footer" style="z-index: -1;">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
+    <footer class="fixed bottom-0 left-0 right-0 text-canvas" id="footer" style="z-index: -1;">
+      <div class="absolute inset-x-0 bottom-0 min-h-screen bg-ink" aria-hidden="true"></div>
+      <div class="relative max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
 
         <!-- Email -->
         <div class="mb-lg">
