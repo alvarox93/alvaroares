@@ -15,61 +15,667 @@ const backHref = lang === defaultLang ? '/' : '/es';
 >
   <Navigation />
 
-  <main class="bg-warm min-h-screen">
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-2xl lg:pt-3xl pb-section">
+  <main class="lab-page">
+    <div class="lab-container">
 
-      <a href={backHref} class="inline-block text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200 mb-2xl">
-        {t('nav.backToHome')}
-      </a>
+      <a href={backHref} class="lab-back">{t('nav.backToHome')}</a>
 
-      <div class="mb-3xl">
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('lab.meta')}</span>
-        <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-xl">
-          {t('lab.heading')}
-        </h1>
-        <p class="text-[17px] leading-[1.65] text-muted max-w-[560px]">
-          <strong class="text-ink font-medium">{t('lab.lede')}</strong> {t('lab.ledeBold')}
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl mb-3xl">
-        <div class="bg-canvas rounded-xl border border-border-light overflow-hidden">
-          <div class="relative aspect-[16/10] bg-surface">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[AI Pipeline]</div>
-          </div>
-          <div class="p-xl">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('lab.project1.tag')}</span>
-            <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('lab.project1.title')}</h3>
-            <p class="text-muted text-[13px] leading-[1.5]">
-              <strong class="text-ink font-medium">{t('lab.project1.body')}</strong> {t('lab.project1.bodyBold')}
+      <!-- HERO -->
+      <section class="lab-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-text">
+            <span class="lab-eyebrow">{t('lab.eyebrow')}</span>
+            <h1 class="lab-h1">
+              <span class="lab-h1-line">{t('lab.heading.line1')}</span>
+              <span class="lab-h1-line lab-h1-line--light">{t('lab.heading.line2')}</span>
+            </h1>
+            <p class="lab-desc">
+              <strong>{t('lab.description')}</strong> {t('lab.descriptionBold')}
             </p>
+            <div class="lab-tags">
+              <span class="lab-tag">{t('lab.tag1')}</span>
+              <span class="lab-tag">{t('lab.tag2')}</span>
+              <span class="lab-tag">{t('lab.tag3')}</span>
+              <span class="lab-tag">{t('lab.tag4')}</span>
+              <span class="lab-tag">{t('lab.tag5')}</span>
+              <span class="lab-tag">{t('lab.tag6')}</span>
+            </div>
+          </div>
+          <div class="lab-hero-media">
+            <div class="lab-video-wrap">
+              <video autoplay muted loop playsinline>
+                <source src="/lab/interactive-reel.mp4" type="video/mp4" />
+              </video>
+              <div class="lab-video-fallback">
+                <span>[Interactive Reel]</span>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="bg-canvas rounded-xl border border-border-light overflow-hidden">
-          <div class="relative aspect-[16/10] bg-surface">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Interactive Systems]</div>
+      <!-- SELECTED WORK -->
+      <section class="lab-selected">
+        <div class="lab-selected-grid">
+          <div class="lab-selected-media">
+            <div class="lab-pulse-card">
+              <span>[VR Environment — WIP]</span>
+            </div>
           </div>
-          <div class="p-xl">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('lab.project2.tag')}</span>
-            <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('lab.project2.title')}</h3>
-            <p class="text-muted text-[13px] leading-[1.5]">
-              <strong class="text-ink font-medium">{t('lab.project2.body')}</strong> {t('lab.project2.bodyBold')}
-            </p>
+          <div class="lab-selected-content">
+            <span class="lab-counter">{t('lab.selected.counter')}</span>
+            <h2 class="lab-selected-title">{t('lab.selected.title')}</h2>
+            <p class="lab-selected-desc">{t('lab.selected.description')}</p>
+            <p class="lab-disciplines">{t('lab.selected.disciplines')}</p>
+            <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="lab-cta-link">
+              <span class="lab-cta-text">{t('lab.selected.cta')}</span>
+            </a>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="border-t border-border-light pt-xl text-center">
-        <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+      <!-- DASHBOARD -->
+      <section class="lab-dashboard-section">
+        <p class="lab-dashboard-label">{t('lab.dashboard.label')}</p>
+
+        <div class="dash">
+          <!-- Top bar -->
+          <div class="dash-topbar">
+            <span class="dash-project">{t('dashboard.project')}</span>
+            <span class="dash-status"><span class="dash-status-dot"></span>{t('dashboard.status')}</span>
+            <span class="dash-clock" id="dash-clock">00:00:00</span>
+          </div>
+
+          <!-- Render progress -->
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-card-title">{t('dashboard.renderLabel')}</span>
+              <span class="dash-pct" id="dash-pct">0%</span>
+            </div>
+            <div class="dash-progress-track">
+              <div class="dash-progress-fill" id="dash-progress"></div>
+            </div>
+            <span class="dash-card-sub">{t('dashboard.renderDetail')}</span>
+          </div>
+
+          <!-- Stats -->
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <span class="dash-stat-num" data-count-to="12">0</span>
+              <span class="dash-stat-label">{t('dashboard.stats.countries')}</span>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-stat-num" data-count-to="150">0</span>
+              <span class="dash-stat-label">{t('dashboard.stats.projects')}</span>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-stat-num" data-count-to="8">0</span>
+              <span class="dash-stat-label">{t('dashboard.stats.team')}</span>
+            </div>
+          </div>
+
+          <!-- Pipeline -->
+          <div class="dash-card">
+            <span class="dash-card-title">{t('dashboard.pipeline')}</span>
+            <div class="dash-pipeline">
+              <div class="dash-pipe-row">
+                <span class="dash-pipe-name"><span class="dash-dot dash-dot--green"></span>{t('dashboard.pipe.modeling')}</span>
+                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="100"></div></div>
+              </div>
+              <div class="dash-pipe-row">
+                <span class="dash-pipe-name"><span class="dash-dot dash-dot--green"></span>{t('dashboard.pipe.texturing')}</span>
+                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="100"></div></div>
+              </div>
+              <div class="dash-pipe-row">
+                <span class="dash-pipe-name"><span class="dash-dot dash-dot--amber"></span>{t('dashboard.pipe.lighting')}</span>
+                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="65"></div></div>
+              </div>
+              <div class="dash-pipe-row">
+                <span class="dash-pipe-name"><span class="dash-dot dash-dot--amber"></span>{t('dashboard.pipe.rendering')}</span>
+                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="35"></div></div>
+              </div>
+              <div class="dash-pipe-row">
+                <span class="dash-pipe-name"><span class="dash-dot dash-dot--grey"></span>{t('dashboard.pipe.compositing')}</span>
+                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="0"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom row -->
+          <div class="dash-bottom">
+            <div class="dash-card">
+              <span class="dash-card-title">{t('dashboard.tools')}</span>
+              <div class="dash-tools">
+                <span class="dash-tool-pill">Maya</span>
+                <span class="dash-tool-pill">V-Ray</span>
+                <span class="dash-tool-pill">After Effects</span>
+                <span class="dash-tool-pill">ComfyUI</span>
+              </div>
+            </div>
+            <div class="dash-card">
+              <span class="dash-card-title">{t('dashboard.delivery')}</span>
+              <span class="dash-countdown" id="dash-countdown">00:00:00</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="lab-cta-section">
+        <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="magnetic lab-cta-btn">
           {t('lab.cta')}
         </a>
-      </div>
+      </section>
+
     </div>
   </main>
 
   <div class="noise-overlay"></div>
 </BaseLayout>
+
+<style>
+  .lab-page {
+    background: var(--color-warm);
+    min-height: 100vh;
+  }
+
+  .lab-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+  }
+
+  @media (min-width: 1024px) {
+    .lab-container { padding: 96px 64px 120px; }
+  }
+
+  .lab-back {
+    display: inline-block;
+    color: var(--color-ghost);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    margin-bottom: 48px;
+  }
+  .lab-back:hover { color: var(--color-ink); }
+
+  /* ── Hero ── */
+  .lab-hero { margin-bottom: 96px; }
+
+  .lab-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .lab-hero-grid { grid-template-columns: 1fr 1fr; gap: 64px; }
+  }
+
+  .lab-eyebrow {
+    display: block;
+    color: var(--color-ghost);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .lab-h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    color: var(--color-ink);
+    margin-bottom: 24px;
+  }
+  .lab-h1-line { display: block; }
+  .lab-h1-line--light { font-weight: 200; opacity: 0.6; }
+
+  .lab-desc {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-muted);
+    max-width: 520px;
+    margin-bottom: 24px;
+  }
+  .lab-desc strong {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .lab-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lab-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--color-ghost);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 4px 10px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .lab-tag:hover {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+
+  .lab-video-wrap {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: linear-gradient(135deg, #e8e6e3 0%, #d8d5d0 100%);
+    transition: border-color 0.3s ease;
+  }
+  .lab-video-wrap:hover { border-color: rgba(0, 0, 0, 0.15); }
+  .lab-video-wrap video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .lab-video-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ghost);
+    font-size: 13px;
+    pointer-events: none;
+  }
+
+  /* ── Selected Work ── */
+  .lab-selected { margin-bottom: 96px; }
+
+  .lab-selected-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .lab-selected-grid { grid-template-columns: 3fr 2fr; gap: 64px; }
+  }
+
+  .lab-pulse-card {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--color-canvas);
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ghost);
+    font-size: 13px;
+    animation: lab-pulse 3s ease-in-out infinite;
+  }
+  @keyframes lab-pulse {
+    0%, 100% { border-color: var(--color-border-light); box-shadow: 0 0 0 rgba(0,0,0,0); }
+    50% { border-color: var(--color-border); box-shadow: 0 0 20px rgba(0,0,0,0.03); }
+  }
+
+  .lab-counter {
+    display: block;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--color-ghost);
+    margin-bottom: 12px;
+  }
+
+  .lab-selected-title {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+    margin-bottom: 16px;
+  }
+
+  .lab-selected-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin-bottom: 16px;
+  }
+
+  .lab-disciplines {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--color-ghost);
+    margin-bottom: 24px;
+  }
+
+  .lab-cta-link { display: inline-block; }
+  .lab-cta-text {
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink);
+    cursor: pointer;
+    padding-bottom: 2px;
+  }
+  .lab-cta-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .lab-cta-link:hover .lab-cta-text::after { width: 100%; }
+
+  /* ── Dashboard Section ── */
+  .lab-dashboard-section { margin-bottom: 96px; }
+
+  .lab-dashboard-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14px;
+    text-transform: uppercase;
+    color: var(--color-ghost);
+    opacity: 0.5;
+    margin-bottom: 20px;
+  }
+
+  .dash {
+    --dash-bg: #0f0f0f;
+    --dash-card: #161616;
+    --dash-border: rgba(255, 255, 255, 0.07);
+    --dash-border-hover: rgba(255, 255, 255, 0.12);
+    --dash-accent: var(--accent, #e8a838);
+    --dash-text: #f0f0f0;
+    --dash-muted: #888888;
+    --dash-dim: #555555;
+    background: var(--dash-bg);
+    border-radius: 12px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    position: relative;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  @media (min-width: 768px) {
+    .dash {
+      grid-template-columns: 1fr 1fr;
+      padding: 24px;
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .dash {
+      background-image: none;
+    }
+  }
+
+  .dash-topbar {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--dash-border);
+  }
+
+  .dash-project {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--dash-muted);
+  }
+
+  .dash-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--dash-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .dash-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dash-accent);
+    animation: dash-blink 2s ease-in-out infinite;
+  }
+  @keyframes dash-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .dash-clock {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--dash-dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dash-card {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 6px;
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+  }
+  .dash-card:hover {
+    box-shadow: 0 0 24px color-mix(in srgb, var(--dash-accent) 6%, transparent);
+  }
+
+  .dash-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .dash-card-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--dash-muted);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .dash-card-header .dash-card-title { margin-bottom: 0; }
+
+  .dash-pct {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 14px;
+    color: var(--dash-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dash-progress-track {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .dash-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--dash-accent);
+    border-radius: 2px;
+  }
+
+  .dash-card-sub {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--dash-dim);
+  }
+
+  .dash-stats {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 768px) {
+    .dash-stats { gap: 16px; }
+  }
+
+  .dash-stat {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+  .dash-stat:hover {
+    box-shadow: 0 0 24px color-mix(in srgb, var(--dash-accent) 6%, transparent);
+  }
+
+  .dash-stat-num {
+    display: block;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--dash-text);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dash-stat-label {
+    font-size: 11px;
+    color: var(--dash-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .dash-pipeline { display: flex; flex-direction: column; gap: 10px; }
+
+  .dash-pipe-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .dash-pipe-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--dash-muted);
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+
+  .dash-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dash-dot--green { background: #4ade80; }
+  .dash-dot--amber { background: #fbbf24; }
+  .dash-dot--grey { background: #555; }
+
+  .dash-pipe-track {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .dash-pipe-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--dash-accent);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dash-bottom {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 768px) {
+    .dash-bottom { grid-template-columns: 1fr 1fr; gap: 16px; }
+  }
+
+  .dash-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dash-tool-pill {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--dash-muted);
+    border: 1px solid var(--dash-border);
+    border-radius: 4px;
+    padding: 4px 10px;
+    opacity: 0;
+  }
+
+  .dash-countdown {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--dash-text);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── CTA ── */
+  .lab-cta-section {
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 48px;
+    text-align: center;
+  }
+
+  .lab-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    border-radius: 8px;
+    transition: opacity 0.3s;
+  }
+  .lab-cta-btn:hover { opacity: 0.85; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lab-pulse-card { animation: none; }
+    .dash-status-dot { animation: none; }
+    .dash-pipe-fill { transition: none; }
+  }
+</style>
 
 <script>
   import Lenis from 'lenis';
@@ -110,51 +716,176 @@ const backHref = lang === defaultLang ? '/' : '/es';
     });
   }
 
+  /* ── Live clock ── */
+  function updateClock() {
+    const el = document.getElementById('dash-clock');
+    if (!el) return;
+    const now = new Date();
+    el.textContent = now.toLocaleTimeString('en-GB');
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  /* ── Countdown ── */
+  const TARGET = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).getTime();
+  function updateCountdown() {
+    const el = document.getElementById('dash-countdown');
+    if (!el) return;
+    const diff = Math.max(0, TARGET - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    el.textContent = [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
   if (!prefersReducedMotion) {
-    const heroTitle = document.querySelector('main h1');
-    if (heroTitle) {
-      gsap.from(heroTitle, { y: 20, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.15 });
+    /* ── Hero entrance ── */
+    const heroEls = document.querySelectorAll<HTMLElement>(
+      '.lab-eyebrow, .lab-h1-line, .lab-desc, .lab-tags'
+    );
+    if (heroEls.length) {
+      gsap.from(heroEls, {
+        y: 30,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        stagger: 0.12,
+      });
     }
 
-    document.querySelectorAll('main .grid').forEach((grid) => {
-      const cards = grid.querySelectorAll(':scope > div');
-      if (cards.length > 1) {
-        gsap.from(cards, {
-          y: 24, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12,
-          scrollTrigger: { trigger: grid, start: 'top 82%', once: true },
+    const heroMedia = document.querySelector<HTMLElement>('.lab-hero-media');
+    if (heroMedia) {
+      gsap.from(heroMedia, {
+        y: 24,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: 0.4,
+      });
+    }
+
+    /* ── Selected work scroll animations ── */
+    const selectedMedia = document.querySelector<HTMLElement>('.lab-selected-media');
+    if (selectedMedia) {
+      gsap.from(selectedMedia, {
+        x: -60,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: selectedMedia, start: 'top 80%', once: true },
+      });
+    }
+
+    const selectedContent = document.querySelector<HTMLElement>('.lab-selected-content');
+    if (selectedContent) {
+      gsap.from(selectedContent, {
+        x: 60,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: selectedContent, start: 'top 80%', once: true },
+      });
+    }
+
+    /* ── Dashboard scroll animations ── */
+    const dash = document.querySelector<HTMLElement>('.dash');
+    if (dash) {
+      const children = dash.children;
+      gsap.from(Array.from(children), {
+        y: 20,
+        autoAlpha: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        stagger: 0.08,
+        scrollTrigger: { trigger: dash, start: 'top 80%', once: true },
+      });
+
+      /* Counter animation */
+      document.querySelectorAll<HTMLElement>('[data-count-to]').forEach((el) => {
+        const target = parseInt(el.dataset.countTo || '0', 10);
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: target,
+          duration: 2,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+          onUpdate: () => {
+            el.textContent = String(Math.round(obj.val));
+          },
+        });
+      });
+
+      /* Pipeline fills */
+      document.querySelectorAll<HTMLElement>('.dash-pipe-fill').forEach((bar, i) => {
+        const fill = bar.dataset.fill || '0';
+        gsap.to(bar, {
+          width: fill + '%',
+          duration: 0.8,
+          delay: i * 0.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: dash, start: 'top 75%', once: true },
+        });
+      });
+
+      /* Tool pills fade in */
+      const pills = document.querySelectorAll<HTMLElement>('.dash-tool-pill');
+      if (pills.length) {
+        gsap.to(pills, {
+          autoAlpha: 1,
+          duration: 0.4,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: pills[0], start: 'top 90%', once: true },
         });
       }
+    }
 
-      grid.querySelectorAll('.aspect-\\[16\\/10\\]').forEach((img) => {
-        gsap.from(img, {
-          scale: 0.95, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-          scrollTrigger: { trigger: img, start: 'top 85%', once: true },
+    /* ── Render progress loop ── */
+    const progressFill = document.getElementById('dash-progress') as HTMLElement | null;
+    const pctEl = document.getElementById('dash-pct') as HTMLElement | null;
+    if (progressFill && pctEl) {
+      const progObj = { pct: 0 };
+      function runProgress() {
+        progObj.pct = 0;
+        gsap.to(progObj, {
+          pct: 100,
+          duration: 8,
+          ease: 'none',
+          onUpdate: () => {
+            if (progressFill) progressFill.style.width = progObj.pct + '%';
+            if (pctEl) pctEl.textContent = Math.round(progObj.pct) + '%';
+          },
+          onComplete: runProgress,
         });
+      }
+      ScrollTrigger.create({
+        trigger: progressFill,
+        start: 'top 90%',
+        once: true,
+        onEnter: runProgress,
       });
+    }
 
-      cards.forEach((card) => {
-        const textEls = card.querySelectorAll('span[class*="ghost"], h3, p');
-        if (textEls.length > 1) {
-          gsap.from(textEls, {
-            y: 14, autoAlpha: 0, duration: 0.4, ease: 'power2.out', stagger: 0.08,
-            scrollTrigger: { trigger: card, start: 'top 82%', once: true },
-          });
-        }
+    /* ── CTA section ── */
+    const ctaSection = document.querySelector<HTMLElement>('.lab-cta-section');
+    if (ctaSection) {
+      gsap.from(ctaSection, {
+        y: 16,
+        autoAlpha: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: ctaSection, start: 'top 90%', once: true },
       });
-    });
+    }
 
-    document.querySelectorAll('main .border-t').forEach((el) => {
-      gsap.from(el, {
-        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-      });
-    });
-
-    document.querySelectorAll('.magnetic').forEach((el) => {
+    /* ── Magnetic CTA ── */
+    document.querySelectorAll<HTMLElement>('.magnetic').forEach((el) => {
       el.addEventListener('mousemove', (e) => {
-        const rect = (el as HTMLElement).getBoundingClientRect();
-        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
-        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
         gsap.to(el, { x: x * 0.15, y: y * 0.15, duration: 0.3, ease: 'power2.out' });
       });
       el.addEventListener('mouseleave', () => {
