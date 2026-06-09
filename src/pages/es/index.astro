@@ -42,7 +42,10 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
               <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">Maya</span>
               <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">V-Ray</span>
               <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">After Effects</span>
-              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">Figma</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">Photoshop</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">Illustrator</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">Unity</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">ZBrush</span>
               <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">HTML/CSS</span>
               <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">AI Workflows</span>
             </div>
@@ -93,7 +96,7 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     </section>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas" id="footer" style="z-index: -1;">
+    <footer class="fixed bottom-0 left-0 right-0 bg-ink text-canvas min-h-screen" id="footer" style="z-index: -1;">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
 
         <!-- Email -->
@@ -209,7 +212,7 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
       ease: 'none',
       scrollTrigger: {
         trigger: postsPin,
-        start: 'top top',
+        start: 'center center',
         end: `+=${totalWidth}`,
         pin: true,
         scrub: true,
@@ -359,9 +362,10 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   }
 
   .posts-pin-wrapper {
-    min-height: 70vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: var(--color-warm);
   }
 
   #footer-email-link {
