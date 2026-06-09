@@ -147,23 +147,35 @@ const timeline = [
       </div>
     </section>
 
-    <!-- BIG STORY -->
-    <section class="bg-warm border-y border-border-light">
+    <!-- DARK CTA -->
+    <section class="bg-ink">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl">
-          <div class="lg:col-span-3">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.story.label')}</span>
-            <p class="text-muted text-[13px] leading-[1.6] max-w-[200px]">
-              {t('about.story.caption')}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl items-center">
+          <div class="lg:col-span-7">
+            <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">{t('about.cta.dark.label')}</span>
+            <h2 class="text-[clamp(28px,4vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-canvas text-balance mb-lg">
+              {t('about.cta.dark.title')}
+            </h2>
+            <p class="text-canvas/60 text-[16px] leading-[1.65] max-w-[420px]">
+              {t('about.cta.dark.body')}
             </p>
           </div>
-
-          <div class="lg:col-span-9 lg:col-start-4 space-y-lg">
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance" set:html={t('about.story.p1')} />
-
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance" set:html={t('about.story.p2')} />
-
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance" set:html={t('about.story.p3')} />
+          <div class="lg:col-span-4 lg:col-start-9 flex flex-col gap-md">
+            <a
+              href={`mailto:${t('footer.email')}`}
+              class="group inline-flex items-center justify-between px-xl py-lg bg-canvas text-ink rounded-xl text-[15px] font-medium tracking-[-0.1px] transition-all duration-300 hover:bg-canvas/90"
+            >
+              {t('about.cta.dark.contact')}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a
+              href="/alvaroAres_CV_2026.pdf"
+              download
+              class="group inline-flex items-center justify-between px-xl py-lg border border-canvas/20 text-canvas rounded-xl text-[15px] font-medium tracking-[-0.1px] transition-all duration-300 hover:border-canvas/40"
+            >
+              {t('about.cta.dark.cv')}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-y-0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -293,39 +305,6 @@ const timeline = [
               {t('about.now.3.body')}
             </p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTAs -->
-    <section class="bg-canvas">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
-
-          <a href={`mailto:${t('footer.email')}`} class="group block bg-ink text-canvas rounded-xl p-xl transition-all duration-300 hover:bg-ink/90 relative overflow-hidden">
-            <span class="text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('about.cta.connect')}</span>
-            <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] mb-sm">{t('about.cta.connect.title')}</h3>
-            <p class="text-canvas/60 text-[14px] leading-[1.55] mb-lg">
-              {t('about.cta.connect.body')}
-            </p>
-            <span class="inline-flex items-center gap-xs text-accent text-[13px] font-medium tracking-[-0.1px]">
-              {t('about.cta.connect.button')}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
-          </a>
-
-          <a href="/alvaroAres_CV_2026.pdf" download class="group block bg-warm rounded-xl border border-border-light p-xl transition-all duration-300 hover:border-accent relative overflow-hidden">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('about.cta.cv')}</span>
-            <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('about.cta.cv.title')}</h3>
-            <p class="text-muted text-[14px] leading-[1.55] mb-lg">
-              {t('about.cta.cv.body')}
-            </p>
-            <span class="inline-flex items-center gap-xs text-ink text-[13px] font-medium tracking-[-0.1px]">
-              alvaroAres_CV_2026.pdf
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-y-0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            </span>
-          </a>
-
         </div>
       </div>
     </section>
@@ -724,25 +703,15 @@ const timeline = [
       }
     }
 
-    if (sections[4]) {
-      const ctaCards = sections[4].querySelectorAll('a.group');
-      if (ctaCards.length) {
-        gsap.from(ctaCards, {
-          y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12,
-          scrollTrigger: { trigger: sections[4], start: 'top 82%', once: true },
+    const ctaSection = sections[1];
+    if (ctaSection) {
+      const ctaButtons = ctaSection.querySelectorAll('a.group');
+      if (ctaButtons.length) {
+        gsap.from(ctaButtons, {
+          y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+          scrollTrigger: { trigger: ctaSection, start: 'top 82%', once: true },
         });
       }
-    }
-
-    const storySection = sections[1];
-    if (storySection) {
-      const paragraphs = storySection.querySelectorAll('.space-y-lg > p, .lg\\:col-span-9 p');
-      paragraphs.forEach((p) => {
-        gsap.from(p, {
-          y: 12, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-          scrollTrigger: { trigger: p, start: 'top 88%', once: true },
-        });
-      });
     }
   }
 </script>
