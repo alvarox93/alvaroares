@@ -6,12 +6,14 @@ import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 
-const outerRow1 = ['matcha-cookies', 'huesito', 'pansuflado', 'bravas-1', 'topoki', 'panellet-1', 'chocolate-bar'];
-const middleRow1 = ['bonbon', 'churros', 'honey-cake', 'kortxo', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'bravas-2', 'gyoza', 'chocolate-hover', 'macaron', 'panellet-3', 'snack'];
-const middleRow2 = ['cafe', 'churro', 'coulant', 'huesito', 'panellet-1', 'pineapple', 'spoonful', 'topoki', 'bar', 'bravas-1', 'chocolate-bar', 'matcha-cookies', 'pansuflado', 'waffle-honey'];
-const outerRow2 = ['coulant', 'snack', 'bar', 'pineapple', 'gyoza', 'churros', 'waffle-honey'];
+const allRenders = ['cafe', 'bar', 'bonbon', 'bravas-1', 'bravas-2', 'chocolate-bar', 'churro', 'churros', 'coulant', 'gyoza', 'honey-cake', 'chocolate-hover', 'huesito', 'kortxo', 'macaron', 'matcha-cookies', 'panellet-1', 'panellet-2', 'panellet-3', 'pansuflado', 'pasta', 'pineapple', 'pringle', 'snack', 'spoonful', 'tea-matcha', 'topoki', 'waffle-honey'];
 
-const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
+const row1 = ['matcha-cookies', 'huesito', 'pansuflado', 'bravas-1', 'topoki', 'panellet-1', 'chocolate-bar', 'cafe', 'bar', 'bonbon', 'bravas-2', 'churro', 'churros', 'coulant', 'gyoza', 'honey-cake', 'chocolate-hover', 'kortxo', 'macaron', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'panellet-3', 'snack', 'pineapple', 'spoonful', 'waffle-honey'];
+const row2 = ['bonbon', 'churros', 'honey-cake', 'kortxo', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'bravas-2', 'gyoza', 'chocolate-hover', 'macaron', 'panellet-3', 'snack', 'cafe', 'bar', 'matcha-cookies', 'huesito', 'pansuflado', 'bravas-1', 'topoki', 'panellet-1', 'chocolate-bar', 'churro', 'coulant', 'pineapple', 'spoonful', 'waffle-honey'];
+const row3 = ['cafe', 'churro', 'coulant', 'huesito', 'panellet-1', 'pineapple', 'spoonful', 'topoki', 'bar', 'bravas-1', 'chocolate-bar', 'matcha-cookies', 'pansuflado', 'waffle-honey', 'bonbon', 'churros', 'honey-cake', 'kortxo', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'bravas-2', 'gyoza', 'chocolate-hover', 'macaron', 'panellet-3', 'snack'];
+const row4 = ['coulant', 'snack', 'bar', 'pineapple', 'gyoza', 'churros', 'waffle-honey', 'cafe', 'churro', 'huesito', 'panellet-1', 'topoki', 'bravas-1', 'chocolate-bar', 'matcha-cookies', 'pansuflado', 'bonbon', 'bravas-2', 'honey-cake', 'kortxo', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'chocolate-hover', 'macaron', 'panellet-3', 'spoonful'];
+
+const rows = [row1, row2, row3, row4];
 const rowLengths = rows.map(r => r.length);
 ---
 
@@ -376,6 +378,9 @@ const rowLengths = rows.map(r => r.length);
 
   const initAnimation = async () => {
     await waitForImages();
+    
+    // Wait a bit more for layout to stabilize
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     if (!prefersReducedMotion) {
       const canvas = document.getElementById('immersive-canvas') as HTMLElement;
@@ -388,38 +393,37 @@ const rowLengths = rows.map(r => r.length);
         { direction: -1, speed: 0.8, offset: 0.6 },
       ];
 
-      // Calculate loopW by finding the position of the first duplicated image
-      // This is the most accurate way to get the exact loop point
+      // Calculate loopW by measuring the actual width of one complete set of images
       const calculateLoopWidths = () => {
-        return Array.from(tracks).map((track) => {
+        return Array.from(tracks).map((track, i) => {
           const cards = track.querySelectorAll('.render-card');
-          if (cards.length < 2) return 1000;
+          if (cards.length === 0) return 1000;
           
-          // Find the first card that starts after the midpoint (first duplicate)
-          const trackWidth = track.scrollWidth;
-          const midpoint = trackWidth / 2;
+          // Measure the actual width of the first complete set of images
+          // We measure from the first card to the card at position [numCards]
+          const numCards = rowLengths[i];
+          const firstCard = cards[0];
+          const duplicateCard = cards[numCards];
           
-          // The loop width is the position where the duplicate sequence starts
-          // We measure from the track's left edge to the first duplicate card
-          for (let j = 0; j < cards.length; j++) {
-            const cardLeft = cards[j].offsetLeft;
-            if (cardLeft >= midpoint - 1) {
-              return cardLeft;
-            }
+          if (duplicateCard) {
+            // The loop width is the distance from the first card to the duplicate
+            return duplicateCard.offsetLeft - firstCard.offsetLeft;
           }
           
-          // Fallback: use half the track width
-          return midpoint;
+          // Fallback: calculate manually
+          const cardWidth = firstCard.getBoundingClientRect().width;
+          const gap = parseFloat(getComputedStyle(track).gap) || 14;
+          return (cardWidth * numCards) + (gap * (numCards - 1));
         });
       };
 
       // Initial calculation
       let loopWidths = calculateLoopWidths();
 
-      // Recalculate after a delay to ensure all images are fully loaded
-      setTimeout(() => {
-        loopWidths = calculateLoopWidths();
-      }, 500);
+      // Recalculate multiple times to ensure accuracy
+      setTimeout(() => { loopWidths = calculateLoopWidths(); }, 100);
+      setTimeout(() => { loopWidths = calculateLoopWidths(); }, 500);
+      setTimeout(() => { loopWidths = calculateLoopWidths(); }, 1000);
 
       // Auto-scroll state
       const scroll = { y: 0, vy: 0 };
