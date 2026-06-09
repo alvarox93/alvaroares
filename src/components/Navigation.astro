@@ -403,9 +403,18 @@ const aboutChars = t('nav.about').split('');
   // Close on link click
   menuLinks.forEach((link) => {
     link.addEventListener('click', () => {
-      // Allow navigation to happen after close animation
       closeMenu();
     });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+
+  // Close if resized to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && isOpen) closeMenu();
   });
 
   /* ── Per-character hover ── */
