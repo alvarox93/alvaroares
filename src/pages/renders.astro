@@ -220,7 +220,7 @@ const rowLengths = rows.map(r => r.length);
 
   .bottom-bar__hero {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     gap: 32px;
   }
@@ -273,7 +273,7 @@ const rowLengths = rows.map(r => r.length);
   }
 
   .bottom-bar__copy {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.6;
     color: var(--color-muted);
@@ -346,7 +346,7 @@ const rowLengths = rows.map(r => r.length);
     }
 
     .bottom-bar__copy {
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .bottom-bar__cta {
@@ -418,10 +418,19 @@ const rowLengths = rows.map(r => r.length);
       ];
 
       // Calculate loopW from actual DOM measurements
-      // Each track has the original images duplicated, so scrollWidth / 2 = one loop
-      const loopWidths = Array.from(tracks).map(track => {
-        const width = track.scrollWidth / 2;
-        return width > 0 ? width : 1000; // fallback
+      // Measure the first image width and multiply by row length for precision
+      const rowLengths = [7, 14, 14, 7]; // outerRow1, middleRow1, middleRow2, outerRow2
+      const loopWidths = Array.from(tracks).map((track, i) => {
+        const firstCard = track.querySelector('.render-card');
+        if (!firstCard) return 1000;
+        
+        const cardWidth = firstCard.getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 14;
+        const rowLength = rowLengths[i];
+        
+        // Calculate exact loop width: (cardWidth + gap) * rowLength
+        // Subtract gap because the last card doesn't have a trailing gap
+        return (cardWidth + gap) * rowLength;
       });
 
       // Auto-scroll state
