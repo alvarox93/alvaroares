@@ -389,26 +389,32 @@ const rowLengths = rows.map(r => r.length);
       ];
 
       // Calculate loopW from actual DOM measurements
-      // Measure the first image width and multiply by row length for precision
+      // Measure the actual width of the first set of images (not duplicated)
       const rowLengths = [7, 14, 14, 7]; // outerRow1, middleRow1, middleRow2, outerRow2
       const loopWidths = Array.from(tracks).map((track, i) => {
-        const firstCard = track.querySelector('.render-card');
-        if (!firstCard) return 1000;
+        const cards = track.querySelectorAll('.render-card');
+        if (cards.length === 0) return 1000;
         
-        const cardWidth = firstCard.getBoundingClientRect().width;
-        const gap = parseFloat(getComputedStyle(track).gap) || 14;
+        // Measure the width of only the first set of images (not the duplicates)
         const rowLength = rowLengths[i];
+        let totalWidth = 0;
+        const gap = parseFloat(getComputedStyle(track).gap) || 14;
         
-        // Calculate exact loop width: (cardWidth + gap) * rowLength
-        // Subtract gap because the last card doesn't have a trailing gap
-        return (cardWidth + gap) * rowLength;
+        for (let j = 0; j < rowLength && j < cards.length; j++) {
+          totalWidth += cards[j].getBoundingClientRect().width;
+          if (j < rowLength - 1) {
+            totalWidth += gap;
+          }
+        }
+        
+        return totalWidth;
       });
 
       // Auto-scroll state
       const scroll = { y: 0, vy: 0 };
-      const BASE_SPEED = 0.5;
-      const FRICTION = 0.92;
-      const WHEEL_SENS = 1.2;
+      const BASE_SPEED = 0.2;
+      const FRICTION = 0.94;
+      const WHEEL_SENS = 0.35;
 
       let isTouching = false;
       let lastTouchY = 0;
@@ -442,7 +448,7 @@ const rowLengths = rows.map(r => r.length);
 
       canvas.addEventListener('touchend', () => {
         isTouching = false;
-        scroll.vy = touchVy * 2.5;
+        scroll.vy = touchVy * 1.2;
       });
 
       gsap.ticker.add(() => {
