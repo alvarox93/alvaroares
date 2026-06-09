@@ -156,24 +156,26 @@ const timeline = [
             <h2 class="text-[clamp(28px,4vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-canvas text-balance mb-lg">
               {t('about.cta.dark.title')}
             </h2>
-            <p class="text-canvas/60 text-[16px] leading-[1.65] max-w-[420px]">
+            <p class="text-canvas/60 text-[16px] leading-[1.65] max-w-[420px] mb-xl">
               {t('about.cta.dark.body')}
             </p>
-          </div>
-          <div class="lg:col-span-4 lg:col-start-9 flex flex-col gap-md">
-            <a
-              href={`mailto:${t('footer.email')}`}
-              class="inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/85"
-            >
-              {t('about.cta.dark.contact')}
-            </a>
-            <a
-              href="/alvaroAres_CV_2026.pdf"
-              download
-              class="inline-flex items-center justify-center px-6 py-3 bg-canvas/10 text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-canvas/20 transition-colors duration-300 hover:border-canvas/40"
-            >
-              {t('about.cta.dark.cv')}
-            </a>
+            <div class="flex flex-wrap gap-sm">
+              <a
+                href={`mailto:${t('footer.email')}`}
+                class="inline-flex items-center gap-xs px-4 py-2 bg-canvas text-ink text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/85"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                {t('about.cta.dark.contact')}
+              </a>
+              <a
+                href="/alvaroAres_CV_2026.pdf"
+                download
+                class="inline-flex items-center gap-xs px-4 py-2 bg-canvas/10 text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg border border-canvas/20 transition-colors duration-300 hover:border-canvas/40"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                {t('about.cta.dark.cv')}
+              </a>
+            </div>
           </div>
         </div>
       </div>
