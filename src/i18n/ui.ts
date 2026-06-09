@@ -292,7 +292,7 @@ export const ui = {
 
     'footer.location': 'Barcelona, Spain',
     'footer.workingWorldwide': 'Working worldwide',
-    'footer.copyright': 'Designed & built by Álvaro Ares · © 2026',
+    'footer.copyright': 'Designed & built by Álvaro Ares © 2026',
     'footer.email': 'hey@alvaroar.es',
     'footer.phone': '+34 649 635 382',
 
@@ -598,7 +598,7 @@ export const ui = {
 
     'footer.location': 'Barcelona, España',
     'footer.workingWorldwide': 'Trabajo en todo el mundo',
-    'footer.copyright': 'Diseñado & desarrollado por Álvaro Ares · © 2026',
+    'footer.copyright': 'Diseñado & desarrollado por Álvaro Ares © 2026',
     'footer.email': 'hey@alvaroar.es',
     'footer.phone': '+34 649 635 382',
 

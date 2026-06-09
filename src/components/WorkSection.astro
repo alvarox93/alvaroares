@@ -1,6 +1,7 @@
 ---
 import { useTranslations, defaultLang, type Language, type UIKey } from '@i18n/ui';
 import FoodSlideshow from '@components/FoodSlideshow.astro';
+import LapatzakGallery from '@components/LapatzakGallery.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -64,14 +65,13 @@ const projects: Array<{
 ---
 
 <section class="relative bg-canvas" id="work">
-  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-section">
-
-    <div class="flex items-end justify-between mb-[100px]">
-      <div>
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm"></span>
-        <h2 class="text-[clamp(28px,3.5vw,42px)] leading-[1.08] tracking-[-0.04em] text-ink" set:html={t('work.heading')} />
-      </div>
+  <div class="bg-ink w-full py-3xl mb-[100px]">
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
+      <h2 class="text-[clamp(36px,5vw,64px)] font-medium leading-[1.05] tracking-[-0.04em] text-canvas" set:html={t('work.heading')} />
     </div>
+  </div>
+
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pb-section">
 
     {projects.map((p, i) => {
       const isLeft = p.side === 'left';
@@ -96,6 +96,8 @@ const projects: Array<{
                       />
                       <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
                     </div>
+                  ) : p.num === '03' ? (
+                    <LapatzakGallery />
                   ) : (
                     <div class="absolute -top-[15%] left-0 w-full h-[130%] bg-surface project-image-wrap">
                       <div class="absolute inset-0 flex items-center justify-center" style="top:15%;height:60%;">
@@ -140,7 +142,7 @@ const projects: Array<{
           </div>
         </a>
         {i === 1 && (
-          <div class="bg-ink rounded-xl py-2xl mb-[140px] overflow-hidden">
+          <div class="bg-ink w-full py-4xl mb-[140px] overflow-hidden">
             <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl flex flex-col items-center text-center">
               <span class="text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">{t('home.hero.available')}</span>
               <h3 class="text-[clamp(22px,2.8vw,32px)] font-light leading-[1.1] tracking-[-0.03em] text-canvas mb-md max-w-[560px]">

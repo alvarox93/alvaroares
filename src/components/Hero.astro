@@ -33,7 +33,7 @@ const t = useTranslations(lang);
           <strong class="text-ink font-medium">{t('home.hero.lede')}</strong> {t('home.hero.ledeBold')}
         </p>
 
-        <div class="flex gap-md flex-wrap items-center">
+        <div class="flex gap-md items-center">
           <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             {t('home.hero.cta.about')}
