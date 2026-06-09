@@ -45,6 +45,15 @@ const timeline = [
     tags: [t('about.timeline.item.move.tag1')],
   },
   {
+    year: '2021',
+    period: lang === 'es' ? 'Salto' : 'Breakthrough',
+    role: t('about.timeline.item.intl.role'),
+    company: 'Koora.studio',
+    location: 'Bilbao',
+    description: t('about.timeline.item.intl.description'),
+    tags: [t('about.timeline.item.intl.tag1'), t('about.timeline.item.intl.tag2'), t('about.timeline.item.intl.tag3')],
+  },
+  {
     year: '2018',
     period: '2018 — 2022',
     role: t('about.timeline.item.koora.role'),
@@ -54,25 +63,25 @@ const timeline = [
     tags: [t('about.timeline.item.koora.tag1'), t('about.timeline.item.koora.tag2'), t('about.timeline.item.koora.tag3'), t('about.timeline.item.koora.tag4')],
   },
   {
-    year: '2016',
-    period: '2016 — 2018',
-    role: t('about.timeline.item.freelance.role'),
-    company: lang === 'es' ? 'Freelance — internacional' : 'Freelance — international',
-    location: 'Bilbao',
-    description: t('about.timeline.item.freelance.description'),
-    tags: [t('about.timeline.item.freelance.tag1'), t('about.timeline.item.freelance.tag2'), t('about.timeline.item.freelance.tag3')],
+    year: '2018',
+    period: lang === 'es' ? 'Inicio de año' : 'Early year',
+    role: t('about.timeline.item.ludei.role'),
+    company: t('about.timeline.item.ludei.company'),
+    location: lang === 'es' ? 'Remoto, Bilbao' : 'Remote, Bilbao',
+    description: t('about.timeline.item.ludei.description'),
+    tags: [t('about.timeline.item.ludei.tag1'), t('about.timeline.item.ludei.tag2'), t('about.timeline.item.ludei.tag3')],
   },
   {
-    year: '2014',
-    period: '2014 — 2016',
-    role: t('about.timeline.item.junior.role'),
-    company: lang === 'es' ? 'Trabajo en estudio' : 'Agency studio work',
-    location: 'Bilbao',
-    description: t('about.timeline.item.junior.description'),
-    tags: [t('about.timeline.item.junior.tag1'), t('about.timeline.item.junior.tag2'), t('about.timeline.item.junior.tag3')],
+    year: '2015',
+    period: '2015',
+    role: t('about.timeline.item.mmd.role'),
+    company: 'MMD Distribution',
+    location: 'Cork, Ireland',
+    description: t('about.timeline.item.mmd.description'),
+    tags: [t('about.timeline.item.mmd.tag1'), t('about.timeline.item.mmd.tag2'), t('about.timeline.item.mmd.tag3')],
   },
   {
-    year: '2012',
+    year: '2006',
     period: lang === 'es' ? 'Origen' : 'Origin',
     role: t('about.timeline.item.origin.role'),
     company: lang === 'es' ? 'Autodidacta' : 'Self-taught',
@@ -97,56 +106,76 @@ const timeline = [
       <div class="hero-blob" id="about-blob" style="left: 70%; top: 30%; transform: translate(-50%, -50%);"></div>
 
       <div class="relative max-w-[1200px] mx-auto px-xl lg:px-3xl pt-32 pb-section">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl items-end">
+        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xl block">{t('about.label')}</span>
 
-          <div class="lg:col-span-3 order-2 lg:order-1">
-            <div class="relative w-[180px] lg:w-[200px] aspect-[4/5] bg-surface rounded-xl overflow-hidden mb-md">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px] tracking-wide uppercase">[Photo]</div>
-              <div class="absolute inset-0 ring-1 ring-inset ring-border rounded-xl pointer-events-none"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl items-start">
+
+          <div class="lg:col-span-5 order-2 lg:order-1">
+            <div class="relative w-full max-w-[380px] aspect-[4/5] rounded-2xl overflow-hidden">
+              <img
+                src="/alvaroProfile.png"
+                alt="Álvaro Ares"
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+              <div class="absolute inset-0 ring-1 ring-inset ring-black/[0.08] rounded-2xl pointer-events-none"></div>
             </div>
-            <div class="space-y-1.5 max-w-[200px]">
+          </div>
+
+          <div class="lg:col-span-7 lg:col-start-6 order-1 lg:order-2 flex flex-col justify-between min-h-[420px]">
+            <div>
+              <h1 class="text-[clamp(36px,5.5vw,64px)] font-light leading-[1.05] tracking-[-0.04em] text-ink text-balance mb-xl">
+                {t('about.heading')}
+              </h1>
+              <p class="text-[17px] leading-[1.65] text-muted max-w-[480px]">
+                <strong class="text-ink font-medium">{t('about.lede.bold')}</strong> {t('about.lede.regular')}
+              </p>
+            </div>
+
+            <div class="flex items-center gap-xl mt-2xl pt-xl border-t border-border-light">
               <div class="flex items-center gap-xs">
                 <span class="accent-dot" style="width:6px;height:6px;"></span>
                 <span class="text-ink text-[11px] font-medium tracking-[0.12px] uppercase">{t('about.meta.available')}</span>
               </div>
-              <p class="text-muted text-[12px] leading-[1.55]">
-                {t('footer.location')}<br />
-                {t('about.meta.born')}<br />
-                {t('about.meta.worldwide')}
-              </p>
+              <span class="w-[1px] h-[16px] bg-border"></span>
+              <span class="text-muted text-[12px] tracking-[0.06px]">{t('footer.location')}</span>
+              <span class="w-[1px] h-[16px] bg-border hidden sm:block"></span>
+              <span class="text-muted text-[12px] tracking-[0.06px] hidden sm:block">{t('about.meta.worldwide')}</span>
             </div>
-          </div>
-
-          <div class="lg:col-span-9 lg:col-start-4 order-1 lg:order-2">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">{t('about.label')}</span>
-            <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance mb-xl">
-              {t('about.heading')}
-            </h1>
-            <p class="text-[17px] leading-[1.6] text-muted max-w-[560px]">
-              <strong class="text-ink font-medium">{t('about.lede.bold')}</strong> {t('about.lede.regular')}
-            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BIG STORY -->
-    <section class="bg-warm border-y border-border-light">
+    <!-- DARK CTA -->
+    <section class="bg-ink">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl">
-          <div class="lg:col-span-3">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.story.label')}</span>
-            <p class="text-muted text-[13px] leading-[1.6] max-w-[200px]">
-              {t('about.story.caption')}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl items-center">
+          <div class="lg:col-span-7">
+            <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">{t('about.cta.dark.label')}</span>
+            <h2 class="text-[clamp(28px,4vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-canvas text-balance mb-lg">
+              {t('about.cta.dark.title')}
+            </h2>
+            <p class="text-canvas/60 text-[16px] leading-[1.65] max-w-[420px]">
+              {t('about.cta.dark.body')}
             </p>
           </div>
-
-          <div class="lg:col-span-9 lg:col-start-4 space-y-lg">
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance" set:html={t('about.story.p1')} />
-
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance" set:html={t('about.story.p2')} />
-
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.5] tracking-[-0.02em] text-ink font-light text-balance" set:html={t('about.story.p3')} />
+          <div class="lg:col-span-4 lg:col-start-9 flex flex-col gap-md">
+            <a
+              href={`mailto:${t('footer.email')}`}
+              class="group inline-flex items-center justify-between px-xl py-lg bg-canvas text-ink rounded-xl text-[15px] font-medium tracking-[-0.1px] transition-all duration-300 hover:bg-canvas/90"
+            >
+              {t('about.cta.dark.contact')}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a
+              href="/alvaroAres_CV_2026.pdf"
+              download
+              class="group inline-flex items-center justify-between px-xl py-lg border border-canvas/20 text-canvas rounded-xl text-[15px] font-medium tracking-[-0.1px] transition-all duration-300 hover:border-canvas/40"
+            >
+              {t('about.cta.dark.cv')}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-y-0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -241,74 +270,41 @@ const timeline = [
     </section>
 
     <!-- WHAT I DO NOW -->
-    <section class="bg-warm border-y border-border-light">
+    <section class="bg-ink">
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl mb-3xl">
           <div class="lg:col-span-7">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">{t('about.now.label')}</span>
-            <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
+            <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase mb-lg block">{t('about.now.label')}</span>
+            <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-canvas text-balance">
               {t('about.now.heading')}
             </h2>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-          <div class="bg-canvas rounded-xl p-xl border border-border-light">
-            <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.now.1.tag')}</span>
-            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('about.now.1.title')}</h3>
-            <p class="text-muted text-[14px] leading-[1.6] mb-md">
+          <div class="bg-canvas/[0.06] rounded-xl p-xl border border-canvas/10">
+            <span class="text-canvas/40 text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.now.1.tag')}</span>
+            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-canvas mb-sm">{t('about.now.1.title')}</h3>
+            <p class="text-canvas/60 text-[14px] leading-[1.6] mb-md">
               {t('about.now.1.body')}
             </p>
           </div>
 
-          <div class="bg-canvas rounded-xl p-xl border border-border-light">
-            <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.now.2.tag')}</span>
-            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('about.now.2.title')}</h3>
-            <p class="text-muted text-[14px] leading-[1.6] mb-md">
+          <div class="bg-canvas/[0.06] rounded-xl p-xl border border-canvas/10">
+            <span class="text-canvas/40 text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.now.2.tag')}</span>
+            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-canvas mb-sm">{t('about.now.2.title')}</h3>
+            <p class="text-canvas/60 text-[14px] leading-[1.6] mb-md">
               {t('about.now.2.body')}
             </p>
           </div>
 
-          <div class="bg-canvas rounded-xl p-xl border border-border-light">
-            <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.now.3.tag')}</span>
-            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('about.now.3.title')}</h3>
-            <p class="text-muted text-[14px] leading-[1.6] mb-md">
+          <div class="bg-canvas/[0.06] rounded-xl p-xl border border-canvas/10">
+            <span class="text-canvas/40 text-[10px] font-medium tracking-[0.14px] uppercase mb-md block">{t('about.now.3.tag')}</span>
+            <h3 class="text-[18px] font-medium leading-[1.2] tracking-[-0.02em] text-canvas mb-sm">{t('about.now.3.title')}</h3>
+            <p class="text-canvas/60 text-[14px] leading-[1.6] mb-md">
               {t('about.now.3.body')}
             </p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTAs -->
-    <section class="bg-canvas">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
-
-          <a href={`mailto:${t('footer.email')}`} class="group block bg-ink text-canvas rounded-xl p-xl transition-all duration-300 hover:bg-ink/90 relative overflow-hidden">
-            <span class="text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('about.cta.connect')}</span>
-            <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] mb-sm">{t('about.cta.connect.title')}</h3>
-            <p class="text-canvas/60 text-[14px] leading-[1.55] mb-lg">
-              {t('about.cta.connect.body')}
-            </p>
-            <span class="inline-flex items-center gap-xs text-accent text-[13px] font-medium tracking-[-0.1px]">
-              {t('about.cta.connect.button')}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
-          </a>
-
-          <a href="/alvaroAres_CV_2026.pdf" download class="group block bg-warm rounded-xl border border-border-light p-xl transition-all duration-300 hover:border-accent relative overflow-hidden">
-            <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('about.cta.cv')}</span>
-            <h3 class="text-[22px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('about.cta.cv.title')}</h3>
-            <p class="text-muted text-[14px] leading-[1.55] mb-lg">
-              {t('about.cta.cv.body')}
-            </p>
-            <span class="inline-flex items-center gap-xs text-ink text-[13px] font-medium tracking-[-0.1px]">
-              alvaroAres_CV_2026.pdf
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-y-0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            </span>
-          </a>
-
         </div>
       </div>
     </section>
@@ -707,25 +703,15 @@ const timeline = [
       }
     }
 
-    if (sections[4]) {
-      const ctaCards = sections[4].querySelectorAll('a.group');
-      if (ctaCards.length) {
-        gsap.from(ctaCards, {
-          y: 20, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12,
-          scrollTrigger: { trigger: sections[4], start: 'top 82%', once: true },
+    const ctaSection = sections[1];
+    if (ctaSection) {
+      const ctaButtons = ctaSection.querySelectorAll('a.group');
+      if (ctaButtons.length) {
+        gsap.from(ctaButtons, {
+          y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+          scrollTrigger: { trigger: ctaSection, start: 'top 82%', once: true },
         });
       }
-    }
-
-    const storySection = sections[1];
-    if (storySection) {
-      const paragraphs = storySection.querySelectorAll('.space-y-lg > p, .lg\\:col-span-9 p');
-      paragraphs.forEach((p) => {
-        gsap.from(p, {
-          y: 12, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-          scrollTrigger: { trigger: p, start: 'top 88%', once: true },
-        });
-      });
     }
   }
 </script>
