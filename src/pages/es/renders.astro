@@ -388,33 +388,34 @@ const rowLengths = rows.map(r => r.length);
         { direction: -1, speed: 0.8, offset: 0.6 },
       ];
 
-      // Calculate loopW from actual DOM measurements
-      // Measure the actual width of the first set of images (not duplicated)
-      const rowLengths = [7, 14, 14, 7]; // outerRow1, middleRow1, middleRow2, outerRow2
-      const loopWidths = Array.from(tracks).map((track, i) => {
+      // Calculate loopW by finding the position of the first duplicated image
+      // This is the most accurate way to get the exact loop point
+      const loopWidths = Array.from(tracks).map((track) => {
         const cards = track.querySelectorAll('.render-card');
-        if (cards.length === 0) return 1000;
+        if (cards.length < 2) return 1000;
         
-        // Measure the width of only the first set of images (not the duplicates)
-        const rowLength = rowLengths[i];
-        let totalWidth = 0;
-        const gap = parseFloat(getComputedStyle(track).gap) || 14;
+        // Find the first card that starts after the midpoint (first duplicate)
+        const trackWidth = track.scrollWidth;
+        const midpoint = trackWidth / 2;
         
-        for (let j = 0; j < rowLength && j < cards.length; j++) {
-          totalWidth += cards[j].getBoundingClientRect().width;
-          if (j < rowLength - 1) {
-            totalWidth += gap;
+        // The loop width is the position where the duplicate sequence starts
+        // We measure from the track's left edge to the first duplicate card
+        for (let j = 0; j < cards.length; j++) {
+          const cardLeft = cards[j].offsetLeft;
+          if (cardLeft >= midpoint - 1) {
+            return cardLeft;
           }
         }
         
-        return totalWidth;
+        // Fallback: use half the track width
+        return midpoint;
       });
 
       // Auto-scroll state
       const scroll = { y: 0, vy: 0 };
-      const BASE_SPEED = 0.2;
+      const BASE_SPEED = 0.12;
       const FRICTION = 0.94;
-      const WHEEL_SENS = 0.35;
+      const WHEEL_SENS = 0.25;
 
       let isTouching = false;
       let lastTouchY = 0;
@@ -448,7 +449,7 @@ const rowLengths = rows.map(r => r.length);
 
       canvas.addEventListener('touchend', () => {
         isTouching = false;
-        scroll.vy = touchVy * 1.2;
+        scroll.vy = touchVy * 0.8;
       });
 
       gsap.ticker.add(() => {
