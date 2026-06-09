@@ -49,29 +49,14 @@ const rowLengths = rows.map(r => r.length);
     <div class="bottom-bar">
       <div class="bottom-bar__hero">
         <div class="bottom-bar__content">
-          <div class="bottom-bar__stats">
-            <div class="bottom-bar__stat">
-              <span class="bottom-bar__value">{t('renders.stats.1.value')}</span>
-              <span class="bottom-bar__label">{t('renders.stats.1.label')}</span>
-            </div>
-            <div class="bottom-bar__divider"></div>
-            <div class="bottom-bar__stat">
-              <span class="bottom-bar__value">{t('renders.stats.2.value')}</span>
-              <span class="bottom-bar__label">{t('renders.stats.2.label')}</span>
-            </div>
-            <div class="bottom-bar__divider"></div>
-            <div class="bottom-bar__stat">
-              <span class="bottom-bar__value">{t('renders.stats.3.value')}</span>
-              <span class="bottom-bar__label">{t('renders.stats.3.label')}</span>
-            </div>
-            <div class="bottom-bar__divider"></div>
-            <div class="bottom-bar__stat">
-              <span class="bottom-bar__value">{t('renders.stats.4.value')}</span>
-              <span class="bottom-bar__label">{t('renders.stats.4.label')}</span>
-            </div>
-          </div>
+          <h3 class="bottom-bar__title">{t('renders.copy.title')}</h3>
           <div class="bottom-bar__text">
             <p class="bottom-bar__copy">{t('renders.copy')}</p>
+          </div>
+          <div class="bottom-bar__tools">
+            {t('renders.tools').split(',').map((tool) => (
+              <span class="bottom-bar__tool-tag">{tool.trim()}</span>
+            ))}
           </div>
         </div>
         <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="bottom-bar__cta">
@@ -228,44 +213,18 @@ const rowLengths = rows.map(r => r.length);
   .bottom-bar__content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     flex: 1;
   }
 
-  .bottom-bar__stats {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .bottom-bar__stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .bottom-bar__value {
-    font-family: var(--font-accent);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+  .bottom-bar__title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     color: var(--color-ink);
-    line-height: 1;
-  }
-
-  .bottom-bar__label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-ghost);
-  }
-
-  .bottom-bar__divider {
-    width: 1px;
-    height: 28px;
-    background: var(--color-border-light);
+    margin: 0;
+    line-height: 1.2;
   }
 
   .bottom-bar__text {
@@ -280,6 +239,25 @@ const rowLengths = rows.map(r => r.length);
     margin: 0;
   }
 
+  .bottom-bar__tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .bottom-bar__tool-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--color-surface);
+    color: var(--color-muted);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-light);
+  }
+
   .bottom-bar__cta {
     display: inline-flex;
     align-items: center;
@@ -290,7 +268,7 @@ const rowLengths = rows.map(r => r.length);
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.02px;
-    border-radius: 100px;
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     flex-shrink: 0;
@@ -321,24 +299,8 @@ const rowLengths = rows.map(r => r.length);
       gap: 16px;
     }
 
-    .bottom-bar__stats {
-      gap: 16px;
-    }
-
-    .bottom-bar__stat {
-      min-width: 0;
-    }
-
-    .bottom-bar__value {
-      font-size: 15px;
-    }
-
-    .bottom-bar__label {
-      font-size: 9px;
-    }
-
-    .bottom-bar__divider {
-      height: 24px;
+    .bottom-bar__title {
+      font-size: 18px;
     }
 
     .bottom-bar__text {
@@ -347,6 +309,15 @@ const rowLengths = rows.map(r => r.length);
 
     .bottom-bar__copy {
       font-size: 13px;
+    }
+
+    .bottom-bar__tools {
+      gap: 6px;
+    }
+
+    .bottom-bar__tool-tag {
+      padding: 3px 10px;
+      font-size: 11px;
     }
 
     .bottom-bar__cta {
