@@ -70,7 +70,6 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
         </div>
         <div class="bottom-bar__right">
           <span class="bottom-bar__copy">{t('renders.copy')}</span>
-          <span class="bottom-bar__scroll" id="scroll-hint">{t('renders.scroll')} ↗</span>
         </div>
       </div>
     </div>
@@ -264,26 +263,6 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
     flex-shrink: 0;
   }
 
-  .bottom-bar__scroll {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-ghost);
-    animation: pulse-scroll 2.5s ease-in-out infinite;
-    white-space: nowrap;
-  }
-
-  .bottom-bar__scroll.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  @keyframes pulse-scroll {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.8; }
-  }
-
   @media (max-width: 768px) {
     .bottom-bar {
       padding: 10px 16px;
@@ -348,9 +327,20 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Preload all images
+  const preloadImages = () => {
+    const images = document.querySelectorAll<HTMLImageElement>('.render-card img');
+    images.forEach(img => {
+      if (img.complete) return;
+      const src = img.src;
+      const preload = new Image();
+      preload.src = src;
+    });
+  };
+  preloadImages();
+
   if (!prefersReducedMotion) {
     const canvas = document.getElementById('immersive-canvas') as HTMLElement;
-    const scrollHint = document.getElementById('scroll-hint') as HTMLElement;
     const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
 
     const rowConfigs = [
@@ -362,31 +352,24 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
 
     const loopWidths = Array.from(tracks).map(track => track.scrollWidth / 2);
 
+    // Auto-scroll state
     const scroll = { y: 0, vy: 0 };
+    const BASE_SPEED = 0.35; // Constant auto-movement
     const FRICTION = 0.94;
-    const WHEEL_SENS = 0.6;
+    const WHEEL_SENS = 0.8;
 
     let isTouching = false;
     let lastTouchY = 0;
     let lastTouchTime = 0;
     let touchVy = 0;
-    let hintHidden = false;
-
-    const hideHint = () => {
-      if (!hintHidden && scrollHint) {
-        scrollHint.classList.add('is-hidden');
-        hintHidden = true;
-      }
-    };
 
     canvas.addEventListener('wheel', (e) => {
       e.preventDefault();
-      hideHint();
+      // Add to velocity (can accelerate or reverse direction)
       scroll.vy += e.deltaY * WHEEL_SENS;
     }, { passive: false });
 
     canvas.addEventListener('touchstart', (e) => {
-      hideHint();
       isTouching = true;
       lastTouchY = e.touches[0].clientY;
       lastTouchTime = performance.now();
@@ -412,8 +395,13 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
     });
 
     gsap.ticker.add(() => {
+      // Always add base speed (auto-movement)
+      scroll.y += BASE_SPEED;
+      
+      // Add user velocity
       scroll.y += scroll.vy;
 
+      // Friction on user velocity only (returns to base speed)
       if (!isTouching) {
         scroll.vy *= FRICTION;
         if (Math.abs(scroll.vy) < 0.05) scroll.vy = 0;
@@ -451,12 +439,5 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
       duration: 0.6,
       ease: 'power2.out',
     }, '-=0.4');
-
-    tl.from('.bottom-bar__scroll', {
-      y: 8,
-      autoAlpha: 0,
-      duration: 0.4,
-      ease: 'power2.out',
-    }, '-=0.2');
   }
 </script>
