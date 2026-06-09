@@ -90,8 +90,8 @@ const initialData = JSON.stringify(initial);
     const queues = slots.map((_, i) => slotsData[`slot${i}`] as string[]);
     const indices = [0, 0, 0];
 
-    const FADE_DURATION = 0.4;
-    const INTERVAL = 1800;
+    const FADE_DURATION = 0.9;
+    const INTERVAL = 700;
 
     const swapSlot = (i: number) => {
       indices[i] = (indices[i] + 1) % queues[i].length;
@@ -111,7 +111,7 @@ const initialData = JSON.stringify(initial);
         inactive.src = nextSrc;
         inactive.offsetHeight;
 
-        const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
+        const ease = 'cubic-bezier(0.4, 0, 0.2, 1)';
         inactive.style.transition = `opacity ${FADE_DURATION}s ${ease}`;
         active.style.transition = `opacity ${FADE_DURATION}s ${ease}`;
 
