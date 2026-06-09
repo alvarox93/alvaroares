@@ -25,7 +25,7 @@ const rowLengths = rows.map(r => r.length);
   <Navigation />
 
   <main class="immersive-canvas" id="immersive-canvas">
-    <div class="grid-rows" id="grid-rows">
+    <div class="grid-rows" id="grid-rows" data-row-lengths={JSON.stringify(rowLengths)}>
       {rows.map((row, i) => (
         <div class="grid-row" data-row={i}>
           <div class="grid-row__track">
@@ -105,7 +105,7 @@ const rowLengths = rows.map(r => r.length);
     width: 100vw;
     height: 100dvh;
     overflow: hidden;
-    background: var(--color-warm);
+    background: #ffffff;
     touch-action: none;
     -webkit-user-select: none;
     user-select: none;
@@ -125,6 +125,7 @@ const rowLengths = rows.map(r => r.length);
     min-height: 0;
     overflow: hidden;
     width: 100%;
+    background: #ffffff;
   }
 
   .grid-row__track {
@@ -141,7 +142,7 @@ const rowLengths = rows.map(r => r.length);
     border-radius: 14px;
     overflow: hidden;
     flex-shrink: 0;
-    background: var(--color-surface);
+    background: #ffffff;
     box-shadow:
       0 2px 8px rgba(0, 0, 0, 0.06),
       0 12px 40px rgba(0, 0, 0, 0.1);
@@ -385,6 +386,8 @@ const rowLengths = rows.map(r => r.length);
     if (!prefersReducedMotion) {
       const canvas = document.getElementById('immersive-canvas') as HTMLElement;
       const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
+      const gridRows = document.getElementById('grid-rows') as HTMLElement;
+      const rowLengths: number[] = JSON.parse(gridRows?.dataset.rowLengths || '[]');
 
       const rowConfigs = [
         { direction: 1, speed: 0.45, offset: 0 },
