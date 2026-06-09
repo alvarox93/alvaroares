@@ -1,0 +1,156 @@
+---
+const images = [
+  'bar',
+  'bonbon',
+  'bravas-1',
+  'bravas-2',
+  'cafe',
+  'chocolate-bar',
+  'chocolate-hover',
+  'churro',
+  'churros',
+  'coulant',
+  'gyoza',
+  'honey-cake',
+  'huesito',
+  'kortxo',
+  'macaron',
+  'matcha-cookies',
+  'panellet-1',
+  'panellet-2',
+  'panellet-3',
+  'pansuflado',
+  'pasta',
+  'pineapple',
+  'pringle',
+  'snack',
+  'spoonful',
+  'tea-matcha',
+  'topoki',
+  'waffle-honey',
+];
+
+function shuffle(arr: string[]): string[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const shuffled = shuffle(images);
+
+const slot0 = shuffled.slice(0, Math.ceil(shuffled.length / 3));
+const slot1 = shuffled.slice(Math.ceil(shuffled.length / 3), Math.ceil(2 * shuffled.length / 3));
+const slot2 = shuffled.slice(Math.ceil(2 * shuffled.length / 3));
+
+const initial = [slot0[0], slot1[0], slot2[0]];
+
+const slotsData = JSON.stringify({ slot0, slot1, slot2 });
+const initialData = JSON.stringify(initial);
+---
+
+<div class="food-slideshow absolute -top-[15%] left-0 w-full h-[130%] flex gap-1.5 project-image-wrap bg-surface" data-slideshow data-slots={slotsData} data-initial={initialData}>
+  {initial.map((img, i) => (
+    <div class="food-slide-slot" data-slot={i} style="flex: 1; position: relative; overflow: hidden; border-radius: 6px;">
+      <img
+        src={`/food-renders/${img}.webp`}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="food-slide-img absolute inset-0 w-full h-full object-cover"
+        style="opacity: 1; z-index: 1;"
+        data-active="true"
+      />
+      <img
+        src={`/food-renders/${img}.webp`}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="food-slide-img absolute inset-0 w-full h-full object-cover"
+        style="opacity: 0; z-index: 0;"
+        data-active="false"
+      />
+    </div>
+  ))}
+  <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500"></div>
+</div>
+
+<script>
+  const container = document.querySelector<HTMLElement>('[data-slideshow]');
+  if (!container) throw new Error('FoodSlideshow container not found');
+
+  const slotsData: Record<string, string[]> = JSON.parse(container.dataset.slots || '{}');
+  const initial: string[] = JSON.parse(container.dataset.initial || '[]');
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    const slots = Array.from(container.querySelectorAll<HTMLElement>('[data-slot]'));
+
+    const intervals = [3800, 4400, 3600];
+
+    slots.forEach((slot, i) => {
+      const queue = slotsData[`slot${i}`] as string[];
+      let currentIndex = 0;
+
+      const imgs = Array.from(slot.querySelectorAll<HTMLImageElement>('.food-slide-img'));
+
+      const swap = () => {
+        currentIndex = (currentIndex + 1) % queue.length;
+        const nextSrc = `/food-renders/${queue[currentIndex]}.webp`;
+
+        const active = imgs.find((img) => img.dataset.active === 'true')!;
+        const inactive = imgs.find((img) => img.dataset.active === 'false')!;
+
+        inactive.src = nextSrc;
+
+        inactive.style.transition = 'opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+        active.style.transition = 'opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+
+        inactive.style.opacity = '1';
+        active.style.opacity = '0';
+
+        inactive.dataset.active = 'true';
+        active.dataset.active = 'false';
+
+        inactive.style.zIndex = '1';
+        active.style.zIndex = '0';
+      };
+
+      const startInterval = () => {
+        return setInterval(swap, intervals[i]);
+      };
+
+      let timer = startInterval();
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            if (!timer) timer = startInterval();
+          } else {
+            clearInterval(timer);
+            timer = null as any;
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(slot);
+    });
+  }
+</script>
+
+<style>
+  .food-slide-img {
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .food-slide-img {
+      transition: none;
+    }
+  }
+</style>
