@@ -25,28 +25,28 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     <WorkSection />
 
     <!-- About — gradient fill -->
-    <section class="relative bg-canvas overflow-hidden" id="about-preview">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl py-section">
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xl block">{t('home.about.label')}</span>
+    <section class="relative bg-ink overflow-hidden" id="about-preview">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-[48px] pb-section">
+        <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase mb-xl block">{t('home.about.label')}</span>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-3xl items-start">
           <div class="lg:col-span-5">
-            <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance" set:html={t('home.about.title')} />
+            <h2 class="text-[clamp(28px,3.5vw,40px)] font-light leading-[1.08] tracking-[-0.04em] text-canvas text-balance" set:html={t('home.about.title')} />
           </div>
           <div class="lg:col-span-6 lg:col-start-7">
-            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.7] mb-lg" id="about-fill-paragraph" set:html={
+            <p class="text-[clamp(20px,2.2vw,24px)] leading-[1.7] mb-lg text-canvas" id="about-fill-paragraph" set:html={
               t('home.about.body').split(' ').map(word =>
                 `<span class="about-word">${word}</span>`
               ).join(' ')
             } />
             <div class="flex flex-wrap gap-xs mb-xl">
-              <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">Maya</span>
-              <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">V-Ray</span>
-              <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">After Effects</span>
-              <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">Figma</span>
-              <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">HTML/CSS</span>
-              <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-border rounded-sm">AI Workflows</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">Maya</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">V-Ray</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">After Effects</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">Figma</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">HTML/CSS</span>
+              <span class="text-canvas/40 text-[10px] tracking-[0.08px] uppercase px-[10px] py-[5px] border border-canvas/15 rounded-sm">AI Workflows</span>
             </div>
-            <a href={aboutHref} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center justify-center px-5 py-2.5 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+            <a href={aboutHref} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center justify-center px-5 py-2.5 bg-canvas text-ink text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90">
               {t('home.about.cta')}
             </a>
           </div>
@@ -55,8 +55,8 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     </section>
 
     <!-- Posts — horizontal scroll -->
-    <section class="relative bg-warm overflow-hidden pb-3xl" id="posts">
-      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-section pb-lg">
+    <section class="relative bg-warm overflow-hidden pb-xl" id="posts">
+      <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-[40px] pb-sm">
         <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase block mb-sm">{t('home.posts.label')}</span>
         <h2 class="text-[clamp(28px,3.5vw,42px)] font-light leading-[1.08] tracking-[-0.04em] text-ink">
           {t('home.posts.title')}
@@ -200,7 +200,9 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   const postsPin = document.getElementById('posts-pin');
 
   if (postsTrack && postsPin) {
-    const totalWidth = postsTrack.scrollWidth - window.innerWidth + 100;
+    const firstCard = postsTrack.querySelector('.post-card');
+    const rightPadding = firstCard ? firstCard.getBoundingClientRect().left : 0;
+    const totalWidth = postsTrack.scrollWidth - (window.innerWidth - rightPadding);
 
     gsap.to(postsTrack, {
       x: -totalWidth,
@@ -210,7 +212,7 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
         start: 'top top',
         end: `+=${totalWidth}`,
         pin: true,
-        scrub: 2,
+        scrub: true,
         anticipatePin: 1,
       },
     });
@@ -357,7 +359,7 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   }
 
   .posts-pin-wrapper {
-    min-height: 100vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
   }
