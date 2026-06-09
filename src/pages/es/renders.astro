@@ -62,8 +62,16 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
             <span class="bottom-bar__value">{t('renders.stats.3.value')}</span>
             <span class="bottom-bar__label">{t('renders.stats.3.label')}</span>
           </div>
+          <div class="bottom-bar__divider"></div>
+          <div>
+            <span class="bottom-bar__value">{t('renders.stats.4.value')}</span>
+            <span class="bottom-bar__label">{t('renders.stats.4.label')}</span>
+          </div>
         </div>
-        <span class="bottom-bar__copy">{t('renders.copy')}</span>
+        <div class="bottom-bar__right">
+          <span class="bottom-bar__copy">{t('renders.copy')}</span>
+          <span class="bottom-bar__scroll" id="scroll-hint">{t('renders.scroll')} ↗</span>
+        </div>
       </div>
     </div>
   </main>
@@ -182,7 +190,10 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
     text-transform: lowercase;
     mix-blend-mode: difference;
     user-select: none;
-    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
+    text-shadow: 
+      0 0 40px rgba(0, 0, 0, 0.3),
+      0 0 80px rgba(0, 0, 0, 0.2),
+      0 4px 20px rgba(0, 0, 0, 0.15);
   }
 
   .bottom-bar {
@@ -246,6 +257,33 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
     white-space: nowrap;
   }
 
+  .bottom-bar__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .bottom-bar__scroll {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ghost);
+    animation: pulse-scroll 2.5s ease-in-out infinite;
+    white-space: nowrap;
+  }
+
+  .bottom-bar__scroll.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes pulse-scroll {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
   @media (max-width: 768px) {
     .bottom-bar {
       padding: 10px 16px;
@@ -275,6 +313,14 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
       font-size: 10px;
     }
 
+    .bottom-bar__scroll {
+      font-size: 9px;
+    }
+
+    .bottom-bar__right {
+      gap: 10px;
+    }
+
     .render-card {
       border-radius: 10px;
     }
@@ -283,6 +329,10 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
   @media (max-width: 400px) {
     .bottom-bar__copy {
       display: none;
+    }
+
+    .bottom-bar__right {
+      justify-content: flex-end;
     }
   }
 
@@ -300,6 +350,7 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
 
   if (!prefersReducedMotion) {
     const canvas = document.getElementById('immersive-canvas') as HTMLElement;
+    const scrollHint = document.getElementById('scroll-hint') as HTMLElement;
     const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
 
     const rowConfigs = [
@@ -319,13 +370,23 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
     let lastTouchY = 0;
     let lastTouchTime = 0;
     let touchVy = 0;
+    let hintHidden = false;
+
+    const hideHint = () => {
+      if (!hintHidden && scrollHint) {
+        scrollHint.classList.add('is-hidden');
+        hintHidden = true;
+      }
+    };
 
     canvas.addEventListener('wheel', (e) => {
       e.preventDefault();
+      hideHint();
       scroll.vy += e.deltaY * WHEEL_SENS;
     }, { passive: false });
 
     canvas.addEventListener('touchstart', (e) => {
+      hideHint();
       isTouching = true;
       lastTouchY = e.touches[0].clientY;
       lastTouchTime = performance.now();
@@ -390,5 +451,12 @@ const rows = [outerRow1, middleRow1, middleRow2, outerRow2];
       duration: 0.6,
       ease: 'power2.out',
     }, '-=0.4');
+
+    tl.from('.bottom-bar__scroll', {
+      y: 8,
+      autoAlpha: 0,
+      duration: 0.4,
+      ease: 'power2.out',
+    }, '-=0.2');
   }
 </script>
