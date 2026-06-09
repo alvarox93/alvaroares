@@ -23,7 +23,7 @@ const rowLengths = rows.map(r => r.length);
   <Navigation />
 
   <main class="immersive-canvas" id="immersive-canvas">
-    <div class="grid-rows" id="grid-rows" data-row-lengths={JSON.stringify(rowLengths)}>
+    <div class="grid-rows" id="grid-rows">
       {rows.map((row, i) => (
         <div class="grid-row" data-row={i}>
           <div class="grid-row__track">
@@ -406,31 +406,29 @@ const rowLengths = rows.map(r => r.length);
   const initAnimation = async () => {
     await waitForImages();
 
-  if (!prefersReducedMotion) {
-    const canvas = document.getElementById('immersive-canvas') as HTMLElement;
-    const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
-    const gridRows = document.getElementById('grid-rows') as HTMLElement;
-    const rowLengths: number[] = JSON.parse(gridRows.dataset.rowLengths || '[]');
+    if (!prefersReducedMotion) {
+      const canvas = document.getElementById('immersive-canvas') as HTMLElement;
+      const tracks = document.querySelectorAll<HTMLElement>('.grid-row__track');
 
-    const rowConfigs = [
-      { direction: 1, speed: 0.45, offset: 0 },
-      { direction: -1, speed: 0.7, offset: 0.4 },
-      { direction: 1, speed: 0.55, offset: 0.15 },
-      { direction: -1, speed: 0.8, offset: 0.6 },
-    ];
+      const rowConfigs = [
+        { direction: 1, speed: 0.45, offset: 0 },
+        { direction: -1, speed: 0.7, offset: 0.4 },
+        { direction: 1, speed: 0.55, offset: 0.15 },
+        { direction: -1, speed: 0.8, offset: 0.6 },
+      ];
 
-    // Calculate loopW manually: numImages * (cardWidth + gap)
-    // This ensures perfect loop without flash from trailing gap
-    const style = getComputedStyle(document.documentElement);
-    const cardW = parseFloat(style.getPropertyValue('--card-w'));
-    const gap = parseFloat(style.getPropertyValue('--gap'));
-    const loopWidths = rowLengths.map(len => len * (cardW + gap));
+      // Calculate loopW from actual DOM measurements
+      // Each track has the original images duplicated, so scrollWidth / 2 = one loop
+      const loopWidths = Array.from(tracks).map(track => {
+        const width = track.scrollWidth / 2;
+        return width > 0 ? width : 1000; // fallback
+      });
 
       // Auto-scroll state
       const scroll = { y: 0, vy: 0 };
-      const BASE_SPEED = 0.35; // Constant auto-movement
-      const FRICTION = 0.94;
-      const WHEEL_SENS = 0.8;
+      const BASE_SPEED = 0.5;
+      const FRICTION = 0.92;
+      const WHEEL_SENS = 1.2;
 
       let isTouching = false;
       let lastTouchY = 0;
@@ -439,7 +437,6 @@ const rowLengths = rows.map(r => r.length);
 
       canvas.addEventListener('wheel', (e) => {
         e.preventDefault();
-        // Add to velocity (can accelerate or reverse direction)
         scroll.vy += e.deltaY * WHEEL_SENS;
       }, { passive: false });
 
@@ -484,6 +481,7 @@ const rowLengths = rows.map(r => r.length);
         tracks.forEach((track, i) => {
           const cfg = rowConfigs[i];
           const loopW = loopWidths[i];
+          if (!loopW) return;
           const raw = cfg.offset * loopW + scroll.y * cfg.speed * cfg.direction;
           const x = ((raw % loopW) + loopW) % loopW;
           track.style.transform = `translate3d(${-x}px, 0, 0)`;
