@@ -38,4 +38,15 @@ const t = useTranslations('en' as Language);
   <p>
     This is why I code. Not to replace developers, but to speak their language. When I hand off a design, I can flag the tricky parts. When a developer pushes back, I understand why. The gap between design and implementation shrinks — and the product gets better.
   </p>
+
+  <div class="post-cta">
+    <span class="post-cta-label">Explore the lab</span>
+    <a href="/lab" data-transition-line1={t('transition.lab.line1')} class="post-cta-link">
+      Lab — UI, AI, interactive systems
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
 </PostLayout>

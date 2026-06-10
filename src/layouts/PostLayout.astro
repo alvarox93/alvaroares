@@ -115,6 +115,48 @@ const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts
     border-radius: var(--radius-sm);
   }
 
+  .prose :global(.post-cta) {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose :global(.post-cta-label) {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14px;
+    text-transform: uppercase;
+    color: var(--color-ghost);
+    margin-bottom: 0.8em;
+  }
+
+  .prose :global(.post-cta-link) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease, gap 0.2s ease;
+  }
+
+  .prose :global(.post-cta-link:hover) {
+    border-color: var(--color-ink);
+    gap: 0.7em;
+  }
+
+  .prose :global(.post-cta-link svg) {
+    transition: transform 0.2s ease;
+  }
+
+  .prose :global(.post-cta-link:hover svg) {
+    transform: translateX(3px);
+  }
+
   .prose :global(ul), .prose :global(ol) {
     padding-left: 1.5em;
     margin-bottom: 1.5em;

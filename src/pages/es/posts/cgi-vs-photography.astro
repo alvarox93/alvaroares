@@ -8,7 +8,7 @@ const t = useTranslations('es' as Language);
 <PostLayout
   title="El caso del CGI de producto frente a la fotografía tradicional"
   category="CGI"
-  readTime="4 min"
+  readTime="5 min"
   description="El CGI de producto no es un compromiso — es una mejor herramienta para ciertos trabajos. Cuándo y por qué le gana a la fotografía tradicional."
   lang="es"
   transitionLine1={t('transition.cgi-vs-photography.line1')}
@@ -31,6 +31,21 @@ const t = useTranslations('es' as Language);
     La ventaja real no es el ahorro de coste. Es la velocidad de iteración. Un cliente puede decir "pruébalo en negro mate contra una pared de hormigón" y puedo entregarlo en una hora, no en una semana.
   </p>
 
+  <h2>Modelado — donde todo empieza</h2>
+  <p>
+    Cada render comienza como un wireframe. El modelo es la base — si esto falla, nada más importa. Trabajo en Maya, construyendo topología limpia que se deforma predeciblemente y mantiene el detalle donde cuenta. Para formas orgánicas como comida, uso ZBrush para el sculpt en alta resolución, luego retopologizo para un renderizado eficiente. El modelo no solo tiene que verse bien — tiene que sobrevivir a la iluminación, el texturizado y múltiples revisiones sin romperse.
+  </p>
+
+  <h2>Iluminación — la diferencia entre plano y real</h2>
+  <p>
+    Una buena iluminación es lo que separa el CGI que parece CGI del CGI que te hace mirar dos veces. Construyo entornos HDR, coloco luces prácticas y ajusto cada caída hasta que el material se lee correctamente. El acero debe sentirse duro. El vidrio debe sentirse fino. La comida debe sentirse cálida. La luz no solo ilumina — comunica materialidad.
+  </p>
+
+  <h2>Renderizado — cerrando la brecha</h2>
+  <p>
+    V-Ray es mi motor de renderizado. Aumento las muestras hasta que el ruido desaparece, uso elementos de render (reflexión, refracción, Z-depth, ambient occlusion) para dar al compositing control total, y exporto a resoluciones que aguantan impresión. Un solo frame puede tardar horas en converger — pero esa paciencia es lo que hace que el resultado sea indistinguible de una fotografía.
+  </p>
+
   <h2>Cuándo la fotografía todavía gana</h2>
   <p>
     Productos con mucha textura donde el tacto importa. Comida donde las imperfecciones son el punto. Tomas con interacción humana donde el producto es secundario. La fotografía captura la realidad de un modo que el CGI todavía no puede falsificar.
@@ -38,4 +53,15 @@ const t = useTranslations('es' as Language);
   <p>
     La jugada inteligente es saber qué herramienta encaja. Uso las dos. Pero para catálogos de producto, e-commerce y hero shots de campaña — el CGI ha sido la mejor opción desde hace años.
   </p>
+
+  <div class="post-cta">
+    <span class="post-cta-label">Ver resultados</span>
+    <a href="/es/renders" data-transition-line1={t('transition.renders.line1')} class="post-cta-link">
+      Eyes eat first — CGI de food & producto
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
 </PostLayout>

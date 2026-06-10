@@ -9,33 +9,44 @@ const t = useTranslations('es' as Language);
   title="Diseñar interfaces que piensan en código (y por qué importa)"
   category="Diseño"
   readTime="3 min"
-  description="Las mejores interfaces que he diseñado vinieron de pensar en constraints — sistemas de espaciado, escalas tipográficas, lógica de componentes — no de mover píxeles."
+  description="Las mejores interfaces que he diseñado surgieron de pensar en restricciones — sistemas de espaciado, escalas tipográficas, lógica de componentes — no de mover píxeles."
   lang="es"
   transitionLine1={t('transition.designing-in-code.line1')}
   transitionLine2={t('transition.designing-in-code.line2')}
 >
   <p>
-    Pasé años diseñando primero en Figma y entregando a developers. El resultado era siempre una negociación. "Este espaciado no encaja con el sistema." "Esta interacción no es factible." "Este layout se rompe en mobile."
+    Pasé años diseñando primero en Figma y luego pasando a los desarrolladores. El resultado siempre era una negociación. "Este espaciado no coincide con el sistema." "Esta interacción no es viable." "Este layout se rompe en móvil."
   </p>
 
-  <h2>Diseñar en constraints</h2>
+  <h2>Diseñar con restricciones</h2>
   <p>
-    El cambio llegó cuando empecé a pensar en código mientras diseñaba. No codear el producto final — sino pensar en términos de grids, tokens y estados de componentes. En vez de dibujar un botón a 847px de ancho con fuente 13px, pienso: esto es un botón full-width en un grid de 12 columnas, usando la escala de fuente del body.
+    El cambio ocurrió cuando empecé a pensar en código mientras diseñaba. No programando el producto final — sino pensando en términos de grids, tokens y estados de componente. En lugar de dibujar un botón de 847px de ancho con fuente de 13px, pienso: esto es un botón full-width en una cuadrícula de 12 columnas, usando la escala tipográfica del cuerpo.
   </p>
   <p>
-    Técnicamente, es menos libertad creativa. Pero el output es mejor porque es consistente, responsive y construible.
+    Técnicamente es menos libertad creativa. Pero el resultado es mejor porque es consistente, responsive y construible.
   </p>
 
   <h2>Por qué esto importa para el producto final</h2>
   <p>
-    Cuando un diseñador entiende que el espaciado va en incrementos de 8px, deja de inventar márgenes de 23px. Cuando entiende los props de los componentes, diseña estados que realmente se construyen — hover, focus, disabled, loading, empty. No solo el screenshot del happy path.
+    Cuando un diseñador entiende que el espaciado va en incrementos de 8px, deja de inventar márgenes de 23px. Cuando entiende las props de los componentes, diseña estados que realmente se construyen — hover, focus, disabled, loading, empty. No solo la captura del camino feliz.
   </p>
   <p>
-    Las interfaces que se sienten más pulidas no son las que tienen más floritura visual. Son las que cada detalle es sistemático. Espaciado consistente. Interacciones predecibles. Una escala tipográfica que aguanta de mobile a desktop. Eso es lo que produce "pensar en código".
+    Las interfaces que se sienten más pulidas no son las que tienen más florituras visuales. Son aquellas donde cada detalle es sistemático. Espaciado consistente. Interacciones predecibles. Una escala tipográfica que se sostiene de móvil a escritorio. Eso es lo que produce "pensar en código".
   </p>
 
-  <h2>El rol puente</h2>
+  <h2>El rol de puente</h2>
   <p>
-    Por eso codeo. No para reemplazar developers, sino para hablar su idioma. Cuando entrego un diseño, puedo señalar las partes complicadas. Cuando un developer empuja hacia atrás, entiendo por qué. La brecha entre diseño e implementación se encoge — y el producto mejora.
+    Por eso escribo código. No para reemplazar desarrolladores, sino para hablar su idioma. Cuando entrego un diseño, puedo señalar las partes difíciles. Cuando un desarrollador pone objeciones, entiendo por qué. La brecha entre diseño e implementación se reduce — y el producto mejora.
   </p>
+
+  <div class="post-cta">
+    <span class="post-cta-label">Explorar el lab</span>
+    <a href="/es/lab" data-transition-line1={t('transition.lab.line1')} class="post-cta-link">
+      Lab — UI, IA, sistemas interactivos
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
 </PostLayout>
