@@ -6,62 +6,95 @@ const t = useTranslations('en' as Language);
 ---
 
 <PostLayout
-  title="The case for CGI product rendering over traditional photography"
+  title="Gourmet renders. No clients. No excuses."
   category="CGI"
   readTime="5 min"
-  description="CGI product rendering isn't a compromise — it's a better tool for certain jobs. Here's when and why it beats traditional photography."
+  date="Jun 2026"
+  description="Some projects you do because someone asks. Others you do because you can't not."
   lang="en"
   transitionLine1={t('transition.cgi-vs-photography.line1')}
   transitionLine2={t('transition.cgi-vs-photography.line2')}
 >
   <p>
-    I've shot products with cameras and I've rendered them in Maya + V-Ray. Both work. But for a growing number of use cases, CGI wins — not on cost alone, but on creative control.
+    Some projects you do because someone asks. Others you do because you can't not.
+  </p>
+  <p>
+    I've spent over two years sculpting food in CGI. Savoury, sweet, raw, cooked, glossy, matte. No client behind it. No brief. Just references, time, and the obsession with making something digital look real enough to make you hungry.
+  </p>
+  <p>
+    That's how you master something.
   </p>
 
-  <h2>Photography's hidden costs</h2>
+  <h2>Why food</h2>
   <p>
-    A single product shoot with a photographer, studio, stylist, and retouching runs €2,000-5,000 in Barcelona. Multiply that by 12 colorways, 3 angles each. Then reshoot when the packaging changes. The "real" approach gets expensive fast.
+    Food is one of the hardest materials to reproduce in CGI. It has layers, imperfections, translucency, moisture. It reacts to light in ways the human eye detects immediately when something's off — even if it can't explain why.
+  </p>
+  <p>
+    That's exactly what hooked me. There's no room for the easy trick. Either it looks real or it looks fake, and the threshold between the two is razor thin.
+  </p>
+  <p>
+    Every project starts from scratch. Always. I don't reuse models, I don't recycle materials. Starting from zero is the only way to keep learning.
   </p>
 
-  <h2>What CGI unlocks</h2>
+  <h2>The process</h2>
   <p>
-    Once the 3D model exists, I can render any angle, any material, any lighting setup — in minutes, not days. Need a hero shot at golden hour with the product floating in mid-air? Done. Need to show the internal components exploded? No physical disassembly required.
+    A typical session starts with references. Not to copy — to understand. How light falls on a bread crust, where moisture collects on a strawberry, what makes dark chocolate look different from milk chocolate even though they're the same brown.
   </p>
   <p>
-    The real advantage isn't cost savings. It's iteration speed. A client can say "try it in matte black against a concrete wall" and I can deliver that in an hour, not a week.
+    Then comes the modelling in ZBrush. Every detail sculpted by hand — the texture of an orange peel, the cracks in an aged cheese, the irregularity of a bread crumb. It's the slowest part and the most important. What isn't in the geometry can't be saved later with materials or light.
   </p>
-
-  <h2>Modelling — where it all starts</h2>
   <p>
-    Every render begins as a wireframe. The model is the foundation — get this wrong and nothing else matters. I work in Maya, building clean topology that deforms predictably and holds detail where it counts. For organic shapes like food, I bring in ZBrush for the high-res sculpt, then retopologise for efficient rendering. The model doesn't just need to look right — it needs to survive lighting, texturing, and multiple revisions without breaking.
+    Lighting and texturing come next, in parallel, rendering constantly. Not at the end — throughout. Every decision gets checked in render because that's where the result lives, not in the viewport.
   </p>
-
-  <h2>Lighting — the difference between flat and real</h2>
   <p>
-    Good lighting is what separates CGI that looks like CGI from CGI that makes you do a double-take. I build HDR environments, place practical lights, and tweak every falloff until the material reads correctly. Steel should feel hard. Glass should feel thin. Food should feel warm. The light doesn't just illuminate — it communicates materiality.
+    Post-processing is last: colour grading, composition, sometimes adding context elements. And in a day, it's done.
   </p>
 
-  <h2>Rendering — closing the gap</h2>
+  <h2>The hardest thing to master: SSS</h2>
   <p>
-    V-Ray is my renderer of choice. I push samples until the noise disappears, use render elements (reflection, refraction, Z-depth, ambient occlusion) to give compositing full control, and output at resolutions that survive print. A single frame can take hours to converge — but that patience is what makes the result indistinguishable from a photograph.
+    Subsurface scattering — the way light penetrates and disperses inside an organic material before exiting — is what makes a grape look translucent, gives a peach its glow, makes cheese look dense and moist at the same time.
+  </p>
+  <p>
+    It's also what took me longest to get right.
+  </p>
+  <p>
+    Badly calibrated SSS is immediately visible. Too much and the material looks like soap. Too little and it looks like plastic. The exact point depends on the material, the light, the distance, the scale. There's no correct value — there's a judgment that gets trained through getting it wrong.
+  </p>
+  <p>
+    Two years in, I'm still learning. But I know exactly when something isn't right.
   </p>
 
-  <h2>When photography still wins</h2>
+  <h2>The CGI advantage nobody talks about</h2>
   <p>
-    Texture-heavy products where tactile feel matters. Food where the imperfections are the point. Human interaction shots where the product is secondary. Photography captures reality in a way CGI can't fake — yet.
+    In product photography, when the shoot ends, it ends. If you need another angle, different light, a different background colour, you start the process over.
   </p>
   <p>
-    The smart move is knowing which tool fits. I use both. But for product catalogs, e-commerce, and campaign hero shots — CGI has been the better call for years now.
+    In CGI, when a project is done, it's done forever. I can come back six months later and produce a render with different light, in a different context, for a format that didn't exist when I created it. The versatility is total.
+  </p>
+  <p>
+    In product advertising, that's a powerful argument. But for me, in these personal projects, it means something else: I can keep exploring the same material without starting from scratch. Add a version, try a new direction, see how far it goes.
+  </p>
+  <p>
+    A project is never fully closed. Just on pause.
   </p>
 
-  <div class="post-cta">
-    <span class="post-cta-label">See the results</span>
-    <a href="/renders" data-transition-line1={t('transition.renders.line1')} class="post-cta-link">
+  <h2>Why I keep doing it</h2>
+  <p>
+    No client is waiting for these renders. No deadline, no approved budget.
+  </p>
+  <p>
+    I do them because each one teaches me something that commissioned work doesn't always allow. The time to obsess over a detail nobody will notice but that makes everything else look better. The freedom to get it wrong without consequences and to push as far as I want to go.
+  </p>
+  <p>
+    Mastery doesn't come from doing what people ask for. It comes from doing what nobody asked for, over and over, until it's right.
+  </p>
+  <p>
+    <a href="/renders" data-transition-line1={t('transition.renders.line1')} style="display: inline-flex; align-items: center; gap: 0.4em; font-weight: 500;">
       Eyes eat first — food & product CGI
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="5" y1="12" x2="19" y2="12"/>
         <polyline points="12 5 19 12 12 19"/>
       </svg>
     </a>
-  </div>
+  </p>
 </PostLayout>
