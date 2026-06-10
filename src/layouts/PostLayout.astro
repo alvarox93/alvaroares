@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
-import { defaultLang, type Language } from '@i18n/ui';
+import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 
 interface Props {
   title: string;
@@ -16,6 +16,7 @@ interface Props {
 
 const { title, category, readTime, date, description, lang: langProp, transitionLine1, transitionLine2 } = Astro.props;
 const lang: Language = langProp ?? ((Astro.currentLocale ?? defaultLang) as Language);
+const t = useTranslations(lang);
 const backHref = lang === defaultLang ? '/#posts' : '/es/#posts';
 const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts';
 ---
@@ -46,7 +47,7 @@ const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts
       </div>
 
       <footer class="mt-4xl pt-xl border-t border-border-light">
-        <a href={backHref} data-transition-line1={transitionLine1} class="text-muted text-[13px] hover:text-ink transition-colors duration-200">
+        <a href={backHref} data-transition-line1={t('transition.home.line1')} class="text-muted text-[13px] hover:text-ink transition-colors duration-200">
           &larr; {backText}
         </a>
       </footer>

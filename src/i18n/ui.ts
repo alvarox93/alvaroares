@@ -11,6 +11,7 @@ export const ui = {
     'nav.work': 'Work',
     'nav.about': 'About',
     'nav.contact': 'Contact',
+    'nav.contact.talk': "Let's talk",
     'nav.back': 'Back',
     'nav.backToHome': '← Back to home',
 
@@ -356,6 +357,7 @@ export const ui = {
     'nav.work': 'Trabajo',
     'nav.about': 'Sobre mí',
     'nav.contact': 'Contacto',
+    'nav.contact.talk': 'Hablemos',
     'nav.back': 'Volver',
     'nav.backToHome': '← Volver al inicio',
 

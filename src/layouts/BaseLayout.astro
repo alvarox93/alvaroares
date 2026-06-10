@@ -78,7 +78,7 @@ const { title, description = lang === 'es'
 <script>
   document.querySelectorAll('a').forEach((link) => {
     const href = link.getAttribute('href');
-    if (!href || !href.startsWith('/') || href.includes('#') || link.hasAttribute('download') || link.getAttribute('target') === '_blank') return;
+    if (!href || !href.startsWith('/') || (href.includes('#') && !link.dataset.transitionLine1) || link.hasAttribute('download') || link.getAttribute('target') === '_blank') return;
 
     if (href === window.location.pathname) {
       link.addEventListener('click', (e) => {
