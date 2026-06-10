@@ -40,27 +40,19 @@ const aboutChars = t('nav.about').split('');
           ))}
         </span>
       </a>
-      <a href="mailto:hey@alvaroar.es" class="inline-flex items-center justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-        {t('nav.contact')}
+      <a href="mailto:hey@alvaroar.es" class="inline-flex items-center gap-1.5 justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        {t('nav.contact.talk')}
       </a>
       <button class="theme-knob" aria-label="Toggle color theme" data-theme-knob>
         <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"/>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
         </svg>
-        <svg class="theme-icon-snow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M6.34 17.66l2.83-2.83m8.48-8.48l2.83-2.83"/>
-          <line x1="2" y1="12" x2="22" y2="12"/>
-          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
-          <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
-          <line x1="12" y1="2" x2="10" y2="6"/>
-          <line x1="12" y1="2" x2="14" y2="6"/>
-          <line x1="12" y1="22" x2="10" y2="18"/>
-          <line x1="12" y1="22" x2="14" y2="18"/>
-          <line x1="2" y1="12" x2="6" y2="10"/>
-          <line x1="2" y1="12" x2="6" y2="14"/>
-          <line x1="22" y1="12" x2="18" y2="10"/>
-          <line x1="22" y1="12" x2="18" y2="14"/>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
       <LanguageSwitcher />
@@ -97,7 +89,7 @@ const aboutChars = t('nav.about').split('');
       <a
         href="mailto:hey@alvaroar.es"
         class="mobile-menu-link text-ink text-[32px] font-semibold tracking-[-0.6px]"
-      >{t('nav.contact')}</a>
+      >{t('nav.contact.talk')}</a>
     </div>
 
     {/* Bottom: email, socials, controls */}
@@ -109,19 +101,8 @@ const aboutChars = t('nav.about').split('');
             <circle cx="12" cy="12" r="4"/>
             <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
           </svg>
-          <svg class="theme-icon-snow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M6.34 17.66l2.83-2.83m8.48-8.48l2.83-2.83"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
-            <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
-            <line x1="12" y1="2" x2="10" y2="6"/>
-            <line x1="12" y1="2" x2="14" y2="6"/>
-            <line x1="12" y1="22" x2="10" y2="18"/>
-            <line x1="12" y1="22" x2="14" y2="18"/>
-            <line x1="2" y1="12" x2="6" y2="10"/>
-            <line x1="2" y1="12" x2="6" y2="14"/>
-            <line x1="22" y1="12" x2="18" y2="10"/>
-            <line x1="22" y1="12" x2="18" y2="14"/>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
         <LanguageSwitcher />
@@ -224,7 +205,7 @@ const aboutChars = t('nav.about').split('');
   }
 
   .theme-icon-sun,
-  .theme-icon-snow {
+  .theme-icon-moon {
     width: 14px;
     height: 14px;
     position: absolute;
@@ -237,7 +218,7 @@ const aboutChars = t('nav.about').split('');
     transform: scale(0.6);
   }
 
-  .theme-icon-snow {
+  .theme-icon-moon {
     color: #2596a8;
     opacity: 1;
     transform: scale(1);
@@ -256,7 +237,7 @@ const aboutChars = t('nav.about').split('');
     transform: scale(1);
   }
 
-  .theme-knob.is-cold .theme-icon-snow {
+  .theme-knob.is-cold .theme-icon-moon {
     opacity: 0;
     transform: scale(0.6);
   }

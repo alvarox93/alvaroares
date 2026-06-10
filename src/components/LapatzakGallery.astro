@@ -1,23 +1,16 @@
 ---
-const images = [
-  '/lapatzak/testlemonKalima.webp',
-  '/lapatzak/testFreshLima.png',
-  '/lapatzak/testGureBrava.png',
-  '/lapatzak/testSweet.jpeg',
-];
+const images = ['/lapatzak/testFreshLima.png'];
 ---
 
-<div class="absolute inset-0 project-image-wrap grid grid-cols-2 grid-rows-2 gap-1.5">
-  {images.map((src, i) => (
-    <div class="relative overflow-hidden rounded-lg">
-      <img
-        src={src}
-        alt="Lapatzak product"
-        class="w-full h-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  ))}
+<div class="absolute inset-0 project-image-wrap">
+  <div class="relative w-full h-full overflow-hidden rounded-lg">
+    <img
+      src={images[0]}
+      alt="FreshLima — Lapatzak brand"
+      class="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
   <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-500 rounded-lg"></div>
 </div>
