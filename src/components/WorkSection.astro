@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import eyesLooking from '../assets/eyesLooking.png';
 import { useTranslations, defaultLang, type Language, type UIKey } from '@i18n/ui';
 import FoodSlideshow from '@components/FoodSlideshow.astro';
 import LapatzakGallery from '@components/LapatzakGallery.astro';
@@ -147,8 +149,11 @@ const projects: Array<{
     })}
   </div>
 
-  <div class="bg-ink w-screen pt-[100px] pb-[100px] mb-[100px]" style="margin-left: calc(-50vw + 50%);">
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl flex flex-col items-center text-center">
+  <div class="relative bg-ink w-screen pt-[100px] pb-[100px] mb-[100px] overflow-hidden" style="margin-left: calc(-50vw + 50%);">
+    <div aria-hidden="true" class="absolute inset-0 pointer-events-none">
+      <Image src={eyesLooking} alt="" class="w-full h-full object-cover opacity-30" loading="lazy" decoding="async" />
+    </div>
+    <div class="relative z-10 max-w-[1200px] mx-auto px-xl lg:px-3xl flex flex-col items-center text-center">
       <span class="text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase block mb-lg">{t('home.hero.available')}</span>
       <h3 class="text-[clamp(26px,3.2vw,38px)] font-light leading-[1.15] tracking-[-0.03em] text-canvas mb-xl max-w-[620px]">
         {t('about.cta.connect.title')}
