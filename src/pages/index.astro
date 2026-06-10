@@ -3,7 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import Hero from '@components/Hero.astro';
 import WorkSection from '@components/WorkSection.astro';
-import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import { useTranslations, defaultLang, type Language, type UIKey } from '@i18n/ui';
 import { homePosts } from '@data/home';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
@@ -73,8 +73,9 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
             const href = lang === defaultLang
               ? `/posts/${post.slug}`
               : `/es/posts/${post.slug}`;
+            const transitionKey = `transition.${post.slug}.line1` as UIKey;
             return (
-              <a href={href} class="post-card group shrink-0" style="width: 340px;" data-post-index={i}>
+              <a href={href} class="post-card group shrink-0" style="width: 340px;" data-post-index={i} data-transition-line1={t(transitionKey)}>
                 <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
                   <div class="absolute inset-0 flex items-center justify-center text-ghost/40 text-[48px] font-display font-bold tracking-[-0.04em] select-none">{post.placeholder}</div>
                   <div class="absolute bottom-0 left-0 right-0 p-xl bg-gradient-to-t from-black/70 via-black/30 to-transparent">

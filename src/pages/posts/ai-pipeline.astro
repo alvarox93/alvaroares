@@ -1,5 +1,8 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+const t = useTranslations('en' as Language);
 ---
 
 <PostLayout
@@ -9,6 +12,8 @@ import PostLayout from '@layouts/PostLayout.astro';
   date="Apr 2026"
   description="AI didn't replace my creative work. It replaced everything around it — and changed how I show up as a director."
   lang="en"
+  transitionLine1={t('transition.ai-pipeline.line1')}
+  transitionLine2={t('transition.ai-pipeline.line2')}
 >
   <p>
     There's a moment I recognize now, even though I didn't name it at the time. I was reviewing renders at one in the morning — not because the work demanded it, but because the day had disappeared into something else: budgets, emails, chasing invoices, a meeting that could have been a message. The creative work had been pushed to whatever was left over.

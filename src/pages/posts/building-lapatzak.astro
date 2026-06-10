@@ -1,5 +1,8 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+const t = useTranslations('en' as Language);
 ---
 
 <PostLayout
@@ -8,6 +11,8 @@ import PostLayout from '@layouts/PostLayout.astro';
   readTime="4 min"
   description="Lapatzak was my end-to-end brand experiment — identity, packaging, e-commerce, and all the messy decisions in between. Here's what the process taught me."
   lang="en"
+  transitionLine1={t('transition.building-lapatzak.line1')}
+  transitionLine2={t('transition.building-lapatzak.line2')}
 >
   <p>
     Lapatzak started as a side project and became the most educational thing I've done. Not because it succeeded (it did, modestly) but because I had to own every decision — from the logo to the shipping boxes.

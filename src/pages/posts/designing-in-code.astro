@@ -1,5 +1,8 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+const t = useTranslations('en' as Language);
 ---
 
 <PostLayout
@@ -8,6 +11,8 @@ import PostLayout from '@layouts/PostLayout.astro';
   readTime="3 min"
   description="The best interfaces I've designed came from thinking in constraints — spacing systems, type scales, component logic — not from pushing pixels."
   lang="en"
+  transitionLine1={t('transition.designing-in-code.line1')}
+  transitionLine2={t('transition.designing-in-code.line2')}
 >
   <p>
     I spent years designing in Figma first and handing off to developers. The result was always a negotiation. "This spacing doesn't match the system." "This interaction isn't feasible." "This layout breaks on mobile."

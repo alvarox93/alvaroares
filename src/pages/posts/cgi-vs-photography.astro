@@ -1,5 +1,8 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+const t = useTranslations('en' as Language);
 ---
 
 <PostLayout
@@ -8,6 +11,8 @@ import PostLayout from '@layouts/PostLayout.astro';
   readTime="4 min"
   description="CGI product rendering isn't a compromise — it's a better tool for certain jobs. Here's when and why it beats traditional photography."
   lang="en"
+  transitionLine1={t('transition.cgi-vs-photography.line1')}
+  transitionLine2={t('transition.cgi-vs-photography.line2')}
 >
   <p>
     I've shot products with cameras and I've rendered them in Maya + V-Ray. Both work. But for a growing number of use cases, CGI wins — not on cost alone, but on creative control.

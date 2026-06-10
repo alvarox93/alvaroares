@@ -1,5 +1,8 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+const t = useTranslations('es' as Language);
 ---
 
 <PostLayout
@@ -8,6 +11,8 @@ import PostLayout from '@layouts/PostLayout.astro';
   readTime="3 min"
   description="Las mejores interfaces que he diseñado vinieron de pensar en constraints — sistemas de espaciado, escalas tipográficas, lógica de componentes — no de mover píxeles."
   lang="es"
+  transitionLine1={t('transition.designing-in-code.line1')}
+  transitionLine2={t('transition.designing-in-code.line2')}
 >
   <p>
     Pasé años diseñando primero en Figma y entregando a developers. El resultado era siempre una negociación. "Este espaciado no encaja con el sistema." "Esta interacción no es factible." "Este layout se rompe en mobile."

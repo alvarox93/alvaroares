@@ -10,15 +10,17 @@ interface Props {
   date?: string;
   description?: string;
   lang?: Language;
+  transitionLine1?: string;
+  transitionLine2?: string;
 }
 
-const { title, category, readTime, date, description, lang: langProp } = Astro.props;
+const { title, category, readTime, date, description, lang: langProp, transitionLine1, transitionLine2 } = Astro.props;
 const lang: Language = langProp ?? ((Astro.currentLocale ?? defaultLang) as Language);
 const backHref = lang === defaultLang ? '/#posts' : '/es/#posts';
 const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts';
 ---
 
-<BaseLayout title={`${title} — Álvaro Ares`} description={description}>
+<BaseLayout title={`${title} — Álvaro Ares`} description={description} transitionLine1={transitionLine1} transitionLine2={transitionLine2}>
   <Navigation />
   <main class="relative z-[1] bg-canvas">
     <article class="max-w-[720px] mx-auto px-xl lg:px-3xl pt-[140px] pb-section">

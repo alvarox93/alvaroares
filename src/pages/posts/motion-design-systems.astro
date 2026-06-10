@@ -1,5 +1,8 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+const t = useTranslations('en' as Language);
 ---
 
 <PostLayout
@@ -9,6 +12,8 @@ import PostLayout from '@layouts/PostLayout.astro';
   date="Jun 2026"
   description="Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
   lang="en"
+  transitionLine1={t('transition.motion-design-systems.line1')}
+  transitionLine2={t('transition.motion-design-systems.line2')}
 >
   <p>
     Most clients know they want movement. Few know why.

@@ -1,5 +1,8 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+const t = useTranslations('es' as Language);
 ---
 
 <PostLayout
@@ -8,6 +11,8 @@ import PostLayout from '@layouts/PostLayout.astro';
   readTime="4 min"
   description="El CGI de producto no es un compromiso — es una mejor herramienta para ciertos trabajos. Cuándo y por qué le gana a la fotografía tradicional."
   lang="es"
+  transitionLine1={t('transition.cgi-vs-photography.line1')}
+  transitionLine2={t('transition.cgi-vs-photography.line2')}
 >
   <p>
     He fotografiado productos con cámara y los he renderizado en Maya + V-Ray. Las dos funcionan. Pero para un número creciente de casos, el CGI gana — no solo por coste, sino por control creativo.
