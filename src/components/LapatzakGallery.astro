@@ -1,12 +1,17 @@
----
-const images = ['/lapatzak/testFreshLima.png'];
----
-
-<div class="absolute inset-0 project-image-wrap">
-  <div class="relative w-full h-full overflow-hidden rounded-lg">
+<div class="absolute inset-0 project-image-wrap grid grid-cols-2 gap-1.5">
+  <div class="relative overflow-hidden rounded-lg">
     <img
-      src={images[0]}
+      src="/lapatzak/testFreshLima.png"
       alt="FreshLima — Lapatzak brand"
+      class="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="relative overflow-hidden rounded-lg">
+    <img
+      src="/lapatzak/testGureBrava.png"
+      alt="GureBrava — Lapatzak brand"
       class="w-full h-full object-cover"
       loading="lazy"
       decoding="async"
