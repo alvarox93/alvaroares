@@ -11,8 +11,8 @@ const t = useTranslations(lang);
       <circle cx="12" cy="12" r="4"/>
       <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
     </svg>
-    <svg class="theme-icon-cold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M6.34 17.66l2.83-2.83M14.83 9.17l2.83-2.83"/>
+    <svg class="theme-icon-snow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M6.34 17.66l2.83-2.83m8.48-8.48l2.83-2.83"/>
     </svg>
   </button>
 </div>
@@ -43,8 +43,7 @@ const t = useTranslations(lang);
 
   .theme-knob:hover {
     transform: scale(1.1);
-    border-color: var(--color-ink);
-    color: var(--color-ink);
+    border-color: var(--theme-knob-hover-color, var(--color-ink));
   }
 
   .theme-knob:active {
@@ -52,7 +51,7 @@ const t = useTranslations(lang);
   }
 
   .theme-icon-sun,
-  .theme-icon-cold {
+  .theme-icon-snow {
     width: 16px;
     height: 16px;
     position: absolute;
@@ -60,28 +59,38 @@ const t = useTranslations(lang);
   }
 
   .theme-icon-sun {
+    color: #e8a838;
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  .theme-icon-snow {
+    color: #2596a8;
     opacity: 1;
     transform: scale(1);
   }
 
-  .theme-icon-cold {
-    opacity: 0;
-    transform: scale(0.6);
+  .theme-knob.is-cold {
+    --theme-knob-hover-color: #e8a838;
+  }
+
+  .theme-knob:not(.is-cold) {
+    --theme-knob-hover-color: #2596a8;
   }
 
   .theme-knob.is-cold .theme-icon-sun {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-
-  .theme-knob.is-cold .theme-icon-cold {
     opacity: 1;
     transform: scale(1);
+  }
+
+  .theme-knob.is-cold .theme-icon-snow {
+    opacity: 0;
+    transform: scale(0.6);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .theme-icon-sun,
-    .theme-icon-cold {
+    .theme-icon-snow {
       transition: none;
     }
   }
@@ -99,7 +108,6 @@ const t = useTranslations(lang);
     function syncKnob(theme) {
       if (!knob) return;
       knob.classList.toggle('is-cold', theme === 'cold');
-      knob.setAttribute('aria-pressed', String(theme === 'warm'));
     }
     syncKnob(initial);
 

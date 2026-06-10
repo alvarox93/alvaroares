@@ -74,87 +74,113 @@ const backHref = lang === defaultLang ? '/' : '/es';
         </div>
       </section>
 
-      <!-- DASHBOARD -->
-      <section class="lab-dashboard-section">
-        <p class="lab-dashboard-label">{t('lab.dashboard.label')}</p>
+      <!-- PROJECT 2: Interactive Experiences (mirrored) -->
+      <section class="lab-selected">
+        <div class="lab-selected-grid lab-selected-grid--reverse">
+          <div class="lab-selected-content">
+            <span class="lab-counter">{t('lab.project2.counter')}</span>
+            <h2 class="lab-selected-title">{t('lab.project2.title')}</h2>
+            <p class="lab-selected-desc">{t('lab.project2.description')}</p>
+            <p class="lab-disciplines">{t('lab.project2.disciplines')}</p>
+            <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="lab-cta-link">
+              <span class="lab-cta-text">{t('lab.project2.cta')}</span>
+            </a>
+          </div>
+          <div class="lab-selected-media">
+            <div class="lab-pulse-card">
+              <span>[Interactive Experience — WIP]</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <div class="dash">
+      <!-- PROJECT 3: Render Calculator (centered) -->
+      <section class="lab-project3">
+        <div class="lab-project3-header">
+          <span class="lab-counter">{t('lab.project3.counter')}</span>
+          <h2 class="lab-project3-title">{t('lab.project3.title')}</h2>
+          <p class="lab-project3-desc">{t('lab.project3.description')}</p>
+          <p class="lab-disciplines">{t('lab.project3.disciplines')}</p>
+        </div>
+
+        <!-- Render Calculator Dashboard -->
+        <div class="calc-dash">
           <!-- Top bar -->
-          <div class="dash-topbar">
-            <span class="dash-project">{t('dashboard.project')}</span>
-            <span class="dash-status"><span class="dash-status-dot"></span>{t('dashboard.status')}</span>
-            <span class="dash-clock" id="dash-clock">00:00:00</span>
+          <div class="calc-topbar">
+            <span class="calc-title">Render Calculator</span>
+            <span class="calc-status" id="calc-status"><span class="calc-status-dot"></span>{t('lab.calc.status.ready')}</span>
           </div>
 
-          <!-- Render progress -->
-          <div class="dash-card">
-            <div class="dash-card-header">
-              <span class="dash-card-title">{t('dashboard.renderLabel')}</span>
-              <span class="dash-pct" id="dash-pct">0%</span>
+          <!-- Input fields -->
+          <div class="calc-inputs">
+            <div class="calc-field">
+              <label class="calc-label" for="calc-frames">{t('lab.calc.frames')}</label>
+              <input class="calc-input" type="number" id="calc-frames" value="2400" min="1" />
             </div>
-            <div class="dash-progress-track">
-              <div class="dash-progress-fill" id="dash-progress"></div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-time">{t('lab.calc.timePerFrame')}</label>
+              <input class="calc-input" type="number" id="calc-time" value="45" min="1" step="1" />
             </div>
-            <span class="dash-card-sub">{t('dashboard.renderDetail')}</span>
-          </div>
-
-          <!-- Stats -->
-          <div class="dash-stats">
-            <div class="dash-stat">
-              <span class="dash-stat-num" data-count-to="12">0</span>
-              <span class="dash-stat-label">{t('dashboard.stats.countries')}</span>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-resolution">{t('lab.calc.resolution')}</label>
+              <select class="calc-select" id="calc-resolution">
+                <option value="1">1920×1080 (HD)</option>
+                <option value="1.5">2560×1440 (2K)</option>
+                <option value="2" selected>3840×2160 (4K)</option>
+                <option value="3">7680×4320 (8K)</option>
+              </select>
             </div>
-            <div class="dash-stat">
-              <span class="dash-stat-num" data-count-to="150">0</span>
-              <span class="dash-stat-label">{t('dashboard.stats.projects')}</span>
-            </div>
-            <div class="dash-stat">
-              <span class="dash-stat-num" data-count-to="8">0</span>
-              <span class="dash-stat-label">{t('dashboard.stats.team')}</span>
-            </div>
-          </div>
-
-          <!-- Pipeline -->
-          <div class="dash-card">
-            <span class="dash-card-title">{t('dashboard.pipeline')}</span>
-            <div class="dash-pipeline">
-              <div class="dash-pipe-row">
-                <span class="dash-pipe-name"><span class="dash-dot dash-dot--green"></span>{t('dashboard.pipe.modeling')}</span>
-                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="100"></div></div>
-              </div>
-              <div class="dash-pipe-row">
-                <span class="dash-pipe-name"><span class="dash-dot dash-dot--green"></span>{t('dashboard.pipe.texturing')}</span>
-                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="100"></div></div>
-              </div>
-              <div class="dash-pipe-row">
-                <span class="dash-pipe-name"><span class="dash-dot dash-dot--amber"></span>{t('dashboard.pipe.lighting')}</span>
-                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="65"></div></div>
-              </div>
-              <div class="dash-pipe-row">
-                <span class="dash-pipe-name"><span class="dash-dot dash-dot--amber"></span>{t('dashboard.pipe.rendering')}</span>
-                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="35"></div></div>
-              </div>
-              <div class="dash-pipe-row">
-                <span class="dash-pipe-name"><span class="dash-dot dash-dot--grey"></span>{t('dashboard.pipe.compositing')}</span>
-                <div class="dash-pipe-track"><div class="dash-pipe-fill" data-fill="0"></div></div>
-              </div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-quality">{t('lab.calc.quality')}</label>
+              <select class="calc-select" id="calc-quality">
+                <option value="0.5">{t('lab.calc.quality.draft')}</option>
+                <option value="1" selected>{t('lab.calc.quality.standard')}</option>
+                <option value="1.8">{t('lab.calc.quality.high')}</option>
+                <option value="3">{t('lab.calc.quality.ultra')}</option>
+              </select>
             </div>
           </div>
 
-          <!-- Bottom row -->
-          <div class="dash-bottom">
-            <div class="dash-card">
-              <span class="dash-card-title">{t('dashboard.tools')}</span>
-              <div class="dash-tools">
-                <span class="dash-tool-pill">Maya</span>
-                <span class="dash-tool-pill">V-Ray</span>
-                <span class="dash-tool-pill">After Effects</span>
-                <span class="dash-tool-pill">ComfyUI</span>
-              </div>
+          <!-- Calculate button -->
+          <button class="calc-btn" id="calc-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            {t('lab.calc.calculate')}
+          </button>
+
+          <!-- Results -->
+          <div class="calc-results" id="calc-results">
+            <div class="calc-result-main">
+              <span class="calc-result-label">{t('lab.calc.totalTime')}</span>
+              <span class="calc-result-value" id="calc-total">0d 0h 0m 0s</span>
             </div>
-            <div class="dash-card">
-              <span class="dash-card-title">{t('dashboard.delivery')}</span>
-              <span class="dash-countdown" id="dash-countdown">00:00:00</span>
+          </div>
+
+          <!-- Pipeline simulation -->
+          <div class="calc-card">
+            <span class="calc-card-title">{t('lab.calc.pipeline')}</span>
+            <div class="calc-pipeline">
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-modeling"></span>{t('lab.calc.pipe.modeling')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-modeling" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-texturing"></span>{t('lab.calc.pipe.texturing')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-texturing" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-lighting"></span>{t('lab.calc.pipe.lighting')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-lighting" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-rendering"></span>{t('lab.calc.pipe.rendering')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-rendering" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-compositing"></span>{t('lab.calc.pipe.compositing')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-compositing" data-fill="0"></div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -670,6 +696,273 @@ const backHref = lang === defaultLang ? '/' : '/es';
   }
   .lab-cta-btn:hover { opacity: 0.85; }
 
+  /* ── Reversed grid for project 2 ── */
+  .lab-selected-grid--reverse {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .lab-selected-grid--reverse {
+      grid-template-columns: 2fr 3fr;
+    }
+  }
+
+  /* ── Project 3 centered ── */
+  .lab-project3 {
+    margin-bottom: 96px;
+    text-align: center;
+  }
+
+  .lab-project3-header {
+    max-width: 600px;
+    margin: 0 auto 48px;
+  }
+
+  .lab-project3-title {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+    margin-bottom: 16px;
+  }
+
+  .lab-project3-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── Calculator Dashboard ── */
+  .calc-dash {
+    --dash-bg: #0f0f0f;
+    --dash-card: #161616;
+    --dash-border: rgba(255, 255, 255, 0.07);
+    --dash-accent: var(--accent, #e8a838);
+    --dash-text: #f0f0f0;
+    --dash-muted: #888888;
+    --dash-dim: #555555;
+    background: var(--dash-bg);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border: 1px solid rgba(255,255,255,0.04);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) {
+    .calc-dash {
+      background-image: none;
+      padding: 16px;
+    }
+  }
+
+  .calc-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--dash-border);
+  }
+
+  .calc-title {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dash-text);
+  }
+
+  .calc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--dash-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .calc-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dash-accent);
+    animation: dash-blink 2s ease-in-out infinite;
+  }
+
+  .calc-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .calc-inputs {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  .calc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .calc-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--dash-muted);
+  }
+
+  .calc-input,
+  .calc-select {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    color: var(--dash-text);
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .calc-input:focus,
+  .calc-select:focus {
+    border-color: var(--dash-accent);
+  }
+
+  .calc-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+
+  .calc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dash-bg);
+    background: var(--dash-accent);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    align-self: flex-start;
+  }
+
+  .calc-btn:hover { opacity: 0.9; }
+  .calc-btn:active { transform: scale(0.98); }
+
+  .calc-results {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .calc-result-main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .calc-result-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--dash-muted);
+  }
+
+  .calc-result-value {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--dash-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .calc-card {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .calc-card-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--dash-muted);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .calc-pipeline { display: flex; flex-direction: column; gap: 10px; }
+
+  .calc-pipe-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .calc-pipe-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--dash-muted);
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+
+  .calc-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .calc-dot--green { background: #4ade80; }
+  .calc-dot--amber { background: #fbbf24; }
+  .calc-dot--grey { background: #555; }
+
+  .calc-pipe-track {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .calc-pipe-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--dash-accent);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .lab-pulse-card { animation: none; }
     .dash-status-dot { animation: none; }
@@ -715,30 +1008,6 @@ const backHref = lang === defaultLang ? '/' : '/es';
       lastNavScroll = scroll;
     });
   }
-
-  /* ── Live clock ── */
-  function updateClock() {
-    const el = document.getElementById('dash-clock');
-    if (!el) return;
-    const now = new Date();
-    el.textContent = now.toLocaleTimeString('en-GB');
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  /* ── Countdown ── */
-  const TARGET = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).getTime();
-  function updateCountdown() {
-    const el = document.getElementById('dash-countdown');
-    if (!el) return;
-    const diff = Math.max(0, TARGET - Date.now());
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    el.textContent = [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 
   if (!prefersReducedMotion) {
     /* ── Hero entrance ── */
@@ -789,85 +1058,6 @@ const backHref = lang === defaultLang ? '/' : '/es';
       });
     }
 
-    /* ── Dashboard scroll animations ── */
-    const dash = document.querySelector<HTMLElement>('.dash');
-    if (dash) {
-      const children = dash.children;
-      gsap.from(Array.from(children), {
-        y: 20,
-        autoAlpha: 0,
-        duration: 0.5,
-        ease: 'power2.out',
-        stagger: 0.08,
-        scrollTrigger: { trigger: dash, start: 'top 80%', once: true },
-      });
-
-      /* Counter animation */
-      document.querySelectorAll<HTMLElement>('[data-count-to]').forEach((el) => {
-        const target = parseInt(el.dataset.countTo || '0', 10);
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: target,
-          duration: 2,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-          onUpdate: () => {
-            el.textContent = String(Math.round(obj.val));
-          },
-        });
-      });
-
-      /* Pipeline fills */
-      document.querySelectorAll<HTMLElement>('.dash-pipe-fill').forEach((bar, i) => {
-        const fill = bar.dataset.fill || '0';
-        gsap.to(bar, {
-          width: fill + '%',
-          duration: 0.8,
-          delay: i * 0.15,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: dash, start: 'top 75%', once: true },
-        });
-      });
-
-      /* Tool pills fade in */
-      const pills = document.querySelectorAll<HTMLElement>('.dash-tool-pill');
-      if (pills.length) {
-        gsap.to(pills, {
-          autoAlpha: 1,
-          duration: 0.4,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: pills[0], start: 'top 90%', once: true },
-        });
-      }
-    }
-
-    /* ── Render progress loop ── */
-    const progressFill = document.getElementById('dash-progress') as HTMLElement | null;
-    const pctEl = document.getElementById('dash-pct') as HTMLElement | null;
-    if (progressFill && pctEl) {
-      const progObj = { pct: 0 };
-      function runProgress() {
-        progObj.pct = 0;
-        gsap.to(progObj, {
-          pct: 100,
-          duration: 8,
-          ease: 'none',
-          onUpdate: () => {
-            if (progressFill) progressFill.style.width = progObj.pct + '%';
-            if (pctEl) pctEl.textContent = Math.round(progObj.pct) + '%';
-          },
-          onComplete: runProgress,
-        });
-      }
-      ScrollTrigger.create({
-        trigger: progressFill,
-        start: 'top 90%',
-        once: true,
-        onEnter: runProgress,
-      });
-    }
-
     /* ── CTA section ── */
     const ctaSection = document.querySelector<HTMLElement>('.lab-cta-section');
     if (ctaSection) {
@@ -891,6 +1081,137 @@ const backHref = lang === defaultLang ? '/' : '/es';
       el.addEventListener('mouseleave', () => {
         gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
       });
+    });
+
+    /* ── Project 2 reversed animations ── */
+    const reversedGrid = document.querySelector<HTMLElement>('.lab-selected-grid--reverse');
+    if (reversedGrid) {
+      const media = reversedGrid.querySelector<HTMLElement>('.lab-selected-media');
+      const content = reversedGrid.querySelector<HTMLElement>('.lab-selected-content');
+      if (media) {
+        gsap.from(media, {
+          x: 60,
+          autoAlpha: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: media, start: 'top 80%', once: true },
+        });
+      }
+      if (content) {
+        gsap.from(content, {
+          x: -60,
+          autoAlpha: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: content, start: 'top 80%', once: true },
+        });
+      }
+    }
+
+    /* ── Project 3 centered animations ── */
+    const project3Header = document.querySelector<HTMLElement>('.lab-project3-header');
+    if (project3Header) {
+      gsap.from(project3Header, {
+        y: 30,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: project3Header, start: 'top 80%', once: true },
+      });
+    }
+
+    const calcDash = document.querySelector<HTMLElement>('.calc-dash');
+    if (calcDash) {
+      gsap.from(calcDash, {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: calcDash, start: 'top 80%', once: true },
+      });
+    }
+  }
+
+  /* ── Render Calculator ── */
+  const calcBtn = document.getElementById('calc-btn');
+  const calcFrames = document.getElementById('calc-frames') as HTMLInputElement;
+  const calcTime = document.getElementById('calc-time') as HTMLInputElement;
+  const calcResolution = document.getElementById('calc-resolution') as HTMLSelectElement;
+  const calcQuality = document.getElementById('calc-quality') as HTMLSelectElement;
+  const calcTotal = document.getElementById('calc-total');
+  const calcStatus = document.getElementById('calc-status');
+
+  const pipes = ['modeling', 'texturing', 'lighting', 'rendering', 'compositing'];
+  const pipeFills = pipes.map(p => document.getElementById(`pipe-${p}`) as HTMLElement);
+  const pipeDots = pipes.map(p => document.getElementById(`dot-${p}`) as HTMLElement);
+
+  function formatTime(totalSeconds: number): string {
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+
+    const parts: string[] = [];
+    if (days > 0) parts.push(`${days}d`);
+    if (hours > 0) parts.push(`${hours}h`);
+    if (minutes > 0) parts.push(`${minutes}m`);
+    if (seconds > 0 || parts.length === 0) parts.push(`${seconds}s`);
+    return parts.join(' ');
+  }
+
+  function resetPipeline() {
+    pipeFills.forEach(fill => { if (fill) fill.style.width = '0%'; });
+    pipeDots.forEach(dot => {
+      if (dot) {
+        dot.classList.remove('calc-dot--green', 'calc-dot--amber');
+        dot.classList.add('calc-dot--grey');
+      }
+    });
+  }
+
+  function animatePipeline(totalSeconds: number) {
+    const stages = [
+      { fill: pipeFills[0], dot: pipeDots[0], pct: 100, delay: 0 },
+      { fill: pipeFills[1], dot: pipeDots[1], pct: 100, delay: 0.2 },
+      { fill: pipeFills[2], dot: pipeDots[2], pct: 100, delay: 0.4 },
+      { fill: pipeFills[3], dot: pipeDots[3], pct: Math.min(100, Math.max(20, (totalSeconds / 86400) * 100)), delay: 0.6 },
+      { fill: pipeFills[4], dot: pipeDots[4], pct: totalSeconds < 3600 ? 100 : 0, delay: 0.8 },
+    ];
+
+    stages.forEach((stage, i) => {
+      setTimeout(() => {
+        if (stage.fill) stage.fill.style.width = stage.pct + '%';
+        if (stage.dot) {
+          stage.dot.classList.remove('calc-dot--grey');
+          if (stage.pct >= 100) {
+            stage.dot.classList.add('calc-dot--green');
+          } else if (stage.pct > 0) {
+            stage.dot.classList.add('calc-dot--amber');
+          }
+        }
+      }, stage.delay * 1000);
+    });
+  }
+
+  if (calcBtn && calcFrames && calcTime && calcResolution && calcQuality && calcTotal) {
+    calcBtn.addEventListener('click', () => {
+      const frames = parseInt(calcFrames.value) || 0;
+      const timePerFrame = parseFloat(calcTime.value) || 0;
+      const resolutionMult = parseFloat(calcResolution.value) || 1;
+      const qualityMult = parseFloat(calcQuality.value) || 1;
+
+      const totalSeconds = frames * timePerFrame * resolutionMult * qualityMult;
+      calcTotal.textContent = formatTime(totalSeconds);
+
+      resetPipeline();
+      animatePipeline(totalSeconds);
+
+      if (calcStatus) {
+        calcStatus.innerHTML = '<span class="calc-status-dot"></span>Calculating...';
+        setTimeout(() => {
+          calcStatus.innerHTML = '<span class="calc-status-dot" style="background:#4ade80"></span>Complete';
+        }, 1200);
+      }
     });
   }
 </script>

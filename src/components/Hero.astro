@@ -33,16 +33,18 @@ const t = useTranslations(lang);
           <strong class="text-ink font-medium">{t('home.hero.lede')}</strong> {t('home.hero.ledeBold')}
         </p>
 
-        <div class="flex gap-md items-center">
-          <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            {t('home.hero.cta.about')}
-          </a>
-          <a href={`mailto:${t('footer.email')}`} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            {t('home.hero.cta.contact')}
-          </a>
-          <a href="/alvaroAres_CV_2026.pdf" download class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-transparent text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
+        <div class="flex flex-col gap-md">
+          <div class="flex gap-md items-center">
+            <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              {t('home.hero.cta.about')}
+            </a>
+            <a href={`mailto:${t('footer.email')}`} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              {t('home.hero.cta.contact')}
+            </a>
+          </div>
+          <a href="/alvaroAres_CV_2026.pdf" download class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-transparent text-ink/60 text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border/50 transition-colors duration-300 hover:border-ink/30 hover:text-ink w-fit">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
             {t('home.hero.cta.cv')}
           </a>
