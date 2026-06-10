@@ -6,6 +6,7 @@ export interface HomePost {
   title: string;
   readTime: string;
   placeholder: string;
+  date: string;
 }
 
 export const homePosts: Record<Language, HomePost[]> = {
@@ -13,9 +14,10 @@ export const homePosts: Record<Language, HomePost[]> = {
     {
       slug: 'motion-design-systems',
       category: 'Motion',
-      title: 'Why motion design systems matter more than animated logos',
+      title: 'They wanted motion. We gave them direction.',
       readTime: '5 min',
       placeholder: 'Motion',
+      date: 'Jun 2026',
     },
     {
       slug: 'cgi-vs-photography',
@@ -23,13 +25,15 @@ export const homePosts: Record<Language, HomePost[]> = {
       title: 'The case for CGI product rendering over traditional photography',
       readTime: '4 min',
       placeholder: 'CGI',
+      date: 'May 2026',
     },
     {
       slug: 'ai-pipeline',
-      category: 'AI',
-      title: 'AI-native production: how I automated 60% of my visual pipeline',
+      category: 'Creative direction',
+      title: 'How I automated 50% of my visual pipeline — and what that changed about how I direct',
       readTime: '6 min',
       placeholder: 'AI',
+      date: 'Apr 2026',
     },
     {
       slug: 'designing-in-code',
@@ -37,6 +41,7 @@ export const homePosts: Record<Language, HomePost[]> = {
       title: 'Designing interfaces that think in code (and why it matters)',
       readTime: '3 min',
       placeholder: 'Code',
+      date: 'May 2026',
     },
     {
       slug: 'building-lapatzak',
@@ -44,15 +49,17 @@ export const homePosts: Record<Language, HomePost[]> = {
       title: 'Building a brand from zero: what I learned running Lapatzak',
       readTime: '4 min',
       placeholder: 'Brand',
+      date: 'Apr 2026',
     },
   ],
   es: [
     {
       slug: 'motion-design-systems',
       category: 'Motion',
-      title: 'Por qué los sistemas de motion design importan más que los logos animados',
+      title: 'Querían movimiento. Les dimos dirección.',
       readTime: '5 min',
       placeholder: 'Motion',
+      date: 'Jun 2026',
     },
     {
       slug: 'cgi-vs-photography',
@@ -60,13 +67,15 @@ export const homePosts: Record<Language, HomePost[]> = {
       title: 'El caso del CGI de producto frente a la fotografía tradicional',
       readTime: '4 min',
       placeholder: 'CGI',
+      date: 'May 2026',
     },
     {
       slug: 'ai-pipeline',
-      category: 'IA',
-      title: 'Producción AI-native: cómo automaticé el 60% de mi pipeline visual',
+      category: 'Dirección creativa',
+      title: 'Cómo automaticé el 50% de mi pipeline visual — y lo que eso cambió en cómo dirijo',
       readTime: '6 min',
       placeholder: 'IA',
+      date: 'Abr 2026',
     },
     {
       slug: 'designing-in-code',
@@ -74,6 +83,7 @@ export const homePosts: Record<Language, HomePost[]> = {
       title: 'Diseñar interfaces que piensan en código (y por qué importa)',
       readTime: '3 min',
       placeholder: 'Código',
+      date: 'May 2026',
     },
     {
       slug: 'building-lapatzak',
@@ -81,6 +91,7 @@ export const homePosts: Record<Language, HomePost[]> = {
       title: 'Construir una marca desde cero: lo que aprendí dirigiendo Lapatzak',
       readTime: '4 min',
       placeholder: 'Marca',
+      date: 'Abr 2026',
     },
   ],
 };

@@ -7,11 +7,12 @@ interface Props {
   title: string;
   category: string;
   readTime: string;
+  date?: string;
   description?: string;
   lang?: Language;
 }
 
-const { title, category, readTime, description, lang: langProp } = Astro.props;
+const { title, category, readTime, date, description, lang: langProp } = Astro.props;
 const lang: Language = langProp ?? ((Astro.currentLocale ?? defaultLang) as Language);
 const backHref = lang === defaultLang ? '/#posts' : '/es/#posts';
 const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts';
@@ -22,8 +23,9 @@ const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts
   <main class="relative z-[1] bg-canvas">
     <article class="max-w-[720px] mx-auto px-xl lg:px-3xl pt-[140px] pb-section">
       <header class="mb-3xl">
-        <div class="flex items-center gap-sm mb-lg">
+        <div class="flex items-center gap-sm mb-lg flex-wrap">
           <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-2 py-1 border border-border rounded-sm">{category}</span>
+          {date && <span class="text-ghost text-[10px] tracking-[0.08px]">{date}</span>}
           <span class="text-ghost text-[10px] tracking-[0.08px]">{readTime}</span>
         </div>
         <h1 class="text-[clamp(28px,4.5vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
