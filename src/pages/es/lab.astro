@@ -31,9 +31,9 @@ const t = useTranslations(lang);
               <strong class="text-ink font-medium">{t('lab.lede')}</strong>{t('lab.ledeBold')}
             </p>
           </div>
-          <div class="lg:col-span-5 lg:col-start-7">
-            <!-- Vertical video 9:16 — floating card -->
-            <div class="relative aspect-[9/16] max-h-[70vh] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm hero-video-card mx-auto">
+          <div class="lg:col-span-6 lg:col-start-7">
+            <!-- Hero video 16:9 -->
+            <div class="relative aspect-[16/9] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm hero-video-card">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
                 controls
@@ -41,7 +41,7 @@ const t = useTranslations(lang);
                 preload="metadata"
                 poster="/lab/hero-poster.jpg"
               >
-                <source src="/lab/hero-vertical.mp4" type="video/mp4" />
+                <source src="/lab/hero-reel.mp4" type="video/mp4" />
               </video>
               <div class="hero-video-overlay absolute inset-0 flex items-center justify-center bg-ink/10 pointer-events-none transition-opacity duration-500">
                 <div class="w-12 h-12 rounded-full bg-canvas/90 backdrop-blur-sm flex items-center justify-center shadow-lg">
@@ -118,19 +118,29 @@ const t = useTranslations(lang);
           </div>
         </div>
 
-        <!-- Block 03 — AI Tools — grid 8 left -->
+        <!-- Block 03 — AI Tools — carousel left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 grid grid-cols-4 grid-rows-2 gap-2 p-2">
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[01]</div></div>
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[02]</div></div>
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[03]</div></div>
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[04]</div></div>
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[05]</div></div>
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[06]</div></div>
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[07]</div></div>
-                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[08]</div></div>
+            <div class="carousel-wrap bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="carousel-track">
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[01]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[02]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[03]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[04]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[05]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[06]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[07]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[08]</div></div>
+              </div>
+              <div class="carousel-dots">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
               </div>
             </div>
           </div>
@@ -162,6 +172,88 @@ const t = useTranslations(lang);
         </a>
       </div>
 
+      <!-- Render Calculator -->
+      <section class="mt-section-mobile lg:mt-section mb-section-mobile lg:mb-section">
+        <div class="mb-3xl text-center">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Tool</span>
+          <h2 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.06] tracking-[-0.04em] text-ink text-balance mb-sm">
+            Render Calculator
+          </h2>
+          <p class="text-muted text-[16px] leading-[1.6] max-w-[480px] mx-auto">
+            Una herramienta en vivo construida con código. Calcula tiempos de render, visualiza pipelines y entiende las matemáticas detrás de la producción CGI.
+          </p>
+        </div>
+        <div class="calc-dash">
+          <div class="calc-topbar">
+            <span class="calc-title">Render Calculator</span>
+            <span class="calc-status" id="calc-status"><span class="calc-status-dot"></span>{t('lab.calc.status.ready')}</span>
+          </div>
+          <div class="calc-inputs">
+            <div class="calc-field">
+              <label class="calc-label" for="calc-frames">{t('lab.calc.frames')}</label>
+              <input class="calc-input" type="number" id="calc-frames" value="2400" min="1" />
+            </div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-time">{t('lab.calc.timePerFrame')}</label>
+              <input class="calc-input" type="number" id="calc-time" value="45" min="1" step="1" />
+            </div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-resolution">{t('lab.calc.resolution')}</label>
+              <select class="calc-select" id="calc-resolution">
+                <option value="1">1920×1080 (HD)</option>
+                <option value="1.5">2560×1440 (2K)</option>
+                <option value="2" selected>3840×2160 (4K)</option>
+                <option value="3">7680×4320 (8K)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-quality">{t('lab.calc.quality')}</label>
+              <select class="calc-select" id="calc-quality">
+                <option value="0.5">{t('lab.calc.quality.draft')}</option>
+                <option value="1" selected>{t('lab.calc.quality.standard')}</option>
+                <option value="1.8">{t('lab.calc.quality.high')}</option>
+                <option value="3">{t('lab.calc.quality.ultra')}</option>
+              </select>
+            </div>
+          </div>
+          <button class="calc-btn" id="calc-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            {t('lab.calc.calculate')}
+          </button>
+          <div class="calc-results" id="calc-results">
+            <div class="calc-result-main">
+              <span class="calc-result-label">{t('lab.calc.totalTime')}</span>
+              <span class="calc-result-value" id="calc-total">0d 0h 0m 0s</span>
+            </div>
+          </div>
+          <div class="calc-card">
+            <span class="calc-card-title">{t('lab.calc.pipeline')}</span>
+            <div class="calc-pipeline">
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-modeling"></span>{t('lab.calc.pipe.modeling')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-modeling" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-texturing"></span>{t('lab.calc.pipe.texturing')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-texturing" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-lighting"></span>{t('lab.calc.pipe.lighting')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-lighting" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-rendering"></span>{t('lab.calc.pipe.rendering')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-rendering" data-fill="0"></div></div>
+              </div>
+              <div class="calc-pipe-row">
+                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-compositing"></span>{t('lab.calc.pipe.compositing')}</span>
+                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-compositing" data-fill="0"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   </main>
 
@@ -178,6 +270,251 @@ const t = useTranslations(lang);
   }
   section:first-of-type .grid {
     perspective: 1200px;
+  }
+
+  /* ── Carousel ── */
+  .carousel-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .carousel-track {
+    display: flex;
+    gap: 12px;
+    will-change: transform;
+  }
+  .carousel-slide {
+    flex: 0 0 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--color-surface);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border);
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+  .carousel-dot.active {
+    background: var(--color-ink);
+  }
+
+  /* ── Calculator ── */
+  .calc-dash {
+    --dash-bg: #0f0f0f;
+    --dash-card: #161616;
+    --dash-border: rgba(255, 255, 255, 0.07);
+    --dash-accent: var(--accent, #e8a838);
+    --dash-text: #f0f0f0;
+    --dash-muted: #888888;
+    --dash-dim: #555555;
+    background: var(--dash-bg);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border: 1px solid rgba(255,255,255,0.04);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  @media (max-width: 767px) {
+    .calc-dash {
+      background-image: none;
+      padding: 16px;
+    }
+  }
+  .calc-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--dash-border);
+  }
+  .calc-title {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dash-text);
+  }
+  .calc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--dash-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .calc-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dash-accent);
+    animation: dash-blink 2s ease-in-out infinite;
+  }
+  @keyframes dash-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .calc-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 768px) {
+    .calc-inputs {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+  .calc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .calc-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--dash-muted);
+  }
+  .calc-input,
+  .calc-select {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    color: var(--dash-text);
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .calc-input:focus,
+  .calc-select:focus {
+    border-color: var(--dash-accent);
+  }
+  .calc-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  .calc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dash-bg);
+    background: var(--dash-accent);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    align-self: flex-start;
+  }
+  .calc-btn:hover { opacity: 0.9; }
+  .calc-btn:active { transform: scale(0.98); }
+  .calc-results {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .calc-result-main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .calc-result-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--dash-muted);
+  }
+  .calc-result-value {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--dash-accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-card {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .calc-card-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--dash-muted);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .calc-pipeline { display: flex; flex-direction: column; gap: 10px; }
+  .calc-pipe-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .calc-pipe-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--dash-muted);
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+  .calc-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .calc-dot--green { background: #4ade80; }
+  .calc-dot--amber { background: #fbbf24; }
+  .calc-dot--grey { background: #555; }
+  .calc-pipe-track {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .calc-pipe-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--dash-accent);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 </style>
 
@@ -232,7 +569,7 @@ const t = useTranslations(lang);
       gsap.from(heroLede, { y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out', delay: 0.25 });
     }
 
-    const heroVideo = document.querySelector('section:first-of-type .aspect-\[9\/16\]');
+    const heroVideo = document.querySelector('section:first-of-type .aspect-\[16\/9\]');
     if (heroVideo) {
       gsap.from(heroVideo, {
         scale: 0.96,
@@ -321,6 +658,114 @@ const t = useTranslations(lang);
       el.addEventListener('mouseleave', () => {
         gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
       });
+    });
+  }
+
+  // ── Carousel ──
+  const carouselWrap = document.querySelector('.carousel-wrap') as HTMLElement;
+  if (carouselWrap) {
+    const track = carouselWrap.querySelector('.carousel-track') as HTMLElement;
+    const slides = carouselWrap.querySelectorAll('.carousel-slide');
+    const dots = carouselWrap.querySelectorAll('.carousel-dot');
+    if (track && slides.length > 1) {
+      let current = 0;
+      const total = slides.length;
+      const interval = 4000;
+
+      function goTo(index: number) {
+        current = index;
+        gsap.to(track, {
+          x: -current * (slides[0] as HTMLElement).offsetWidth - current * 12,
+          duration: 0.8,
+          ease: 'power3.inOut',
+        });
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goTo(i));
+      });
+
+      setInterval(() => {
+        goTo((current + 1) % total);
+      }, interval);
+    }
+  }
+
+  // ── Calculator ──
+  const calcBtn = document.getElementById('calc-btn');
+  const calcFrames = document.getElementById('calc-frames') as HTMLInputElement;
+  const calcTime = document.getElementById('calc-time') as HTMLInputElement;
+  const calcResolution = document.getElementById('calc-resolution') as HTMLSelectElement;
+  const calcQuality = document.getElementById('calc-quality') as HTMLSelectElement;
+  const calcTotal = document.getElementById('calc-total');
+  const calcStatus = document.getElementById('calc-status');
+
+  const pipes = ['modeling', 'texturing', 'lighting', 'rendering', 'compositing'];
+  const pipeFills = pipes.map(p => document.getElementById(`pipe-${p}`) as HTMLElement);
+  const pipeDots = pipes.map(p => document.getElementById(`dot-${p}`) as HTMLElement);
+
+  function formatTime(totalSeconds: number): string {
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    const parts: string[] = [];
+    if (days > 0) parts.push(`${days}d`);
+    if (hours > 0) parts.push(`${hours}h`);
+    if (minutes > 0) parts.push(`${minutes}m`);
+    if (seconds > 0 || parts.length === 0) parts.push(`${seconds}s`);
+    return parts.join(' ');
+  }
+
+  function resetPipeline() {
+    pipeFills.forEach(fill => { if (fill) fill.style.width = '0%'; });
+    pipeDots.forEach(dot => {
+      if (dot) {
+        dot.classList.remove('calc-dot--green', 'calc-dot--amber');
+        dot.classList.add('calc-dot--grey');
+      }
+    });
+  }
+
+  function animatePipeline(totalSeconds: number) {
+    const stages = [
+      { fill: pipeFills[0], dot: pipeDots[0], pct: 100, delay: 0 },
+      { fill: pipeFills[1], dot: pipeDots[1], pct: 100, delay: 0.2 },
+      { fill: pipeFills[2], dot: pipeDots[2], pct: 100, delay: 0.4 },
+      { fill: pipeFills[3], dot: pipeDots[3], pct: Math.min(100, Math.max(20, (totalSeconds / 86400) * 100)), delay: 0.6 },
+      { fill: pipeFills[4], dot: pipeDots[4], pct: totalSeconds < 3600 ? 100 : 0, delay: 0.8 },
+    ];
+    stages.forEach((stage) => {
+      setTimeout(() => {
+        if (stage.fill) stage.fill.style.width = stage.pct + '%';
+        if (stage.dot) {
+          stage.dot.classList.remove('calc-dot--grey');
+          if (stage.pct >= 100) stage.dot.classList.add('calc-dot--green');
+          else if (stage.pct > 0) stage.dot.classList.add('calc-dot--amber');
+        }
+      }, stage.delay * 1000);
+    });
+  }
+
+  if (calcBtn && calcFrames && calcTime && calcResolution && calcQuality && calcTotal) {
+    calcBtn.addEventListener('click', () => {
+      const frames = parseInt(calcFrames.value) || 0;
+      const timePerFrame = parseFloat(calcTime.value) || 0;
+      const resolutionMult = parseFloat(calcResolution.value) || 1;
+      const qualityMult = parseFloat(calcQuality.value) || 1;
+      const totalSeconds = frames * timePerFrame * resolutionMult * qualityMult;
+      calcTotal.textContent = formatTime(totalSeconds);
+      resetPipeline();
+      animatePipeline(totalSeconds);
+      if (calcStatus) {
+        calcStatus.innerHTML = '<span class="calc-status-dot"></span>Calculating...';
+        setTimeout(() => {
+          calcStatus.innerHTML = '<span class="calc-status-dot" style="background:#4ade80"></span>Complete';
+        }, 1200);
+      }
     });
   }
 </script>
