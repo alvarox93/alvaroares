@@ -16,9 +16,8 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 
 const lang = 'en' as Language;
-const t = useTranslations(lang);
-const transitionLine1 = t(`transition.${post.slug}.line1` as any);
-const transitionLine2 = t(`transition.${post.slug}.line2` as any);
+const transitionLine1 = post.data.title;
+const transitionLine2 = '';
 ---
 
 <PostLayout
