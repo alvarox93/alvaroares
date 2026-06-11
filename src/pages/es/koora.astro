@@ -2,10 +2,10 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import IconArrowUpRight from '@components/icons/IconArrowUpRight.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
-const backHref = lang === defaultLang ? '/' : '/es';
 ---
 
 <BaseLayout
@@ -18,37 +18,36 @@ const backHref = lang === defaultLang ? '/' : '/es';
   <main class="bg-warm min-h-screen">
     <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
 
-      <!-- Back -->
-      <a href={backHref} class="inline-block text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200 pt-2xl lg:pt-3xl mb-2xl">
-        {t('nav.backToHome')}
-      </a>
-
       <!-- Hero -->
-      <section class="relative pb-2xl">
+      <section class="relative pt-3xl lg:pt-4xl pb-2xl">
         <div class="hero-blob" style="top: -60px; right: -80px;"></div>
 
-        <span class="relative text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('koora.meta')}</span>
-        <h1 class="relative text-[clamp(42px,6vw,76px)] font-light leading-[0.98] tracking-[-0.05em] text-ink text-balance mb-lg max-w-[800px]">
-          {t('koora.heading')}
-        </h1>
-        <p class="relative text-[clamp(17px,2vw,22px)] leading-[1.65] text-muted max-w-[640px] mb-3xl">
-          <strong class="text-ink font-medium">{t('koora.lede')}</strong>{t('koora.ledeBold')}
-        </p>
-
-        <!-- Showreel -->
-        <div class="relative aspect-[16/9] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm">
-          <video
-            class="absolute inset-0 w-full h-full object-cover"
-            controls
-            playsinline
-            poster="[POSTER_URL]"
-          >
-            <source src="[VIDEO_URL]" type="video/mp4" />
-          </video>
-          <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/80 to-transparent">
-            <span class="text-canvas/80 text-[13px] font-medium">
-              {t('koora.video.caption.showreel')}
-            </span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl lg:gap-3xl items-center">
+          <div class="lg:col-span-5">
+            <span class="relative text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('koora.meta')}</span>
+            <h1 class="relative text-[clamp(36px,5vw,64px)] font-light leading-[0.98] tracking-[-0.05em] text-ink text-balance mb-lg">
+              {t('koora.heading')}
+            </h1>
+            <p class="relative text-[clamp(16px,1.8vw,20px)] leading-[1.65] text-muted">
+              <strong class="text-ink font-medium">{t('koora.lede')}</strong>{t('koora.ledeBold')}
+            </p>
+          </div>
+          <div class="lg:col-span-6 lg:col-start-7">
+            <!-- Showreel -->
+            <div class="relative aspect-[16/9] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                controls
+                playsinline
+              >
+                <source src="/kooraShowreel.webm" type="video/webm" />
+              </video>
+              <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/80 to-transparent">
+                <span class="text-canvas/80 text-[13px] font-medium">
+                  {t('koora.video.caption.showreel')}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -84,19 +83,14 @@ const backHref = lang === defaultLang ? '/' : '/es';
           </h2>
         </div>
 
-        <!-- Block 01 — International reach -->
+        <!-- Block 01 — International reach — video left -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-section relative">
           <span class="hidden lg:block absolute -top-8 -left-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">01</span>
           <div class="lg:col-span-7">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <video
-                class="absolute inset-0 w-full h-full object-cover"
-                controls
-                playsinline
-                poster="[POSTER_URL]"
-              >
-                <source src="[VIDEO_URL]" type="video/mp4" />
-              </video>
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                [International campaign video]
+              </div>
               <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
                 <span class="text-canvas/80 text-[12px] font-medium">
                   {t('koora.video.caption.international')}
@@ -115,7 +109,7 @@ const backHref = lang === defaultLang ? '/' : '/es';
           </div>
         </div>
 
-        <!-- Block 02 — Multilingual -->
+        <!-- Block 02 — The team — video right -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-section relative">
           <span class="hidden lg:block absolute -top-8 -right-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">02</span>
           <div class="lg:col-span-4 lg:order-1 lg:pt-3xl">
@@ -141,40 +135,67 @@ const backHref = lang === defaultLang ? '/' : '/es';
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Block 03 — Consistency — centered, editorial -->
-        <div class="max-w-[680px] mx-auto text-center py-section-mobile lg:py-section relative">
-          <span class="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 text-[140px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.025] select-none pointer-events-none">03</span>
-          <span class="relative text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-lg inline-block">{t('koora.narrative3.tag')}</span>
-          <h3 class="relative text-[clamp(24px,2.8vw,34px)] font-light leading-[1.15] tracking-[-0.03em] text-ink text-balance mb-md">
-            {t('koora.narrative3.title')}
-          </h3>
-          <p class="relative text-muted text-[16px] leading-[1.8]">
-            {t('koora.narrative3.body')}
-          </p>
+      <!-- Clients marquee — dark -->
+      <div class="relative bg-ink w-screen overflow-hidden py-3xl" style="margin-left: calc(-50vw + 50%);">
+        <p class="text-center text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase mb-xl">
+          {t('koora.clients.label')}
+        </p>
+        <div class="overflow-hidden">
+          <div class="marquee-track">
+            <div class="flex items-center gap-4xl shrink-0 px-2xl">
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line1')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line2')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line3')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line4')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line5')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line6')}</span>
+            </div>
+            <div class="flex items-center gap-4xl shrink-0 px-2xl">
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line1')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line2')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line3')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line4')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line5')}</span>
+              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line6')}</span>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Block 04 — Pipeline -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start relative">
-          <span class="hidden lg:block absolute -top-8 -left-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">04</span>
+      <!-- Narrative continued -->
+      <section class="mt-section-mobile lg:mt-section mb-section-mobile lg:mb-section">
+        <!-- Block 03 — Consistency — video left -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-section relative">
+          <span class="hidden lg:block absolute -top-8 -left-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">03</span>
           <div class="lg:col-span-7">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <video
-                class="absolute inset-0 w-full h-full object-cover"
-                controls
-                playsinline
-                poster="[POSTER_URL]"
-              >
-                <source src="[VIDEO_URL]" type="video/mp4" />
-              </video>
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                [Consistency showcase video]
+              </div>
               <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
                 <span class="text-canvas/80 text-[12px] font-medium">
-                  {t('koora.video.caption.pipeline')}
+                  {t('koora.video.caption.multilingual')}
                 </span>
               </div>
             </div>
           </div>
           <div class="lg:col-span-4 lg:col-start-9 lg:pt-3xl">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative3.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('koora.narrative3.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('koora.narrative3.body')}
+            </p>
+          </div>
+        </div>
+
+        <!-- Block 04 — Pipeline — video right -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start relative">
+          <span class="hidden lg:block absolute -top-8 -right-6 text-[120px] font-accent font-bold leading-none tracking-[-0.06em] text-ink/[0.03] select-none pointer-events-none">04</span>
+          <div class="lg:col-span-4 lg:order-1 lg:pt-3xl">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative4.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('koora.narrative4.title')}
@@ -183,59 +204,42 @@ const backHref = lang === defaultLang ? '/' : '/es';
               {t('koora.narrative4.body')}
             </p>
           </div>
-        </div>
-      </section>
-
-      <!-- Industries -->
-      <section class="mb-section-mobile lg:mb-section">
-        <div class="border-t border-border-light pt-2xl">
-          <p class="text-center text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xl">
-            {t('koora.clients.label')}
-          </p>
-          <div class="overflow-hidden">
-            <div class="marquee-track">
-              <div class="flex items-center gap-4xl shrink-0 px-2xl">
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line1')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line2')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line3')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line4')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line5')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line6')}</span>
+          <div class="lg:col-span-7 lg:col-start-6 lg:order-2">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                [Pipeline showcase video]
               </div>
-              <div class="flex items-center gap-4xl shrink-0 px-2xl">
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line1')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line2')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line3')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line4')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line5')}</span>
-                <span class="text-[15px] font-medium tracking-[0.02px] text-muted/40 whitespace-nowrap">{t('koora.clients.line6')}</span>
+              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
+                <span class="text-canvas/80 text-[12px] font-medium">
+                  {t('koora.video.caption.pipeline')}
+                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CTA -->
-      <section class="border-t border-border-light pt-2xl pb-section-mobile lg:pb-section text-center">
-        <h2 class="text-[clamp(24px,3vw,36px)] font-light leading-[1.15] tracking-[-0.03em] text-ink text-balance mb-sm">
+      <!-- CTA — dark -->
+      <div class="relative bg-ink w-screen overflow-hidden text-center py-section-mobile lg:py-section" style="margin-left: calc(-50vw + 50%);">
+        <h2 class="text-[clamp(24px,3vw,36px)] font-light leading-[1.15] tracking-[-0.03em] text-canvas text-balance mb-sm">
           {t('koora.portfolio.heading')}
         </h2>
-        <p class="text-muted text-[16px] leading-[1.6] mb-xl max-w-[480px] mx-auto">
+        <p class="text-canvas/60 text-[16px] leading-[1.6] mb-xl max-w-[480px] mx-auto">
           {t('koora.portfolio.subheading')}
         </p>
         <a
           href="https://koora.studio"
           target="_blank"
           rel="noopener noreferrer"
-          class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85"
+          class="magnetic inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90"
         >
           {t('koora.portfolio.button')}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-sm"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          <IconArrowUpRight class="ml-sm" />
         </a>
-        <p class="text-ghost text-[12px] mt-md">
+        <p class="text-canvas/40 text-[12px] mt-md">
           {t('koora.portfolio.cta')}
         </p>
-      </section>
+      </div>
 
     </div>
   </main>
@@ -256,6 +260,7 @@ const backHref = lang === defaultLang ? '/' : '/es';
     duration: 1.2,
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     touchMultiplier: 2,
+    smoothWheel: !prefersReducedMotion,
   });
 
   lenis.on('scroll', ScrollTrigger.update);
@@ -335,7 +340,7 @@ const backHref = lang === defaultLang ? '/' : '/es';
       }
     }
 
-    document.querySelectorAll('section:nth-of-type(3) .grid').forEach((grid) => {
+    document.querySelectorAll('section .grid').forEach((grid) => {
       const video = grid.querySelector('.aspect-\\[16\\/9\\]');
       const textCol = grid.querySelector('h3')?.closest('div');
       const bigNum = grid.querySelector('span[class*="120px"]');
@@ -369,31 +374,15 @@ const backHref = lang === defaultLang ? '/' : '/es';
       }
     });
 
-    const centeredBlock = narrativeSection?.querySelector('.max-w-\\[680px\\]');
-    if (centeredBlock) {
-      const bigNum = centeredBlock.querySelector('span[class*="140px"]');
-      if (bigNum) {
-        gsap.from(bigNum, {
-          autoAlpha: 0, duration: 1.2, ease: 'power3.out',
-          scrollTrigger: { trigger: centeredBlock, start: 'top 85%', once: true },
-        });
-      }
-      const innerEls = centeredBlock.querySelectorAll(':scope > span:not([class*="140px"]), :scope > h3, :scope > p');
-      gsap.from(innerEls, {
-        y: 24, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12,
-        scrollTrigger: { trigger: centeredBlock, start: 'top 80%', once: true },
-      });
-    }
-
-    const marqueeSection = document.querySelector('section:nth-of-type(4)');
-    if (marqueeSection) {
-      gsap.from(marqueeSection.querySelectorAll(':scope > div > p, :scope > div > div'), {
+    const darkMarquee = document.querySelector('.bg-ink.w-screen');
+    if (darkMarquee) {
+      gsap.from(darkMarquee.querySelectorAll(':scope > p, :scope > div'), {
         y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
-        scrollTrigger: { trigger: marqueeSection, start: 'top 88%', once: true },
+        scrollTrigger: { trigger: darkMarquee, start: 'top 88%', once: true },
       });
     }
 
-    const ctaSection = document.querySelector('section.border-t:last-of-type');
+    const ctaSection = document.querySelector('.bg-ink.w-screen.text-center');
     if (ctaSection) {
       gsap.from(ctaSection.querySelectorAll(':scope > *'), {
         y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
