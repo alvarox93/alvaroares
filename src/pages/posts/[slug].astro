@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import PostLayout from '@layouts/PostLayout.astro';
+import { useTranslations, type Language } from '@i18n/ui';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const enPosts = posts.filter((p) => p.data.lang === 'en');
+  return enPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const lang = 'en' as Language;
+const t = useTranslations(lang);
+const transitionLine1 = t(`transition.${post.slug}.line1` as any);
+const transitionLine2 = t(`transition.${post.slug}.line2` as any);
+---
+
+<PostLayout
+  title={post.data.title}
+  category={post.data.category}
+  readTime={post.data.readTime}
+  date={post.data.date}
+  description={post.data.description}
+  lang={lang}
+  transitionLine1={transitionLine1}
+  transitionLine2={transitionLine2}
+>
+  <Content />
+</PostLayout>

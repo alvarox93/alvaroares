@@ -1,0 +1,63 @@
+---
+title: "Gourmet renders. No clients. No excuses."
+category: "CGI"
+readTime: "5 min"
+date: "Jun 2026"
+placeholder: "CGI"
+description: "Some projects you do because someone asks. Others you do because you can't not."
+lang: "en"
+---
+
+Some projects you do because someone asks. Others you do because you can't not.
+
+I've spent over two years sculpting food in CGI. Savoury, sweet, raw, cooked, glossy, matte. No client behind it. No brief. Just references, time, and the obsession with making something digital look real enough to make you hungry.
+
+That's how you master something.
+
+## Why food
+
+Food is one of the hardest materials to reproduce in CGI. It has layers, imperfections, translucency, moisture. It reacts to light in ways the human eye detects immediately when something's off — even if it can't explain why.
+
+That's exactly what hooked me. There's no room for the easy trick. Either it looks real or it looks fake, and the threshold between the two is razor thin.
+
+Every project starts from scratch. Always. I don't reuse models, I don't recycle materials. Starting from zero is the only way to keep learning.
+
+## The process
+
+A typical session starts with references. Not to copy — to understand. How light falls on a bread crust, where moisture collects on a strawberry, what makes dark chocolate look different from milk chocolate even though they're the same brown.
+
+Then comes the modelling in ZBrush. Every detail sculpted by hand — the texture of an orange peel, the cracks in an aged cheese, the irregularity of a bread crumb. It's the slowest part and the most important. What isn't in the geometry can't be saved later with materials or light.
+
+Lighting and texturing come next, in parallel, rendering constantly. Not at the end — throughout. Every decision gets checked in render because that's where the result lives, not in the viewport.
+
+Post-processing is last: colour grading, composition, sometimes adding context elements. And in a day, it's done.
+
+## The hardest thing to master: SSS
+
+Subsurface scattering — the way light penetrates and disperses inside an organic material before exiting — is what makes a grape look translucent, gives a peach its glow, makes cheese look dense and moist at the same time.
+
+It's also what took me longest to get right.
+
+Badly calibrated SSS is immediately visible. Too much and the material looks like soap. Too little and it looks like plastic. The exact point depends on the material, the light, the distance, the scale. There's no correct value — there's a judgment that gets trained through getting it wrong.
+
+Two years in, I'm still learning. But I know exactly when something isn't right.
+
+## The CGI advantage nobody talks about
+
+In product photography, when the shoot ends, it ends. If you need another angle, different light, a different background colour, you start the process over.
+
+In CGI, when a project is done, it's done forever. I can come back six months later and produce a render with different light, in a different context, for a format that didn't exist when I created it. The versatility is total.
+
+In product advertising, that's a powerful argument. But for me, in these personal projects, it means something else: I can keep exploring the same material without starting from scratch. Add a version, try a new direction, see how far it goes.
+
+A project is never fully closed. Just on pause.
+
+## Why I keep doing it
+
+No client is waiting for these renders. No deadline, no approved budget.
+
+I do them because each one teaches me something that commissioned work doesn't always allow. The time to obsess over a detail nobody will notice but that makes everything else look better. The freedom to get it wrong without consequences and to push as far as I want to go.
+
+Mastery doesn't come from doing what people ask for. It comes from doing what nobody asked for, over and over, until it's right.
+
+[Eyes eat first — food & product CGI](/renders)
