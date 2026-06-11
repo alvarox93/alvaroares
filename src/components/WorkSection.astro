@@ -1,7 +1,17 @@
 ---
 import { Image } from 'astro:assets';
-import eyesLooking from '../assets/eyesLooking.png';
+import eyes1 from '../assets/eyesIMGs/eyes1.png';
+import eyes2 from '../assets/eyesIMGs/eyes2.png';
+import eyes3 from '../assets/eyesIMGs/eyes3.png';
+import eyes4 from '../assets/eyesIMGs/eyes4.png';
+import eyes5 from '../assets/eyesIMGs/eyes5.png';
+import eyes6 from '../assets/eyesIMGs/eyes6.png';
+import eyes7 from '../assets/eyesIMGs/eyes7.png';
+import eyes8 from '../assets/eyesIMGs/eyes8.png';
+import eyes9 from '../assets/eyesIMGs/eyes9.png';
 import { useTranslations, defaultLang, type Language, type UIKey } from '@i18n/ui';
+
+const eyeImages = [eyes1, eyes2, eyes3, eyes4, eyes5, eyes6, eyes7, eyes8, eyes9];
 import FoodSlideshow from '@components/FoodSlideshow.astro';
 import LapatzakGallery from '@components/LapatzakGallery.astro';
 
@@ -150,8 +160,10 @@ const projects: Array<{
   </div>
 
   <div class="relative bg-ink w-screen pt-[100px] pb-[100px] mb-[100px] overflow-hidden" style="margin-left: calc(-50vw + 50%);">
-    <div aria-hidden="true" class="absolute inset-0 pointer-events-none">
-      <Image src={eyesLooking} alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+    <div aria-hidden="true" class="absolute inset-0 pointer-events-none eyes-parallax-wrap">
+      {eyeImages.map((src, i) => (
+        <Image src={src} alt="" class="absolute inset-0 w-full h-full object-contain eyes-parallax-img" data-index={i} loading="lazy" decoding="async" />
+      ))}
     </div>
     <div class="relative z-10 max-w-[1200px] mx-auto px-xl lg:px-3xl flex flex-col items-center text-center">
       <span class="text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase block mb-lg">{t('home.hero.available')}</span>
@@ -241,3 +253,33 @@ const projects: Array<{
     box-shadow: 0 20px 50px rgba(0,0,0,0.06);
   }
 </style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const wrap = document.querySelector('.eyes-parallax-wrap');
+  if (wrap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const imgs = wrap.querySelectorAll<HTMLElement>('.eyes-parallax-img');
+    imgs.forEach((img) => {
+      const speed = 1 + Math.random() * 2.5;
+      const dir = Math.random() > 0.5 ? 1 : -1;
+      const offset = speed * 8 * dir;
+      gsap.fromTo(img,
+        { yPercent: -offset },
+        {
+          yPercent: offset,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: wrap.parentElement,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    });
+  }
+</script>
