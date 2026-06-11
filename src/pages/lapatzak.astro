@@ -30,17 +30,26 @@ const t = useTranslations(lang);
               <strong class="text-ink font-medium">{t('lapatzak.lede')}</strong>{t('lapatzak.ledeBold')}
             </p>
           </div>
-          <div class="lg:col-span-5 lg:col-start-8">
-            <!-- Vertical video 9:16 -->
-            <div class="relative aspect-[9/16] max-h-[70vh] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm mx-auto">
+          <div class="lg:col-span-5 lg:col-start-7">
+            <!-- Vertical video 9:16 — floating card -->
+            <div class="relative aspect-[9/16] max-h-[70vh] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm hero-video-card mx-auto">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
                 controls
                 playsinline
                 preload="metadata"
+                poster="/branding/brand-poster.jpg"
               >
                 <source src="/branding/brand-vertical.mp4" type="video/mp4" />
               </video>
+              <!-- Play overlay — shown until video plays -->
+              <div class="hero-video-overlay absolute inset-0 flex items-center justify-center bg-ink/10 pointer-events-none transition-opacity duration-500">
+                <div class="w-12 h-12 rounded-full bg-canvas/90 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-ink ml-0.5">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -96,7 +105,7 @@ const t = useTranslations(lang);
             </p>
           </div>
           <div class="video-col lg:col-span-5 lg:col-start-8 lg:order-2 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[4/5] bg-canvas rounded-xl border border-border-light overflow-hidden">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Brand asset 02]
               </div>
@@ -108,7 +117,7 @@ const t = useTranslations(lang);
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">03</span>
           <div class="video-col lg:col-span-5 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 p-1">
                 <div class="relative bg-surface rounded-lg overflow-hidden">
                   <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[01]</div>
@@ -158,6 +167,21 @@ const t = useTranslations(lang);
 
   <div class="noise-overlay"></div>
 </BaseLayout>
+
+<style>
+  /* Hero video card 3D tilt */
+  .hero-video-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .hero-video-card .hero-video-overlay {
+    z-index: 2;
+  }
+  /* Parent perspective so the card rotates in 3D space */
+  section:first-of-type .grid {
+    perspective: 1200px;
+  }
+</style>
 
 <script>
   import Lenis from 'lenis';
@@ -219,6 +243,37 @@ const t = useTranslations(lang);
         ease: 'power3.out',
         delay: 0.2,
       });
+
+      // 3D tilt effect on the hero video card
+      const card = heroVideo as HTMLElement;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(card, {
+          rotateY: x * 8,
+          rotateX: -y * 8,
+          duration: 0.4,
+          ease: 'power2.out',
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotateY: 0,
+          rotateX: 0,
+          duration: 0.6,
+          ease: 'elastic.out(1, 0.5)',
+        });
+      });
+
+      // Hide play overlay when video starts
+      const video = card.querySelector('video');
+      const overlay = card.querySelector('.hero-video-overlay');
+      if (video && overlay) {
+        video.addEventListener('play', () => {
+          (overlay as HTMLElement).style.opacity = '0';
+        });
+      }
     }
 
     const narrativeSection = document.querySelector('section:nth-of-type(2)');
