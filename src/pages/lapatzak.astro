@@ -67,8 +67,8 @@ const t = useTranslations(lang);
         <!-- Block 01 — From scratch — video left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">01</span>
-          <div class="video-col lg:col-span-5 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[9/16] bg-canvas rounded-xl border border-border-light overflow-hidden">
+          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
                 autoplay
@@ -81,7 +81,7 @@ const t = useTranslations(lang);
               </video>
             </div>
           </div>
-          <div class="text-col relative z-[2] lg:col-span-6 lg:col-start-7">
+          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block1.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('lapatzak.block1.title')}
@@ -95,7 +95,7 @@ const t = useTranslations(lang);
         <!-- Block 02 — Brand fluency — image right -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <span class="big-num absolute top-0 left-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">02</span>
-          <div class="text-col relative z-[2] lg:col-span-6 lg:order-1">
+          <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block2.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('lapatzak.block2.title')}
@@ -104,8 +104,8 @@ const t = useTranslations(lang);
               {t('lapatzak.block2.body')}
             </p>
           </div>
-          <div class="video-col lg:col-span-5 lg:col-start-8 lg:order-2 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+          <div class="video-col lg:col-span-6 lg:col-start-7 lg:order-2 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Brand asset 02]
               </div>
@@ -116,25 +116,25 @@ const t = useTranslations(lang);
         <!-- Block 03 — Beyond visuals — grid 4 left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">03</span>
-          <div class="video-col lg:col-span-5 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 p-1">
-                <div class="relative bg-surface rounded-lg overflow-hidden">
+          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-3 p-3">
+                <div class="relative bg-surface rounded-xl overflow-hidden">
                   <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[01]</div>
                 </div>
-                <div class="relative bg-surface rounded-lg overflow-hidden">
+                <div class="relative bg-surface rounded-xl overflow-hidden">
                   <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[02]</div>
                 </div>
-                <div class="relative bg-surface rounded-lg overflow-hidden">
+                <div class="relative bg-surface rounded-xl overflow-hidden">
                   <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[03]</div>
                 </div>
-                <div class="relative bg-surface rounded-lg overflow-hidden">
+                <div class="relative bg-surface rounded-xl overflow-hidden">
                   <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[04]</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="text-col relative z-[2] lg:col-span-6 lg:col-start-7">
+          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block3.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('lapatzak.block3.title')}
