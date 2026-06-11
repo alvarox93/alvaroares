@@ -2,76 +2,157 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
-
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
-const backHref = lang === defaultLang ? '/' : '/es';
 ---
 
 <BaseLayout
-  title={lang === 'es' ? 'Lapatzak — Álvaro Ares' : 'Lapatzak — Álvaro Ares'}
+  title={lang === 'es' ? 'Branding — Álvaro Ares' : 'Branding — Álvaro Ares'}
   transitionLine1={t('transition.lapatzak.line1')}
   transitionLine2={t('transition.lapatzak.line2')}
 >
   <Navigation />
 
-  <main class="bg-canvas min-h-screen">
-    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-2xl lg:pt-3xl pb-section">
+  <main class="bg-warm min-h-screen">
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
 
-      <a href={backHref} class="inline-block text-ghost text-[11px] font-medium tracking-[0.14px] uppercase hover:text-ink transition-colors duration-200 mb-2xl">
-        {t('nav.backToHome')}
-      </a>
+      <!-- Hero -->
+      <section class="relative min-h-screen flex items-center pt-[80px] pb-[60px]">
+        <div class="hero-blob" style="top: -60px; right: -80px;"></div>
 
-      <div class="mb-3xl">
-        <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('lapatzak.meta')}</span>
-        <h1 class="text-[clamp(44px,6vw,72px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-xl">
-          {t('lapatzak.heading.line1')}<br />{t('lapatzak.heading.line2')}
-        </h1>
-        <p class="text-[17px] leading-[1.65] text-muted max-w-[560px]">
-          <strong class="text-ink font-medium">{t('lapatzak.lede')}</strong> {t('lapatzak.ledeBold')}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl lg:gap-3xl items-center w-full">
+          <div class="lg:col-span-5">
+            <span class="relative text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('lapatzak.meta')}</span>
+            <h1 class="relative text-[clamp(32px,4.5vw,52px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-lg">
+              {t('lapatzak.heading.line1')}{t('lapatzak.heading.line2') ? <br /> : null}{t('lapatzak.heading.line2')}
+            </h1>
+            <p class="relative text-[clamp(15px,1.5vw,18px)] leading-[1.65] text-muted">
+              <strong class="text-ink font-medium">{t('lapatzak.lede')}</strong>{t('lapatzak.ledeBold')}
+            </p>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-8">
+            <!-- Vertical video 9:16 -->
+            <div class="relative aspect-[9/16] max-h-[70vh] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm mx-auto">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                controls
+                playsinline
+                preload="metadata"
+              >
+                <source src="/branding/brand-vertical.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Narrative blocks -->
+      <section class="mt-xl lg:mt-2xl mb-section-mobile lg:mb-section">
+        <div class="mb-3xl">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Branding</span>
+          <h2 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.06] tracking-[-0.04em] text-ink text-balance max-w-[600px]">
+            {t('lapatzak.heading.line1')}
+          </h2>
+        </div>
+
+        <!-- Block 01 — From scratch — video left -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">01</span>
+          <div class="video-col lg:col-span-5 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-[9/16] bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+              >
+                <source src="/branding/brand-vertical.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+          <div class="text-col relative z-[2] lg:col-span-6 lg:col-start-7">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block1.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lapatzak.block1.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lapatzak.block1.body')}
+            </p>
+          </div>
+        </div>
+
+        <!-- Block 02 — Brand fluency — image right -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <span class="big-num absolute top-0 left-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">02</span>
+          <div class="text-col relative z-[2] lg:col-span-6 lg:order-1">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block2.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lapatzak.block2.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lapatzak.block2.body')}
+            </p>
+          </div>
+          <div class="video-col lg:col-span-5 lg:col-start-8 lg:order-2 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-[4/5] bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                [Brand asset 02]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 03 — Beyond visuals — grid 4 left -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">03</span>
+          <div class="video-col lg:col-span-5 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 p-1">
+                <div class="relative bg-surface rounded-lg overflow-hidden">
+                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[01]</div>
+                </div>
+                <div class="relative bg-surface rounded-lg overflow-hidden">
+                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[02]</div>
+                </div>
+                <div class="relative bg-surface rounded-lg overflow-hidden">
+                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[03]</div>
+                </div>
+                <div class="relative bg-surface rounded-lg overflow-hidden">
+                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[04]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-col relative z-[2] lg:col-span-6 lg:col-start-7">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block3.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lapatzak.block3.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lapatzak.block3.body')}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA — dark -->
+      <div class="relative bg-ink w-screen overflow-hidden text-center py-section-mobile lg:py-section" style="margin-left: calc(-50vw + 50%);">
+        <h2 class="text-[clamp(24px,3vw,36px)] font-light leading-[1.15] tracking-[-0.03em] text-canvas text-balance mb-sm">
+          {t('lapatzak.cta.heading')}
+        </h2>
+        <p class="text-canvas/60 text-[16px] leading-[1.6] mb-xl max-w-[480px] mx-auto">
+          {t('lapatzak.cta.body')}
         </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-3xl">
-        <div class="bg-warm rounded-xl p-xl">
-          <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Branding]</div>
-          </div>
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('lapatzak.pillar1.tag')}</span>
-          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('lapatzak.pillar1.title')}</h3>
-          <p class="text-muted text-[13px] leading-[1.5]">
-            <strong class="text-ink font-medium">{t('lapatzak.pillar1.body')}</strong> {t('lapatzak.pillar1.bodyBold')}
-          </p>
-        </div>
-
-        <div class="bg-warm rounded-xl p-xl">
-          <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[Packaging]</div>
-          </div>
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('lapatzak.pillar2.tag')}</span>
-          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('lapatzak.pillar2.title')}</h3>
-          <p class="text-muted text-[13px] leading-[1.5]">
-            <strong class="text-ink font-medium">{t('lapatzak.pillar2.body')}</strong> {t('lapatzak.pillar2.bodyBold')}
-          </p>
-        </div>
-
-        <div class="bg-warm rounded-xl p-xl">
-          <div class="relative aspect-[4/3] bg-surface rounded-lg overflow-hidden mb-lg">
-            <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[E-commerce]</div>
-          </div>
-          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-xs block">{t('lapatzak.pillar3.tag')}</span>
-          <h3 class="text-[18px] font-light leading-[1.2] tracking-[-0.02em] text-ink mb-sm">{t('lapatzak.pillar3.title')}</h3>
-          <p class="text-muted text-[13px] leading-[1.5]">
-            <strong class="text-ink font-medium">{t('lapatzak.pillar3.body')}</strong> {t('lapatzak.pillar3.bodyBold')}
-          </p>
-        </div>
-      </div>
-
-      <div class="border-t border-border-light pt-xl text-center">
-        <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="magnetic inline-flex items-center justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-          {t('lapatzak.cta')}
+        <a
+          href={lang === defaultLang ? '/#contact' : '/es/#contact'}
+          class="magnetic inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90"
+        >
+          {t('lapatzak.cta.button')}
         </a>
       </div>
+
     </div>
   </main>
 
@@ -119,44 +200,74 @@ const backHref = lang === defaultLang ? '/' : '/es';
   }
 
   if (!prefersReducedMotion) {
-    const heroTitle = document.querySelector('main h1');
-    if (heroTitle) {
-      gsap.from(heroTitle, { y: 20, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.15 });
+    const heroHeading = document.querySelector('main h1');
+    if (heroHeading) {
+      gsap.from(heroHeading, { y: 24, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.1 });
     }
 
-    document.querySelectorAll('main .grid').forEach((grid) => {
-      const cards = grid.querySelectorAll(':scope > div');
-      if (cards.length > 1) {
-        gsap.from(cards, {
-          y: 24, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12,
-          scrollTrigger: { trigger: grid, start: 'top 82%', once: true },
+    const heroLede = heroHeading?.closest('section')?.querySelector('p');
+    if (heroLede && heroHeading) {
+      gsap.from(heroLede, { y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out', delay: 0.25 });
+    }
+
+    const heroVideo = document.querySelector('section:first-of-type .aspect-\[9\/16\]');
+    if (heroVideo) {
+      gsap.from(heroVideo, {
+        scale: 0.96,
+        autoAlpha: 0,
+        duration: 0.95,
+        ease: 'power3.out',
+        delay: 0.2,
+      });
+    }
+
+    const narrativeSection = document.querySelector('section:nth-of-type(2)');
+    if (narrativeSection) {
+      const narrativeLabel = narrativeSection.querySelector(':scope > div:first-child span');
+      const narrativeHeading = narrativeSection.querySelector(':scope > div:first-child h2');
+      if (narrativeLabel) {
+        gsap.from(narrativeLabel, {
+          y: 12, autoAlpha: 0, duration: 0.5, ease: 'power2.out',
+          scrollTrigger: { trigger: narrativeLabel, start: 'top 88%', once: true },
+        });
+      }
+      if (narrativeHeading) {
+        gsap.from(narrativeHeading, {
+          y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: narrativeHeading, start: 'top 85%', once: true },
+        });
+      }
+    }
+
+    document.querySelectorAll('.narrative-block').forEach((block) => {
+      const textCol = block.querySelector('.text-col');
+      const bigNum = block.querySelector('.big-num');
+
+      if (bigNum) {
+        gsap.fromTo(bigNum, { y: 40 }, {
+          y: -40, ease: 'none',
+          scrollTrigger: { trigger: block, start: 'top bottom', end: 'bottom top', scrub: true },
         });
       }
 
-      grid.querySelectorAll('.aspect-\\[4\\/3\\]').forEach((img) => {
-        gsap.from(img, {
-          scale: 0.95, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-          scrollTrigger: { trigger: img, start: 'top 85%', once: true },
-        });
-      });
-
-      cards.forEach((card) => {
-        const textEls = card.querySelectorAll('span[class*="ghost"], h3, p');
-        if (textEls.length > 1) {
+      if (textCol) {
+        const textEls = textCol.querySelectorAll(':scope > span:not(:first-child), :scope > h3, :scope > p');
+        if (textEls.length) {
           gsap.from(textEls, {
-            y: 14, autoAlpha: 0, duration: 0.4, ease: 'power2.out', stagger: 0.08,
-            scrollTrigger: { trigger: card, start: 'top 82%', once: true },
+            y: 18, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
+            scrollTrigger: { trigger: block, start: 'top 76%', once: true },
           });
         }
-      });
+      }
     });
 
-    document.querySelectorAll('main .border-t').forEach((el) => {
-      gsap.from(el, {
-        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    const ctaSection = document.querySelector('.bg-ink.w-screen.text-center');
+    if (ctaSection) {
+      gsap.from(ctaSection.querySelectorAll(':scope > *'), {
+        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+        scrollTrigger: { trigger: ctaSection, start: 'top 88%', once: true },
       });
-    });
+    }
 
     document.querySelectorAll('.magnetic').forEach((el) => {
       el.addEventListener('mousemove', (e) => {
