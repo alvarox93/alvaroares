@@ -6,8 +6,6 @@ import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 
-const allRenders = ['cafe', 'bar', 'bonbon', 'bravas-1', 'bravas-2', 'chocolate-bar', 'churro', 'churros', 'coulant', 'gyoza', 'honey-cake', 'chocolate-hover', 'huesito', 'kortxo', 'macaron', 'matcha-cookies', 'panellet-1', 'panellet-2', 'panellet-3', 'pansuflado', 'pasta', 'pineapple', 'pringle', 'snack', 'spoonful', 'tea-matcha', 'topoki', 'waffle-honey'];
-
 const row1 = ['matcha-cookies', 'huesito', 'pansuflado', 'bravas-1', 'topoki', 'panellet-1', 'chocolate-bar', 'cafe', 'bar', 'bonbon', 'bravas-2', 'churro', 'churros', 'coulant', 'gyoza', 'honey-cake', 'chocolate-hover', 'kortxo', 'macaron', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'panellet-3', 'snack', 'pineapple', 'spoonful', 'waffle-honey'];
 const row2 = ['bonbon', 'churros', 'honey-cake', 'kortxo', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'bravas-2', 'gyoza', 'chocolate-hover', 'macaron', 'panellet-3', 'snack', 'cafe', 'bar', 'matcha-cookies', 'huesito', 'pansuflado', 'bravas-1', 'topoki', 'panellet-1', 'chocolate-bar', 'churro', 'coulant', 'pineapple', 'spoonful', 'waffle-honey'];
 const row3 = ['cafe', 'churro', 'coulant', 'huesito', 'panellet-1', 'pineapple', 'spoonful', 'topoki', 'bar', 'bravas-1', 'chocolate-bar', 'matcha-cookies', 'pansuflado', 'waffle-honey', 'bonbon', 'churros', 'honey-cake', 'kortxo', 'panellet-2', 'pasta', 'pringle', 'tea-matcha', 'bravas-2', 'gyoza', 'chocolate-hover', 'macaron', 'panellet-3', 'snack'];
@@ -407,7 +405,7 @@ const rowLengths = rows.map(r => r.length);
           
           if (duplicateCard) {
             // The loop width is the distance from the first card to the duplicate
-            return duplicateCard.offsetLeft - firstCard.offsetLeft;
+            return (duplicateCard as HTMLElement).offsetLeft - (firstCard as HTMLElement).offsetLeft;
           }
           
           // Fallback: calculate manually

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Navigation from '@components/Navigation.astro';
+import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+const homeHref = lang === defaultLang ? '/' : `/${lang}`;
+---
+
+<BaseLayout
+  title={lang === 'es' ? '404 — Página no encontrada' : '404 — Page not found'}
+  transitionLine1={lang === 'es' ? 'Página no encontrada' : 'Page not found'}
+>
+  <Navigation />
+
+  <main class="bg-canvas min-h-screen flex items-center justify-center">
+    <div class="max-w-[600px] mx-auto px-xl lg:px-3xl text-center py-section">
+
+      <span class="font-accent text-[clamp(120px,20vw,200px)] font-bold leading-none tracking-[-0.06em] text-ink/[0.06] block mb-lg">
+        404
+      </span>
+
+      <h1 class="text-[clamp(28px,4vw,44px)] font-light leading-[1.1] tracking-[-0.04em] text-ink text-balance mb-md">
+        {lang === 'es' ? 'Esta página no existe.' : 'This page doesn\'t exist.'}
+      </h1>
+
+      <p class="text-muted text-[16px] leading-[1.6] max-w-[400px] mx-auto mb-xl">
+        {lang === 'es'
+          ? 'Probablemente fue un link viejo, o alguien escribió mal la URL. Vuelve al inicio y sigue desde ahí.'
+          : 'Probably an old link, or a typo in the URL. Head back to the start and go from there.'}
+      </p>
+
+      <a
+        href={homeHref}
+        data-transition-line1={t('transition.home.line1')}
+        class="inline-flex items-center gap-2 px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        {lang === 'es' ? 'Volver al inicio' : 'Back to home'}
+      </a>
+
+    </div>
+  </main>
+</BaseLayout>

@@ -117,7 +117,7 @@ export const ui = {
     'renders.stats.4.value': 'V-Ray',
     'renders.stats.4.label': 'Renderer',
     'renders.copy.title': 'Crafted from scratch, every single time.',
-    'renders.copy': 'Cada render es un proyecto personal donde aplico todo mi conocimiento en modelado, texturizado, iluminación y renderizado. Sin atajos, sin AI. Solo oficio y pasión por crear imágenes que provocan deseo antes del primer bocado.',
+    'renders.copy': 'Every render is a personal project where I apply all my knowledge in modeling, texturing, lighting and rendering. No shortcuts, no AI. Just craft and passion for creating images that trigger desire before the first bite.',
     'renders.tools': 'Maya, ZBrush, V-Ray, Photoshop, Illustrator',
     'renders.project1.tag': 'Food Styling',
     'renders.project1.title': "Looks delicious. Doesn't exist yet.",
