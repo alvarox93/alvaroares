@@ -101,6 +101,8 @@ export const ui = {
     'koora.portfolio.subheading': 'See the full body of work at koora.studio.',
     'koora.portfolio.cta': 'Full portfolio, real projects, real clients.',
     'koora.portfolio.button': 'Visit koora.studio',
+    'koora.trail.title': 'Eight years leaves a long trail.',
+    'koora.trail.body': 'TV broadcast graphics for EiTB. Research films for Tecnalia, Spain\'s leading R&D centre. International projects for universities across Europe. Architectural visualisation, industry explainers, abstract concept films for EU-funded projects, corporate content, stage visuals for live events, 3D support for larger productions. Clients who came back. Clients who sent others. Eight years of real work, real briefs, real results — most of it built on recommendation, none of it phoned in.',
 
     'renders.title': 'Renders · Food & Product CGI',
     'renders.meta': 'Food · Product · Packaging · CGI',
@@ -446,6 +448,8 @@ export const ui = {
     'koora.portfolio.subheading': 'Ve el trabajo completo en koora.studio.',
     'koora.portfolio.cta': 'Portfolio completo, proyectos reales, clientes reales.',
     'koora.portfolio.button': 'Visitar koora.studio',
+    'koora.trail.title': 'Ocho años dejan mucho rastro.',
+    'koora.trail.body': 'Cabeceras para EiTB. Films de investigación para Tecnalia, el principal centro de I+D de España. Proyectos internacionales para universidades de toda Europa. Visualización arquitectónica, explainers industriales, films de conceptos abstractos para proyectos europeos, contenido corporativo, visuales para escenarios en directo, apoyo 3D para producciones más grandes. Clientes que volvieron. Clientes que enviaron a otros. Ocho años de trabajo real, briefings reales, resultados reales — la mayoría construido por recomendación, ninguno hecho a medias.',
 
     'renders.title': 'Renders · CGI de Food & Producto',
     'renders.meta': 'Food · Producto · Packaging · CGI',
