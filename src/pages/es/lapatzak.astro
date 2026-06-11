@@ -64,21 +64,13 @@ const t = useTranslations(lang);
           </h2>
         </div>
 
-        <!-- Block 01 — From scratch — video left -->
+        <!-- Block 01 — From scratch — image left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">01</span>
           <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
-              <video
-                class="absolute inset-0 w-full h-full object-cover"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="/branding/brand-vertical.mp4" type="video/mp4" />
-              </video>
+            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                [Brand asset 01]
+              </div>
             </div>
           </div>
           <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
@@ -94,7 +86,6 @@ const t = useTranslations(lang);
 
         <!-- Block 02 — Brand fluency — image right -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <span class="big-num absolute top-0 left-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">02</span>
           <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block2.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
@@ -115,7 +106,6 @@ const t = useTranslations(lang);
 
         <!-- Block 03 — Beyond visuals — grid 4 left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">03</span>
           <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
             <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-3 p-3">
@@ -296,17 +286,8 @@ const t = useTranslations(lang);
 
     document.querySelectorAll('.narrative-block').forEach((block) => {
       const textCol = block.querySelector('.text-col');
-      const bigNum = block.querySelector('.big-num');
-
-      if (bigNum) {
-        gsap.fromTo(bigNum, { y: 40 }, {
-          y: -40, ease: 'none',
-          scrollTrigger: { trigger: block, start: 'top bottom', end: 'bottom top', scrub: true },
-        });
-      }
-
       if (textCol) {
-        const textEls = textCol.querySelectorAll(':scope > span:not(:first-child), :scope > h3, :scope > p');
+        const textEls = textCol.querySelectorAll(':scope > span, :scope > h3, :scope > p');
         if (textEls.length) {
           gsap.from(textEls, {
             y: 18, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
