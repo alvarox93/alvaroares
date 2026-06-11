@@ -360,6 +360,29 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
       });
     });
   });
+
+  const eyesWrap = document.querySelector<HTMLElement>('.eyes-parallax-wrap');
+  if (eyesWrap) {
+    const eyeImgs = eyesWrap.querySelectorAll('.eyes-parallax-img');
+    eyeImgs.forEach((el) => {
+      const speed = 1.5 + Math.random() * 1.5;
+      const dir = Math.random() > 0.5 ? 1 : -1;
+      const offset = speed * 4 * dir;
+      gsap.fromTo(el,
+        { yPercent: -offset },
+        {
+          yPercent: offset,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: eyesWrap.parentElement,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.5,
+          },
+        }
+      );
+    });
+  }
 </script>
 
 <style>
