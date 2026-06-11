@@ -364,23 +364,21 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   const eyesWrap = document.querySelector<HTMLElement>('.eyes-parallax-wrap');
   if (eyesWrap) {
     const eyeImgs = eyesWrap.querySelectorAll('.eyes-parallax-img');
-    eyeImgs.forEach((el) => {
-      const speed = 2 + Math.random() * 3;
+    eyeImgs.forEach((el, i) => {
+      const speed = 2 + Math.random() * 6;
       const dir = Math.random() > 0.5 ? 1 : -1;
-      const offset = speed * 12 * dir;
-      gsap.fromTo(el,
-        { yPercent: -offset },
-        {
-          yPercent: offset,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: eyesWrap.parentElement,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 0.5,
-          },
-        }
-      );
+      const startY = (Math.random() - 0.5) * 30;
+      gsap.set(el, { yPercent: startY });
+      gsap.to(el, {
+        yPercent: startY + speed * 15 * dir,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: eyesWrap.parentElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
     });
   }
 </script>
