@@ -364,19 +364,15 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   const eyesWrap = document.querySelector<HTMLElement>('.eyes-parallax-wrap');
   if (eyesWrap) {
     const eyeImgs = eyesWrap.querySelectorAll<HTMLElement>('.eyes-parallax-img');
-    const total = eyeImgs.length;
-    eyeImgs.forEach((el, i) => {
+    eyeImgs.forEach((el) => {
       const speed = 2 + Math.random() * 2;
       const dir = Math.random() > 0.5 ? 1 : -1;
       const startY = (Math.random() - 0.5) * 16;
       const range = speed * 8 * dir;
-      const willBlur = Math.random() < 0.35;
-      const blurMax = willBlur ? 2 + Math.random() * 3 : 0;
       gsap.fromTo(el,
-        { yPercent: startY - range, filter: `blur(${blurMax}px)` },
+        { yPercent: startY - range },
         {
           yPercent: startY + range,
-          filter: `blur(0px)`,
           ease: 'none',
           scrollTrigger: {
             trigger: eyesWrap.parentElement,
