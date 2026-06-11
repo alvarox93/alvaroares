@@ -151,66 +151,16 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     </footer>
   </main>
 
-  <div class="noise-overlay"></div>
+
 </BaseLayout>
 
 <script>
-  import Lenis from 'lenis';
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { initSmoothScroll, initNavHideShow, initMagneticButtons, initProjectCtaArrows, gsap, ScrollTrigger, prefersReducedMotion } from '@utils/shared';
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    touchMultiplier: 2,
-    smoothWheel: !prefersReducedMotion,
-  });
-
-  lenis.on('scroll', ScrollTrigger.update);
-
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-
-  gsap.ticker.lagSmoothing(0);
-
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href) {
-        e.preventDefault();
-        lenis.scrollTo(href);
-      }
-    });
-  });
-
-  const nav = document.getElementById('main-nav');
-  let lastNavScroll = 0;
-  let navHidden = false;
-
-  if (nav) {
-    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
-      if (scroll > 50) {
-        nav.classList.add('nav-scrolled');
-      } else {
-        nav.classList.remove('nav-scrolled');
-      }
-
-      if (scroll > lastNavScroll && scroll > 200 && !navHidden) {
-        gsap.to(nav, { y: -80, duration: 0.4, ease: 'power3.in' });
-        navHidden = true;
-      } else if (scroll < lastNavScroll && navHidden) {
-        gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out' });
-        navHidden = false;
-      }
-
-      lastNavScroll = scroll;
-    });
-  }
+  const lenis = initSmoothScroll();
+  initNavHideShow(lenis);
+  initMagneticButtons();
+  initProjectCtaArrows();
 
   const postsTrack = document.getElementById('posts-track');
   const postsPin = document.getElementById('posts-pin');
@@ -320,52 +270,6 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     });
   }
 
-  document.querySelectorAll('.magnetic').forEach((el) => {
-    el.addEventListener('mousemove', (e) => {
-      const rect = (el as HTMLElement).getBoundingClientRect();
-      const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
-      const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
-      gsap.to(el, {
-        x: x * 0.15,
-        y: y * 0.15,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-    });
-
-    el.addEventListener('mouseleave', () => {
-      gsap.to(el, {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-        ease: 'elastic.out(1, 0.5)',
-      });
-    });
-  });
-
-  document.querySelectorAll('.project-cta').forEach((cta) => {
-    const arrow = cta.querySelector('.cta-arrow');
-    if (!arrow) return;
-
-    cta.addEventListener('mouseenter', () => {
-      gsap.to(arrow, {
-        x: 4,
-        opacity: 1,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-    });
-
-    cta.addEventListener('mouseleave', () => {
-      gsap.to(arrow, {
-        x: 0,
-        opacity: 0.7,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-    });
-  });
-
   const eyesWrap = document.querySelector<HTMLElement>('.eyes-parallax-wrap');
   if (eyesWrap) {
     const eyeImgs = eyesWrap.querySelectorAll<HTMLElement>('.eyes-parallax-img');
@@ -388,6 +292,52 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
         }
       );
     });
+  }
+
+  if (!prefersReducedMotion) {
+    const aboutHeading = document.querySelector('#about-preview h2');
+    if (aboutHeading) {
+      gsap.from(aboutHeading, {
+        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: aboutHeading, start: 'top 85%', once: true },
+      });
+    }
+
+    const skillTags = document.querySelectorAll('#about-preview .flex.flex-wrap > span');
+    if (skillTags.length) {
+      gsap.from(skillTags, {
+        y: 8, autoAlpha: 0, duration: 0.4, ease: 'power2.out', stagger: 0.05,
+        scrollTrigger: { trigger: skillTags[0], start: 'top 88%', once: true },
+      });
+    }
+
+    const postsHeading = document.querySelector('#posts h2');
+    if (postsHeading) {
+      gsap.from(postsHeading, {
+        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: postsHeading, start: 'top 85%', once: true },
+      });
+    }
+
+    const postCards = document.querySelectorAll('.post-card');
+    if (postCards.length) {
+      gsap.from(postCards, {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: '#posts-pin', start: 'top 80%', once: true },
+      });
+    }
+
+    const workHeading = document.querySelector('#work h2');
+    if (workHeading) {
+      gsap.from(workHeading, {
+        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: workHeading, start: 'top 85%', once: true },
+      });
+    }
   }
 </script>
 
@@ -451,58 +401,3 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     display: inline-block;
   }
 </style>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReducedMotion) {
-    const aboutHeading = document.querySelector('#about-preview h2');
-    if (aboutHeading) {
-      gsap.from(aboutHeading, {
-        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
-        scrollTrigger: { trigger: aboutHeading, start: 'top 85%', once: true },
-      });
-    }
-
-    const skillTags = document.querySelectorAll('#about-preview .flex.flex-wrap > span');
-    if (skillTags.length) {
-      gsap.from(skillTags, {
-        y: 8, autoAlpha: 0, duration: 0.4, ease: 'power2.out', stagger: 0.05,
-        scrollTrigger: { trigger: skillTags[0], start: 'top 88%', once: true },
-      });
-    }
-
-    const postsHeading = document.querySelector('#posts h2');
-    if (postsHeading) {
-      gsap.from(postsHeading, {
-        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
-        scrollTrigger: { trigger: postsHeading, start: 'top 85%', once: true },
-      });
-    }
-
-    const postCards = document.querySelectorAll('.post-card');
-    if (postCards.length) {
-      gsap.from(postCards, {
-        y: 40,
-        autoAlpha: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-        stagger: 0.1,
-        scrollTrigger: { trigger: '#posts-pin', start: 'top 80%', once: true },
-      });
-    }
-
-    const workHeading = document.querySelector('#work h2');
-    if (workHeading) {
-      gsap.from(workHeading, {
-        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
-        scrollTrigger: { trigger: workHeading, start: 'top 85%', once: true },
-      });
-    }
-  }
-</script>
