@@ -365,9 +365,9 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   if (eyesWrap) {
     const eyeImgs = eyesWrap.querySelectorAll('.eyes-parallax-img');
     eyeImgs.forEach((el) => {
-      const speed = 1.5 + Math.random() * 1.5;
+      const speed = 2 + Math.random() * 3;
       const dir = Math.random() > 0.5 ? 1 : -1;
-      const offset = speed * 4 * dir;
+      const offset = speed * 12 * dir;
       gsap.fromTo(el,
         { yPercent: -offset },
         {
