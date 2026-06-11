@@ -79,10 +79,11 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
         <div class="posts-track flex gap-xl" id="posts-track">
 
           {posts.map((post, i) => {
+            const slug = post.slug.replace(/^es\//, '');
             const href = lang === defaultLang
-              ? `/posts/${post.slug}`
-              : `/es/posts/${post.slug}`;
-            const transitionKey = `transition.${post.slug}.line1` as UIKey;
+              ? `/posts/${slug}`
+              : `/es/posts/${slug}`;
+            const transitionKey = `transition.${slug}.line1` as UIKey;
             return (
               <a href={href} class="post-card group shrink-0" style="width: 340px;" data-post-index={i} data-transition-line1={t(transitionKey)}>
                 <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
