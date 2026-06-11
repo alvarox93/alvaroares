@@ -2,195 +2,165 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
-import IconPlay from '@components/icons/IconPlay.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
-const backHref = lang === defaultLang ? '/' : '/es';
 ---
 
 <BaseLayout
-  title={lang === 'es' ? 'Lab — Álvaro Ares' : 'Lab — Álvaro Ares'}
+  title={lang === 'es' ? 'Interactivo — Álvaro Ares' : 'Interactive — Álvaro Ares'}
   transitionLine1={t('transition.lab.line1')}
   transitionLine2={t('transition.lab.line2')}
 >
   <Navigation />
 
-  <main class="lab-page">
-    <div class="lab-container">
+  <main class="bg-warm min-h-screen">
+    <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
 
-      <a href={backHref} class="lab-back">{t('nav.backToHome')}</a>
+      <!-- Hero -->
+      <section class="relative min-h-screen flex items-center pt-[80px] pb-[60px]">
+        <div class="hero-blob" style="top: -60px; right: -80px;"></div>
 
-      <!-- HERO -->
-      <section class="lab-hero">
-        <div class="lab-hero-grid">
-          <div class="lab-hero-text">
-            <span class="lab-eyebrow">{t('lab.eyebrow')}</span>
-            <h1 class="lab-h1">
-              <span class="lab-h1-line">{t('lab.heading.line1')}</span>
-              <span class="lab-h1-line lab-h1-line--light">{t('lab.heading.line2')}</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl lg:gap-3xl items-center w-full">
+          <div class="lg:col-span-5">
+            <span class="relative text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">{t('lab.meta')}</span>
+            <h1 class="relative text-[clamp(32px,4.5vw,52px)] font-light leading-[1.02] tracking-[-0.045em] text-ink text-balance mb-lg">
+              {t('lab.heading.line1')}{t('lab.heading.line2') ? <br /> : null}{t('lab.heading.line2')}
             </h1>
-            <p class="lab-desc">
-              <strong>{t('lab.description')}</strong> {t('lab.descriptionBold')}
+            <p class="relative text-[clamp(15px,1.5vw,18px)] leading-[1.65] text-muted">
+              <strong class="text-ink font-medium">{t('lab.lede')}</strong>{t('lab.ledeBold')}
             </p>
-            <div class="lab-tags">
-              <span class="lab-tag">{t('lab.tag1')}</span>
-              <span class="lab-tag">{t('lab.tag2')}</span>
-              <span class="lab-tag">{t('lab.tag3')}</span>
-              <span class="lab-tag">{t('lab.tag4')}</span>
-              <span class="lab-tag">{t('lab.tag5')}</span>
-              <span class="lab-tag">{t('lab.tag6')}</span>
-            </div>
           </div>
-          <div class="lab-hero-media">
-            <div class="lab-video-wrap">
-              <video autoplay muted loop playsinline>
-                <source src="/lab/interactive-reel.mp4" type="video/mp4" />
+          <div class="lg:col-span-5 lg:col-start-7">
+            <!-- Vertical video 9:16 — floating card -->
+            <div class="relative aspect-[9/16] max-h-[70vh] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm hero-video-card mx-auto">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                controls
+                playsinline
+                preload="metadata"
+                poster="/lab/hero-poster.jpg"
+              >
+                <source src="/lab/hero-vertical.mp4" type="video/mp4" />
               </video>
-              <div class="lab-video-fallback">
-                <span>[Interactive Reel]</span>
+              <div class="hero-video-overlay absolute inset-0 flex items-center justify-center bg-ink/10 pointer-events-none transition-opacity duration-500">
+                <div class="w-12 h-12 rounded-full bg-canvas/90 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-ink ml-0.5">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SELECTED WORK -->
-      <section class="lab-selected">
-        <div class="lab-selected-grid">
-          <div class="lab-selected-media">
-            <div class="lab-pulse-card">
-              <span>[VR Environment — WIP]</span>
+      <!-- Narrative blocks -->
+      <section class="mt-xl lg:mt-2xl mb-section-mobile lg:mb-section">
+        <div class="mb-3xl">
+          <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Interactive</span>
+          <h2 class="text-[clamp(28px,3.5vw,44px)] font-light leading-[1.06] tracking-[-0.04em] text-ink text-balance max-w-[600px]">
+            {t('lab.heading.line1')}
+          </h2>
+        </div>
+
+        <!-- Block 01 — VR Education — video left -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+              >
+                <source src="/lab/vr-education.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
-          <div class="lab-selected-content">
-            <span class="lab-counter">{t('lab.selected.counter')}</span>
-            <h2 class="lab-selected-title">{t('lab.selected.title')}</h2>
-            <p class="lab-selected-desc">{t('lab.selected.description')}</p>
-            <p class="lab-disciplines">{t('lab.selected.disciplines')}</p>
-            <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="lab-cta-link">
-              <span class="lab-cta-text">{t('lab.selected.cta')}</span>
-            </a>
+          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block1.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lab.block1.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lab.block1.body')}
+            </p>
+          </div>
+        </div>
+
+        <!-- Block 02 — Webapps & Interactive — video right -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block2.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lab.block2.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lab.block2.body')}
+            </p>
+          </div>
+          <div class="video-col lg:col-span-6 lg:col-start-7 lg:order-2 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+              >
+                <source src="/lab/webapps.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 03 — AI Tools — grid 8 left -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="absolute inset-0 grid grid-cols-4 grid-rows-2 gap-2 p-2">
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[01]</div></div>
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[02]</div></div>
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[03]</div></div>
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[04]</div></div>
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[05]</div></div>
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[06]</div></div>
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[07]</div></div>
+                <div class="relative bg-surface rounded-lg overflow-hidden"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[10px]">[08]</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block3.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lab.block3.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lab.block3.body')}
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- PROJECT 2: Interactive Experiences (mirrored) -->
-      <section class="lab-selected">
-        <div class="lab-selected-grid lab-selected-grid--reverse">
-          <div class="lab-selected-content">
-            <span class="lab-counter">{t('lab.project2.counter')}</span>
-            <h2 class="lab-selected-title">{t('lab.project2.title')}</h2>
-            <p class="lab-selected-desc">{t('lab.project2.description')}</p>
-            <p class="lab-disciplines">{t('lab.project2.disciplines')}</p>
-            <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="lab-cta-link">
-              <span class="lab-cta-text">{t('lab.project2.cta')}</span>
-            </a>
-          </div>
-          <div class="lab-selected-media">
-            <div class="lab-pulse-card">
-              <span>[Interactive Experience — WIP]</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROJECT 3: Render Calculator (centered) -->
-      <section class="lab-project3">
-        <div class="lab-project3-header">
-          <span class="lab-counter">{t('lab.project3.counter')}</span>
-          <h2 class="lab-project3-title">{t('lab.project3.title')}</h2>
-          <p class="lab-project3-desc">{t('lab.project3.description')}</p>
-          <p class="lab-disciplines">{t('lab.project3.disciplines')}</p>
-        </div>
-
-        <!-- Render Calculator Dashboard -->
-        <div class="calc-dash">
-          <!-- Top bar -->
-          <div class="calc-topbar">
-            <span class="calc-title">Render Calculator</span>
-            <span class="calc-status" id="calc-status"><span class="calc-status-dot"></span>{t('lab.calc.status.ready')}</span>
-          </div>
-
-          <!-- Input fields -->
-          <div class="calc-inputs">
-            <div class="calc-field">
-              <label class="calc-label" for="calc-frames">{t('lab.calc.frames')}</label>
-              <input class="calc-input" type="number" id="calc-frames" value="2400" min="1" />
-            </div>
-            <div class="calc-field">
-              <label class="calc-label" for="calc-time">{t('lab.calc.timePerFrame')}</label>
-              <input class="calc-input" type="number" id="calc-time" value="45" min="1" step="1" />
-            </div>
-            <div class="calc-field">
-              <label class="calc-label" for="calc-resolution">{t('lab.calc.resolution')}</label>
-              <select class="calc-select" id="calc-resolution">
-                <option value="1">1920×1080 (HD)</option>
-                <option value="1.5">2560×1440 (2K)</option>
-                <option value="2" selected>3840×2160 (4K)</option>
-                <option value="3">7680×4320 (8K)</option>
-              </select>
-            </div>
-            <div class="calc-field">
-              <label class="calc-label" for="calc-quality">{t('lab.calc.quality')}</label>
-              <select class="calc-select" id="calc-quality">
-                <option value="0.5">{t('lab.calc.quality.draft')}</option>
-                <option value="1" selected>{t('lab.calc.quality.standard')}</option>
-                <option value="1.8">{t('lab.calc.quality.high')}</option>
-                <option value="3">{t('lab.calc.quality.ultra')}</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Calculate button -->
-          <button class="calc-btn" id="calc-btn">
-            <IconPlay />
-            {t('lab.calc.calculate')}
-          </button>
-
-          <!-- Results -->
-          <div class="calc-results" id="calc-results">
-            <div class="calc-result-main">
-              <span class="calc-result-label">{t('lab.calc.totalTime')}</span>
-              <span class="calc-result-value" id="calc-total">0d 0h 0m 0s</span>
-            </div>
-          </div>
-
-          <!-- Pipeline simulation -->
-          <div class="calc-card">
-            <span class="calc-card-title">{t('lab.calc.pipeline')}</span>
-            <div class="calc-pipeline">
-              <div class="calc-pipe-row">
-                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-modeling"></span>{t('lab.calc.pipe.modeling')}</span>
-                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-modeling" data-fill="0"></div></div>
-              </div>
-              <div class="calc-pipe-row">
-                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-texturing"></span>{t('lab.calc.pipe.texturing')}</span>
-                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-texturing" data-fill="0"></div></div>
-              </div>
-              <div class="calc-pipe-row">
-                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-lighting"></span>{t('lab.calc.pipe.lighting')}</span>
-                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-lighting" data-fill="0"></div></div>
-              </div>
-              <div class="calc-pipe-row">
-                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-rendering"></span>{t('lab.calc.pipe.rendering')}</span>
-                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-rendering" data-fill="0"></div></div>
-              </div>
-              <div class="calc-pipe-row">
-                <span class="calc-pipe-name"><span class="calc-dot calc-dot--grey" id="dot-compositing"></span>{t('lab.calc.pipe.compositing')}</span>
-                <div class="calc-pipe-track"><div class="calc-pipe-fill" id="pipe-compositing" data-fill="0"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="lab-cta-section">
-        <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="magnetic lab-cta-btn">
-          {t('lab.cta')}
+      <!-- CTA — dark -->
+      <div class="relative bg-ink w-screen overflow-hidden text-center py-section-mobile lg:py-section" style="margin-left: calc(-50vw + 50%);">
+        <h2 class="text-[clamp(24px,3vw,36px)] font-light leading-[1.15] tracking-[-0.03em] text-canvas text-balance mb-sm">
+          {t('lab.cta.heading')}
+        </h2>
+        <p class="text-canvas/60 text-[16px] leading-[1.6] mb-xl max-w-[480px] mx-auto">
+          {t('lab.cta.body')}
+        </p>
+        <a
+          href={lang === defaultLang ? '/#contact' : '/es/#contact'}
+          class="magnetic inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90"
+        >
+          {t('lab.cta.button')}
         </a>
-      </section>
+      </div>
 
     </div>
   </main>
@@ -199,773 +169,15 @@ const backHref = lang === defaultLang ? '/' : '/es';
 </BaseLayout>
 
 <style>
-  .lab-page {
-    background: var(--color-warm);
-    min-height: 100vh;
-  }
-
-  .lab-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 32px 120px;
-  }
-
-  @media (min-width: 1024px) {
-    .lab-container { padding: 96px 64px 120px; }
-  }
-
-  .lab-back {
-    display: inline-block;
-    color: var(--color-ghost);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14px;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    margin-bottom: 48px;
-  }
-  .lab-back:hover { color: var(--color-ink); }
-
-  /* ── Hero ── */
-  .lab-hero { margin-bottom: 96px; }
-
-  .lab-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  @media (min-width: 768px) {
-    .lab-hero-grid { grid-template-columns: 1fr 1fr; gap: 64px; }
-  }
-
-  .lab-eyebrow {
-    display: block;
-    color: var(--color-ghost);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .lab-h1 {
-    font-size: clamp(40px, 6vw, 72px);
-    font-weight: 300;
-    line-height: 1.02;
-    letter-spacing: -0.045em;
-    color: var(--color-ink);
-    margin-bottom: 24px;
-  }
-  .lab-h1-line { display: block; }
-  .lab-h1-line--light { font-weight: 200; opacity: 0.6; }
-
-  .lab-desc {
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--color-muted);
-    max-width: 520px;
-    margin-bottom: 24px;
-  }
-  .lab-desc strong {
-    color: var(--color-ink);
-    font-weight: 500;
-  }
-
-  .lab-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .lab-tag {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08px;
-    text-transform: uppercase;
-    color: var(--color-ghost);
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    padding: 4px 10px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .lab-tag:hover {
-    border-color: var(--color-ink);
-    color: var(--color-ink);
-  }
-
-  .lab-video-wrap {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    background: linear-gradient(135deg, #e8e6e3 0%, #d8d5d0 100%);
-    transition: border-color 0.3s ease;
-  }
-  .lab-video-wrap:hover { border-color: rgba(0, 0, 0, 0.15); }
-  .lab-video-wrap video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .lab-video-fallback {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-ghost);
-    font-size: 13px;
-    pointer-events: none;
-  }
-
-  /* ── Selected Work ── */
-  .lab-selected { margin-bottom: 96px; }
-
-  .lab-selected-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  @media (min-width: 768px) {
-    .lab-selected-grid { grid-template-columns: 3fr 2fr; gap: 64px; }
-  }
-
-  .lab-pulse-card {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    background: var(--color-canvas);
-    border-radius: 12px;
-    border: 1px solid var(--color-border-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-ghost);
-    font-size: 13px;
-    animation: lab-pulse 3s ease-in-out infinite;
-  }
-  @keyframes lab-pulse {
-    0%, 100% { border-color: var(--color-border-light); box-shadow: 0 0 0 rgba(0,0,0,0); }
-    50% { border-color: var(--color-border); box-shadow: 0 0 20px rgba(0,0,0,0.03); }
-  }
-
-  .lab-counter {
-    display: block;
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 12px;
-    color: var(--color-ghost);
-    margin-bottom: 12px;
-  }
-
-  .lab-selected-title {
-    font-size: clamp(24px, 3vw, 34px);
-    font-weight: 300;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    color: var(--color-ink);
-    margin-bottom: 16px;
-  }
-
-  .lab-selected-desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--color-muted);
-    margin-bottom: 16px;
-  }
-
-  .lab-disciplines {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 11px;
-    color: var(--color-ghost);
-    margin-bottom: 24px;
-  }
-
-  .lab-cta-link { display: inline-block; }
-  .lab-cta-text {
-    position: relative;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--color-ink);
-    cursor: pointer;
-    padding-bottom: 2px;
-  }
-  .lab-cta-text::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--accent);
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .lab-cta-link:hover .lab-cta-text::after { width: 100%; }
-
-  /* ── Dashboard Section ── */
-  .lab-dashboard-section { margin-bottom: 96px; }
-
-  .lab-dashboard-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14px;
-    text-transform: uppercase;
-    color: var(--color-ghost);
-    opacity: 0.5;
-    margin-bottom: 20px;
-  }
-
-  .dash {
-    --dash-bg: #0f0f0f;
-    --dash-card: #161616;
-    --dash-border: rgba(255, 255, 255, 0.07);
-    --dash-border-hover: rgba(255, 255, 255, 0.12);
-    --dash-accent: var(--accent, #e8a838);
-    --dash-text: #f0f0f0;
-    --dash-muted: #888888;
-    --dash-dim: #555555;
-    background: var(--dash-bg);
-    border-radius: 12px;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    position: relative;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 40px 40px;
-    border: 1px solid rgba(255,255,255,0.04);
-  }
-
-  @media (min-width: 768px) {
-    .dash {
-      grid-template-columns: 1fr 1fr;
-      padding: 24px;
-      gap: 16px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .dash {
-      background-image: none;
-    }
-  }
-
-  .dash-topbar {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--dash-border);
-  }
-
-  .dash-project {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 12px;
-    color: var(--dash-muted);
-  }
-
-  .dash-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 11px;
-    color: var(--dash-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .dash-status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--dash-accent);
-    animation: dash-blink 2s ease-in-out infinite;
-  }
-  @keyframes dash-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .dash-clock {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 12px;
-    color: var(--dash-dim);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .dash-card {
-    background: var(--dash-card);
-    border: 1px solid var(--dash-border);
-    border-radius: 6px;
-    padding: 20px;
-    transition: box-shadow 0.3s ease;
-  }
-  .dash-card:hover {
-    box-shadow: 0 0 24px color-mix(in srgb, var(--dash-accent) 6%, transparent);
-  }
-
-  .dash-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .dash-card-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08px;
-    text-transform: uppercase;
-    color: var(--dash-muted);
-    margin-bottom: 16px;
-    display: block;
-  }
-  .dash-card-header .dash-card-title { margin-bottom: 0; }
-
-  .dash-pct {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 14px;
-    color: var(--dash-accent);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .dash-progress-track {
-    height: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-
-  .dash-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--dash-accent);
-    border-radius: 2px;
-  }
-
-  .dash-card-sub {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 11px;
-    color: var(--dash-dim);
-  }
-
-  .dash-stats {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  @media (min-width: 768px) {
-    .dash-stats { gap: 16px; }
-  }
-
-  .dash-stat {
-    background: var(--dash-card);
-    border: 1px solid var(--dash-border);
-    border-radius: 6px;
-    padding: 20px;
-    text-align: center;
-    transition: box-shadow 0.3s ease;
-  }
-  .dash-stat:hover {
-    box-shadow: 0 0 24px color-mix(in srgb, var(--dash-accent) 6%, transparent);
-  }
-
-  .dash-stat-num {
-    display: block;
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 700;
-    color: var(--dash-text);
-    line-height: 1;
-    margin-bottom: 8px;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .dash-stat-label {
-    font-size: 11px;
-    color: var(--dash-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .dash-pipeline { display: flex; flex-direction: column; gap: 10px; }
-
-  .dash-pipe-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .dash-pipe-name {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--dash-muted);
-    min-width: 110px;
-    flex-shrink: 0;
-  }
-
-  .dash-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .dash-dot--green { background: #4ade80; }
-  .dash-dot--amber { background: #fbbf24; }
-  .dash-dot--grey { background: #555; }
-
-  .dash-pipe-track {
-    flex: 1;
-    height: 3px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .dash-pipe-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--dash-accent);
-    border-radius: 2px;
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .dash-bottom {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  @media (min-width: 768px) {
-    .dash-bottom { grid-template-columns: 1fr 1fr; gap: 16px; }
-  }
-
-  .dash-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .dash-tool-pill {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 11px;
-    color: var(--dash-muted);
-    border: 1px solid var(--dash-border);
-    border-radius: 4px;
-    padding: 4px 10px;
-    opacity: 0;
-  }
-
-  .dash-countdown {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: clamp(24px, 3vw, 32px);
-    font-weight: 700;
-    color: var(--dash-text);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-  }
-
-  /* ── CTA ── */
-  .lab-cta-section {
-    border-top: 1px solid var(--color-border-light);
-    padding-top: 48px;
-    text-align: center;
-  }
-
-  .lab-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    background: var(--color-ink);
-    color: var(--color-canvas);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: -0.2px;
-    border-radius: 8px;
-    transition: opacity 0.3s;
-  }
-  .lab-cta-btn:hover { opacity: 0.85; }
-
-  /* ── Reversed grid for project 2 ── */
-  .lab-selected-grid--reverse {
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 768px) {
-    .lab-selected-grid--reverse {
-      grid-template-columns: 2fr 3fr;
-    }
-  }
-
-  /* ── Project 3 centered ── */
-  .lab-project3 {
-    margin-bottom: 96px;
-    text-align: center;
-  }
-
-  .lab-project3-header {
-    max-width: 600px;
-    margin: 0 auto 48px;
-  }
-
-  .lab-project3-title {
-    font-size: clamp(28px, 3.5vw, 40px);
-    font-weight: 300;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    color: var(--color-ink);
-    margin-bottom: 16px;
-  }
-
-  .lab-project3-desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--color-muted);
-    margin-bottom: 16px;
-  }
-
-  /* ── Calculator Dashboard ── */
-  .calc-dash {
-    --dash-bg: #0f0f0f;
-    --dash-card: #161616;
-    --dash-border: rgba(255, 255, 255, 0.07);
-    --dash-accent: var(--accent, #e8a838);
-    --dash-text: #f0f0f0;
-    --dash-muted: #888888;
-    --dash-dim: #555555;
-    background: var(--dash-bg);
-    border-radius: 12px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 40px 40px;
-    border: 1px solid rgba(255,255,255,0.04);
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 767px) {
-    .calc-dash {
-      background-image: none;
-      padding: 16px;
-    }
-  }
-
-  .calc-topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--dash-border);
-  }
-
-  .calc-title {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--dash-text);
-  }
-
-  .calc-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 11px;
-    color: var(--dash-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .calc-status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--dash-accent);
-    animation: dash-blink 2s ease-in-out infinite;
-  }
-
-  .calc-inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  @media (min-width: 768px) {
-    .calc-inputs {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-  }
-
-  .calc-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .calc-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08px;
-    text-transform: uppercase;
-    color: var(--dash-muted);
-  }
-
-  .calc-input,
-  .calc-select {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 13px;
-    color: var(--dash-text);
-    background: var(--dash-card);
-    border: 1px solid var(--dash-border);
-    border-radius: 6px;
-    padding: 10px 12px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .calc-input:focus,
-  .calc-select:focus {
-    border-color: var(--dash-accent);
-  }
-
-  .calc-select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 32px;
-  }
-
-  .calc-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--dash-bg);
-    background: var(--dash-accent);
-    border: none;
-    border-radius: 6px;
-    padding: 12px 24px;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
-    align-self: flex-start;
-  }
-
-  .calc-btn:hover { opacity: 0.9; }
-  .calc-btn:active { transform: scale(0.98); }
-
-  .calc-results {
-    background: var(--dash-card);
-    border: 1px solid var(--dash-border);
-    border-radius: 8px;
-    padding: 20px;
-  }
-
-  .calc-result-main {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .calc-result-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08px;
-    text-transform: uppercase;
-    color: var(--dash-muted);
-  }
-
-  .calc-result-value {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: clamp(24px, 3vw, 32px);
-    font-weight: 700;
-    color: var(--dash-accent);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .calc-card {
-    background: var(--dash-card);
-    border: 1px solid var(--dash-border);
-    border-radius: 8px;
-    padding: 20px;
-  }
-
-  .calc-card-title {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08px;
-    text-transform: uppercase;
-    color: var(--dash-muted);
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .calc-pipeline { display: flex; flex-direction: column; gap: 10px; }
-
-  .calc-pipe-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .calc-pipe-name {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--dash-muted);
-    min-width: 110px;
-    flex-shrink: 0;
-  }
-
-  .calc-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    transition: background 0.3s;
-  }
-  .calc-dot--green { background: #4ade80; }
-  .calc-dot--amber { background: #fbbf24; }
-  .calc-dot--grey { background: #555; }
-
-  .calc-pipe-track {
-    flex: 1;
-    height: 3px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .calc-pipe-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--dash-accent);
-    border-radius: 2px;
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .lab-pulse-card { animation: none; }
-    .dash-status-dot { animation: none; }
-    .dash-pipe-fill { transition: none; }
+  .hero-video-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .hero-video-card .hero-video-overlay {
+    z-index: 2;
+  }
+  section:first-of-type .grid {
+    perspective: 1200px;
   }
 </style>
 
@@ -1010,208 +222,105 @@ const backHref = lang === defaultLang ? '/' : '/es';
   }
 
   if (!prefersReducedMotion) {
-    /* ── Hero entrance ── */
-    const heroEls = document.querySelectorAll<HTMLElement>(
-      '.lab-eyebrow, .lab-h1-line, .lab-desc, .lab-tags'
-    );
-    if (heroEls.length) {
-      gsap.from(heroEls, {
-        y: 30,
-        autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        stagger: 0.12,
-      });
+    const heroHeading = document.querySelector('main h1');
+    if (heroHeading) {
+      gsap.from(heroHeading, { y: 24, autoAlpha: 0, duration: 0.8, ease: 'power2.out', delay: 0.1 });
     }
 
-    const heroMedia = document.querySelector<HTMLElement>('.lab-hero-media');
-    if (heroMedia) {
-      gsap.from(heroMedia, {
-        y: 24,
-        autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        delay: 0.4,
-      });
+    const heroLede = heroHeading?.closest('section')?.querySelector('p');
+    if (heroLede && heroHeading) {
+      gsap.from(heroLede, { y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out', delay: 0.25 });
     }
 
-    /* ── Selected work scroll animations ── */
-    const selectedMedia = document.querySelector<HTMLElement>('.lab-selected-media');
-    if (selectedMedia) {
-      gsap.from(selectedMedia, {
-        x: -60,
+    const heroVideo = document.querySelector('section:first-of-type .aspect-\[9\/16\]');
+    if (heroVideo) {
+      gsap.from(heroVideo, {
+        scale: 0.96,
         autoAlpha: 0,
-        duration: 0.8,
+        duration: 0.95,
         ease: 'power3.out',
-        scrollTrigger: { trigger: selectedMedia, start: 'top 80%', once: true },
+        delay: 0.2,
       });
+
+      const card = heroVideo as HTMLElement;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(card, {
+          rotateY: x * 8,
+          rotateX: -y * 8,
+          duration: 0.4,
+          ease: 'power2.out',
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotateY: 0,
+          rotateX: 0,
+          duration: 0.6,
+          ease: 'elastic.out(1, 0.5)',
+        });
+      });
+
+      const video = card.querySelector('video');
+      const overlay = card.querySelector('.hero-video-overlay');
+      if (video && overlay) {
+        video.addEventListener('play', () => {
+          (overlay as HTMLElement).style.opacity = '0';
+        });
+      }
     }
 
-    const selectedContent = document.querySelector<HTMLElement>('.lab-selected-content');
-    if (selectedContent) {
-      gsap.from(selectedContent, {
-        x: 60,
-        autoAlpha: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: selectedContent, start: 'top 80%', once: true },
-      });
+    const narrativeSection = document.querySelector('section:nth-of-type(2)');
+    if (narrativeSection) {
+      const narrativeLabel = narrativeSection.querySelector(':scope > div:first-child span');
+      const narrativeHeading = narrativeSection.querySelector(':scope > div:first-child h2');
+      if (narrativeLabel) {
+        gsap.from(narrativeLabel, {
+          y: 12, autoAlpha: 0, duration: 0.5, ease: 'power2.out',
+          scrollTrigger: { trigger: narrativeLabel, start: 'top 88%', once: true },
+        });
+      }
+      if (narrativeHeading) {
+        gsap.from(narrativeHeading, {
+          y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: narrativeHeading, start: 'top 85%', once: true },
+        });
+      }
     }
 
-    /* ── CTA section ── */
-    const ctaSection = document.querySelector<HTMLElement>('.lab-cta-section');
+    document.querySelectorAll('.narrative-block').forEach((block) => {
+      const textCol = block.querySelector('.text-col');
+      if (textCol) {
+        const textEls = textCol.querySelectorAll(':scope > span, :scope > h3, :scope > p');
+        if (textEls.length) {
+          gsap.from(textEls, {
+            y: 18, autoAlpha: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
+            scrollTrigger: { trigger: block, start: 'top 76%', once: true },
+          });
+        }
+      }
+    });
+
+    const ctaSection = document.querySelector('.bg-ink.w-screen.text-center');
     if (ctaSection) {
-      gsap.from(ctaSection, {
-        y: 16,
-        autoAlpha: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: ctaSection, start: 'top 90%', once: true },
+      gsap.from(ctaSection.querySelectorAll(':scope > *'), {
+        y: 16, autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+        scrollTrigger: { trigger: ctaSection, start: 'top 88%', once: true },
       });
     }
 
-    /* ── Magnetic CTA ── */
-    document.querySelectorAll<HTMLElement>('.magnetic').forEach((el) => {
+    document.querySelectorAll('.magnetic').forEach((el) => {
       el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
         gsap.to(el, { x: x * 0.15, y: y * 0.15, duration: 0.3, ease: 'power2.out' });
       });
       el.addEventListener('mouseleave', () => {
         gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
       });
-    });
-
-    /* ── Project 2 reversed animations ── */
-    const reversedGrid = document.querySelector<HTMLElement>('.lab-selected-grid--reverse');
-    if (reversedGrid) {
-      const media = reversedGrid.querySelector<HTMLElement>('.lab-selected-media');
-      const content = reversedGrid.querySelector<HTMLElement>('.lab-selected-content');
-      if (media) {
-        gsap.from(media, {
-          x: 60,
-          autoAlpha: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: media, start: 'top 80%', once: true },
-        });
-      }
-      if (content) {
-        gsap.from(content, {
-          x: -60,
-          autoAlpha: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: content, start: 'top 80%', once: true },
-        });
-      }
-    }
-
-    /* ── Project 3 centered animations ── */
-    const project3Header = document.querySelector<HTMLElement>('.lab-project3-header');
-    if (project3Header) {
-      gsap.from(project3Header, {
-        y: 30,
-        autoAlpha: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: project3Header, start: 'top 80%', once: true },
-      });
-    }
-
-    const calcDash = document.querySelector<HTMLElement>('.calc-dash');
-    if (calcDash) {
-      gsap.from(calcDash, {
-        y: 40,
-        autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: calcDash, start: 'top 80%', once: true },
-      });
-    }
-  }
-
-  /* ── Render Calculator ── */
-  const calcBtn = document.getElementById('calc-btn');
-  const calcFrames = document.getElementById('calc-frames') as HTMLInputElement;
-  const calcTime = document.getElementById('calc-time') as HTMLInputElement;
-  const calcResolution = document.getElementById('calc-resolution') as HTMLSelectElement;
-  const calcQuality = document.getElementById('calc-quality') as HTMLSelectElement;
-  const calcTotal = document.getElementById('calc-total');
-  const calcStatus = document.getElementById('calc-status');
-
-  const pipes = ['modeling', 'texturing', 'lighting', 'rendering', 'compositing'];
-  const pipeFills = pipes.map(p => document.getElementById(`pipe-${p}`) as HTMLElement);
-  const pipeDots = pipes.map(p => document.getElementById(`dot-${p}`) as HTMLElement);
-
-  function formatTime(totalSeconds: number): string {
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = Math.floor(totalSeconds % 60);
-
-    const parts: string[] = [];
-    if (days > 0) parts.push(`${days}d`);
-    if (hours > 0) parts.push(`${hours}h`);
-    if (minutes > 0) parts.push(`${minutes}m`);
-    if (seconds > 0 || parts.length === 0) parts.push(`${seconds}s`);
-    return parts.join(' ');
-  }
-
-  function resetPipeline() {
-    pipeFills.forEach(fill => { if (fill) fill.style.width = '0%'; });
-    pipeDots.forEach(dot => {
-      if (dot) {
-        dot.classList.remove('calc-dot--green', 'calc-dot--amber');
-        dot.classList.add('calc-dot--grey');
-      }
-    });
-  }
-
-  function animatePipeline(totalSeconds: number) {
-    const stages = [
-      { fill: pipeFills[0], dot: pipeDots[0], pct: 100, delay: 0 },
-      { fill: pipeFills[1], dot: pipeDots[1], pct: 100, delay: 0.2 },
-      { fill: pipeFills[2], dot: pipeDots[2], pct: 100, delay: 0.4 },
-      { fill: pipeFills[3], dot: pipeDots[3], pct: Math.min(100, Math.max(20, (totalSeconds / 86400) * 100)), delay: 0.6 },
-      { fill: pipeFills[4], dot: pipeDots[4], pct: totalSeconds < 3600 ? 100 : 0, delay: 0.8 },
-    ];
-
-    stages.forEach((stage, i) => {
-      setTimeout(() => {
-        if (stage.fill) stage.fill.style.width = stage.pct + '%';
-        if (stage.dot) {
-          stage.dot.classList.remove('calc-dot--grey');
-          if (stage.pct >= 100) {
-            stage.dot.classList.add('calc-dot--green');
-          } else if (stage.pct > 0) {
-            stage.dot.classList.add('calc-dot--amber');
-          }
-        }
-      }, stage.delay * 1000);
-    });
-  }
-
-  if (calcBtn && calcFrames && calcTime && calcResolution && calcQuality && calcTotal) {
-    calcBtn.addEventListener('click', () => {
-      const frames = parseInt(calcFrames.value) || 0;
-      const timePerFrame = parseFloat(calcTime.value) || 0;
-      const resolutionMult = parseFloat(calcResolution.value) || 1;
-      const qualityMult = parseFloat(calcQuality.value) || 1;
-
-      const totalSeconds = frames * timePerFrame * resolutionMult * qualityMult;
-      calcTotal.textContent = formatTime(totalSeconds);
-
-      resetPipeline();
-      animatePipeline(totalSeconds);
-
-      if (calcStatus) {
-        calcStatus.innerHTML = '<span class="calc-status-dot"></span>Calculating...';
-        setTimeout(() => {
-          calcStatus.innerHTML = '<span class="calc-status-dot" style="background:#4ade80"></span>Complete';
-        }, 1200);
-      }
     });
   }
 </script>
