@@ -48,23 +48,23 @@ const t = useTranslations(lang);
                 </span>
               </div>
             </div>
-            <!-- Stats — with background cards -->
+            <!-- Stats — dark background -->
             <div class="grid grid-cols-4 gap-sm mt-lg">
-              <div class="bg-surface rounded-xl py-md text-center">
-                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-2xs">{t('koora.stats.years.value')}</span>
-                <span class="text-ghost text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.years')}</span>
+              <div class="bg-ink rounded-xl py-md text-center">
+                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.years.value')}</span>
+                <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.years')}</span>
               </div>
-              <div class="bg-surface rounded-xl py-md text-center">
-                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-2xs">{t('koora.stats.projects.value')}</span>
-                <span class="text-ghost text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.projects')}</span>
+              <div class="bg-ink rounded-xl py-md text-center">
+                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.projects.value')}</span>
+                <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.projects')}</span>
               </div>
-              <div class="bg-surface rounded-xl py-md text-center">
-                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-2xs">{t('koora.stats.countries.value')}</span>
-                <span class="text-ghost text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.countries')}</span>
+              <div class="bg-ink rounded-xl py-md text-center">
+                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.countries.value')}</span>
+                <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.countries')}</span>
               </div>
-              <div class="bg-surface rounded-xl py-md text-center">
-                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-ink block mb-2xs">{t('koora.stats.languages.value')}</span>
-                <span class="text-ghost text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.languages')}</span>
+              <div class="bg-ink rounded-xl py-md text-center">
+                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.languages.value')}</span>
+                <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.languages')}</span>
               </div>
             </div>
           </div>
@@ -81,8 +81,9 @@ const t = useTranslations(lang);
         </div>
 
         <!-- Block 01 — International reach — video left -->
-        <div class="narrative-block grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="video-col lg:col-span-7 pt-[12vh]">
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[-1]">01</span>
+          <div class="video-col lg:col-span-7 pt-[12vh] lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [International campaign video]
@@ -95,7 +96,6 @@ const t = useTranslations(lang);
             </div>
           </div>
           <div class="text-col lg:col-span-4 lg:col-start-9">
-            <span class="block text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] mb-lg select-none pointer-events-none">01</span>
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative1.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('koora.narrative1.title')}
@@ -107,9 +107,9 @@ const t = useTranslations(lang);
         </div>
 
         <!-- Block 02 — The team — video right -->
-        <div class="narrative-block grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <span class="big-num absolute top-0 left-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[-1]">02</span>
           <div class="text-col lg:col-span-4 lg:order-1">
-            <span class="block text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] mb-lg select-none pointer-events-none">02</span>
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative2.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('koora.narrative2.title')}
@@ -118,7 +118,7 @@ const t = useTranslations(lang);
               {t('koora.narrative2.body')}
             </p>
           </div>
-          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 pt-[12vh]">
+          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 pt-[12vh] lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
@@ -164,8 +164,9 @@ const t = useTranslations(lang);
       <!-- Narrative continued -->
       <section class="mt-section-mobile lg:mt-section mb-section-mobile lg:mb-section">
         <!-- Block 03 — Consistency — video left -->
-        <div class="narrative-block grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="video-col lg:col-span-7 pt-[12vh]">
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[-1]">03</span>
+          <div class="video-col lg:col-span-7 pt-[12vh] lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Consistency showcase video]
@@ -178,7 +179,6 @@ const t = useTranslations(lang);
             </div>
           </div>
           <div class="text-col lg:col-span-4 lg:col-start-9">
-            <span class="block text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] mb-lg select-none pointer-events-none">03</span>
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative3.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('koora.narrative3.title')}
@@ -190,9 +190,9 @@ const t = useTranslations(lang);
         </div>
 
         <!-- Block 04 — Pipeline — video right -->
-        <div class="narrative-block grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+          <span class="big-num absolute top-0 left-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[-1]">04</span>
           <div class="text-col lg:col-span-4 lg:order-1">
-            <span class="block text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] mb-lg select-none pointer-events-none">04</span>
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative4.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('koora.narrative4.title')}
@@ -201,7 +201,7 @@ const t = useTranslations(lang);
               {t('koora.narrative4.body')}
             </p>
           </div>
-          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 pt-[12vh]">
+          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 pt-[12vh] lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Pipeline showcase video]
@@ -335,25 +335,17 @@ const t = useTranslations(lang);
     document.querySelectorAll('.narrative-block').forEach((block) => {
       const videoCol = block.querySelector('.video-col');
       const textCol = block.querySelector('.text-col');
-      const bigNum = block.querySelector('.text-col > span:first-child');
+      const bigNum = block.querySelector('.big-num');
 
       if (bigNum) {
-        gsap.from(bigNum, {
-          autoAlpha: 0, duration: 1.2, ease: 'power3.out',
-          scrollTrigger: { trigger: block, start: 'top 85%', once: true },
+        gsap.fromTo(bigNum, { yPercent: 15 }, {
+          yPercent: -15, ease: 'none',
+          scrollTrigger: { trigger: block, start: 'top bottom', end: 'bottom top', scrub: true },
         });
       }
 
       if (videoCol && textCol) {
         const videoInner = videoCol.querySelector('.aspect-\\[16\\/9\\]');
-
-        ScrollTrigger.create({
-          trigger: block,
-          start: 'top 15%',
-          end: () => `+=${textCol.offsetHeight - (videoInner?.offsetHeight || 0) + 80}`,
-          pin: videoCol,
-          pinSpacing: false,
-        });
 
         if (videoInner) {
           gsap.fromTo(videoInner, { yPercent: 6 }, {
