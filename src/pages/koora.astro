@@ -42,27 +42,22 @@ const t = useTranslations(lang);
               >
                 <source src="/kooraShowreel.webm" type="video/webm" />
               </video>
-              <div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/80 to-transparent">
-                <span class="text-canvas/80 text-[13px] font-medium">
-                  {t('koora.video.caption.showreel')}
-                </span>
-              </div>
             </div>
             <!-- Stats — dark background -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-sm mt-lg">
-              <div class="bg-ink rounded-xl px-md py-lg">
+              <div class="bg-ink rounded-xl px-md py-lg text-center">
                 <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.years.value')}</span>
                 <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.years')}</span>
               </div>
-              <div class="bg-ink rounded-xl px-md py-lg">
+              <div class="bg-ink rounded-xl px-md py-lg text-center">
                 <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.projects.value')}</span>
                 <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.projects')}</span>
               </div>
-              <div class="bg-ink rounded-xl px-md py-lg">
+              <div class="bg-ink rounded-xl px-md py-lg text-center">
                 <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.languages.value')}</span>
                 <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.languages')}</span>
               </div>
-              <div class="bg-ink rounded-xl px-md py-lg">
+              <div class="bg-ink rounded-xl px-md py-lg text-center">
                 <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.countries.value')}</span>
                 <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.countries')}</span>
               </div>
@@ -87,11 +82,6 @@ const t = useTranslations(lang);
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [International campaign video]
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
-                <span class="text-canvas/80 text-[12px] font-medium">
-                  {t('koora.video.caption.international')}
-                </span>
               </div>
             </div>
           </div>
@@ -139,23 +129,83 @@ const t = useTranslations(lang);
         <p class="text-center text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase mb-xl">
           {t('koora.clients.label')}
         </p>
-        <div class="overflow-hidden">
-          <div class="marquee-track">
-            <div class="flex items-center gap-4xl shrink-0 px-2xl">
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line1')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line2')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line3')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line4')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line5')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line6')}</span>
+        <div class="overflow-hidden mb-md">
+          <div class="marquee-track marquee-left">
+            <div class="flex items-center gap-3xl shrink-0 px-2xl">
+              <span class="client-name">SIEMENS</span>
+              <span class="client-name">SMC</span>
+              <span class="client-name">CEGASA</span>
+              <span class="client-name">EITB</span>
+              <span class="client-name">VIRTUALWARE</span>
+              <span class="client-name">KANTAR</span>
+              <span class="client-name">TECNALIA</span>
+              <span class="client-name">TKNIKA</span>
+              <span class="client-name">CFEED</span>
+              <span class="client-name">MRA</span>
+              <span class="client-name">GESTAMP</span>
+              <span class="client-name">CAROLINA HERRERA</span>
+              <span class="client-name">JEAN PAUL GAULTIER</span>
+              <span class="client-name">UNIVERSIDAD DE DEUSTO</span>
+              <span class="client-name">MINISTERIO DE EDUCACIÓN</span>
+              <span class="client-name">CENTRO CRIPTOLÓGICO NACIONAL</span>
             </div>
-            <div class="flex items-center gap-4xl shrink-0 px-2xl">
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line1')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line2')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line3')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line4')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line5')}</span>
-              <span class="text-[15px] font-medium tracking-[0.02px] text-canvas/60 whitespace-nowrap">{t('koora.clients.line6')}</span>
+            <div class="flex items-center gap-3xl shrink-0 px-2xl">
+              <span class="client-name">SIEMENS</span>
+              <span class="client-name">SMC</span>
+              <span class="client-name">CEGASA</span>
+              <span class="client-name">EITB</span>
+              <span class="client-name">VIRTUALWARE</span>
+              <span class="client-name">KANTAR</span>
+              <span class="client-name">TECNALIA</span>
+              <span class="client-name">TKNIKA</span>
+              <span class="client-name">CFEED</span>
+              <span class="client-name">MRA</span>
+              <span class="client-name">GESTAMP</span>
+              <span class="client-name">CAROLINA HERRERA</span>
+              <span class="client-name">JEAN PAUL GAULTIER</span>
+              <span class="client-name">UNIVERSIDAD DE DEUSTO</span>
+              <span class="client-name">MINISTERIO DE EDUCACIÓN</span>
+              <span class="client-name">CENTRO CRIPTOLÓGICO NACIONAL</span>
+            </div>
+          </div>
+        </div>
+        <div class="overflow-hidden">
+          <div class="marquee-track marquee-right">
+            <div class="flex items-center gap-3xl shrink-0 px-2xl">
+              <span class="client-name">BITLIFEMEDIA</span>
+              <span class="client-name">BIZKAIRED</span>
+              <span class="client-name">PROFESIOLAN</span>
+              <span class="client-name">CONFOLAR</span>
+              <span class="client-name">HELIAN</span>
+              <span class="client-name">PLEKARI</span>
+              <span class="client-name">SAICA</span>
+              <span class="client-name">DIBAL</span>
+              <span class="client-name">DTCreativos</span>
+              <span class="client-name">H2SITE</span>
+              <span class="client-name">FRACHT</span>
+              <span class="client-name">EGIBIDE</span>
+              <span class="client-name">MEDIAPRO</span>
+              <span class="client-name">CIRCMAR</span>
+              <span class="client-name">BIZKAIKO FORU ALDUNDIA</span>
+              <span class="client-name">BITLIFEMEDIA</span>
+            </div>
+            <div class="flex items-center gap-3xl shrink-0 px-2xl">
+              <span class="client-name">BITLIFEMEDIA</span>
+              <span class="client-name">BIZKAIRED</span>
+              <span class="client-name">PROFESIOLAN</span>
+              <span class="client-name">CONFOLAR</span>
+              <span class="client-name">HELIAN</span>
+              <span class="client-name">PLEKARI</span>
+              <span class="client-name">SAICA</span>
+              <span class="client-name">DIBAL</span>
+              <span class="client-name">DTCreativos</span>
+              <span class="client-name">H2SITE</span>
+              <span class="client-name">FRACHT</span>
+              <span class="client-name">EGIBIDE</span>
+              <span class="client-name">MEDIAPRO</span>
+              <span class="client-name">CIRCMAR</span>
+              <span class="client-name">BIZKAIKO FORU ALDUNDIA</span>
+              <span class="client-name">BITLIFEMEDIA</span>
             </div>
           </div>
         </div>
@@ -170,11 +220,6 @@ const t = useTranslations(lang);
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Consistency showcase video]
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
-                <span class="text-canvas/80 text-[12px] font-medium">
-                  {t('koora.video.caption.multilingual')}
-                </span>
               </div>
             </div>
           </div>
@@ -205,11 +250,6 @@ const t = useTranslations(lang);
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Pipeline showcase video]
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/70 to-transparent">
-                <span class="text-canvas/80 text-[12px] font-medium">
-                  {t('koora.video.caption.pipeline')}
-                </span>
               </div>
             </div>
           </div>
