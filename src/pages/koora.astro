@@ -49,24 +49,22 @@ const t = useTranslations(lang);
               </div>
             </div>
             <!-- Stats — dark background -->
-            <div class="flex items-end justify-between mt-lg">
-              <div class="flex gap-sm">
-                <div class="bg-ink rounded-xl py-md px-lg text-left">
-                  <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.years.value')}</span>
-                  <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.years')}</span>
-                </div>
-                <div class="bg-ink rounded-xl py-md px-lg text-left">
-                  <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.projects.value')}</span>
-                  <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.projects')}</span>
-                </div>
-                <div class="bg-ink rounded-xl py-md px-lg text-left">
-                  <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.languages.value')}</span>
-                  <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.languages')}</span>
-                </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-sm mt-lg">
+              <div class="bg-ink rounded-xl px-md py-lg">
+                <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.years.value')}</span>
+                <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.years')}</span>
               </div>
-              <div class="bg-ink rounded-xl py-md px-lg text-left">
-                <span class="font-accent text-[clamp(20px,2.5vw,28px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-2xs">{t('koora.stats.countries.value')}</span>
-                <span class="text-canvas/60 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.countries')}</span>
+              <div class="bg-ink rounded-xl px-md py-lg">
+                <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.projects.value')}</span>
+                <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.projects')}</span>
+              </div>
+              <div class="bg-ink rounded-xl px-md py-lg">
+                <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.languages.value')}</span>
+                <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.languages')}</span>
+              </div>
+              <div class="bg-ink rounded-xl px-md py-lg">
+                <span class="font-accent text-[clamp(22px,2.5vw,30px)] font-bold leading-none tracking-[-0.04em] text-canvas block mb-xs">{t('koora.stats.countries.value')}</span>
+                <span class="text-canvas/50 text-[10px] lg:text-[11px] font-medium leading-tight block">{t('koora.stats.countries')}</span>
               </div>
             </div>
           </div>
@@ -85,7 +83,7 @@ const t = useTranslations(lang);
         <!-- Block 01 — International reach — video left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">01</span>
-          <div class="video-col lg:col-span-7">
+          <div class="video-col lg:col-span-7 lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [International campaign video]
@@ -120,7 +118,7 @@ const t = useTranslations(lang);
               {t('koora.narrative2.body')}
             </p>
           </div>
-          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2">
+          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
@@ -168,7 +166,7 @@ const t = useTranslations(lang);
         <!-- Block 03 — Consistency — video left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <span class="big-num absolute top-0 right-0 text-ink/[0.04] text-[100px] font-accent font-bold leading-none tracking-[-0.06em] select-none pointer-events-none z-[1]">03</span>
-          <div class="video-col lg:col-span-7">
+          <div class="video-col lg:col-span-7 lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Consistency showcase video]
@@ -203,7 +201,7 @@ const t = useTranslations(lang);
               {t('koora.narrative4.body')}
             </p>
           </div>
-          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2">
+          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 lg:sticky lg:top-0">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
                 [Pipeline showcase video]
