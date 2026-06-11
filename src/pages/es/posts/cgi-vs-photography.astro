@@ -1,6 +1,7 @@
 ---
 import PostLayout from '@layouts/PostLayout.astro';
 import { useTranslations, type Language } from '@i18n/ui';
+import IconArrow from '@components/icons/IconArrow.astro';
 
 const t = useTranslations('es' as Language);
 ---
@@ -90,11 +91,8 @@ const t = useTranslations('es' as Language);
   </p>
   <p>
     <a href="/es/renders" data-transition-line1={t('transition.renders.line1')} style="display: inline-flex; align-items: center; gap: 0.4em; font-weight: 500;">
-      Eyes eat first — CGI de food & producto
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="12 5 19 12 12 19"/>
-      </svg>
+      Los ojos comen primero — CGI de food y producto
+      <IconArrow />
     </a>
   </p>
 </PostLayout>

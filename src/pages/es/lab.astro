@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import IconPlay from '@components/icons/IconPlay.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -143,9 +144,7 @@ const backHref = lang === defaultLang ? '/' : '/es';
 
           <!-- Calculate button -->
           <button class="calc-btn" id="calc-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
+            <IconPlay />
             {t('lab.calc.calculate')}
           </button>
 
@@ -983,6 +982,7 @@ const backHref = lang === defaultLang ? '/' : '/es';
     duration: 1.2,
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     touchMultiplier: 2,
+    smoothWheel: !prefersReducedMotion,
   });
 
   lenis.on('scroll', ScrollTrigger.update);

@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import IconArrowLeft from '@components/icons/IconArrowLeft.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -36,10 +37,7 @@ const homeHref = lang === defaultLang ? '/' : `/${lang}`;
         data-transition-line1={t('transition.home.line1')}
         class="inline-flex items-center gap-2 px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85"
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"/>
-          <polyline points="12 19 5 12 12 5"/>
-        </svg>
+        <IconArrowLeft />
         {lang === 'es' ? 'Volver al inicio' : 'Back to home'}
       </a>
 

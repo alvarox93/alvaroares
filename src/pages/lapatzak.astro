@@ -91,6 +91,7 @@ const backHref = lang === defaultLang ? '/' : '/es';
     duration: 1.2,
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     touchMultiplier: 2,
+    smoothWheel: !prefersReducedMotion,
   });
 
   lenis.on('scroll', ScrollTrigger.update);

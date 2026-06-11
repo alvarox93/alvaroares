@@ -2,6 +2,9 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import IconMailBox from '@components/icons/IconMailBox.astro';
+import IconDownload from '@components/icons/IconDownload.astro';
+import IconLocation from '@components/icons/IconLocation.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -165,7 +168,7 @@ const timeline = [
                 href={`mailto:${t('footer.email')}`}
                 class="inline-flex items-center gap-xs px-4 py-2 bg-canvas text-ink text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/85"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <IconMailBox />
                 {t('about.cta.dark.contact')}
               </a>
               <a
@@ -173,7 +176,7 @@ const timeline = [
                 download
                 class="inline-flex items-center gap-xs px-4 py-2 bg-canvas/10 text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg border border-canvas/20 transition-colors duration-300 hover:border-canvas/40"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                <IconDownload />
                 {t('about.cta.dark.cv')}
               </a>
             </div>
@@ -230,7 +233,7 @@ const timeline = [
                       <span class="text-ghost text-[10px] font-medium tracking-[0.14px] uppercase">{item.period}</span>
                       <span class="w-[3px] h-[3px] rounded-full bg-ghost/40"></span>
                       <span class="inline-flex items-center gap-1 text-ghost text-[10px] tracking-[0.06px]">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <IconLocation size={10} />
                         {item.location}
                       </span>
                     </div>
@@ -579,6 +582,7 @@ const timeline = [
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     touchMultiplier: 2,
+    smoothWheel: !prefersReducedMotion,
   });
 
   lenis.on('scroll', ScrollTrigger.update);

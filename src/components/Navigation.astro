@@ -1,6 +1,7 @@
 ---
 import LanguageSwitcher from '@components/LanguageSwitcher.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import IconChat from '@components/icons/IconChat.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -41,9 +42,7 @@ const aboutChars = t('nav.about').split('');
         </span>
       </a>
       <a href="mailto:hey@alvaroar.es" class="inline-flex items-center gap-1.5 justify-center px-4 py-2 bg-ink text-canvas text-[12px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
+        <IconChat />
         {t('nav.contact.talk')}
       </a>
       <button class="theme-knob" aria-label="Toggle color theme" data-theme-knob>

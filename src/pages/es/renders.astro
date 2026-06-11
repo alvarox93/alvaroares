@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import IconArrow from '@components/icons/IconArrow.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -32,7 +33,7 @@ const rowLengths = rows.map(r => r.length);
                 <img
                   src={`/food-renders/${file}.webp`}
                   alt={`${file} — 3D food render`}
-                  loading="eager"
+                  loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
                 />
               </div>
@@ -61,10 +62,7 @@ const rowLengths = rows.map(r => r.length);
         </div>
         <a href={lang === defaultLang ? '/#contact' : '/es/#contact'} class="bottom-bar__cta">
           {t('renders.cta')}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
+          <IconArrow />
         </a>
       </div>
     </div>
@@ -342,12 +340,12 @@ const rowLengths = rows.map(r => r.length);
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Wait for all images to load before starting animation
+  // Wait for first row images to load before starting animation (progressive loading)
   const waitForImages = (): Promise<void> => {
     return new Promise((resolve) => {
-      const images = document.querySelectorAll<HTMLImageElement>('.render-card img');
+      const firstRowImages = document.querySelectorAll<HTMLImageElement>('.grid-row[data-row="0"] .render-card img');
       let loaded = 0;
-      const total = images.length;
+      const total = firstRowImages.length;
 
       if (total === 0) {
         resolve();
@@ -361,7 +359,7 @@ const rowLengths = rows.map(r => r.length);
         }
       };
 
-      images.forEach(img => {
+      firstRowImages.forEach(img => {
         if (img.complete && img.naturalWidth > 0) {
           checkComplete();
         } else {
