@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PostLayout from '@layouts/PostLayout.astro';
-import { useTranslations, type Language } from '@i18n/ui';
+import { type Language } from '@i18n/ui';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -16,7 +16,16 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 
 const lang = 'en' as Language;
-const transitionLine1 = post.data.title;
+
+const transitions: Record<string, string> = {
+  'motion-design-systems': 'Motion that moves people',
+  'cgi-vs-photography': 'Every pixel earned',
+  'ai-pipeline': 'Half the time, all the judgment',
+  'designing-in-code': 'Code as craft',
+  'building-lapatzak': 'Built from scratch',
+};
+
+const transitionLine1 = transitions[post.slug] ?? post.data.title;
 const transitionLine2 = '';
 ---
 
