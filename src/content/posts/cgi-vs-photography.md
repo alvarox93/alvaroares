@@ -60,4 +60,4 @@ I do them because each one teaches me something that commissioned work doesn't a
 
 Mastery doesn't come from doing what people ask for. It comes from doing what nobody asked for, over and over, until it's right.
 
-[Eyes eat first — food & product CGI](/renders)
+[Eyes eat first — food & product CGI](/cgi)

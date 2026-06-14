@@ -9,6 +9,24 @@
 # Redirect old English blog path to new posts path
 /blog/* /posts/:splat 301
 
+# Redirect old slugs to new ones
+/koora /studio 301
+/koora/* /studio/:splat 301
+/es/koora /es/studio 301
+/es/koora/* /es/studio/:splat 301
+/renders /cgi 301
+/renders/* /cgi/:splat 301
+/es/renders /es/cgi 301
+/es/renders/* /es/cgi/:splat 301
+/lapatzak /branding 301
+/lapatzak/* /branding/:splat 301
+/es/lapatzak /es/branding 301
+/es/lapatzak/* /es/branding/:splat 301
+/lab /interactive 301
+/lab/* /interactive/:splat 301
+/es/lab /es/interactive 301
+/es/lab/* /es/interactive/:splat 301
+
 # Redirect www to non-www
 https://www.alvaroar.es/* https://alvaroar.es/:splat 301
 

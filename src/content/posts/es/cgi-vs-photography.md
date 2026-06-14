@@ -60,4 +60,4 @@ Los hago porque cada uno me enseña algo que el trabajo de encargo no siempre pe
 
 El dominio no se consigue haciendo lo que te piden. Se consigue haciendo lo que nadie te ha pedido, una y otra vez, hasta que sale bien.
 
-[Los ojos comen primero — CGI de food y producto](/es/renders)
+[Los ojos comen primero — CGI de food y producto](/es/cgi)
