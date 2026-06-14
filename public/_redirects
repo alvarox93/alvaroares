@@ -1,0 +1,16 @@
+# Redirect old pages to new equivalents
+# Place this in /public/_redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Redirect old /mystory to home (it no longer exists)
+/mystory / 301
+/mystory/* / 301
+
+# Redirect old English blog path to new posts path
+/blog/* /posts/:splat 301
+
+# Redirect www to non-www
+https://www.alvaroar.es/* https://alvaroar.es/:splat 301
+
+# Fallback: any non-existent path goes to 404
+/* /404.html 404
