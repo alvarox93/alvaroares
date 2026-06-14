@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
+import { Image } from 'astro:assets';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import freshLima from '../../assets/lapatzak/testFreshLima.png';
+import gureBrava from '../../assets/lapatzak/testGureBrava.png';
+import sweet from '../../assets/lapatzak/testSweet.jpeg';
+import lemonKalima from '../../assets/lapatzak/testlemonKalima.webp';
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 ---
@@ -110,16 +115,56 @@ const t = useTranslations(lang);
             <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
               <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-3 p-3">
                 <div class="relative bg-surface rounded-xl overflow-hidden">
-                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[01]</div>
+                  <Image
+                    src={freshLima}
+                    alt="Fresh Lima — Lapatzak brand"
+                    class="w-full h-full object-cover"
+                    width={600}
+                    densities={[1, 2]}
+                    format="webp"
+                    quality={80}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div class="relative bg-surface rounded-xl overflow-hidden">
-                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[02]</div>
+                  <Image
+                    src={gureBrava}
+                    alt="Gure Brava — Lapatzak brand"
+                    class="w-full h-full object-cover"
+                    width={600}
+                    densities={[1, 2]}
+                    format="webp"
+                    quality={80}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div class="relative bg-surface rounded-xl overflow-hidden">
-                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[03]</div>
+                  <Image
+                    src={sweet}
+                    alt="Sweet — Lapatzak brand"
+                    class="w-full h-full object-cover"
+                    width={600}
+                    densities={[1, 2]}
+                    format="webp"
+                    quality={80}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div class="relative bg-surface rounded-xl overflow-hidden">
-                  <div class="absolute inset-0 flex items-center justify-center text-ghost text-[11px]">[04]</div>
+                  <Image
+                    src={lemonKalima}
+                    alt="Lemon Kalima — Lapatzak brand"
+                    class="w-full h-full object-cover"
+                    width={600}
+                    densities={[1, 2]}
+                    format="webp"
+                    quality={80}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>

@@ -1,18 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import freshLima from '../assets/lapatzak/testFreshLima.png';
+import gureBrava from '../assets/lapatzak/testGureBrava.png';
+---
+
 <div class="absolute inset-0 project-image-wrap grid grid-cols-2 gap-1.5">
   <div class="relative overflow-hidden rounded-lg">
-    <img
-      src="/lapatzak/testFreshLima.png"
+    <Image
+      src={freshLima}
       alt="FreshLima — Lapatzak brand"
       class="w-full h-full object-cover"
+      width={800}
+      densities={[1, 2]}
+      format="webp"
+      quality={80}
       loading="lazy"
       decoding="async"
     />
   </div>
   <div class="relative overflow-hidden rounded-lg">
-    <img
-      src="/lapatzak/testGureBrava.png"
+    <Image
+      src={gureBrava}
       alt="GureBrava — Lapatzak brand"
       class="w-full h-full object-cover"
+      width={800}
+      densities={[1, 2]}
+      format="webp"
+      quality={80}
       loading="lazy"
       decoding="async"
     />
