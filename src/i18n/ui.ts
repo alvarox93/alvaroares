@@ -17,10 +17,10 @@ export const ui = {
 
 
     'home.hero.available': 'Available for hiring',
-    'home.hero.title.line1': 'Álvaro Ares',
-    'home.hero.title.line2': 'Creative Director & CGI Artist',
-    'home.hero.lede': 'I direct the kind of work that gets remembered.',
-    'home.hero.ledeBold': 'CGI, motion, brand, interactive — led end to end.',
+    'home.hero.title.line1': 'Creative Director',
+    'home.hero.title.line2': 'CGI · Motion · Brand · Interactive',
+    'home.hero.lede': 'Two decades of making work that matters. I\'ve run studios, built teams and delivered projects that left a mark. I move as comfortably in the technical as in the creative — and I know when to lead and when to make space.',
+    'home.hero.ledeBold': '',
     'home.hero.cta.about': 'About me',
     'home.hero.cta.contact': 'Get in contact',
     'home.hero.cta.cv': 'Download CV',
@@ -327,16 +327,16 @@ export const ui = {
 
 
     'home.hero.available': 'Disponible para contratar',
-    'home.hero.title.line1': 'Álvaro Ares',
-    'home.hero.title.line2': 'Director Creativo & Artista CGI',
-    'home.hero.lede': 'El trabajo que dirijo no se olvida fácilmente.',
-    'home.hero.ledeBold': 'CGI, motion, marca, interactivo — dirigido de principio a fin.',
+    'home.hero.title.line1': 'Director Creativo',
+    'home.hero.title.line2': 'CGI · Motion · Marca · Interactivo',
+    'home.hero.lede': 'Dos décadas haciendo que el trabajo cuente. He dirigido estudios, construido equipos y entregado proyectos que han dejado huella. Me muevo igual de bien en lo técnico que en lo creativo — y sé cuándo liderar y cuándo dejar espacio.',
+    'home.hero.ledeBold': '',
     'home.hero.cta.about': 'Sobre mí',
     'home.hero.cta.contact': 'Contactar',
     'home.hero.cta.cv': 'Descargar CV',
-    'home.hero.bornIn': 'Nacido en Bilbao',
-    'home.hero.basedIn': 'Residente en Barcelona',
-    'home.hero.working': 'Trabajo en todo el mundo',
+    'home.hero.bornIn': 'Born in Bilbao',
+    'home.hero.basedIn': 'Based in Barcelona',
+    'home.hero.working': 'Working worldwide',
 
     'home.about.label': 'Sobre mí',
     'home.about.title': 'La persona detrás<br />del trabajo.',
@@ -577,7 +577,7 @@ export const ui = {
     'about.timeline.item.intl.tag3': 'Crecimiento',
 
     'footer.location': 'Barcelona, España',
-    'footer.workingWorldwide': 'Trabajo en todo el mundo',
+    'footer.workingWorldwide': 'Working worldwide',
     'footer.copyright': 'Diseñado & desarrollado por Álvaro Ares © 2026',
     'footer.email': 'hey@alvaroar.es',
     'footer.phone': '+34 649 635 382',

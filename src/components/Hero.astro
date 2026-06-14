@@ -26,15 +26,17 @@ const t = useTranslations(lang);
           </span>
         </div>
 
-        <div class="mb-2xl">
+        <div class="mb-xl">
           <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
             <span class="block">{t('home.hero.title.line1')}</span>
-            <span class="block">{t('home.hero.title.line2')}</span>
           </h1>
+          <span class="block text-[clamp(14px,1.3vw,17px)] font-medium tracking-[0.02em] text-ghost mt-md">
+            {t('home.hero.title.line2')}
+          </span>
         </div>
 
-        <p class="text-[17px] leading-[1.6] text-muted max-w-[460px] mb-2xl">
-          <strong class="text-ink font-medium">{t('home.hero.lede')}</strong> {t('home.hero.ledeBold')}
+        <p class="text-[clamp(16px,1.5vw,18px)] leading-[1.65] text-muted max-w-[540px] mb-2xl">
+          {t('home.hero.lede')}
         </p>
 
         <div class="flex flex-col gap-md">
