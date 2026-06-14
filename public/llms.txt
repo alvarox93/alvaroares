@@ -1,0 +1,39 @@
+# Álvaro Ares — Creative Director & CGI Artist
+
+> https://alvaroar.es
+
+## Overview
+
+Portfolio of Álvaro Ares, a creative director and CGI artist based in Barcelona, Spain. Available for hire. 8+ years of experience building visual systems for brands worldwide.
+
+## Sections
+
+- [Home](https://alvaroar.es/) — Hero, project showcase, posts, and contact
+- [About](https://alvaroar.es/about/) — Bio, timeline, skills, and CV
+- [Studio](https://alvaroar.es/studio/) — Koora.studio case study (CGI, motion, direction)
+- [CGI](https://alvaroar.es/cgi/) — Food & product 3D renders portfolio
+- [Branding](https://alvaroar.es/branding/) — Brand identity and visual systems work
+- [Interactive](https://alvaroar.es/interactive/) — VR, webapps, and AI tools
+
+## Posts
+
+- [Motion Design Systems](https://alvaroar.es/posts/motion-design-systems/) — Building motion systems that scale
+- [CGI vs Photography](https://alvaroar.es/posts/cgi-vs-photography/) — Why CGI wins for product and food
+- [AI Pipeline](https://alvaroar.es/posts/ai-pipeline/) — Automating creative workflows with AI
+- [Designing in Code](https://alvaroar.es/posts/designing-in-code/) — Where design meets engineering
+- [Building Lapatzak](https://alvaroar.es/posts/building-lapatzak/) — Building a brand from scratch
+
+## Contact
+
+- Email: hey@alvaroar.es
+- Location: Barcelona, Spain
+- LinkedIn: https://linkedin.com/in/alvaroares
+- Instagram: https://instagram.com/alvaroares
+
+## Language
+
+English (default) and Spanish.
+
+## Content Policy
+
+All content is original work. Images and videos are proprietary.
