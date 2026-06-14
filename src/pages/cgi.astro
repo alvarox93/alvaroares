@@ -52,7 +52,10 @@ const rowLengths = rows.map(r => r.length);
         <div class="bottom-bar__content">
           <h3 class="bottom-bar__title">{t('renders.copy.title')}</h3>
           <div class="bottom-bar__text">
-            <p class="bottom-bar__copy">{t('renders.copy')}</p>
+            <p class="bottom-bar__copy">
+              {t('renders.copy')}
+              <a href={lang === defaultLang ? '/posts/cgi-vs-photography' : '/es/posts/cgi-vs-photography'} class="bottom-bar__copy-link">{t('renders.copy.link')}</a>
+            </p>
           </div>
           <div class="bottom-bar__tools">
             {t('renders.tools').split(',').map((tool) => (
@@ -233,6 +236,19 @@ const rowLengths = rows.map(r => r.length);
     line-height: 1.6;
     color: var(--color-muted);
     margin: 0;
+  }
+
+  .bottom-bar__copy-link {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-accent);
+    transition: color 0.3s ease;
+  }
+
+  .bottom-bar__copy-link:hover {
+    color: var(--color-accent);
   }
 
   .bottom-bar__tools {
