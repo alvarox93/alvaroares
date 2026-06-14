@@ -30,7 +30,7 @@ export const ui = {
 
     'home.about.label': 'About',
     'home.about.title': 'The person behind<br />the work.',
-    'home.about.body': "8 years of visual craft. I ran a studio in Bilbao, led a team of 8, shipped campaigns across 12 countries. Now based in Barcelona, I work with CGI, motion and brand systems — and explore AI and code to push the work further.",
+    'home.about.body': "20 years of visual craft. I ran a studio, built teams and delivered campaigns internationally. Now based in Barcelona, working with CGI, motion and brand systems — and using AI and code to push the work further.",
     'home.about.cta': 'More about me',
 
     'home.posts.label': 'Thinking',
@@ -338,7 +338,7 @@ export const ui = {
 
     'home.about.label': 'Sobre mí',
     'home.about.title': 'La persona detrás<br />del trabajo.',
-    'home.about.body': '8 años de oficio visual. Dirigí un estudio en Bilbao, lideré un equipo de 8, entregué campañas en 12 países. Ahora desde Barcelona, trabajo con CGI, motion y sistemas de marca — y exploro IA y código para llevar el trabajo más lejos.',
+    'home.about.body': '20 años de oficio visual. Dirigí un estudio, construí equipos y entregué campañas internacionales. Ahora desde Barcelona, trabajo con CGI, motion y sistemas de marca — y exploro IA y código para llevar el trabajo más lejos.',
     'home.about.cta': 'Más sobre mí',
 
     'home.posts.label': 'Pensando',
