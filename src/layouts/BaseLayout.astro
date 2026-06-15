@@ -64,6 +64,37 @@ const websiteJsonLd = {
   url: 'https://alvaroar.es',
   inLanguage: ['en', 'es'],
 };
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Álvaro Ares',
+  url: 'https://alvaroar.es',
+  logo: 'https://alvaroar.es/favicon.svg',
+  description,
+  email: 'hey@alvaroar.es',
+  founder: {
+    '@type': 'Person',
+    name: 'Álvaro Ares',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Barcelona',
+    addressCountry: 'ES',
+  },
+  sameAs: [
+    'https://linkedin.com/in/alvaroares',
+    'https://instagram.com/alvaroar.es',
+  ],
+  knowsAbout: [
+    'Creative Direction',
+    'CGI',
+    'Motion Design',
+    'Brand Identity',
+    '3D Rendering',
+    'Art Direction',
+  ],
+};
 ---
 
 <!doctype html>
@@ -97,10 +128,13 @@ const websiteJsonLd = {
     <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="x-default" href={enHref} />
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLMs.txt — Álvaro Ares" />
+    <link rel="alternate" type="text/markdown" href="/collab.md" title="Work with Álvaro Ares" />
     <title>{title}</title>
 
     <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
     {isHome && <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />}
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />}
     {ogType === 'article' && pubDateIso && (
       <script type="application/ld+json" set:html={JSON.stringify({
         '@context': 'https://schema.org',
