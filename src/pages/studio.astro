@@ -115,7 +115,7 @@ const t = useTranslations(lang);
                 muted
                 playsinline
               >
-                <source src="/studio/studioExtract_1.webm" type="video/webm" />
+                <source src="/studio/studioExtract_2.webm" type="video/webm" />
               </video>
             </div>
           </div>
@@ -244,9 +244,16 @@ const t = useTranslations(lang);
           </div>
           <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 lg:sticky lg:top-[72px]">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [Pipeline showcase video]
-              </div>
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+              >
+                <source src="/studio/studioExtract_4.webm" type="video/webm" />
+              </video>
             </div>
           </div>
         </div>
