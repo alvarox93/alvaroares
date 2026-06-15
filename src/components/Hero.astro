@@ -30,9 +30,16 @@ const t = useTranslations(lang);
           <h1 class="text-[clamp(32px,5vw,56px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
             <span class="block">{t('home.hero.title.line1')}</span>
           </h1>
-          <span class="block text-[clamp(14px,1.3vw,17px)] font-medium tracking-[0.02em] text-ghost mt-md">
+          <span class="block text-[clamp(20px,2.4vw,30px)] font-light leading-[1.15] tracking-[-0.025em] text-muted mt-sm">
             {t('home.hero.title.line2')}
           </span>
+          <div class="flex flex-wrap items-center gap-2 mt-lg">
+            {t('home.hero.tags').split(' · ').map((tag) => (
+              <span class="inline-flex items-center px-3.5 py-1.5 border border-border rounded-full text-ghost text-[11px] font-medium tracking-[0.08px] uppercase">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
         <p class="text-[clamp(16px,1.5vw,18px)] leading-[1.65] text-muted max-w-[540px] mb-2xl">

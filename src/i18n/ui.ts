@@ -18,7 +18,8 @@ export const ui = {
 
     'home.hero.available': 'Available for hiring',
     'home.hero.title.line1': 'Creative Director',
-    'home.hero.title.line2': 'CGI · Motion · Brand · Interactive',
+    'home.hero.title.line2': 'Motion and Visual Design',
+    'home.hero.tags': 'CGI · Motion · Brand · Interactive',
     'home.hero.lede': 'Two decades of making work that matters. I\'ve run studios, built teams and delivered projects that left a mark. I move as comfortably in the technical as in the creative — and I know when to lead and when to make space.',
     'home.hero.ledeBold': '',
     'home.hero.cta.about': 'About me',
@@ -331,7 +332,8 @@ export const ui = {
 
     'home.hero.available': 'Disponible para contratar',
     'home.hero.title.line1': 'Director Creativo',
-    'home.hero.title.line2': 'CGI · Motion · Marca · Interactivo',
+    'home.hero.title.line2': 'Motion y Diseño Visual',
+    'home.hero.tags': 'CGI · Motion · Marca · Interactivo',
     'home.hero.lede': 'Dos décadas haciendo que el trabajo cuente. He dirigido estudios, construido equipos y entregado proyectos que han dejado huella. Me muevo igual de bien en lo técnico que en lo creativo — y sé cuándo liderar y cuándo dejar espacio.',
     'home.hero.ledeBold': '',
     'home.hero.cta.about': 'Sobre mí',
