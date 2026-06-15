@@ -50,7 +50,7 @@ const t = useTranslations(lang);
               {t('home.hero.cta.contact')}
             </a>
           </div>
-          <a href="/alvaroAres_CV_2026.pdf" download class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-transparent text-ink/60 text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border/50 transition-colors duration-300 hover:border-ink/30 hover:text-ink w-fit">
+          <a href={lang === 'es' ? '/CVs/alvaroAres_CV_2026_ES.pdf' : '/CVs/alvaroAres_CV_2026_EN.pdf'} download class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-transparent text-ink/60 text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border/50 transition-colors duration-300 hover:border-ink/30 hover:text-ink w-fit">
             <IconDownload size={16} />
             {t('home.hero.cta.cv')}
           </a>
