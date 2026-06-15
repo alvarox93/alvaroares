@@ -2,9 +2,10 @@
 title: "I started with code. I hated it. Then I understood what it was for."
 category: "Code"
 readTime: "5 min"
-date: "Apr 2026"
+date: "Jan 2026"
+pubDate: 2026-01-22
 placeholder: "Code"
-description: "I built my first website with Dreamweaver before I was old enough to drive. I hated code. Then I understood what it was for."
+description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"
 ---
 

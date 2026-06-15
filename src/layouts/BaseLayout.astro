@@ -19,11 +19,16 @@ interface Props {
   description?: string;
   transitionLine1?: string;
   transitionLine2?: string;
+  ogType?: 'website' | 'profile' | 'article';
+  pubDateIso?: string;
+  authorName?: string;
 }
 
 const { title, description = lang === 'es'
-  ? 'Álvaro Ares — Director Creativo & Motion Strategist en Bilbao.'
-  : 'Álvaro Ares — Creative Director & Motion Strategist based in Bilbao.', transitionLine1, transitionLine2 } = Astro.props;
+  ? 'Álvaro Ares — Director Creativo y artista CGI en Barcelona.'
+  : 'Álvaro Ares — Creative Director & CGI artist based in Barcelona.', transitionLine1, transitionLine2, ogType, pubDateIso, authorName = 'Álvaro Ares' } = Astro.props;
+
+const resolvedOgType = ogType ?? (isHome ? 'website' : 'profile');
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -35,7 +40,7 @@ const personJsonLd = {
   email: 'hey@alvaroar.es',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Bilbao',
+    addressLocality: 'Barcelona',
     addressCountry: 'ES',
   },
   sameAs: [
@@ -69,13 +74,16 @@ const websiteJsonLd = {
     <meta name="msvalidate.01" content="940075CA63F85940CBB9720244681AAD" />
     <link rel="canonical" href={canonicalUrl} />
 
-    <meta property="og:type" content={isHome ? 'website' : 'profile'} />
+    <meta property="og:type" content={resolvedOgType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Álvaro Ares" />
     <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
     <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
+
+    {pubDateIso && <meta property="article:published_time" content={pubDateIso} />}
+    {pubDateIso && <meta property="article:author" content={authorName} />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -92,6 +100,30 @@ const websiteJsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
     {isHome && <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />}
+    {ogType === 'article' && pubDateIso && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description,
+        datePublished: pubDateIso,
+        author: {
+          '@type': 'Person',
+          name: authorName,
+          url: 'https://alvaroar.es',
+        },
+        publisher: {
+          '@type': 'Person',
+          name: 'Álvaro Ares',
+          url: 'https://alvaroar.es',
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': canonicalUrl,
+        },
+        inLanguage: lang,
+      })} />
+    )}
 
     <script is:inline>
       // Force unregister ALL service workers (zombie SW cleanup)

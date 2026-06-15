@@ -2,7 +2,8 @@
 title: "They wanted motion. We gave them direction."
 category: "Motion"
 readTime: "5 min"
-date: "Jun 2026"
+date: "May 2026"
+pubDate: 2026-05-12
 placeholder: "Motion"
 description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"

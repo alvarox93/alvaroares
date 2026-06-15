@@ -2,9 +2,10 @@
 title: "How I automated 50% of my visual pipeline — and what that changed about how I direct"
 category: "Creative direction"
 readTime: "6 min"
-date: "Apr 2026"
+date: "Mar 2026"
+pubDate: 2026-03-15
 placeholder: "AI"
-description: "AI didn't replace my creative work. It replaced everything around it — and changed how I show up as a director."
+description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"
 ---
 

@@ -2,9 +2,10 @@
 title: "What you learn when you're your own client"
 category: "Branding"
 readTime: "5 min"
-date: "May 2026"
+date: "Apr 2026"
+pubDate: 2026-04-20
 placeholder: "Brand"
-description: "Directing other people's work is one thing. Directing yourself is something else entirely."
+description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"
 ---
 

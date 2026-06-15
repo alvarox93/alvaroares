@@ -1,10 +1,11 @@
 ---
-title: "Querían movimiento. Les dimos dirección."
+title: "Querían motion. Les dimos dirección."
 category: "Motion"
 readTime: "5 min"
-date: "Jun 2026"
+date: "May 2026"
+pubDate: 2026-05-12
 placeholder: "Motion"
-description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así es como el motion se convierte en dirección — no en decoración."
+description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
 ---
 

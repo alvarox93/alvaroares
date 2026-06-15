@@ -1,10 +1,11 @@
 ---
-title: "Lo que aprendes cuando eres tú mismo el cliente"
+title: "Lo que aprendes cuando eres tu propio cliente"
 category: "Branding"
 readTime: "5 min"
-date: "May 2026"
-placeholder: "Marca"
-description: "Dirigir el trabajo de otros es una cosa. Dirigirte a ti mismo es otra completamente distinta."
+date: "Abr 2026"
+pubDate: 2026-04-20
+placeholder: "Brand"
+description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
 ---
 

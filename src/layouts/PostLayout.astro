@@ -8,20 +8,38 @@ interface Props {
   category: string;
   readTime: string;
   date?: string;
+  pubDate?: Date | string;
   description?: string;
   lang?: Language;
   transitionLine1?: string;
   transitionLine2?: string;
+  authorName?: string;
+  authorUrl?: string;
 }
 
-const { title, category, readTime, date, description, lang: langProp, transitionLine1, transitionLine2 } = Astro.props;
+const { title, category, readTime, date, pubDate, description, lang: langProp, transitionLine1, transitionLine2, authorName = 'Álvaro Ares', authorUrl = 'https://alvaroar.es' } = Astro.props;
 const lang: Language = langProp ?? ((Astro.currentLocale ?? defaultLang) as Language);
 const t = useTranslations(lang);
 const backHref = lang === defaultLang ? '/#posts' : '/es/#posts';
 const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts';
+
+const pubDateIso = pubDate
+  ? (typeof pubDate === 'string' ? new Date(pubDate) : pubDate).toISOString()
+  : undefined;
+const pubDateDisplay = pubDate
+  ? (typeof pubDate === 'string' ? new Date(pubDate) : pubDate)
+  : undefined;
 ---
 
-<BaseLayout title={`${title} — Álvaro Ares`} description={description} transitionLine1={transitionLine1} transitionLine2={transitionLine2}>
+<BaseLayout
+  title={`${title} — Álvaro Ares`}
+  description={description}
+  transitionLine1={transitionLine1}
+  transitionLine2={transitionLine2}
+  ogType="article"
+  pubDateIso={pubDateIso}
+  authorName={authorName}
+>
   <Navigation />
   <main class="relative z-[1] bg-canvas">
     <article class="max-w-[720px] mx-auto px-xl lg:px-3xl pt-[140px] pb-section">
@@ -34,6 +52,9 @@ const backText = lang === 'es' ? 'Volver a todos los posts' : 'Back to all posts
         <h1 class="text-[clamp(28px,4.5vw,48px)] font-light leading-[1.08] tracking-[-0.04em] text-ink text-balance">
           {title}
         </h1>
+        <p class="text-ghost text-[13px] mt-md">
+          {lang === 'es' ? 'Por' : 'By'} <a href={authorUrl} class="text-ink hover:text-accent transition-colors duration-200">{authorName}</a>
+        </p>
       </header>
 
       <div class="mb-3xl">

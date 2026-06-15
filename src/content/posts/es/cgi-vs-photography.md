@@ -2,9 +2,10 @@
 title: "Renders gourmet. Sin clientes. Sin excusas."
 category: "CGI"
 readTime: "5 min"
-date: "Jun 2026"
+date: "Feb 2026"
+pubDate: 2026-02-18
 placeholder: "CGI"
-description: "Hay proyectos que haces porque te los piden. Y hay proyectos que haces porque no puedes no hacerlos."
+description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
 ---
 

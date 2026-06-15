@@ -7,6 +7,7 @@ const posts = defineCollection({
     category: z.string(),
     readTime: z.string(),
     date: z.string(),
+    pubDate: z.coerce.date().optional(),
     placeholder: z.string(),
     description: z.string().optional(),
     lang: z.enum(['en', 'es']).default('en'),

@@ -1,10 +1,11 @@
 ---
-title: "Cómo automaticé el 50% de mi pipeline visual — y lo que eso cambió en cómo dirijo"
+title: "Cómo automaticé el 50% de mi pipeline visual — y qué cambió en cómo dirijo"
 category: "Dirección creativa"
 readTime: "6 min"
-date: "Abr 2026"
-placeholder: "IA"
-description: "La IA no reemplazó mi trabajo creativo. Reemplazó todo lo que lo rodeaba — y cambió cómo llego como director."
+date: "Mar 2026"
+pubDate: 2026-03-15
+placeholder: "AI"
+description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
 ---
 

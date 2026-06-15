@@ -1,10 +1,11 @@
 ---
-title: "Empecé con código. Lo odié. Y luego entendí para qué servía."
+title: "Empecé con código. Lo odié. Luego entendí para qué servía."
 category: "Código"
 readTime: "5 min"
-date: "Abr 2026"
-placeholder: "Código"
-description: "Mi primera web la hice con Dreamweaver siendo menor de edad. Lo odiaba. Luego entendí para qué servía."
+date: "Ene 2026"
+pubDate: 2026-01-22
+placeholder: "Code"
+description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
 ---
 
