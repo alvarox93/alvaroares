@@ -362,7 +362,8 @@ export const ui = {
     'home.posts.label': 'Pensando',
     'home.posts.title': 'Pensando en alto.<br />Perspectiva detrás del escritorio.',
 
-    'work.heading': 'El trabajo.<br /><span class="font-light">Hecho para liderar, no solo para entregar.</span>',
+    'work.heading': 'El trabajo.',
+    'work.subheading': 'Hecho para recordarse, no solo para entregarse.',
     'work.koora.tag': 'CGI · Motion · Dirección',
     'work.koora.title': 'Ocho años de pasión. Cero atajos.',
     'work.koora.body': 'CGI y motion para marcas internacionales — cada frame tratado como si fuera el único.',
