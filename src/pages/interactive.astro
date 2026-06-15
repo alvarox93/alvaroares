@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
+import IconMail from '@components/icons/IconMail.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
@@ -90,21 +91,9 @@ const t = useTranslations(lang);
           </div>
         </div>
 
-        <!-- Block 02 — Astigarraga VR — full-width video 16:9 -->
-        <div class="narrative-block relative mb-section-mobile lg:mb-4xl">
-          <div class="relative aspect-[16/9] bg-canvas rounded-2xl border border-border-light overflow-hidden">
-            <video
-              class="absolute inset-0 w-full h-full object-cover"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="metadata"
-            >
-              <source src="/interactive/interactive_block2.webm" type="video/webm" />
-            </video>
-          </div>
-          <div class="mt-lg max-w-[720px]">
+        <!-- Block 02 — Astigarraga VR — text left, video right (16:9) -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block2.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('lab.block2.title')}
@@ -113,21 +102,8 @@ const t = useTranslations(lang);
               {t('lab.block2.body')}
             </p>
           </div>
-        </div>
-
-        <!-- Block 03 — Webapps & Interactive — video right -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
-            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block3.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
-              {t('lab.block3.title')}
-            </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('lab.block3.body')}
-            </p>
-          </div>
           <div class="video-col lg:col-span-6 lg:col-start-7 lg:order-2 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto max-w-full">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
                 autoplay
@@ -136,9 +112,46 @@ const t = useTranslations(lang);
                 playsinline
                 preload="metadata"
               >
-                <source src="/lab/webapps.mp4" type="video/mp4" />
+                <source src="/interactive/interactive_block2.webm" type="video/webm" />
               </video>
             </div>
+          </div>
+        </div>
+
+        <!-- Block 03 — Webapps & Interactive — text right, gallery left -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+            <div class="carousel-wrap bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="carousel-track">
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[01]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[02]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[03]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[04]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[05]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[06]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[07]</div></div>
+                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[08]</div></div>
+              </div>
+              <div class="carousel-dots">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block3.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lab.block3.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lab.block3.body')}
+            </p>
           </div>
         </div>
 
@@ -154,23 +167,7 @@ const t = useTranslations(lang);
         </div>
       </section>
 
-      <!-- CTA — dark -->
-      <div class="relative bg-ink w-screen overflow-hidden text-center py-section-mobile lg:py-section" style="margin-left: calc(-50vw + 50%);">
-        <h2 class="text-[clamp(24px,3vw,36px)] font-light leading-[1.15] tracking-[-0.03em] text-canvas text-balance mb-sm">
-          {t('lab.cta.heading')}
-        </h2>
-        <p class="text-canvas/60 text-[16px] leading-[1.6] mb-xl max-w-[480px] mx-auto">
-          {t('lab.cta.body')}
-        </p>
-        <a
-          href={lang === defaultLang ? '/#contact' : '/es/#contact'}
-          class="magnetic inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90"
-        >
-          {t('lab.cta.button')}
-        </a>
-      </div>
-
-      <!-- Render Calculator -->
+      <!-- Render Calculator (after blocks, before CTA) -->
       <section class="mt-section-mobile lg:mt-section mb-section-mobile lg:mb-section">
         <div class="mb-3xl text-center">
           <span class="text-ghost text-[11px] font-medium tracking-[0.14px] uppercase mb-sm block">Tool</span>
@@ -252,6 +249,23 @@ const t = useTranslations(lang);
         </div>
       </section>
 
+      <!-- CTA — dark (closing) -->
+      <div class="relative bg-ink w-screen overflow-hidden text-center py-section-mobile lg:py-section" style="margin-left: calc(-50vw + 50%);">
+        <h2 class="text-[clamp(24px,3vw,36px)] font-light leading-[1.15] tracking-[-0.03em] text-canvas text-balance mb-sm">
+          {t('lab.cta.heading')}
+        </h2>
+        <p class="text-canvas/60 text-[16px] leading-[1.6] mb-xl max-w-[480px] mx-auto">
+          {t('lab.cta.body')}
+        </p>
+        <a
+          href={lang === defaultLang ? '/#contact' : '/es/#contact'}
+          class="inline-flex items-center gap-xs px-6 py-3 bg-canvas text-ink text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90"
+        >
+          <IconMail size={16} />
+          {t('lab.cta.button')}
+        </a>
+      </div>
+
     </div>
   </main>
 </BaseLayout>
@@ -266,6 +280,43 @@ const t = useTranslations(lang);
   }
   section:first-of-type .grid {
     perspective: 1200px;
+  }
+
+  /* ── Carousel ── */
+  .carousel-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .carousel-track {
+    display: flex;
+    gap: 12px;
+    will-change: transform;
+  }
+  .carousel-slide {
+    flex: 0 0 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--color-surface);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border);
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+  .carousel-dot.active {
+    background: var(--color-ink);
   }
 
   /* ── Calculator ── */
@@ -577,6 +628,39 @@ const t = useTranslations(lang);
   }
 
   // ── Carousel ──
+  // ── Carousel ──
+  const carouselWrap = document.querySelector('.carousel-wrap') as HTMLElement;
+  if (carouselWrap) {
+    const track = carouselWrap.querySelector('.carousel-track') as HTMLElement;
+    const slides = carouselWrap.querySelectorAll('.carousel-slide');
+    const dots = carouselWrap.querySelectorAll('.carousel-dot');
+    if (track && slides.length > 1) {
+      let current = 0;
+      const total = slides.length;
+      const interval = 4000;
+
+      function goTo(index: number) {
+        current = index;
+        gsap.to(track, {
+          x: -current * (slides[0] as HTMLElement).offsetWidth - current * 12,
+          duration: 0.8,
+          ease: 'power3.inOut',
+        });
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goTo(i));
+      });
+
+      setInterval(() => {
+        goTo((current + 1) % total);
+      }, interval);
+    }
+  }
+
   // ── Calculator ──
   const calcBtn = document.getElementById('calc-btn');
   const calcFrames = document.getElementById('calc-frames') as HTMLInputElement;
