@@ -336,11 +336,11 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
       });
     }
 
-    const workHeading = document.querySelector('#work h2');
-    if (workHeading) {
-      gsap.from(workHeading, {
-        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
-        scrollTrigger: { trigger: workHeading, start: 'top 85%', once: true },
+    const workSub = document.querySelector('.work-sub');
+    if (workSub) {
+      gsap.from(workSub, {
+        y: 12, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: workSub, start: 'top 88%', once: true },
       });
     }
   }
