@@ -164,14 +164,15 @@
   .marquee-track {
     display: flex;
     width: max-content;
+    will-change: transform;
   }
 
   .marquee-left {
-    animation: marquee-left 60s linear infinite;
+    animation: marquee-left 30s linear infinite;
   }
 
   .marquee-right {
-    animation: marquee-right 60s linear infinite;
+    animation: marquee-right 30s linear infinite;
   }
 
   @keyframes marquee-left {
