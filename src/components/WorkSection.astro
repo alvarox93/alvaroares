@@ -79,23 +79,15 @@ const projects: Array<{
 ---
 
 <section class="relative bg-canvas" id="work">
-  <div class="relative bg-ink w-screen pt-[140px] pb-[140px] overflow-hidden" style="margin-left: calc(-50vw + 50%);">
+  <div class="relative bg-ink w-screen py-section overflow-hidden" style="margin-left: calc(-50vw + 50%);">
     <div class="relative z-10 max-w-[820px] mx-auto px-xl lg:px-3xl text-center">
-      <span class="text-canvas/40 text-[11px] font-medium tracking-[0.14px] uppercase block mb-3xl">
-        <span class="inline-block w-8 h-px bg-canvas/20 align-middle mr-3"></span>
-        {t('nav.work')}
-        <span class="inline-block w-8 h-px bg-canvas/20 align-middle ml-3"></span>
-      </span>
-      <h2 class="work-title text-[clamp(32px,4.5vw,56px)] font-medium leading-[1.0] tracking-[-0.03em] text-canvas text-balance">
+      <h2 class="work-title text-[clamp(28px,3.6vw,44px)] font-medium leading-[1.1] tracking-[-0.03em] text-canvas text-balance">
         {t('work.heading')}
       </h2>
-      <p class="work-sub mt-md text-[clamp(15px,1.3vw,18px)] font-light italic leading-[1.5] text-canvas/40 max-w-[480px] mx-auto text-balance">
-        {t('work.subheading')}
-      </p>
     </div>
   </div>
 
-  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl mt-section">
     {projects.slice(0, 2).map((p) => {
       const isLeft = p.side === 'left';
       return (
