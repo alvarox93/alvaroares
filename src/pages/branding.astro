@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
+import IconMail from '@components/icons/IconMail.astro';
 import { Image } from 'astro:assets';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 import freshLima from '../assets/lapatzak/testFreshLima.png';
@@ -68,47 +69,7 @@ const t = useTranslations(lang);
           </h2>
         </div>
 
-        <!-- Block 01 — From scratch — image left -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [Brand asset 01]
-              </div>
-            </div>
-          </div>
-          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
-            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block1.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
-              {t('lapatzak.block1.title')}
-            </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('lapatzak.block1.body')}
-            </p>
-          </div>
-        </div>
-
-        <!-- Block 02 — Brand fluency — image right -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
-            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block2.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
-              {t('lapatzak.block2.title')}
-            </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('lapatzak.block2.body')}
-            </p>
-          </div>
-          <div class="video-col lg:col-span-6 lg:col-start-7 lg:order-2 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [Brand asset 02]
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Block 03 — Beyond visuals — grid 4 left -->
+        <!-- Block 01 — From scratch — grid 4 left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
             <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
@@ -169,6 +130,53 @@ const t = useTranslations(lang);
             </div>
           </div>
           <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block1.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lapatzak.block1.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lapatzak.block1.body')}
+            </p>
+          </div>
+        </div>
+
+        <!-- Block 02 — Brand fluency — video right (16:9) -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
+            <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block2.tag')}</span>
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+              {t('lapatzak.block2.title')}
+            </h3>
+            <p class="text-muted text-[15px] leading-[1.75]">
+              {t('lapatzak.block2.body')}
+            </p>
+          </div>
+          <div class="video-col lg:col-span-6 lg:col-start-7 lg:order-2 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto max-w-full">
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+              >
+                <source src="/branding/branding_block2.webm" type="video/webm" />
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 03 — Beyond visuals — placeholder left -->
+        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
+          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+            <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                [Brand asset 03]
+              </div>
+            </div>
+          </div>
+          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lapatzak.block3.tag')}</span>
             <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
               {t('lapatzak.block3.title')}
@@ -190,8 +198,9 @@ const t = useTranslations(lang);
         </p>
         <a
           href={lang === defaultLang ? '/#contact' : '/es/#contact'}
-          class="magnetic inline-flex items-center justify-center px-6 py-3 bg-canvas text-ink text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90"
+          class="inline-flex items-center gap-xs px-6 py-3 bg-canvas text-ink text-[14px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-canvas/90"
         >
+          <IconMail size={16} />
           {t('lapatzak.cta.button')}
         </a>
       </div>
