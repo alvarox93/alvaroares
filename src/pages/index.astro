@@ -339,16 +339,15 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
     const workHeading = document.querySelector('#work h2');
     if (workHeading) {
       const workSub = document.querySelector('.work-sub');
-      const workBar = document.querySelector('.work-bar');
-      const tl = gsap.timeline({
+      gsap.from(workHeading, {
+        y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
         scrollTrigger: { trigger: workHeading, start: 'top 85%', once: true },
       });
-      tl.from(workHeading, { y: 28, autoAlpha: 0, duration: 0.8, ease: 'power3.out' });
-      if (workBar) {
-        tl.from(workBar, { scaleY: 0, transformOrigin: 'top center', duration: 0.5, ease: 'power2.out' }, '-=0.4');
-      }
       if (workSub) {
-        tl.from(workSub, { y: 10, autoAlpha: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4');
+        gsap.from(workSub, {
+          y: 8, autoAlpha: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: workSub, start: 'top 90%', once: true },
+        });
       }
     }
   }
