@@ -74,6 +74,7 @@
     scroll-behavior: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
   }
 
   html.lenis, html.lenis body { height: auto; }
@@ -87,6 +88,7 @@
     letter-spacing: -0.374px;
     color: var(--color-ink);
     background-color: var(--color-canvas);
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -217,6 +219,14 @@
     opacity: 0.07;
     background: var(--accent);
     pointer-events: none;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-blob {
+      width: 320px;
+      height: 320px;
+      filter: blur(80px);
+    }
   }
 
   .hero-video {
