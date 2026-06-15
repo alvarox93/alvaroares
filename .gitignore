@@ -5,3 +5,5 @@ dist/
 public/foodRenders/
 .unlighthouse/
 lighthouse-results/
+.agents/
+skills-lock.json
