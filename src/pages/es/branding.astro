@@ -8,6 +8,7 @@ import freshLima from '../../assets/lapatzak/testFreshLima.png';
 import gureBrava from '../../assets/lapatzak/testGureBrava.png';
 import sweet from '../../assets/lapatzak/testSweet.jpeg';
 import lemonKalima from '../../assets/lapatzak/testlemonKalima.webp';
+import brandBlock3 from '../../assets/branding/branding_block3.png';
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 ---
@@ -167,13 +168,21 @@ const t = useTranslations(lang);
           </div>
         </div>
 
-        <!-- Block 03 — Beyond visuals — placeholder left -->
+        <!-- Block 03 — Beyond visuals — image left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
             <div class="relative aspect-square bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [Brand asset 03]
-              </div>
+              <Image
+                src={brandBlock3}
+                alt="Lapatzak brand — sistema visual"
+                class="w-full h-full object-cover"
+                width={1200}
+                densities={[1, 2]}
+                format="webp"
+                quality={80}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
           <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
