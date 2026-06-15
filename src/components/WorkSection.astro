@@ -79,15 +79,18 @@ const projects: Array<{
 ---
 
 <section class="relative bg-canvas" id="work">
-  <div class="relative bg-ink w-screen py-section overflow-hidden" style="margin-left: calc(-50vw + 50%);">
-    <div class="relative z-10 max-w-[820px] mx-auto px-xl lg:px-3xl text-center">
-      <h2 class="work-title text-[clamp(28px,3.6vw,44px)] font-medium leading-[1.1] tracking-[-0.03em] text-canvas text-balance">
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-[clamp(72px,12vw,140px)] pb-section">
+    <div class="max-w-[820px]">
+      <h2 class="work-title text-[clamp(40px,6vw,80px)] font-medium leading-[0.95] tracking-[-0.04em] text-ink text-balance">
         {t('work.heading')}
       </h2>
+      <p class="work-sub mt-lg text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-muted max-w-[420px]">
+        {t('work.subheading')}
+      </p>
     </div>
   </div>
 
-  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl mt-section">
+  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
     {projects.slice(0, 2).map((p) => {
       const isLeft = p.side === 'left';
       return (
