@@ -47,6 +47,77 @@ const personJsonLd = {
     'https://linkedin.com/in/alvaroares',
     'https://instagram.com/alvaroar.es',
   ],
+  alumniOf: [
+    {
+      '@type': 'EducationalOrganization',
+      name: 'Universidad del País Vasco / EHU',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Leioa',
+        addressCountry: 'ES',
+      },
+    },
+    {
+      '@type': 'EducationalOrganization',
+      name: 'Tartanga Formazio Profesionala',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Erandio',
+        addressCountry: 'ES',
+      },
+    },
+  ],
+  hasOccupation: [
+    {
+      '@type': 'Role',
+      roleName: lang === 'es' ? 'Director Creativo y Fundador' : 'Creative Director & Founder',
+      startDate: '2018',
+      endDate: '2022',
+      namedEntity: {
+        '@type': 'Organization',
+        name: 'Koora.studio',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Bilbao',
+          addressCountry: 'ES',
+        },
+      },
+    },
+    {
+      '@type': 'Role',
+      roleName: lang === 'es' ? 'Brand Manager y Fundador' : 'Brand Manager & Founder',
+      namedEntity: {
+        '@type': 'Organization',
+        name: 'Lapatzak',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Barcelona',
+          addressCountry: 'ES',
+        },
+      },
+    },
+    {
+      '@type': 'Role',
+      roleName: 'Lead 3D Artist',
+      namedEntity: {
+        '@type': 'Organization',
+        name: 'Ludei',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'San Francisco',
+          addressCountry: 'US',
+        },
+      },
+    },
+    {
+      '@type': 'Role',
+      roleName: lang === 'es' ? 'Asistente de Marketing' : 'Marketing Assistant',
+      namedEntity: {
+        '@type': 'Organization',
+        name: 'MMD Distribution',
+      },
+    },
+  ],
   knowsAbout: [
     'Creative Direction',
     'CGI',
@@ -54,7 +125,18 @@ const personJsonLd = {
     'Brand Identity',
     '3D Rendering',
     'Art Direction',
+    'AI Workflows',
+    'Design Systems',
+    'Typography',
+    'Frontend Development',
   ],
+  seeks: {
+    '@type': 'Demand',
+    name: lang === 'es' ? 'Puesto creativo senior' : 'Senior creative position',
+    description: lang === 'es'
+      ? 'Busca activamente un puesto estable como director creativo o artista CGI senior. Disponible para roles en España (€45,000–€70,000+ brutos/año) o internacional ($70,000–$120,000+ USD/año).'
+      : 'Actively seeking a full-time role as senior creative director or CGI artist. Open to roles in Spain (€45,000–€70,000+ gross/year) or international ($70,000–$120,000+ USD/year).',
+  },
 };
 
 const websiteJsonLd = {
