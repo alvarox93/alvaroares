@@ -8,6 +8,9 @@ const path = Astro.url.pathname;
 const cleanPath = path.replace(/^\/(en|es)/, '') || '/';
 const enHref = cleanPath === '/' ? 'https://alvaroar.es/' : `https://alvaroar.es${cleanPath}`;
 const esHref = cleanPath === '/' ? 'https://alvaroar.es/es/' : `https://alvaroar.es/es${cleanPath}`;
+const canonicalUrl = `https://alvaroar.es${path === '/' ? '/' : path}`;
+
+const isHome = path === '/' || path === '/es/' || path === '/es';
 
 import PageTransition from '@components/PageTransition.astro';
 
@@ -21,6 +24,40 @@ interface Props {
 const { title, description = lang === 'es'
   ? 'Álvaro Ares — Director Creativo & Motion Strategist en Bilbao.'
   : 'Álvaro Ares — Creative Director & Motion Strategist based in Bilbao.', transitionLine1, transitionLine2 } = Astro.props;
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Álvaro Ares',
+  url: 'https://alvaroar.es',
+  jobTitle: lang === 'es' ? 'Director Creativo y Artista CGI' : 'Creative Director & CGI Artist',
+  description,
+  email: 'hey@alvaroar.es',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bilbao',
+    addressCountry: 'ES',
+  },
+  sameAs: [
+    'https://linkedin.com/in/alvaroares',
+  ],
+  knowsAbout: [
+    'Creative Direction',
+    'CGI',
+    'Motion Design',
+    'Brand Identity',
+    '3D Rendering',
+    'Art Direction',
+  ],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Álvaro Ares',
+  url: 'https://alvaroar.es',
+  inLanguage: ['en', 'es'],
+};
 ---
 
 <!doctype html>
@@ -30,6 +67,20 @@ const { title, description = lang === 'es'
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="msvalidate.01" content="940075CA63F85940CBB9720244681AAD" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content={isHome ? 'website' : 'profile'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Álvaro Ares" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/bricolage-grotesque-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
@@ -38,6 +89,9 @@ const { title, description = lang === 'es'
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="x-default" href={enHref} />
     <title>{title}</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />}
 
     <script is:inline>
       // Force unregister ALL service workers (zombie SW cleanup)
