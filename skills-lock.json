@@ -19,6 +19,12 @@
       "skillPath": "skills/components/branding/hero/SKILL.md",
       "computedHash": "e2a24436f6db432518c892c2ece08a69d331f5b0ae761f68cb626549ddee3d95"
     },
+    "tailwind-responsive-ui": {
+      "source": "pproenca/dot-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.experimental/tailwind-responsive-ui/SKILL.md",
+      "computedHash": "0b4a3b0ecc73594314c99603eef2cce8c4691ba27b7e373f93838fdda5487266"
+    },
     "threejs-webgl": {
       "source": "freshtechbro/claudedesignskills",
       "sourceType": "github",

@@ -47,7 +47,7 @@ const t = useTranslations(lang);
         </p>
 
         <div class="flex flex-col gap-md">
-          <div class="flex gap-md items-center">
+          <div class="flex flex-col sm:flex-row gap-md items-stretch sm:items-center">
             <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
               <IconUser size={16} />
               {t('home.hero.cta.about')}
@@ -94,12 +94,12 @@ const t = useTranslations(lang);
 
   <div class="absolute bottom-0 left-0 right-0 z-10 px-xl lg:px-3xl py-5">
     <div class="max-w-[1200px] mx-auto flex justify-center">
-        <span class="inline-flex items-center gap-md text-ghost text-[11px] tracking-[0.14px]">
-          <span class="inline-flex items-center gap-xs">
+        <span class="inline-flex items-center gap-md text-ghost text-[11px] tracking-[0.14px] flex-wrap justify-center">
+          <span class="hidden sm:inline-flex items-center gap-xs">
             <IconLocation size={12} />
             {t('home.hero.bornIn')}
           </span>
-        <span class="w-[3px] h-[3px] rounded-full bg-ghost/40"></span>
+        <span class="hidden sm:inline-block w-[3px] h-[3px] rounded-full bg-ghost/40"></span>
         <span>{t('home.hero.basedIn')}</span>
         <span class="w-[3px] h-[3px] rounded-full bg-ghost/40"></span>
         <span>{t('home.hero.working')}</span>

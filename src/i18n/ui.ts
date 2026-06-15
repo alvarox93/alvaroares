@@ -37,7 +37,8 @@ export const ui = {
     'home.posts.label': 'Thinking',
     'home.posts.title': 'Thinking out loud.<br />The perspective behind the work.',
 
-    'work.heading': 'The work.<br /><span class="font-light">Built to lead, not just to deliver.</span>',
+    'work.heading': 'The work.',
+    'work.subheading': 'Made to be remembered, not just shipped.',
     'work.koora.tag': 'CGI · Motion · Direction',
     'work.koora.title': 'Eight years of passion. Zero shortcuts.',
     'work.koora.body': 'CGI and motion for international brands — every frame treated like it\'s the only one.',

@@ -1,4 +1,6 @@
 ---
+import { getFoodAlt } from '@utils/imageAlts';
+
 const images = [
   'bar',
   'bonbon',
@@ -56,7 +58,7 @@ const initialData = JSON.stringify(initial);
     <div class="food-slide-slot" data-slot={i} style="flex: 1; position: relative; overflow: hidden; border-radius: 6px;">
       <img
         src={`/food-renders/${img}.webp`}
-        alt=""
+        alt={getFoodAlt(img)}
         loading="lazy"
         decoding="async"
         class="food-slide-img absolute inset-0 w-full h-full object-cover"
@@ -65,7 +67,7 @@ const initialData = JSON.stringify(initial);
       />
       <img
         src={`/food-renders/${img}.webp`}
-        alt=""
+        alt={getFoodAlt(img)}
         loading="lazy"
         decoding="async"
         class="food-slide-img absolute inset-0 w-full h-full object-cover"

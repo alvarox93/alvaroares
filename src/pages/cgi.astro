@@ -3,6 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 import IconArrow from '@components/icons/IconArrow.astro';
+import { getFoodAlt } from '@utils/imageAlts';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -32,7 +33,7 @@ const rowLengths = rows.map(r => r.length);
               <div class="render-card">
                 <img
                   src={`/food-renders/${file}.webp`}
-                  alt={`${file} — 3D food render`}
+                  alt={getFoodAlt(file)}
                   loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
                 />
