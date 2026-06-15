@@ -65,93 +65,105 @@ const t = useTranslations(lang);
         </div>
 
         <!-- Block 01 — VR Education — video left -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
-              <video
-                class="absolute inset-0 w-full h-full object-cover"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="/lab/vr-education.mp4" type="video/mp4" />
-              </video>
-            </div>
-          </div>
-          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+        <div class="narrative-block relative mb-section-mobile lg:mb-4xl">
+          <div class="mb-lg">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block1.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance">
               {t('lab.block1.title')}
             </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('lab.block1.body')}
-            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+            <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+              <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
+                <video
+                  class="absolute inset-0 w-full h-full object-cover"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                >
+                  <source src="/lab/vr-education.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+            <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+              <p class="text-muted text-[15px] leading-[1.75]">
+                {t('lab.block1.body')}
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Block 02 — Astigarraga VR — text left, video right (16:9) -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
+        <div class="narrative-block relative mb-section-mobile lg:mb-4xl">
+          <div class="mb-lg">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block2.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance">
               {t('lab.block2.title')}
             </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('lab.block2.body')}
-            </p>
           </div>
-          <div class="video-col lg:col-span-6 lg:col-start-7 lg:order-2 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto max-w-full">
-              <video
-                class="absolute inset-0 w-full h-full object-cover"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="/interactive/interactive_block2.webm" type="video/webm" />
-              </video>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+            <div class="video-col lg:col-span-6 lg:col-start-7 lg:sticky lg:top-[72px]">
+              <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto max-w-full">
+                <video
+                  class="absolute inset-0 w-full h-full object-cover"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                >
+                  <source src="/interactive/interactive_block2.webm" type="video/webm" />
+                </video>
+              </div>
+            </div>
+            <div class="text-col relative z-[2] lg:col-span-5 lg:order-1">
+              <p class="text-muted text-[15px] leading-[1.75]">
+                {t('lab.block2.body')}
+              </p>
             </div>
           </div>
         </div>
 
         <!-- Block 03 — Webapps & Interactive — text right, gallery left -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
-            <div class="carousel-wrap bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="carousel-track">
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[01]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[02]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[03]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[04]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[05]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[06]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[07]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[08]</div></div>
-              </div>
-              <div class="carousel-dots">
-                <div class="carousel-dot active"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-              </div>
-            </div>
-          </div>
-          <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+        <div class="narrative-block relative mb-section-mobile lg:mb-4xl">
+          <div class="mb-lg">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block3.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance">
               {t('lab.block3.title')}
             </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('lab.block3.body')}
-            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+            <div class="video-col lg:col-span-6 lg:sticky lg:top-[72px]">
+              <div class="carousel-wrap bg-canvas rounded-xl border border-border-light overflow-hidden">
+                <div class="carousel-track">
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[01]</div></div>
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[02]</div></div>
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[03]</div></div>
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[04]</div></div>
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[05]</div></div>
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[06]</div></div>
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[07]</div></div>
+                  <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[08]</div></div>
+                </div>
+                <div class="carousel-dots">
+                  <div class="carousel-dot active"></div>
+                  <div class="carousel-dot"></div>
+                  <div class="carousel-dot"></div>
+                  <div class="carousel-dot"></div>
+                  <div class="carousel-dot"></div>
+                  <div class="carousel-dot"></div>
+                  <div class="carousel-dot"></div>
+                  <div class="carousel-dot"></div>
+                </div>
+              </div>
+            </div>
+            <div class="text-col relative z-[2] lg:col-span-5 lg:col-start-8">
+              <p class="text-muted text-[15px] leading-[1.75]">
+                {t('lab.block3.body')}
+              </p>
+            </div>
           </div>
         </div>
 

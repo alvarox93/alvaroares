@@ -48,19 +48,19 @@ const t = useTranslations(lang);
 
         <div class="flex flex-col gap-md">
           <div class="flex flex-col sm:flex-row gap-md items-stretch sm:items-center">
-            <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85">
+            <a href={lang === defaultLang ? '/about' : '/es/about'} data-transition-line1={t('transition.about.line1')} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-ink text-canvas text-[13px] font-medium tracking-[-0.2px] rounded-lg transition-colors duration-300 hover:bg-ink/85 sm:flex-1">
               <IconUser size={16} />
               {t('home.hero.cta.about')}
             </a>
-            <a href={`mailto:${t('footer.email')}`} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20">
+            <a href={`mailto:${t('footer.email')}`} class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-surface text-ink text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border transition-colors duration-300 hover:border-ink/20 sm:flex-1">
               <IconMail size={16} />
               {t('home.hero.cta.contact')}
             </a>
+            <a href={lang === 'es' ? '/CVs/alvaroAres_CV_2026_ES.pdf' : '/CVs/alvaroAres_CV_2026_EN.pdf'} download class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-transparent text-ink/60 text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border/50 transition-colors duration-300 hover:border-ink/30 hover:text-ink sm:flex-1">
+              <IconDownload size={16} />
+              {t('home.hero.cta.cv')}
+            </a>
           </div>
-          <a href={lang === 'es' ? '/CVs/alvaroAres_CV_2026_ES.pdf' : '/CVs/alvaroAres_CV_2026_EN.pdf'} download class="inline-flex items-center gap-xs justify-center px-6 py-3 bg-transparent text-ink/60 text-[13px] font-medium tracking-[-0.2px] rounded-lg border border-border/50 transition-colors duration-300 hover:border-ink/30 hover:text-ink w-fit">
-            <IconDownload size={16} />
-            {t('home.hero.cta.cv')}
-          </a>
         </div>
 
       </div>

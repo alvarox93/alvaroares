@@ -75,48 +75,56 @@ const t = useTranslations(lang);
           </h2>
         </div>
 
-        <!-- Block 01 — International reach — video left -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="video-col lg:col-span-7 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [International campaign video]
-              </div>
-            </div>
-          </div>
-          <div class="text-col relative z-[2] lg:col-span-4 lg:col-start-9">
+        <!-- Block 01 — International reach -->
+        <div class="narrative-block relative mb-section-mobile lg:mb-4xl">
+          <div class="mb-lg">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative1.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance">
               {t('koora.narrative1.title')}
             </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('koora.narrative1.body')}
-            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+            <div class="video-col lg:col-span-7 lg:sticky lg:top-[72px]">
+              <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                  [International campaign video]
+                </div>
+              </div>
+            </div>
+            <div class="text-col relative z-[2] lg:col-span-4 lg:col-start-9">
+              <p class="text-muted text-[15px] leading-[1.75]">
+                {t('koora.narrative1.body')}
+              </p>
+            </div>
           </div>
         </div>
 
-        <!-- Block 02 — The team — video right -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="text-col relative z-[2] lg:col-span-4 lg:order-1">
+        <!-- Block 02 — The team -->
+        <div class="narrative-block relative mb-section-mobile lg:mb-4xl">
+          <div class="mb-lg">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative2.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance">
               {t('koora.narrative2.title')}
             </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('koora.narrative2.body')}
-            </p>
           </div>
-          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <video
-                class="absolute inset-0 w-full h-full object-cover"
-                autoplay
-                loop
-                muted
-                playsinline
-              >
-                <source src="/studio/studioExtract_2.webm" type="video/webm" />
-              </video>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+            <div class="video-col lg:col-span-7 lg:col-start-6 lg:sticky lg:top-[72px]">
+              <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+                <video
+                  class="absolute inset-0 w-full h-full object-cover"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                >
+                  <source src="/studio/studioExtract_2.webm" type="video/webm" />
+                </video>
+              </div>
+            </div>
+            <div class="text-col relative z-[2] lg:col-span-4 lg:order-1">
+              <p class="text-muted text-[15px] leading-[1.75]">
+                {t('koora.narrative2.body')}
+              </p>
             </div>
           </div>
         </div>
@@ -218,49 +226,57 @@ const t = useTranslations(lang);
 
       <!-- Narrative continued -->
       <section class="mt-section-mobile lg:mt-section mb-section-mobile lg:mb-section">
-        <!-- Block 03 — Consistency — video left -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
-          <div class="video-col lg:col-span-7 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [Consistency showcase video]
-              </div>
-            </div>
-          </div>
-          <div class="text-col relative z-[2] lg:col-span-4 lg:col-start-9">
+        <!-- Block 03 — Consistency -->
+        <div class="narrative-block relative mb-section-mobile lg:mb-4xl">
+          <div class="mb-lg">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative3.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance">
               {t('koora.narrative3.title')}
             </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('koora.narrative3.body')}
-            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+            <div class="video-col lg:col-span-7 lg:sticky lg:top-[72px]">
+              <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
+                  [Consistency showcase video]
+                </div>
+              </div>
+            </div>
+            <div class="text-col relative z-[2] lg:col-span-4 lg:col-start-9">
+              <p class="text-muted text-[15px] leading-[1.75]">
+                {t('koora.narrative3.body')}
+              </p>
+            </div>
           </div>
         </div>
 
-        <!-- Block 04 — Pipeline — video right -->
-        <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
-          <div class="text-col relative z-[2] lg:col-span-4 lg:order-1">
+        <!-- Block 04 — Pipeline -->
+        <div class="narrative-block relative">
+          <div class="mb-lg">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('koora.narrative4.tag')}</span>
-            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance mb-sm">
+            <h3 class="text-[clamp(22px,2.5vw,30px)] font-light leading-[1.18] tracking-[-0.03em] text-ink text-balance">
               {t('koora.narrative4.title')}
             </h3>
-            <p class="text-muted text-[15px] leading-[1.75]">
-              {t('koora.narrative4.body')}
-            </p>
           </div>
-          <div class="video-col lg:col-span-7 lg:col-start-6 lg:order-2 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <video
-                class="absolute inset-0 w-full h-full object-cover"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="metadata"
-              >
-                <source src="/studio/studioExtract_4.webm" type="video/webm" />
-              </video>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+            <div class="video-col lg:col-span-7 lg:col-start-6 lg:sticky lg:top-[72px]">
+              <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
+                <video
+                  class="absolute inset-0 w-full h-full object-cover"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                >
+                  <source src="/studio/studioExtract_4.webm" type="video/webm" />
+                </video>
+              </div>
+            </div>
+            <div class="text-col relative z-[2] lg:col-span-4 lg:order-1">
+              <p class="text-muted text-[15px] leading-[1.75]">
+                {t('koora.narrative4.body')}
+              </p>
             </div>
           </div>
         </div>
