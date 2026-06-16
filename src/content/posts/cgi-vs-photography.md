@@ -2,8 +2,8 @@
 title: "Gourmet renders. No clients. No excuses."
 category: "CGI"
 readTime: "5 min"
-date: "Feb 2026"
-pubDate: 2026-02-18
+date: "Apr 2026"
+pubDate: 2026-04-15
 placeholder: "CGI"
 description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"

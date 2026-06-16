@@ -2,8 +2,8 @@
 title: "Lo que aprendes cuando eres tu propio cliente"
 category: "Branding"
 readTime: "5 min"
-date: "Abr 2026"
-pubDate: 2026-04-20
+date: "Feb 2026"
+pubDate: 2026-02-20
 placeholder: "Brand"
 description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"

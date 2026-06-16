@@ -2,8 +2,8 @@
 title: "Renders gourmet. Sin clientes. Sin excusas."
 category: "CGI"
 readTime: "5 min"
-date: "Feb 2026"
-pubDate: 2026-02-18
+date: "Abr 2026"
+pubDate: 2026-04-15
 placeholder: "CGI"
 description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"

@@ -2,8 +2,8 @@
 title: "What you learn when you're your own client"
 category: "Branding"
 readTime: "5 min"
-date: "Apr 2026"
-pubDate: 2026-04-20
+date: "Feb 2026"
+pubDate: 2026-02-20
 placeholder: "Brand"
 description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"

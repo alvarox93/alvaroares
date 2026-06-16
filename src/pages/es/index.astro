@@ -15,10 +15,14 @@ import IconInstagram from '@components/icons/IconInstagram.astro';
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 const allPosts = await getCollection('posts');
-const postOrder = ['motion-design-systems', 'cgi-vs-photography', 'ai-pipeline', 'designing-in-code', 'building-lapatzak'];
+const postOrder = ['motion-design-systems', 'cgi-vs-photography', 'ai-pipeline', 'building-lapatzak', 'designing-in-code'];
 const posts = allPosts
   .filter((p) => p.data.lang === lang)
-  .sort((a, b) => postOrder.indexOf(a.slug) - postOrder.indexOf(b.slug));
+  .sort((a, b) => {
+    const slugA = a.slug.replace(/^es\//, '');
+    const slugB = b.slug.replace(/^es\//, '');
+    return postOrder.indexOf(slugA) - postOrder.indexOf(slugB);
+  });
 const aboutHref = lang === defaultLang ? '/about' : '/es/about';
 ---
 
