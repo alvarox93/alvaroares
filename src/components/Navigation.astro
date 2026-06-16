@@ -1,7 +1,9 @@
 ---
 import LanguageSwitcher from '@components/LanguageSwitcher.astro';
-import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import { useTranslations, defaultLang, type Language, type UIKey } from '@i18n/ui';
 import IconChat from '@components/icons/IconChat.astro';
+import IconChevron from '@components/icons/IconChevron.astro';
+import IconArrowUpRight from '@components/icons/IconArrowUpRight.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
@@ -9,7 +11,23 @@ const homeHref = lang === defaultLang ? '/' : `/${lang}`;
 const aboutHref = lang === defaultLang ? '/about' : '/es/about';
 
 const nameChars = 'Álvaro Ares'.split('');
+const workChars = t('nav.work').split('');
 const aboutChars = t('nav.about').split('');
+
+const workProjects: Array<{
+  slug: 'studio' | 'renders' | 'branding' | 'interactive';
+  num: string;
+  labelKey: UIKey;
+  tagKey: UIKey;
+  transitionKey: string;
+}> = [
+  { slug: 'studio', num: '01', labelKey: 'nav.work.studio', tagKey: 'work.koora.tag', transitionKey: 'transition.koora.line1' },
+  { slug: 'renders', num: '02', labelKey: 'nav.work.renders', tagKey: 'work.renders.tag', transitionKey: 'transition.renders.line1' },
+  { slug: 'branding', num: '03', labelKey: 'nav.work.branding', tagKey: 'work.lapatzak.tag', transitionKey: 'transition.lapatzak.line1' },
+  { slug: 'interactive', num: '04', labelKey: 'nav.work.lab', tagKey: 'work.lab.tag', transitionKey: 'transition.lab.line1' },
+];
+
+const projectHref = (slug: string) => lang === defaultLang ? `/${slug}` : `/es/${slug}`;
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50" id="main-nav">
@@ -29,6 +47,21 @@ const aboutChars = t('nav.about').split('');
 
     {/* Desktop nav */}
     <div class="hidden md:flex items-center gap-lg">
+      <button
+        type="button"
+        class="nav-char-link nav-trigger nav-work text-[13px] font-normal tracking-[-0.2px]"
+        data-work-trigger
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="work-dropdown"
+      >
+        <span class="nav-text">
+          {workChars.map((char) => (
+            <span class="nav-char">{char === ' ' ? '\u00A0' : char}</span>
+          ))}
+        </span>
+        <IconChevron class="work-chevron" />
+      </button>
       <a
         href={aboutHref}
         data-transition-line1={t('transition.about.line1')}
@@ -68,6 +101,36 @@ const aboutChars = t('nav.about').split('');
       <span class="burger-line burger-line-2"></span>
     </button>
   </div>
+
+  {/* Work dropdown (desktop) */}
+  <div
+    class="work-dropdown"
+    id="work-dropdown"
+    role="menu"
+    aria-label={t('nav.work')}
+    data-work-dropdown
+  >
+    <div class="work-dropdown-inner">
+      <div class="work-dropdown-panel">
+        {workProjects.map((p) => (
+          <a
+            href={projectHref(p.slug)}
+            role="menuitem"
+            data-transition-line1={t(p.transitionKey as UIKey)}
+            data-transition-line2=""
+            class="work-dropdown-item"
+          >
+            <span class="work-item-num">{p.num}</span>
+            <span class="work-item-body">
+              <span class="work-item-label">{t(p.labelKey)}</span>
+              <span class="work-item-tag">{t(p.tagKey)}</span>
+            </span>
+            <IconArrowUpRight class="work-item-arrow" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
 </nav>
 
 {/* Mobile full-screen menu */}
@@ -85,6 +148,22 @@ const aboutChars = t('nav.about').split('');
         data-transition-line2={t('transition.about.line2')}
         class="mobile-menu-link text-ink text-[32px] font-semibold tracking-[-0.6px]"
       >{t('nav.about')}</a>
+      <div class="flex flex-col items-center gap-sm">
+        <span class="text-ink text-[32px] font-semibold tracking-[-0.6px] opacity-60">{t('nav.work')}</span>
+        <div class="flex flex-col items-center gap-xs mt-xs">
+          {workProjects.map((p) => (
+            <a
+              href={projectHref(p.slug)}
+              data-transition-line1={t(p.transitionKey as UIKey)}
+              data-transition-line2=""
+              class="mobile-menu-link mobile-work-link text-muted text-[18px] font-normal tracking-[-0.3px] hover:text-ink transition-colors duration-200"
+            >
+              <span class="opacity-50 mr-2 text-[14px] font-mono">{p.num}</span>
+              {t(p.labelKey)}
+            </a>
+          ))}
+        </div>
+      </div>
       <a
         href="mailto:hey@alvaroar.es"
         class="mobile-menu-link text-ink text-[32px] font-semibold tracking-[-0.6px]"
@@ -175,6 +254,170 @@ const aboutChars = t('nav.about').split('');
 
   .nav-about:hover {
     color: var(--color-ink);
+  }
+
+  /* ── Work trigger ── */
+  .nav-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--color-muted);
+    transition: color 0.25s ease;
+    gap: 5px;
+  }
+
+  .nav-trigger:hover,
+  .nav-trigger[aria-expanded="true"] {
+    color: var(--color-ink);
+  }
+
+  .work-chevron {
+    width: 10px;
+    height: 10px;
+    margin-top: 1px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.7;
+  }
+
+  .nav-trigger[aria-expanded="true"] .work-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── Work dropdown panel ── */
+  .work-dropdown {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 49;
+  }
+
+  .work-dropdown.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .work-dropdown-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 32px 0 32px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (min-width: 1024px) {
+    .work-dropdown-inner {
+      padding-left: 64px;
+      padding-right: 64px;
+    }
+  }
+
+  .work-dropdown-panel {
+    width: 100%;
+    max-width: 420px;
+    background: color-mix(in srgb, var(--color-canvas) 92%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .work-dropdown-item {
+    display: grid;
+    grid-template-columns: 32px 1fr 14px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-muted);
+    position: relative;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .work-dropdown-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 2px;
+    height: 0;
+    background: var(--accent);
+    border-radius: 2px;
+    transform: translateY(-50%);
+    transition: height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .work-dropdown-item:hover,
+  .work-dropdown-item:focus-visible {
+    background: color-mix(in srgb, var(--color-ink) 4%, transparent);
+    color: var(--color-ink);
+  }
+
+  .work-dropdown-item:hover::before,
+  .work-dropdown-item:focus-visible::before {
+    height: 60%;
+  }
+
+  .work-item-num {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-ghost);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .work-dropdown-item:hover .work-item-num {
+    color: var(--accent);
+  }
+
+  .work-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .work-item-label {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    line-height: 1.1;
+    color: inherit;
+  }
+
+  .work-item-tag {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--color-ghost);
+    line-height: 1.2;
+  }
+
+  .work-item-arrow {
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    transform: translateX(-3px);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  }
+
+  .work-dropdown-item:hover .work-item-arrow {
+    transform: translateX(0);
+    opacity: 1;
+    color: var(--accent);
   }
 
   /* Theme knob */
@@ -306,6 +549,19 @@ const aboutChars = t('nav.about').split('');
     opacity: 0;
     transform: translateY(20px);
   }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .work-dropdown {
+      transition: opacity 0.1s ease;
+      transform: none;
+    }
+    .work-chevron,
+    .work-item-arrow,
+    .work-dropdown-item::before {
+      transition: none;
+    }
+  }
 </style>
 
 <script>
@@ -433,4 +689,104 @@ const aboutChars = t('nav.about').split('');
       });
     });
   });
+
+  /* ── Work dropdown ── */
+  const workTrigger = document.querySelector<HTMLButtonElement>('[data-work-trigger]');
+  const workDropdown = document.querySelector<HTMLElement>('[data-work-dropdown]');
+  const workItems = workDropdown?.querySelectorAll<HTMLElement>('.work-dropdown-item') ?? [];
+  let workOpen = false;
+  let workCloseTimer: number | null = null;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function openWork() {
+    if (!workTrigger || !workDropdown || workOpen) return;
+    if (workCloseTimer) {
+      clearTimeout(workCloseTimer);
+      workCloseTimer = null;
+    }
+    workOpen = true;
+    workTrigger.setAttribute('aria-expanded', 'true');
+    workDropdown.classList.add('is-open');
+
+    if (!prefersReducedMotion) {
+      gsap.fromTo(
+        workItems,
+        { y: -6, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.32, stagger: 0.04, ease: 'power3.out' }
+      );
+    }
+  }
+
+  function closeWork(immediate = false) {
+    if (!workTrigger || !workDropdown || !workOpen) return;
+    if (workCloseTimer) {
+      clearTimeout(workCloseTimer);
+      workCloseTimer = null;
+    }
+    workOpen = false;
+    workTrigger.setAttribute('aria-expanded', 'false');
+    if (immediate || prefersReducedMotion) {
+      workDropdown.classList.remove('is-open');
+    } else {
+      const dur = 0.18;
+      gsap.to(workItems, {
+        y: -4,
+        opacity: 0,
+        duration: dur,
+        stagger: 0.02,
+        ease: 'power2.in',
+        onComplete: () => {
+          if (!workOpen) workDropdown.classList.remove('is-open');
+        },
+      });
+    }
+  }
+
+  function scheduleClose() {
+    if (workCloseTimer) clearTimeout(workCloseTimer);
+    workCloseTimer = window.setTimeout(() => closeWork(), 120);
+  }
+
+  if (workTrigger && workDropdown) {
+    // Hover open
+    workTrigger.addEventListener('mouseenter', openWork);
+    workTrigger.addEventListener('mouseleave', scheduleClose);
+    workDropdown.addEventListener('mouseenter', () => {
+      if (workCloseTimer) {
+        clearTimeout(workCloseTimer);
+        workCloseTimer = null;
+      }
+    });
+    workDropdown.addEventListener('mouseleave', scheduleClose);
+
+    // Click toggle (touch + keyboard accessibility)
+    workTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      workOpen ? closeWork(true) : openWork();
+    });
+
+    // Close on link click
+    workItems.forEach((item) => {
+      item.addEventListener('click', () => closeWork(true));
+    });
+
+    // Keyboard: Escape closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && workOpen) {
+        closeWork(true);
+        workTrigger.focus();
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!workOpen) return;
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      if (!workTrigger.contains(target) && !workDropdown.contains(target)) {
+        closeWork(true);
+      }
+    });
+  }
 </script>

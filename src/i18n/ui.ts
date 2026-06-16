@@ -9,6 +9,10 @@ export const defaultLang: Language = 'en';
 export const ui = {
   en: {
     'nav.work': 'Work',
+    'nav.work.studio': 'Studio',
+    'nav.work.renders': 'Renders',
+    'nav.work.branding': 'Branding',
+    'nav.work.lab': 'Lab',
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.contact.talk': "Let's talk",
@@ -334,6 +338,10 @@ export const ui = {
   },
   es: {
     'nav.work': 'Trabajo',
+    'nav.work.studio': 'Estudio',
+    'nav.work.renders': 'Renders',
+    'nav.work.branding': 'Branding',
+    'nav.work.lab': 'Lab',
     'nav.about': 'Sobre mí',
     'nav.contact': 'Contacto',
     'nav.contact.talk': 'Hablemos',
