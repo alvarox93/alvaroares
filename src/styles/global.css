@@ -168,11 +168,11 @@
   }
 
   .marquee-left {
-    animation: marquee-left 30s linear infinite;
+    animation: marquee-left 45s linear infinite;
   }
 
   .marquee-right {
-    animation: marquee-right 30s linear infinite;
+    animation: marquee-right 45s linear infinite;
   }
 
   @keyframes marquee-left {
@@ -200,16 +200,15 @@
   }
 
   .client-logo {
-    height: 32px;
+    height: 48px;
     width: auto;
     object-fit: contain;
-    opacity: 0.45;
     filter: brightness(0) invert(1);
-    transition: opacity 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .client-logo:hover {
-    opacity: 0.75;
+    transform: scale(1.15);
   }
 
   .color-swatch {
