@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import BrandsMarquee from '@components/BrandsMarquee.astro';
 import IconArrowUpRight from '@components/icons/IconArrowUpRight.astro';
 
 const lang = (Astro.currentLocale ?? defaultLang) as Language;
@@ -131,95 +132,8 @@ const t = useTranslations(lang);
 
       <!-- Clients marquee — dark, extra air -->
       </div>
-    </div>
 
-    <div class="relative bg-ink overflow-hidden py-[100px]">
-        <p class="text-center text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase mb-xl">
-          {t('koora.clients.label')}
-        </p>
-        <div class="overflow-hidden mb-lg">
-          <div class="marquee-track marquee-left">
-            <div class="flex items-center gap-xl shrink-0 px-2xl">
-              <span class="client-name">SIEMENS</span>
-              <span class="client-name">SMC</span>
-              <span class="client-name">CEGASA</span>
-              <span class="client-name">EITB</span>
-              <span class="client-name">VIRTUALWARE</span>
-              <span class="client-name">KANTAR</span>
-              <span class="client-name">TECNALIA</span>
-              <span class="client-name">TKNIKA</span>
-              <span class="client-name">CFEED</span>
-              <span class="client-name">MRA</span>
-              <span class="client-name">GESTAMP</span>
-              <span class="client-name">CAROLINA HERRERA</span>
-              <span class="client-name">JEAN PAUL GAULTIER</span>
-              <span class="client-name">UNIVERSIDAD DE DEUSTO</span>
-              <span class="client-name">MINISTERIO DE EDUCACIÓN</span>
-              <span class="client-name">CENTRO CRIPTOLÓGICO NACIONAL</span>
-            </div>
-            <div class="flex items-center gap-xl shrink-0 px-2xl">
-              <span class="client-name">SIEMENS</span>
-              <span class="client-name">SMC</span>
-              <span class="client-name">CEGASA</span>
-              <span class="client-name">EITB</span>
-              <span class="client-name">VIRTUALWARE</span>
-              <span class="client-name">KANTAR</span>
-              <span class="client-name">TECNALIA</span>
-              <span class="client-name">TKNIKA</span>
-              <span class="client-name">CFEED</span>
-              <span class="client-name">MRA</span>
-              <span class="client-name">GESTAMP</span>
-              <span class="client-name">CAROLINA HERRERA</span>
-              <span class="client-name">JEAN PAUL GAULTIER</span>
-              <span class="client-name">UNIVERSIDAD DE DEUSTO</span>
-              <span class="client-name">MINISTERIO DE EDUCACIÓN</span>
-              <span class="client-name">CENTRO CRIPTOLÓGICO NACIONAL</span>
-            </div>
-          </div>
-        </div>
-        <div class="overflow-hidden">
-          <div class="marquee-track marquee-right">
-            <div class="flex items-center gap-xl shrink-0 px-2xl">
-              <span class="client-name">BITLIFEMEDIA</span>
-              <span class="client-name">BIZKAIRED</span>
-              <span class="client-name">PROFESIOLAN</span>
-              <span class="client-name">CONFOLAR</span>
-              <span class="client-name">HELIAN</span>
-              <span class="client-name">PLEKARI</span>
-              <span class="client-name">SAICA</span>
-              <span class="client-name">DIBAL</span>
-              <span class="client-name">DTCreativos</span>
-              <span class="client-name">H2SITE</span>
-              <span class="client-name">FRACHT</span>
-              <span class="client-name">EGIBIDE</span>
-              <span class="client-name">MEDIAPRO</span>
-              <span class="client-name">CIRCMAR</span>
-              <span class="client-name">BIZKAIKO FORU ALDUNDIA</span>
-              <span class="client-name">BITLIFEMEDIA</span>
-            </div>
-            <div class="flex items-center gap-xl shrink-0 px-2xl">
-              <span class="client-name">BITLIFEMEDIA</span>
-              <span class="client-name">BIZKAIRED</span>
-              <span class="client-name">PROFESIOLAN</span>
-              <span class="client-name">CONFOLAR</span>
-              <span class="client-name">HELIAN</span>
-              <span class="client-name">PLEKARI</span>
-              <span class="client-name">SAICA</span>
-              <span class="client-name">DIBAL</span>
-              <span class="client-name">DTCreativos</span>
-              <span class="client-name">H2SITE</span>
-              <span class="client-name">FRACHT</span>
-              <span class="client-name">EGIBIDE</span>
-              <span class="client-name">MEDIAPRO</span>
-              <span class="client-name">CIRCMAR</span>
-              <span class="client-name">BIZKAIKO FORU ALDUNDIA</span>
-              <span class="client-name">BITLIFEMEDIA</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      </div>
+      <BrandsMarquee />
 
       <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
 

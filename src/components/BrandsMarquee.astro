@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+
+import imgSiemens from '@assets/kooraLogos/siemens.png';
+import imgSmc from '@assets/kooraLogos/smc.png';
+import imgCegasa from '@assets/kooraLogos/cegasa.png';
+import imgEitb from '@assets/kooraLogos/eitb.png';
+import imgVirtualware from '@assets/kooraLogos/virtualware.png';
+import imgKantar from '@assets/kooraLogos/kantar.png';
+import imgTecnalia from '@assets/kooraLogos/tecnalia.png';
+import imgTknika from '@assets/kooraLogos/tknika.png';
+import imgCfeed from '@assets/kooraLogos/cfeed.png';
+import imgMra from '@assets/kooraLogos/mra.png';
+import imgGestamp from '@assets/kooraLogos/gestamp.png';
+import imgCarolinaHerrera from '@assets/kooraLogos/carolina-herrera.png';
+import imgJeanPaulGaultier from '@assets/kooraLogos/jean-paul-gaultier.png';
+import imgUniversidadDeusto from '@assets/kooraLogos/universidad-de-deusto.png';
+import imgMinisterioEducacion from '@assets/kooraLogos/ministerio-de-educacion-mec.png';
+import imgCentroCriptologico from '@assets/kooraLogos/centro-criptologico-nacional.png';
+import imgBitlifemedia from '@assets/kooraLogos/bitlifemedia.png';
+import imgProfesiolan from '@assets/kooraLogos/profesiolan.png';
+import imgConfolar from '@assets/kooraLogos/confolar.png';
+import imgHelian from '@assets/kooraLogos/helian.png';
+import imgPlekari from '@assets/kooraLogos/plekari.png';
+import imgSaica from '@assets/kooraLogos/saica.png';
+import imgDibal from '@assets/kooraLogos/dibal.png';
+import imgBizkaikoForu from '@assets/kooraLogos/bizkaiko-foru-aldundia.png';
+import imgH2site from '@assets/kooraLogos/h2site.png';
+import imgFracht from '@assets/kooraLogos/fracht.png';
+import imgLapatzak from '@assets/kooraLogos/lapatzak.png';
+import imgEgibide from '@assets/kooraLogos/egibide.png';
+import imgMediapro from '@assets/kooraLogos/mediapro.png';
+import imgCircmar from '@assets/kooraLogos/circmar.png';
+import imgRpk from '@assets/kooraLogos/rpk.png';
+
+import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+
+// Shuffled logo order — deterministic for visual balance
+const logos = [
+  { src: imgGestamp, alt: 'Gestamp' },
+  { src: imgKantar, alt: 'Kantar' },
+  { src: imgSiemens, alt: 'Siemens' },
+  { src: imgLapatzak, alt: 'Lapatzak' },
+  { src: imgTecnalia, alt: 'Tecnalia' },
+  { src: imgPlekari, alt: 'Plekari' },
+  { src: imgCegasa, alt: 'Cegasa' },
+  { src: imgRpk, alt: 'RPK' },
+  { src: imgSaica, alt: 'Saica' },
+  { src: imgHelian, alt: 'Helian' },
+  { src: imgTknika, alt: 'Tknika' },
+  { src: imgJeanPaulGaultier, alt: 'Jean Paul Gaultier' },
+  { src: imgCfeed, alt: 'Cfeed' },
+  { src: imgConfolar, alt: 'Confolar' },
+  { src: imgEitb, alt: 'EITB' },
+  { src: imgCentroCriptologico, alt: 'Centro Criptológico Nacional' },
+  { src: imgMra, alt: 'MRA' },
+  { src: imgFracht, alt: 'Fracht' },
+  { src: imgH2site, alt: 'H2Site' },
+  { src: imgSmc, alt: 'SMC' },
+  { src: imgDibal, alt: 'Dibal' },
+  { src: imgUniversidadDeusto, alt: 'Universidad de Deusto' },
+  { src: imgBizkaikoForu, alt: 'Bizkaiko Foru Aldundia' },
+  { src: imgEgibide, alt: 'Egibide' },
+  { src: imgMediapro, alt: 'Mediapro' },
+  { src: imgBitlifemedia, alt: 'Bitlifemedia' },
+  { src: imgMinisterioEducacion, alt: 'Ministerio de Educación' },
+  { src: imgVirtualware, alt: 'Virtualware' },
+  { src: imgProfesiolan, alt: 'Profesiolan' },
+  { src: imgCarolinaHerrera, alt: 'Carolina Herrera' },
+  { src: imgCircmar, alt: 'Circmar' },
+];
+
+// Split into two rows
+const row1 = logos.slice(0, 16);
+const row2 = logos.slice(16);
+---
+
+<!-- Clients marquee — dark, extra air -->
+<div class="relative bg-ink w-screen overflow-hidden py-[100px]" style="margin-left: calc(-50vw + 50%);">
+  <p class="text-center text-canvas/50 text-[11px] font-medium tracking-[0.14px] uppercase mb-xl">
+    {t('koora.clients.label')}
+  </p>
+
+  <!-- Row 1 — scroll left -->
+  <div class="overflow-hidden mb-lg">
+    <div class="marquee-track marquee-left">
+      <div class="flex items-center gap-xl shrink-0 px-2xl">
+        {row1.map((logo) => (
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            width={120}
+            height={60}
+            loading="lazy"
+            class="client-logo"
+          />
+        ))}
+      </div>
+      <div class="flex items-center gap-xl shrink-0 px-2xl">
+        {row1.map((logo) => (
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            width={120}
+            height={60}
+            loading="lazy"
+            class="client-logo"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 — scroll right -->
+  <div class="overflow-hidden">
+    <div class="marquee-track marquee-right">
+      <div class="flex items-center gap-xl shrink-0 px-2xl">
+        {row2.map((logo) => (
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            width={120}
+            height={60}
+            loading="lazy"
+            class="client-logo"
+          />
+        ))}
+      </div>
+      <div class="flex items-center gap-xl shrink-0 px-2xl">
+        {row2.map((logo) => (
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            width={120}
+            height={60}
+            loading="lazy"
+            class="client-logo"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

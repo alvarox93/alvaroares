@@ -199,6 +199,19 @@
     padding: 10px 20px;
   }
 
+  .client-logo {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.45;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.3s ease;
+  }
+
+  .client-logo:hover {
+    opacity: 0.75;
+  }
+
   .color-swatch {
     width: 20px;
     height: 20px;
@@ -261,5 +274,8 @@ html.is-page-transitioning body {
 @media (prefers-reduced-motion: reduce) {
   body {
     animation: none;
+  }
+  .marquee-track {
+    animation-play-state: paused !important;
   }
 }
