@@ -67,7 +67,7 @@ const t = useTranslations(lang);
         <!-- Block 01 — VR Education — video left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <div class="video-col order-2 lg:order-none lg:col-span-6 lg:sticky lg:top-[72px]">
-            <div class="relative aspect-[9/16] max-h-[60vh] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto">
+            <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden mx-auto max-w-full">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
                 autoplay
@@ -76,7 +76,7 @@ const t = useTranslations(lang);
                 playsinline
                 preload="metadata"
               >
-                <source src="/lab/vr-education.mp4" type="video/mp4" />
+                <source src="/interactive/interactive_classVR.webm" type="video/webm" />
               </video>
             </div>
           </div>
