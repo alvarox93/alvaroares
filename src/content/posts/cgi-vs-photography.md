@@ -7,6 +7,7 @@ pubDate: 2026-02-18
 placeholder: "CGI"
 description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"
+cover: "../../assets/posts/food-portada.png"
 ---
 
 Some projects you do because someone asks. Others you do because you can't not.

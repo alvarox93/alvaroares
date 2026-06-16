@@ -5,6 +5,7 @@ import Hero from '@components/Hero.astro';
 import WorkSection from '@components/WorkSection.astro';
 import { useTranslations, defaultLang, type Language, type UIKey } from '@i18n/ui';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import IconUser from '@components/icons/IconUser.astro';
 import IconPhone from '@components/icons/IconPhone.astro';
 import IconLocation from '@components/icons/IconLocation.astro';
@@ -87,10 +88,34 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
             return (
               <a href={href} class="post-card group shrink-0" style="width: 340px;" data-post-index={i} data-transition-line1={t(transitionKey)}>
                 <div class="relative aspect-[3/4] bg-surface rounded-xl overflow-hidden">
-                  <div class="absolute inset-0 flex items-center justify-center text-ghost/40 text-[48px] font-display font-bold tracking-[-0.04em] select-none">{post.data.placeholder}</div>
-                  <div class="absolute bottom-0 left-0 right-0 p-xl bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                  {post.data.coverVideo ? (
+                    <video
+                      src={post.data.coverVideo}
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      class="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : post.data.cover ? (
+                    <Image
+                      src={post.data.cover}
+                      alt={post.data.title}
+                      width={680}
+                      height={907}
+                      loading="lazy"
+                      decoding="async"
+                      format="webp"
+                      quality={78}
+                      class="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div class="absolute inset-0 flex items-center justify-center text-ghost/40 text-[48px] font-display font-bold tracking-[-0.04em] select-none">{post.data.placeholder}</div>
+                  )}
+                  <div class="absolute bottom-0 left-0 right-0 p-xl bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                     <span class="text-canvas/50 text-[10px] tracking-[0.1px] uppercase block mb-xs">{post.data.date}</span>
-                    <h3 class="text-[clamp(20px,2.2vw,26px)] font-medium leading-[1.2] tracking-[-0.02em] text-canvas text-balance">
+                    <h3 class="text-[clamp(20px,2.2vw,26px)] font-medium leading-[1.2] tracking-[-0.02em] text-muted group-hover:text-ink transition-colors duration-300 text-balance">
                       {post.data.title}
                     </h3>
                   </div>
@@ -376,7 +401,7 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   }
 
   .post-card:hover h3 {
-    color: var(--accent);
+    color: var(--color-ink);
   }
 
   .posts-pin-wrapper .posts-track {

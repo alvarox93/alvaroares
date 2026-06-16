@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
+import { Image } from 'astro:assets';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   title: string;
@@ -15,9 +17,11 @@ interface Props {
   transitionLine2?: string;
   authorName?: string;
   authorUrl?: string;
+  cover?: ImageMetadata;
+  coverVideo?: string;
 }
 
-const { title, category, readTime, date, pubDate, description, lang: langProp, transitionLine1, transitionLine2, authorName = 'Álvaro Ares', authorUrl = 'https://alvaroar.es' } = Astro.props;
+const { title, category, readTime, date, pubDate, description, lang: langProp, transitionLine1, transitionLine2, authorName = 'Álvaro Ares', authorUrl = 'https://alvaroar.es', cover, coverVideo } = Astro.props;
 const lang: Language = langProp ?? ((Astro.currentLocale ?? defaultLang) as Language);
 const t = useTranslations(lang);
 const backHref = lang === defaultLang ? '/#posts' : '/es/#posts';
@@ -58,8 +62,34 @@ const pubDateDisplay = pubDate
       </header>
 
       <div class="mb-3xl">
-        <div class="aspect-[16/9] bg-surface rounded-xl overflow-hidden flex items-center justify-center">
-          <span class="text-ghost text-[13px]">{lang === 'es' ? 'Imagen destacada' : 'Featured image'}</span>
+        <div class="aspect-[16/9] bg-surface rounded-xl overflow-hidden">
+          {coverVideo ? (
+            <video
+              src={coverVideo}
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              class="w-full h-full object-cover"
+            />
+          ) : cover ? (
+            <Image
+              src={cover}
+              alt={title}
+              width={1280}
+              height={720}
+              loading="eager"
+              decoding="async"
+              format="webp"
+              quality={82}
+              class="w-full h-full object-cover"
+            />
+          ) : (
+            <div class="w-full h-full flex items-center justify-center">
+              <span class="text-ghost text-[13px]">{lang === 'es' ? 'Imagen destacada' : 'Featured image'}</span>
+            </div>
+          )}
         </div>
       </div>
 

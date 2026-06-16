@@ -7,6 +7,7 @@ pubDate: 2026-02-18
 placeholder: "CGI"
 description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
+cover: "../../../assets/posts/food-portada.png"
 ---
 
 Hay proyectos que haces porque te los piden. Y hay proyectos que haces porque no puedes no hacerlos.

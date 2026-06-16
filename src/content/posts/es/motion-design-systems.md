@@ -7,6 +7,7 @@ pubDate: 2026-05-12
 placeholder: "Motion"
 description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
+coverVideo: "/posts/motionPost_portada.webm"
 ---
 
 La mayoría de clientes saben que quieren movimiento. Pocos saben por qué.

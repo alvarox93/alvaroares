@@ -7,6 +7,7 @@ pubDate: 2026-05-12
 placeholder: "Motion"
 description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"
+coverVideo: "/posts/motionPost_portada.webm"
 ---
 
 Most clients know they want movement. Few know why.
