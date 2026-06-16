@@ -7,6 +7,7 @@ pubDate: 2026-04-20
 placeholder: "Brand"
 description: "La mayoría de clientes saben que quieren movimiento. Pocos saben por qué. Así el motion se convierte en dirección — no en decoración."
 lang: "es"
+cover: "../../../assets/posts/lapatzak-portada.png"
 ---
 
 Dirigir el trabajo de otros es una cosa. Dirigirte a ti mismo es otra completamente distinta.

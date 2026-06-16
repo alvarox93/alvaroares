@@ -7,6 +7,7 @@ pubDate: 2026-04-20
 placeholder: "Brand"
 description: "Most clients know they want movement. Few know why. Here's how motion becomes direction — not decoration."
 lang: "en"
+cover: "../../assets/posts/lapatzak-portada.png"
 ---
 
 Directing other people's work is one thing. Directing yourself is something else entirely.
