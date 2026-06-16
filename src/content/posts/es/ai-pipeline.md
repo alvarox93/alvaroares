@@ -1,5 +1,5 @@
 ---
-title: "Cómo automaticé el 50% de mi pipeline visual — y qué cambió en cómo dirijo"
+title: "Menos hacer. Más dirigir."
 category: "Dirección creativa"
 readTime: "6 min"
 date: "Mar 2026"

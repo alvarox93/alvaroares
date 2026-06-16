@@ -1,5 +1,5 @@
 ---
-title: "How I automated 50% of my visual pipeline — and what that changed about how I direct"
+title: "Less doing. More directing."
 category: "Creative direction"
 readTime: "6 min"
 date: "Mar 2026"

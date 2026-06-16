@@ -113,9 +113,9 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
                   ) : (
                     <div class="absolute inset-0 flex items-center justify-center text-ghost/40 text-[48px] font-display font-bold tracking-[-0.04em] select-none">{post.data.placeholder}</div>
                   )}
-                  <div class="absolute bottom-0 left-0 right-0 p-xl bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                    <span class="text-canvas/50 text-[10px] tracking-[0.1px] uppercase block mb-xs">{post.data.date}</span>
-                    <h3 class="text-[clamp(20px,2.2vw,26px)] font-medium leading-[1.2] tracking-[-0.02em] text-muted group-hover:text-ink transition-colors duration-300 text-balance">
+                  <div class="absolute bottom-0 left-0 right-0 p-xl bg-gradient-to-t from-black/95 via-black/60 to-transparent">
+                    <span class="text-canvas/55 text-[10px] tracking-[0.1px] uppercase block mb-xs">{post.data.date}</span>
+                    <h3 class="text-[clamp(20px,2.2vw,26px)] font-medium leading-[1.2] tracking-[-0.02em] text-canvas/55 group-hover:text-canvas transition-colors duration-300 text-balance">
                       {post.data.title}
                     </h3>
                   </div>
@@ -394,14 +394,6 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
   .post-card:hover .aspect-\[3\/4\] {
     box-shadow: 0 20px 50px rgba(0,0,0,0.1);
     transform: translateY(-4px);
-  }
-
-  .post-card h3 {
-    transition: color 0.3s ease;
-  }
-
-  .post-card:hover h3 {
-    color: var(--color-ink);
   }
 
   .posts-pin-wrapper .posts-track {
