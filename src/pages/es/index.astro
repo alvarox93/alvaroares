@@ -117,16 +117,21 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
                   ) : (
                     <div class="absolute inset-0 flex items-center justify-center text-ghost/40 text-[48px] font-display font-bold tracking-[-0.04em] select-none">{post.data.placeholder}</div>
                   )}
+
+                  <div class="absolute top-xl left-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="inline-flex items-center px-2.5 py-1 backdrop-blur-sm bg-canvas/10 border border-canvas/25 rounded-sm text-canvas/90 text-[10px] font-medium tracking-[0.08px] uppercase">
+                      {post.data.category}
+                    </span>
+                  </div>
+
                   <div class="absolute bottom-0 left-0 right-0 p-xl bg-gradient-to-t from-black/95 via-black/60 to-transparent">
-                    <span class="text-canvas/55 text-[10px] tracking-[0.1px] uppercase block mb-xs">{post.data.date}</span>
+                    <span class="block text-canvas/55 text-[10px] tracking-[0.1px] uppercase mb-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {post.data.date}
+                    </span>
                     <h3 class="text-[clamp(20px,2.2vw,26px)] font-medium leading-[1.2] tracking-[-0.02em] text-canvas/55 group-hover:text-canvas transition-colors duration-300 text-balance">
                       {post.data.title}
                     </h3>
                   </div>
-                </div>
-                <div class="flex items-center gap-sm mt-sm">
-                  <span class="text-ghost text-[10px] tracking-[0.08px] uppercase px-2 py-1 border border-border rounded-sm">{post.data.category}</span>
-                  <span class="text-ghost text-[10px] tracking-[0.08px]">{post.data.readTime}</span>
                 </div>
               </a>
             );
