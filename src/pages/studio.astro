@@ -79,9 +79,16 @@ const t = useTranslations(lang);
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <div class="video-col order-2 lg:order-none lg:col-span-7 lg:sticky lg:top-[72px]">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [International campaign video]
-              </div>
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+              >
+                <source src="/studio/studioContent_blockOne.webm" type="video/webm" />
+              </video>
             </div>
           </div>
           <div class="text-col relative z-[2] order-1 mb-lg lg:mb-0 lg:col-span-4 lg:col-start-9">
@@ -222,9 +229,16 @@ const t = useTranslations(lang);
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <div class="video-col order-2 lg:order-none lg:col-span-7 lg:sticky lg:top-[72px]">
             <div class="relative aspect-[16/9] bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">
-                [Consistency showcase video]
-              </div>
+              <video
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+              >
+                <source src="/studio/studioContent_archViz.webm" type="video/webm" />
+              </video>
             </div>
           </div>
           <div class="text-col relative z-[2] order-1 mb-lg lg:mb-0 lg:col-span-4 lg:col-start-9">

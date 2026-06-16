@@ -37,19 +37,14 @@ const t = useTranslations(lang);
             <div class="relative aspect-[16/9] bg-canvas rounded-2xl border border-border-light overflow-hidden shadow-sm hero-video-card">
               <video
                 class="absolute inset-0 w-full h-full object-cover"
-                controls
+                autoplay
+                loop
+                muted
                 playsinline
                 preload="metadata"
               >
-                <source src="/interactive/interactiveHero.webm" type="video/webm" />
+                <source src="/interactive/interactive_classVR.webm" type="video/webm" />
               </video>
-              <div class="hero-video-overlay absolute inset-0 flex items-center justify-center bg-ink/10 pointer-events-none transition-opacity duration-500">
-                <div class="w-12 h-12 rounded-full bg-canvas/90 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-ink ml-0.5">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </div>
-              </div>
             </div>
           </div>
         </div>

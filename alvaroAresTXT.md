@@ -407,9 +407,9 @@ Back link: `← Back to home` / `← Volver al inicio`
 
 `{filename} — 3D food render` — same in both languages.
 
-### Render images (28 files)
+### Render images (30 files)
 
-cafe, bar, bonbon, bravas-1, bravas-2, chocolate-bar, chocolate-hover, churro, churros, coulant, gyoza, honey-cake, huesito, kortxo, macaron, matcha-cookies, panellet-1, panellet-2, panellet-3, pansuflado, pasta, pineapple, pringle, snack, spoonful, tea-matcha, topoki, waffle-honey
+cafe, bar, bombon, bonbon, bravas-1, bravas-2, chocolate-bar, chocolate-hover, churro, churros, coulant, gyoza, honey-cake, huesito, kortxo, macaron, matcha-cookies, panellet-1, panellet-2, panellet-3, pansuflado, pasta, pineapple, pistachio-dessert, pringle, snack, spoonful, tea-matcha, topoki, waffle-honey
 
 ---
 

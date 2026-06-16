@@ -1,5 +1,6 @@
 export const foodRenderAlts: Record<string, string> = {
   'bar': 'Photorealistic 3D render of a protein bar. Modeled in Maya, sculpted in ZBrush, rendered in V-Ray.',
+  'bombon': 'Editorial 3D render of an assorted chocolate box with holiday packaging. Maya modeling, ZBrush detailing, V-Ray lighting, Photoshop finalization.',
   'bonbon': 'Hyper-detailed 3D render of a chocolate bonbon. Studio-lit, rendered in V-Ray with photo-finish in Photoshop.',
   'bravas-1': 'Cinematic 3D render of patatas bravas with sauce. Modeled in Maya, textured in Photoshop, rendered in V-Ray.',
   'bravas-2': 'Mouth-watering 3D render of patatas bravas. Hyper-detailed texturing, V-Ray lighting, final retouch in Photoshop.',
@@ -21,6 +22,7 @@ export const foodRenderAlts: Record<string, string> = {
   'pansuflado': 'Studio-lit 3D render of a puffy pastry. Maya modeling, V-Ray render, Photoshop retouch.',
   'pasta': 'Cinematic 3D render of fresh pasta. Maya, V-Ray, Photoshop.',
   'pineapple': 'Editorial 3D render of a pineapple. ZBrush sculpting, V-Ray lighting, Photoshop finalization.',
+  'pistachio-dessert': 'Studio-lit 3D render of a pistachio mousse dessert on a dark plate. Maya modeling, V-Ray lighting, Photoshop retouch.',
   'pringle': 'Photorealistic 3D render of a stack of Pringles. Maya dynamics, V-Ray render, Photoshop polish.',
   'snack': 'Hyper-detailed 3D render of a snack. Maya, ZBrush, V-Ray, Photoshop.',
   'spoonful': 'Tactile 3D render of a spoonful of cream. V-Ray lighting, Maya modeling, Photoshop retouch.',
