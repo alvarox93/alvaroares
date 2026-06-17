@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navigation from '@components/Navigation.astro';
+import ImageCarousel from '@components/ImageCarousel.astro';
 import IconMail from '@components/icons/IconMail.astro';
 import { useTranslations, defaultLang, type Language } from '@i18n/ui';
 
@@ -121,28 +122,7 @@ const t = useTranslations(lang);
         <!-- Block 03 — Webapps & Interactive — text right, gallery left -->
         <div class="narrative-block relative grid grid-cols-1 lg:grid-cols-12 gap-xl items-start mb-section-mobile lg:mb-4xl">
           <div class="video-col order-2 lg:order-none lg:col-span-6 lg:sticky lg:top-[72px]">
-            <div class="carousel-wrap bg-canvas rounded-xl border border-border-light overflow-hidden">
-              <div class="carousel-track">
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[01]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[02]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[03]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[04]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[05]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[06]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[07]</div></div>
-                <div class="carousel-slide"><div class="absolute inset-0 flex items-center justify-center text-ghost text-[13px]">[08]</div></div>
-              </div>
-              <div class="carousel-dots">
-                <div class="carousel-dot active"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-              </div>
-            </div>
+            <ImageCarousel />
           </div>
           <div class="text-col relative z-[2] order-1 mb-lg lg:mb-0 lg:col-span-5 lg:col-start-8">
             <span class="text-ghost text-[10px] font-medium tracking-[0.08px] uppercase px-2.5 py-1 border border-border rounded-sm mb-md inline-block">{t('lab.block3.tag')}</span>
@@ -281,43 +261,6 @@ const t = useTranslations(lang);
   }
   section:first-of-type .grid {
     perspective: 1200px;
-  }
-
-  /* ── Carousel ── */
-  .carousel-wrap {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-  }
-  .carousel-track {
-    display: flex;
-    gap: 12px;
-    will-change: transform;
-  }
-  .carousel-slide {
-    flex: 0 0 100%;
-    aspect-ratio: 16 / 10;
-    background: var(--color-surface);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-  }
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 16px;
-  }
-  .carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-border);
-    transition: background 0.3s;
-    cursor: pointer;
-  }
-  .carousel-dot.active {
-    background: var(--color-ink);
   }
 
   /* ── Calculator ── */
@@ -626,40 +569,6 @@ const t = useTranslations(lang);
       });
     }
 
-  }
-
-  // ── Carousel ──
-  // ── Carousel ──
-  const carouselWrap = document.querySelector('.carousel-wrap') as HTMLElement;
-  if (carouselWrap) {
-    const track = carouselWrap.querySelector('.carousel-track') as HTMLElement;
-    const slides = carouselWrap.querySelectorAll('.carousel-slide');
-    const dots = carouselWrap.querySelectorAll('.carousel-dot');
-    if (track && slides.length > 1) {
-      let current = 0;
-      const total = slides.length;
-      const interval = 4000;
-
-      function goTo(index: number) {
-        current = index;
-        gsap.to(track, {
-          x: -current * (slides[0] as HTMLElement).offsetWidth - current * 12,
-          duration: 0.8,
-          ease: 'power3.inOut',
-        });
-        dots.forEach((d, i) => {
-          d.classList.toggle('active', i === current);
-        });
-      }
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => goTo(i));
-      });
-
-      setInterval(() => {
-        goTo((current + 1) % total);
-      }, interval);
-    }
   }
 
   // ── Calculator ──
