@@ -370,13 +370,6 @@ const aboutHref = lang === defaultLang ? '/about' : '/es/about';
       });
     }
 
-    const workSub = document.querySelector('.work-sub');
-    if (workSub) {
-      gsap.from(workSub, {
-        y: 12, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
-        scrollTrigger: { trigger: workSub, start: 'top 88%', once: true },
-      });
-    }
   }
 </script>
 

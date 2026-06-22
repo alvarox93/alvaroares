@@ -79,14 +79,6 @@ const projects: Array<{
 ---
 
 <section class="relative bg-canvas" id="work">
-  <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl pt-[clamp(72px,12vw,140px)] pb-section">
-    <div class="max-w-[820px]">
-      <p class="work-sub text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-muted max-w-[420px]">
-        {t('work.subheading')}
-      </p>
-    </div>
-  </div>
-
   <div class="max-w-[1200px] mx-auto px-xl lg:px-3xl">
     {projects.slice(0, 2).map((p) => {
       const isLeft = p.side === 'left';
